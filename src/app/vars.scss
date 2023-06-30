@@ -1,0 +1,38 @@
+
+  /*Fonts*/
+  @font-face {
+    font-family: "SF_Regular";
+    src: url("./../../public/font/SFProDisplay-Regular.woff2");
+    src: local("SF_Regular"),
+      url("./../../public//font//SFProDisplay-Regular.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "SF_Medium";
+    src: url("./../../public/font/SFProDisplay-Medium.woff2");
+    src: local("SF_Medium"),
+      url("./../../public/font/SFProDisplay-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "SF_Bold";
+    src: url("./../../public/font/SFProDisplay-Bold.woff2");
+    src: local("SF_Bold"),
+      url("./../../public/font/SFProDisplay-Bold.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "SF_SemiBold";
+    src: url("./../../public/font/SFProDisplay-Semibold.woff2");
+    src: local("SF_SemiBold"),
+      url("./../../public/font/SFProDisplay-Semibold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+  }
+
