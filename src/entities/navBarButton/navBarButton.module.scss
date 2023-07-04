@@ -1,0 +1,41 @@
+$borderColor: #fff;
+$buttonTextColor: #fff;
+$buttonBgColor: #fff;
+$hoverTextColor: #222;
+
+.button {
+  display: inline-flex;
+  padding: 11px 18px;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 100px;
+  border: 2px solid $borderColor;
+  background-color: transparent;
+
+  outline: none;
+
+  transition: all 0.3s;
+
+  &:hover {
+    cursor: pointer;
+
+    background-color: $buttonBgColor;
+  }
+}
+
+.button__text {
+  font-size: 18px;
+  font-family: "SF_Medium", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.button__text__hover {
+  color: $hoverTextColor;
+}
+
+.button__text__hoverNone {
+  color: $buttonTextColor;
+}

@@ -1,0 +1,58 @@
+$bgItemColor: #fff;
+$textColor: #222;
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  border-radius: 32px;
+  background: var(--unnamed, $bgItemColor);
+  box-shadow: 4px 0px 8px 0px rgba(0, 0, 0, 0.12),
+    0px -4px 8px 0px rgba(0, 0, 0, 0.12), 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+
+  width: 100%;
+  max-width: 347px;
+  height: 100%;
+  min-height: 295px;
+
+  margin-left: 100px;
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    width: 268px;
+
+    padding: 48px 34px 28px 48px;
+    gap: 16px;
+
+    .title {
+      color: $textColor;
+
+      font-size: 22px;
+      font-family: "SF_Medium", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+
+    .description {
+      color: $textColor;
+      font-size: 16px;
+      font-family: "SF_Medium", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+  }
+  .icon{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    padding-right: 28px;
+}
+}

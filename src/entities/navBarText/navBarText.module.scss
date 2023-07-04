@@ -1,0 +1,23 @@
+$textColor: #fff;
+$textHoverColor: #e6e6e6; // плохо смотрится => заменить
+
+.textButton {
+  color: $textColor;
+
+  cursor: pointer;
+
+  font-size: 17px;
+  font-family: "SF_Medium";
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  transition: all 0.1s;
+
+  border: none;
+
+  text-align: center;
+}
+.textButton:hover {
+  color: $textHoverColor;
+}

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "./TagsButton.module.scss";
+import styles from "./tagsButton.module.scss";
 
 interface Props {
   id?: number;

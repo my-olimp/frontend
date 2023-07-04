@@ -1,0 +1,20 @@
+
+
+.wrap {
+    width: 50vw;
+
+    text-align: center;
+
+    color: white;
+    font-size: 17px;
+
+    border: 2px solid white;
+
+    border-radius: 15px;
+    padding: 6px 8px;
+}
+
+.wrap:active {
+    background-color: #3579F8; /*button hover blue color*/
+}
+

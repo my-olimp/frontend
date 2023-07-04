@@ -1,0 +1,72 @@
+$navBarHeight: 96px;
+$scrollColor: rgba(53, 121, 248, 0.4);
+$scrollBlur: 24px;
+
+.wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 1650px;
+  height: $navBarHeight;
+
+  background-color: transparent;
+
+  position: fixed;
+
+  z-index: 2000;
+}
+
+.blockLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 50px;
+  float: left;
+
+  padding-left: 200px;
+}
+
+.blockRight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 50px;
+  float: right;
+
+  padding-right: 200px;
+}
+.layout {
+  max-width: 1650px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .blockLeft {
+    padding-left: 134px;
+  }
+  .blockRight {
+    padding-right: 134px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .blockLeft {
+    padding-left: 78px;
+  }
+  .blockRight {
+    padding-right: 78px;
+  }
+}
+
+.scrolled {
+  background: $scrollColor;
+  backdrop-filter: blur($scrollBlur);
+  height: 80px;
+}
