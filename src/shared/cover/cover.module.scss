@@ -14,7 +14,7 @@ $white-text-color: #fff;
     margin-left: 14px;
     margin-right: 14px;
     margin-top: 14px;
-
+    z-index: -1;
     background-color: $accent-color;
     .innerLayout {
       padding-bottom: 120px;

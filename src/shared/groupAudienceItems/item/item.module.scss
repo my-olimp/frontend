@@ -1,0 +1,106 @@
+$bgItemColor: #fff;
+$textColor: #222;
+
+.item {
+  display: block;
+  position: relative;
+
+  background-color: $bgItemColor;
+
+  box-shadow: 8px 0px 8px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 32px;
+
+  width: 33.3333333333333%;
+  min-height: 295px;
+
+  transition: all 0.25s;
+
+  &:hover {
+    transform: translateX(20px);
+  }
+
+  .title {
+    color: $textColor;
+
+    font-size: 22px;
+    font-family: "SF_Medium", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    margin-bottom: 16px;
+  }
+  .description {
+    color: $textColor;
+    font-size: 16px;
+    font-family: "SF_Regular", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+.info {
+  margin: 48px 48px 96px;
+
+}
+
+.info::after {
+  content: "";
+  position: absolute;
+  top: 200px;
+  right: 48px;
+  bottom: 40px;
+  width: 40px;
+  height: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: url("./assets/star.svg") no-repeat 50%;
+  background-size: contain;
+}
+
+@media screen and (max-width: 1000px) {
+  .item {
+    display: flex;
+
+    width: 100%;
+    min-height: 1px;
+
+    margin-top: -32px;
+  }
+
+  .info::after {
+    content: "";
+    position: absolute;
+    top: 92px;
+    right: 48px;
+    right: 48px;
+    bottom: 40px;
+    width: 40px;
+    height: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: url("./assets/star.svg") no-repeat 50%;
+    background-size: contain;
+  }
+
+  .info {
+    margin: 40px 48px 96px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .info::after {
+    right: 32px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .info::after {
+    display: none;
+  }
+
+  .info {
+    margin: 38px 28px 96px;
+  }
+}

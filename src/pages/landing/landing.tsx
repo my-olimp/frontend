@@ -2,7 +2,8 @@ import { Cover } from "./../../shared/cover/cover";
 import { FC, useEffect, useRef, useState } from "react";
 import styles from "./landing.module.scss";
 import { NavBar } from "@/widgets/navBar/navBar";
-import { AudItems } from "./../../shared/audienceItem/item";
+import { GroupAudItems } from "@/shared/groupAudienceItems/groupItem";
+import Layout from "@/shared/layouts/Landing/layout";
 
 export const Landing: FC = () => {
   const [mobile, setMobile] = useState(false);
@@ -28,20 +29,9 @@ export const Landing: FC = () => {
           description="Победа в олимпиадах дает возможность получить льготы при поступления в ВУЗ"
         />
       )}
-      <div className={styles.itemsGroup}>
-        <AudItems
-          title="Школьникам и студентам"
-          description="Общайтесь с единомышленниками, создавайте сообщества, регистрируйтесь на олимпиады"
-        />
-        <AudItems
-          title="Преподавателям"
-          description="Материалы для подготовки к олимпиадам всероссийского и международного уровня"
-        />
-        <AudItems
-          title="Онлайн-школам"
-          description="Интеграция ваших курсов на платформу, популяризация внутренних мероприятий и работа с мотивированной аудиторией"
-        />
-      </div>
+      <Layout>
+        <GroupAudItems />
+      </Layout>
     </>
   );
 };
