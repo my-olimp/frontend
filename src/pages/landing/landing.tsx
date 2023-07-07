@@ -4,6 +4,7 @@ import styles from "./landing.module.scss";
 import { NavBar } from "@/widgets/navBar/navBar";
 import { GroupAudItems } from "@/shared/groupAudienceItems/groupItem";
 import Layout from "@/shared/layouts/Landing/layout";
+import { Tools } from "@/shared/toolsSection/tools";
 
 export const Landing: FC = () => {
   const [mobile, setMobile] = useState(false);
@@ -31,6 +32,7 @@ export const Landing: FC = () => {
       )}
       <Layout>
         <GroupAudItems />
+        <Tools />
       </Layout>
     </>
   );
