@@ -6,6 +6,7 @@ import { GroupAudItems } from "@/shared/groupAudienceItems/groupItem";
 import Layout from "@/shared/layouts/Landing/layout";
 import { Tools } from "@/shared/toolsSection/tools";
 import { Content } from "@/shared/blocksWithContent/content";
+import { Team } from "@/widgets/team/team";
 
 export const Landing: FC = () => {
   const [mobile, setMobile] = useState(false);
@@ -35,6 +36,7 @@ export const Landing: FC = () => {
         <GroupAudItems />
         <Tools />
         <Content />
+        <Team />
       </Layout>
     </>
   );

@@ -1,0 +1,21 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.left,
+.right {
+  width: 48px;
+  height: 48px;
+
+  color: #3579F8;
+}
+
+.left:hover,
+.right:hover {
+  cursor: pointer;
+  color: #757575;
+}
+
+

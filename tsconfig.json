@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/shared/layouts/Landing/layout.jsx", "src/shared/layouts/LandingBigLayout/layout.jsx", "src/entities/navBarButton/navBarButton.jsx", "src/features/navBarDesktop/navBar.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/shared/layouts/Landing/layout.jsx", "src/shared/layouts/LandingBigLayout/layout.jsx", "src/entities/navBarButton/navBarButton.jsx", "src/features/navBarDesktop/navBar.tsx", "src/shared/toolsSection/tools.jsx"],
   "exclude": ["node_modules"]
 }
