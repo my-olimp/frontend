@@ -6,7 +6,7 @@ export interface sliderDataType {
   text: string;
   isActive: boolean;
 }
-// Если вам скучно, разгадайте загадку. Откуда я взял ссылки на эти изображения. На решение я потратил 30 минут 
+// Спасибо Next за гениальные ссылки на изображения, на которые я потратил 2 часа
 export const sliderData: sliderDataType[] = [
   {
     id: 0, 
