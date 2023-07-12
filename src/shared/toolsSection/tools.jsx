@@ -72,7 +72,7 @@ export const Tools = () => {
           </div>
         </div>
         <Image
-          className={`image ${activeBtn === "1" ? "activeImage" : ""}`}
+          className={`image ${activeBtn === "3" ? "activeImage" : ""}`}
           src="/firstImage.svg"
           alt="Новости"
           width={600}
@@ -86,7 +86,7 @@ export const Tools = () => {
           height={600}
         />
            <Image
-          className={`image ${activeBtn === "3" ? "activeImage" : ""}`}
+          className={`image ${activeBtn === "1" ? "activeImage" : ""}`}
           src="/thirdImage.svg"
           alt="Олимпиады"
           width={600}

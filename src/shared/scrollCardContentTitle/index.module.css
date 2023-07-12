@@ -8,3 +8,8 @@
     line-height: normal;
   }
   
+  @media screen and (max-width: 768px) {
+    .title{
+        font-size: 36px;
+    }
+  }
