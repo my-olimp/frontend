@@ -1,0 +1,15 @@
+.footerItems {
+  display: flex;
+  flex-direction: column;
+
+  gap: 100px;
+}
+
+.footer {
+  padding-top: 150px;
+  padding-bottom: 64px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}

@@ -3,6 +3,7 @@ import styles from "./slider.module.scss";
 import { FC } from "react";
 import { sliderDataType } from "@/widgets/team/lib"; // нельзя юзать компоненты, которые выше по уровню архитектуры. Надо переделать
 
+
 interface props {
   data: sliderDataType[];
   handleClick: (id: number) => void;

@@ -9,7 +9,7 @@ interface props {
 
 export const NavBarMobile: FC<props> = ({ handleClickSide }) => {
   return (
-    <div className={styles.wrap}>
+    <div className={styles.wrap} id="navbar">
       <div className={styles.blockLeft}>
         <NavBarLogo />
       </div>
@@ -19,5 +19,6 @@ export const NavBarMobile: FC<props> = ({ handleClickSide }) => {
         </div>
       </div>
     </div>
+    
   );
 };

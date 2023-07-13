@@ -1,0 +1,45 @@
+.ecosystem,
+.infoCookies {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "SF_Regular";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+}
+
+.leftInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rightInfo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.infoCookies {
+  max-width: 512px;
+}
+
+@media screen and (max-width: 800px) {
+  .ecosystem,
+  .infoCookies {
+    font-size: 14px;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+    .wrap{
+        flex-direction: column;
+        gap: 24px;
+    }
+  }

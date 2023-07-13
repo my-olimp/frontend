@@ -69,4 +69,12 @@ $scrollBlur: 32px;
   background: $scrollColor;
   backdrop-filter: blur($scrollBlur);
   height: 80px;
+
+}
+
+@media screen and (max-width: 900px) {
+  .scrolled{
+    height: 60px;
+    backdrop-filter: blur(40px);
+  }
 }

@@ -3,14 +3,17 @@ import { NavBarLogo } from "../../entities/navBarLogo/navBarLogo";
 import { NavBarText } from "../../entities/navBarText/navBarText";
 import "./navBar.scss";
 
-export const NavBarDesktop = () => {
+
+
+export const NavBarDesktop = ({show}) => {
+  
   const SCROLLED_STATE_CLASS = "scrolled";
 
   const onScroll = () => {
     const scroll = document.documentElement.scrollTop;
-    if (scroll > 0) {
+    if (scroll > 0 ) {
       navbar.classList.add(SCROLLED_STATE_CLASS);
-    } else {
+    } else if(scroll <=0 ) {
       navbar.classList.remove(SCROLLED_STATE_CLASS);
     }
   };

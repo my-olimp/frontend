@@ -9,6 +9,7 @@ import { Content } from "@/shared/blocksWithContent/content";
 import { Team } from "@/widgets/team/team";
 import { ScrollCards } from "@/widgets/scrollCards/scrollCard";
 import { TitleScroll } from "@/shared/scrollCardContentTitle";
+import { Footer } from "@/widgets/footer/ui";
 
 export const Landing: FC = () => {
   const [mobile, setMobile] = useState(false);
@@ -42,6 +43,9 @@ export const Landing: FC = () => {
         <TitleScroll/>
       </Layout>
       <ScrollCards/>
+      <Layout>
+        <Footer/>
+      </Layout>
     </>
   );
 };
