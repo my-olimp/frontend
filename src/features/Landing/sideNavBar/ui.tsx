@@ -1,0 +1,26 @@
+import { SideBarElement } from "@/entities/Landing/navSideBarElements/ui";
+import { FC } from "react";
+import styles from "./ui.module.scss";
+import { NavBarButton } from "@/entities/Landing/navBarButton/ui";
+
+interface props {
+  show: boolean;
+}
+
+export const SideNavBar: FC<props> = ({ show }) => {
+  const sideWidth = "100%";
+  const style = {
+    wrap: {
+      width: !show ? "0" : sideWidth,
+      display: !show ? "none" : "flex",
+    },
+  };
+  return (
+    <div className={styles.wrap} style={style.wrap}>
+      <SideBarElement>Преимущества</SideBarElement>
+      <SideBarElement>О Проекте</SideBarElement>
+      <SideBarElement>Войти</SideBarElement>
+      <NavBarButton>Присоединиться</NavBarButton>
+    </div>
+  );
+};
