@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 
 const Auth = () => {
   const [color, setColor] = useState<string>('aqua')
+  async function handleClick () {
+    const result = await fetch("http://localhost:5000/");
+    const data = await result.text();
+    setColor(data)
+  }
   const style = {
     div: {
       'backgroundColor':color
@@ -10,20 +15,9 @@ const Auth = () => {
   }
   return (
     <div style={style.div} className={styles.wrap}>
-      <button className={styles.button}>Цвет</button>
+      <button className={styles.button} onClick={() => handleClick()}>Цвет</button>
     </div>
   );
 };
-
-export async function getServerSideProps(context:any) {
-  const result = await fetch("");
-  const data = await result.json();
-
-  return {
-    props: {
-      data,
-    },
-  };
-}
 
 export default Auth;
