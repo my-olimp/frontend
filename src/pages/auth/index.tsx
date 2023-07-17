@@ -1,9 +1,11 @@
+import { useState } from "react";
 import styles from "./index.module.scss";
 
 const Auth = () => {
+  const [color, setColor] = useState<string>('aqua')
   const style = {
     div: {
-      'backgroundColor':'red'
+      'backgroundColor':color
     }
   }
   return (
