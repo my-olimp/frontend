@@ -1,0 +1,39 @@
+.input {
+  height: 32px;
+  border: 1px solid lightgray;
+  outline: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: larger;
+}
+
+.icon {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  transition: .2s;
+}
+
+.iconWrap {
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px solid lightgray;
+  border-left: none;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  width: 40px;
+}
+
+.wrap {
+  display: flex;
+  height: 72px;
+  flex-direction: row;
+  align-items: center;
+}

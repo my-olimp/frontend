@@ -3,11 +3,11 @@ $borderColor: #e1e3e6;
 $bgColor: #3579f8;
 
 .wrap {
-  height: 100%;
+  width: 100vw;
   position: fixed;
   z-index: 1;
-  right: 0;
-
+  top: 0;
+  transition: max-height 0.3s, height 0.3s;
   background-color: $bgColor;
 
   gap: 3rem;
