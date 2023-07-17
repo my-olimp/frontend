@@ -1,22 +1,27 @@
 import { useState } from "react";
 import styles from "./index.module.scss";
+import RootLayout from "@/app/layout";
 
 const Auth = () => {
-  const [color, setColor] = useState<string>('aqua')
+  const [color, setColor] = useState<string>("aqua");
   const style = {
     div: {
-      'backgroundColor':color
-    }
-  }
+      backgroundColor: color,
+    },
+  };
   return (
-    <div style={style.div} className={styles.wrap}>
-      <button className={styles.button}>Цвет</button>
-    </div>
+    <RootLayout>
+      <>
+        <div style={style.div} className={styles.wrap}>
+          <button className={styles.button}>Цвет</button>
+        </div>
+      </>
+    </RootLayout>
   );
 };
 
-export async function getServerSideProps(context:any) {
-  const result = await fetch("");
+export async function getServerSideProps(context: any) {
+  const result = await fetch("https://jsonplaceholder.typicode.com/todos/1");
   const data = await result.json();
 
   return {
