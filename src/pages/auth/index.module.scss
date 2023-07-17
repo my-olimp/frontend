@@ -1,0 +1,23 @@
+.wrap {
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.button {
+  background-color: blue;
+  color: white;
+  border: none;
+  width: 10rem;
+  height: 2rem;
+  transition: background .3s;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: blueviolet;
+  cursor: pointer;
+}
