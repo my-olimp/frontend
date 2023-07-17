@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./index.module.scss";
+import RootLayout from "@/app/layout";
 
 const Auth = () => {
   const [color, setColor] = useState<string>('aqua')
@@ -10,13 +11,17 @@ const Auth = () => {
   }
   const style = {
     div: {
-      'backgroundColor':color
-    }
-  }
+      backgroundColor: color,
+    },
+  };
   return (
-    <div style={style.div} className={styles.wrap}>
-      <button className={styles.button} onClick={() => handleClick()}>Цвет</button>
-    </div>
+    <RootLayout>
+      <>
+        <div style={style.div} className={styles.wrap}>
+          <button className={styles.button} onClick={() => handleClick()}>Цвет</button>
+        </div>
+      </>
+    </RootLayout>
   );
 };
 
