@@ -1,0 +1,31 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-family: "SF_Bold", Arial, Helvetica, sans-serif;
+}
+
+.error {
+  color: #F54135;
+  font-family: "SF_Bold", Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-weight: lighter;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.security {
+  font-family: "SF_Bold", Arial, Helvetica, sans-serif;
+  margin: 0;
+  opacity: 0;
+  transition: all .3s;
+  font-weight: lighter;
+}
+
+.securityBar {
+  display: block;
+  transition: all .3s;
+  width: 100%;
+  height: 2px;
+}

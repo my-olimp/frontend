@@ -1,18 +1,18 @@
+import { NavBarButton } from "@/entities/Landing/navBarButton/ui";
 import { SideBarElement } from "@/entities/Landing/navSideBarElements/ui";
 import { FC } from "react";
 import styles from "./ui.module.scss";
-import { NavBarButton } from "@/entities/Landing/navBarButton/ui";
 
 interface props {
   show: boolean;
 }
 
 export const SideNavBar: FC<props> = ({ show }) => {
-  const sideWidth = "100%";
   const style = {
     wrap: {
-      width: !show ? "0" : sideWidth,
-      display: !show ? "none" : "flex",
+      maxHeight: show ? "100vh" : "0", 
+      height: show ? "100vh" : "0", 
+      display: show ? "flex" : "none",
     },
   };
   return (

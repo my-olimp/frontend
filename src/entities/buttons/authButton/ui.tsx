@@ -17,7 +17,7 @@ export const AuthButton: FC<Props> = ({
 }) => {
   const [hover, setHover] = useState(false);
   const ButtonClassNameVariant: string = `button button-${use} ${
-    hover && use === "active" ? "isHover" : "isNotHover"
+    hover && use === "active" ? "isHover" : null
   }`;
   function isDisable(use: string): boolean {
     return use === "disabled" ? true : false;

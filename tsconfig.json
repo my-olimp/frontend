@@ -20,7 +20,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#/*": ["./"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/shared/layouts/landing/layout.jsx", "src/shared/layouts/LandingBigLayout/layout.jsx", "src/entities/navBarButton/navBarButton.jsx", "src/features/Landing/navBarDesktop/navBar.tsx", "src/shared/Landing/toolsSection/tools.jsx"],
