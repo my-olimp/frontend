@@ -1,10 +1,10 @@
 import { FC, useState } from "react";
 import styles from "./ui.module.scss";
 import { AuthInputLabel } from "@/features/authInputLabel";
-
 import { AuthTypeBlock } from "@/features/authTypeBlock";
-
+import { AuthLoginHelp } from "@/features/authLoginHelp";
 import { AuthHelp } from "@/features/authHelp";
+import { AuthButton } from "@/entities/buttons/authButton";
 
 interface props {
   signIn: boolean;
@@ -31,6 +31,10 @@ export const AuthForm: FC<props> = ({ signIn }) => {
               eye={true}
             />
           </div>
+          <AuthLoginHelp />
+          <AuthButton type="register" width="medium" height="medium">
+            Зарегистрироваться
+          </AuthButton>
         </div>
       </div>
       <AuthHelp />

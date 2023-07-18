@@ -1,0 +1,23 @@
+.checkBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  display: flex;
+  gap: 8px;
+
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.checkBoxText {
+  font-family: "SF_Regular";
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
