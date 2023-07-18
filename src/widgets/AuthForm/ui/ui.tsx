@@ -3,6 +3,9 @@ import styles from './ui.module.scss'
 import {AuthInputLabel} from '@/features/authInputLabel';
 import {AuthButton} from '@/entities/buttons/authButton';
 import {AuthTypeBlock} from '@/features/authTypeBlock';
+import {DisabledText} from '@/entities/texts/disabledText';
+import {TextButton} from '@/entities/texts/textButton';
+import {AuthHelp} from '@/features/authHelp';
 
 interface props {
     signIn:boolean
@@ -37,6 +40,7 @@ export const AuthForm:FC<props> = ({signIn}) => {
                     <AuthButton>Логин</AuthButton>
                 </div>
             </div>
+            <AuthHelp/>
         </div>
     );
 };
