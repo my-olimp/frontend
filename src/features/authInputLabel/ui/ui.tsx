@@ -18,7 +18,7 @@ export const AuthInputLabel:FC<props> = ({inputName, eye=false, password=false, 
   const [color, setColor] = useState<string>('#DA4242')
   const style = {
     label: {
-      'color': error ? '#F54135' : 'black'
+      'color': error ? '#F54135' : '#222'
     },
     secure: {
       'color': color,

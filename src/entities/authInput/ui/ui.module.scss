@@ -1,5 +1,5 @@
 .input {
-  height: 32px;
+  height: 44px;
   border: 1px solid lightgray;
   outline: none;
   border-radius: 8px;
@@ -11,8 +11,8 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   transition: .2s;
 }
 
@@ -22,18 +22,18 @@
   border-bottom-left-radius: 0;
   border: 1px solid lightgray;
   border-left: none;
-  height: 40px;
+  height: 44px;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px;
-  width: 40px;
+  width: 44px;
 }
 
 .wrap {
   display: flex;
-  height: 72px;
+  height: auto;
   flex-direction: row;
   align-items: center;
 }

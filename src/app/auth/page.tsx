@@ -4,7 +4,6 @@ import { useState } from "react";
 import styles from "./index.module.scss";
 import { AuthForm } from "@/widgets/AuthForm";
 
-
 export default function Auth() {
   const [color, setColor] = useState<string>("white");
   async function handleClick() {

@@ -7,6 +7,9 @@ interface props {
   isLoading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   use?: "active" | "disabled";
+  width: string,
+  height: string,
+  type?: "register" | "auth" // регистрация / войти 
 }
 
 export const AuthButton: FC<props> = ({
@@ -14,6 +17,9 @@ export const AuthButton: FC<props> = ({
   onClick,
   use = "active",
   isLoading,
+  width,
+  height,
+  type,
 }) => {
   const [hover, setHover] = useState<boolean>(false);
   const buttonClassNameVariant: string = `button button-${use} ${
@@ -22,6 +28,12 @@ export const AuthButton: FC<props> = ({
   const isDisable = (use: string): boolean => {
     return use === "disabled" ? true : false;
   }
+
+const style: any = {
+  buttonStyle:{
+  
+  }
+}
 
   return (
     <>
