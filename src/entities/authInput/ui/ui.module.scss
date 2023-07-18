@@ -1,5 +1,7 @@
+$input-height: 44px;
+
 .input {
-  height: 44px;
+  height: $input-height;
   border: 1px solid lightgray;
   outline: none;
   border-radius: 8px;
@@ -17,18 +19,16 @@
 }
 
 .iconWrap {
-  border-radius: 8px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  border-radius: 0 8px 8px 0;
   border: 1px solid lightgray;
   border-left: none;
-  height: 44px;
+  height: $input-height;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px;
-  width: 44px;
+  width: $input-height;
 }
 
 .wrap {

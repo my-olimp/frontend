@@ -7,9 +7,9 @@ interface props {
   isLoading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   use?: "active" | "disabled";
-  width: string,
-  height: string,
-  type?: "register" | "auth" // регистрация / войти 
+  width?: string,
+  height?: string,
+  type?: "signUp" | "signIn"
 }
 
 export const AuthButton: FC<props> = ({
@@ -17,8 +17,8 @@ export const AuthButton: FC<props> = ({
   onClick,
   use = "active",
   isLoading,
-  width,
-  height,
+  width='398px',
+  height='40px',
   type,
 }) => {
   const [hover, setHover] = useState<boolean>(false);
@@ -26,14 +26,15 @@ export const AuthButton: FC<props> = ({
     hover && use === "active" ? "isHover" : null
   }`;
   const isDisable = (use: string): boolean => {
-    return use === "disabled" ? true : false;
+    return use === "disabled";
   }
 
-const style: any = {
-  buttonStyle:{
-  
+  const style = {
+    button: {
+      width: width,
+      height: height
+    }
   }
-}
 
   return (
     <>
@@ -44,6 +45,7 @@ const style: any = {
         disabled={isDisable(use)}
         onMouseOver={() => setHover(true)}
         onMouseOut={() => setHover(false)}
+        style={style.button}
       >
         {isLoading ? <ClipLoader /> : children}
       </button>
