@@ -15,7 +15,8 @@ export const AuthForm:FC<props> = ({signIn}) => {
         <div className={styles.screen}>
             <div className={styles.wrap}>
                 <AuthInputLabel mail={true} inputName={'Почта'}/>
-                <AuthInputLabel password={true} passwordSignInMode={true} eye={true} inputName={'Пароль'}/>
+                <AuthInputLabel password={true} passwordSignInMode={true} inputName={'Пароль'}/>
+                <AuthInputLabel number={true} inputName={'Номер'}/>
                 <AuthButton>Войти</AuthButton>
             </div>
         </div>

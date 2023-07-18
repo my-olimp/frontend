@@ -3,21 +3,24 @@
   flex-direction: column;
 }
 .label {
-  font-family: "SF_Bold", Arial, Helvetica, sans-serif;
+  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+
+  padding-bottom: 8px;
+  color: #222;
 }
 
 .error {
-  color: #F54135;
-  font-family: "SF_Bold", Arial, Helvetica, sans-serif;
+  color: #f54135;
+  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
   margin: 0;
   font-weight: lighter;
   opacity: 0;
   font-size: 14px;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 
 .security {
-  font-family: "SF_Bold", Arial, Helvetica, sans-serif;
+  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
   margin: 8px 0 0 0;
   font-size: 14px;
   font-weight: lighter;
@@ -29,7 +32,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  transition: all .3s;
+  transition: all 0.3s;
   width: 33%;
   z-index: 1;
 }
@@ -39,17 +42,16 @@
   position: absolute;
   top: 0;
   left: 0;
-  right: 0; 
+  right: 0;
   background-color: #cfcece;
   height: 2px;
   z-index: 0;
 }
-
 
 .securityWrap {
   display: flex;
   position: relative;
   opacity: 0;
   flex-direction: column;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
