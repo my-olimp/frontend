@@ -5,6 +5,7 @@ $input-height: 44px;
   border: 1px solid lightgray;
   outline: none;
   border-radius: 8px;
+  width: 100%;
   padding: 12px;
   font-size: larger;
 }
@@ -25,6 +26,7 @@ $input-height: 44px;
   height: $input-height;
   cursor: pointer;
   display: flex;
+  background-color: white;
   justify-content: center;
   align-items: center;
   padding: 8px;

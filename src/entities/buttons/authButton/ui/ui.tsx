@@ -17,7 +17,7 @@ export const AuthButton: FC<props> = ({
   onClick,
   use = "active",
   isLoading,
-  width='398px',
+  width='100%',
   height='40px',
   type,
 }) => {
