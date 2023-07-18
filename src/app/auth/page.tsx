@@ -17,11 +17,9 @@ export default function Auth() {
     },
   };
   return (
- 
-      <div style={style.div} className={styles.wrap}>
-        {/* <button className={styles.button} onClick={() => handleClick()}>Цвет</button> */}
-        <AuthForm signIn={true} />
-      </div>
-  
+    <div style={style.div} className={styles.wrap}>
+      {/* <button className={styles.button} onClick={() => handleClick()}>Цвет</button> */}
+      <AuthForm signIn={true} />
+    </div>
   );
 }

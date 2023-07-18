@@ -1,10 +1,13 @@
+$inputBorder: #ddd;
+
 .input {
   height: 44px;
-  border: 1px solid lightgray;
+  border: 1px solid $inputBorder;
   outline: none;
   border-radius: 8px;
   padding: 12px;
-  font-size: larger;
+  font-size: 16px;
+  font-family: "SF_Medium", sans-serif;
 }
 
 .icon {
@@ -13,14 +16,14 @@
   background-repeat: no-repeat;
   width: 24px;
   height: 24px;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .iconWrap {
   border-radius: 8px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  border: 1px solid lightgray;
+  border: 1px solid $inputBorder;
   border-left: none;
   height: 44px;
   cursor: pointer;

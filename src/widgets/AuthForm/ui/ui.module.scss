@@ -1,3 +1,7 @@
+$bgScreenColor: #F2F2F2;
+$bgFormColor: #fff;
+
+
 .wrap {
   display: flex;
   justify-content: center;
@@ -7,7 +11,7 @@
   width: 55vw;
   height: 60vh;
   border-radius: 16px;
-  background-color: white;
+  background-color: $bgFormColor;
 }
 
 .screen {
@@ -16,6 +20,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #cfcece;
+  background-color: $bgScreenColor;
 }
 

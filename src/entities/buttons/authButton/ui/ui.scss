@@ -9,9 +9,6 @@ $btnTextColor-disabled: #222;
   align-items: center;
   justify-content: center;
 
-  width: 398px;
-  height: 40px;
-
   border-radius: 8px;
   border: none;
 
@@ -21,10 +18,12 @@ $btnTextColor-disabled: #222;
   font-weight: 400;
   line-height: 20px;
   color: $btnTextColor-active;
+
+  cursor: pointer;
 }
 
 .button-active {
-  background: $btnBgColor-active;
+  background: $btnBgColor-active ;
 }
 
 .button-disabled {
@@ -34,5 +33,9 @@ $btnTextColor-disabled: #222;
 }
 
 .isHover{
-    background: $btnBgColor-hover;
+    background: $btnBgColor-hover !important;
+}
+
+.next-isHover{
+  background: #6A9EFF !important;
 }
