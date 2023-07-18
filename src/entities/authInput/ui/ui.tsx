@@ -1,9 +1,9 @@
-import eyeCloseIcon from '@/../public/auth/eyeClose.svg';
-import eyeOpenIcon from '@/../public/auth/eyeOpen.svg';
+import eyeCloseIcon from '../../../../public/auth/eyeClose.svg';
+import eyeOpenIcon from '../../../../public/auth/eyeOpen.svg';
 import { FC, FormEvent, useState } from "react";
 import formatPhoneNumber from '../lib/formatPhoneNumber';
-import styles from './ui.module.scss';
 import validateEmail from '../lib/validateEmail';
+import styles from './ui.module.scss';
 
 interface props {
   eye?: boolean
@@ -37,9 +37,9 @@ export const AuthInput:FC<props> = ({eye=false, maxLength=26, inputName, setErro
     },
     iconWrap: {
       'display': eye ? 'flex' : 'none',
-      'borderRight': eye && `1px solid ${error ? '#F54135' : 'lightgray'}`,
-      'borderTop': eye && `1px solid ${error ? '#F54135' : 'lightgray'}`,
-      'borderBottom': eye && `1px solid ${error ? '#F54135' : 'lightgray'}`,
+      'borderRight': eye ? `1px solid ${error ? '#F54135' : 'lightgray'}` : 'none',
+      'borderTop': eye ? `1px solid ${error ? '#F54135' : 'lightgray'}` : 'none',
+      'borderBottom': eye ? `1px solid ${error ? '#F54135' : 'lightgray'}` : 'none',
     }
   }
   const handleInput = (event: FormEvent<HTMLInputElement>) => { 
@@ -93,6 +93,12 @@ export const AuthInput:FC<props> = ({eye=false, maxLength=26, inputName, setErro
           setError(true)
         }
       }
+    }
+    if (textLength === 0 && setSecure) {
+      setSecure('')
+    }
+    if (textLength === 0) {
+      setError(false)
     }
   }
   return (

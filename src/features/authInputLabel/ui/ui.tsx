@@ -1,4 +1,4 @@
-import { AuthInput } from "@/entities/Landing/authInput"
+import { AuthInput } from "@/entities/authInput"
 import { FC, useEffect, useState } from "react"
 import styles from './ui.module.scss'
 
@@ -22,11 +22,13 @@ export const AuthInputLabel:FC<props> = ({inputName, eye=false, password=false, 
     },
     secure: {
       'color': color,
-      'opacity': secure !== '' ? 1 : 0
     },
     secureBar: {
       'backgroundColor': color,
-      'opacity': secure !== '' ? 1 : 0
+      'width': secure === 'Слабый пароль' ? '33%' : (secure === 'Средний пароль' ? '66%' : (secure === 'Надежный пароль' ? '100%' : 'none'))
+    },
+    secureWrap: {
+      'opacity': secure !== ''  ?  1 : 0
     }
   }
   useEffect(() => {
@@ -54,11 +56,15 @@ export const AuthInputLabel:FC<props> = ({inputName, eye=false, password=false, 
       {passwordSignInMode 
         ? <h4 style={{opacity: error ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
         : password 
-          && 
-          <div className={styles.securityWrap}>
-            <span style={style.secureBar} className={styles.securityBar}/> 
-            <h4 style={style.secure} className={styles.security}>{secure}</h4>
-          </div>  
+            &&
+            error 
+              ?  <h4 style={{opacity: error ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
+              : 
+                (<div style={style.secureWrap} className={styles.securityWrap}>
+                  <span style={style.secureBar} className={styles.securityBar}/> 
+                  <span className={styles.securityFullBar}/> 
+                  <h4 style={style.secure} className={styles.security}>{secure}</h4>
+                </div>)  
       }
     </div>
   )
