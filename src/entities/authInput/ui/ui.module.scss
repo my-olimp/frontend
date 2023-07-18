@@ -1,10 +1,12 @@
 $inputBorder: #ddd;
+$input-height: 44px;
 
 .input {
-  height: 44px;
+  height: $input-height;
   border: 1px solid $inputBorder;
   outline: none;
   border-radius: 8px;
+  width: 100%;
   padding: 12px;
   font-size: 16px;
   font-family: "SF_Medium", sans-serif;
@@ -25,13 +27,14 @@ $inputBorder: #ddd;
   border-bottom-left-radius: 0;
   border: 1px solid $inputBorder;
   border-left: none;
-  height: 44px;
+  height: $input-height;
   cursor: pointer;
   display: flex;
+  background-color: white;
   justify-content: center;
   align-items: center;
   padding: 8px;
-  width: 44px;
+  width: $input-height;
 }
 
 .wrap {

@@ -21,5 +21,45 @@ $bgFormColor: #fff;
   justify-content: center;
   align-items: center;
   background-color: $bgScreenColor;
+  flex-direction: column;
+  gap: 16px;
 }
 
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  width:461px;
+  height: 514px;
+  border-radius: 16px;
+  background-color: white;
+}
+
+.container {
+  width: 368px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.headerWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.header {
+  color: #3579F8;
+  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+  width: 100%;
+  text-align: center;
+}
+
+.text {
+  font-size: 16px;
+  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  width: 100%;
+  text-align: center;
+}

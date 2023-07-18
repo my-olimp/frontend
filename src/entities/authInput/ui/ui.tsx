@@ -24,7 +24,6 @@ export const AuthInput:FC<props> = ({eye=false, maxLength=26, inputName, setErro
   const [inputType, setInputType] = useState<'text'| 'password'>(password ? 'password' : 'text')
   const style: any = {
     input: {
-      'width': eye ? '316px' : '368px',
       'borderLeft': error ? `1px solid #F54135` : `1px solid lightgray`,
       'borderTop': error ? `1px solid #F54135` : `1px solid lightgray`,
       'borderBottom': error ? `1px solid #F54135` : `1px solid lightgray`,
@@ -75,7 +74,7 @@ export const AuthInput:FC<props> = ({eye=false, maxLength=26, inputName, setErro
     if (mail) {
       const validated = validateEmail(text)
       if (textLength <= maxLength) {
-        if (validated === true) {
+        if (validated) {
           setText(text)
           setError(false)
         }else {
@@ -84,7 +83,7 @@ export const AuthInput:FC<props> = ({eye=false, maxLength=26, inputName, setErro
           setError(true)
         }
       } else if (textLength > maxLength) {
-        if (validated === true) {
+        if (validated) {
           setText(text)
           setError(false)
         }else {
