@@ -9,6 +9,7 @@ interface Props {
   vertical?: boolean | undefined; // Расположение элементов по вертикали
   verticalAlign?: "top" | "middle" | "baseline" | "bottom" | undefined; // Вертикальное выравнивание
   wrap?: boolean | undefined; // Перенос элементов на новую строку при горизонтальном расположении
+  alignItems?: string | undefined;
 }
 
 export const Gapped: FC<Props> = ({
@@ -19,8 +20,8 @@ export const Gapped: FC<Props> = ({
   vertical,
   verticalAlign = "baseline",
   wrap = "false",
+  alignItems 
 }) => {
-  console.log(style);
   const classNameVariant = `gapped ${className}`;
   const gappedStyle: any = {
     gappedStyle: {
@@ -30,6 +31,7 @@ export const Gapped: FC<Props> = ({
       flexDirection: vertical ? "column" : "row",
       verticalAlign: verticalAlign ? verticalAlign : "baseline",
       flexWrap: wrap ? "wrap" : "nowrap",
+      alignItems: alignItems ? alignItems : "",
     },
   };
   return (

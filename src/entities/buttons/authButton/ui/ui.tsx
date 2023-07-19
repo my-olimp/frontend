@@ -1,5 +1,5 @@
 import ClipLoader from "@/shared/spinners/btnAuthSpinner/ui";
-import { FC, MouseEventHandler, useState } from "react";
+import { CSSProperties, FC, MouseEventHandler, useState } from "react";
 import "./ui.scss";
 
 interface props {
@@ -10,6 +10,7 @@ interface props {
   width: "small" | "medium" | "large"; // 320px | 368px | 412px
   height: "small" | "medium" | "large"; // 32 | 40 px | 44 px
   type?: "auth" | "register" | "next"; // black | black | blue (colors)
+  btnStyle?: CSSProperties | undefined;
 }
 
 export const AuthButton: FC<props> = ({
@@ -17,9 +18,10 @@ export const AuthButton: FC<props> = ({
   onClick,
   use = "active",
   isLoading,
-  width='100%',
-  height='40px',
+  width = "100%",
+  height = "40px",
   type,
+  btnStyle
 }) => {
   const [hover, setHover] = useState<boolean>(false);
   const isDisable = (use: string): boolean => {
@@ -59,14 +61,15 @@ export const AuthButton: FC<props> = ({
           : type === "next" && isDisable(use)
           ? "#8CB2FB"
           : null,
-      color:
-        type === "auth" || type === "register"
-          ? "#FFF"
-          : type === "next"
-          ? "#FFF"
-          : null,
-      cursor:
-        isDisable(use) ? "default" : "pointer"
+      color: isDisable(use)
+        ? "#222"
+        : type === "auth" || type === "register"
+        ? "#FFF"
+        : type === "next"
+        ? "#FFF"
+        : null,
+      cursor: isDisable(use) ? "not-allowed" : "pointer",
+      ...btnStyle
     },
   };
 

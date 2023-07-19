@@ -5,22 +5,24 @@
   height: 83px;
   justify-content: center;
   flex-direction: column;
-  background-color: #F2F2F2;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.32);;
+  background: #F2F2F2;
+  box-shadow: 0px 0.8718806505203247px 3.487522602081299px 0px rgba(0, 0, 0, 0.32);
   align-items: center;
 }
 
 .text {
-  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+  font-family: "SF_Regular";
+  font-weight: 400;
   line-height: 21px;
-  font-size: 12px;
+  font-size: 14px;
   color: #222222;
 }
 
 .link {
   color: #3579F8;
   font-family: "SF_Regular", sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
+  font-weight: 400;
   line-height: 21px;
 }
