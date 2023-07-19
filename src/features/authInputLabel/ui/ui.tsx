@@ -37,8 +37,8 @@ export const AuthInputLabel:FC<props> = ({
       'color': color,
     },
     secureBar: {
-      'backgroundColor': color,
-      'width': secure === 'Слабый пароль' ? '33%' : (secure === 'Средний пароль' ? '66%' : (secure === 'Надежный пароль' ? '100%' : 'none'))
+       'backgroundColor': color,
+       'width': secure === 'Слабый пароль' ? '33%' : (secure === 'Средний пароль' ? '66%' : (secure === 'Надежный пароль' ? '100%' : '100%'))
     },
     secureWrap: {
       'opacity': secure !== ''  ?  1 : 0
@@ -48,6 +48,11 @@ export const AuthInputLabel:FC<props> = ({
     if (secure === 'Слабый пароль') setColor('#DA4242')
     if (secure === 'Средний пароль') setColor('#EDB16A')
     if (secure === 'Надежный пароль') setColor('#58904F')
+    if (
+        secure !== 'Надежный пароль' &&
+        secure !== 'Средний пароль'&&
+        secure !== 'Слабый пароль'
+    ) setColor('#999')
   }, [secure])
   return (
     <div className={styles.wrap}>
@@ -77,7 +82,11 @@ export const AuthInputLabel:FC<props> = ({
                 (<div style={style.secureWrap} className={styles.securityWrap}>
                   <span style={style.secureBar} className={styles.securityBar}/> 
                   <span className={styles.securityFullBar}/> 
-                  <h4 style={style.secure} className={styles.security}>{secure}</h4>
+                  <h4 style={style.secure} className={styles.security}>{
+                      secure !== 'password rules'
+                          ? secure
+                          : <h4 className={styles.security}>Пароль должен содержать как минимум <i className={styles.focus}>6 символов</i>, как минимум <i className={styles.focus}>1 специальный символ</i> и как минимум <i className={styles.focus}>одну заглавую букву</i>.</h4>
+                  }</h4>
                 </div>)  
       }
     </div>

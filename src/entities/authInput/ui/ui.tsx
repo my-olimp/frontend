@@ -3,6 +3,7 @@ import eyeOpenIcon from '../../../../public/auth/eyeOpen.svg';
 import { FC, FormEvent, useState } from "react";
 import formatPhoneNumber from '../lib/formatPhoneNumber';
 import validateEmail from '../lib/validateEmail';
+import validatePassword from '../lib/validatePassword'
 import styles from './ui.module.scss';
 
 interface props {
@@ -65,13 +66,7 @@ export const AuthInput:FC<props> = ({
       }
     }
     if (password && setSecure) {
-      if (textLength > 4 && textLength <=8 ) {
-        setSecure('Средний пароль')
-      } else if (textLength < 4) {
-        setSecure('Слабый пароль')
-      } else if (textLength > 8) {
-        setSecure('Надежный пароль')
-      }
+      setSecure(validatePassword(text))
     }
     if (number) {
       if (textLength <= maxLength) {
