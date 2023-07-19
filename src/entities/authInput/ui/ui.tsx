@@ -49,13 +49,13 @@ export const AuthInput:FC<props> = ({
     },
     icon: {
       'backgroundImage':
-          !isEyeOpen
-              ? errorMessage !== 'notError'
-                ? `url(${eyeOpenIconRed.src})`
-                : `url(${eyeOpenIcon.src})`
-              : errorMessage !== 'notError'
-                ? `url(${eyeCloseIconRed.src})`
-                : `url(${eyeCloseIcon.src})`
+        !isEyeOpen
+          ? errorMessage === 'notError'
+            ? `url(${eyeOpenIcon.src})`
+            : `url(${eyeOpenIconRed.src})`
+          : errorMessage === 'notError'
+            ? `url(${eyeCloseIcon.src})`
+            : `url(${eyeCloseIconRed.src})`
     },
     iconWrap: {
       'display': eye ? 'flex' : 'none',
