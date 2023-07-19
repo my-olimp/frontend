@@ -9,13 +9,12 @@ interface props {
   eye?: boolean
   maxLength?: number
   inputName: string
-  error: boolean
   password: boolean
   mail:boolean
   number:boolean
+  errorMessage: string
   text: string,
   setText: (text: string) => void
-  setError: (value: boolean) => void
   setErrorMessage: (message: string) => void
   setSecure?: (secure: string) => void
 }
@@ -24,9 +23,8 @@ export const AuthInput:FC<props> = ({
       eye=false,
       maxLength=26,
       inputName,
-      setError,
-      error,
       password,
+      errorMessage,
       mail,
       number,
       setErrorMessage,
@@ -38,21 +36,21 @@ export const AuthInput:FC<props> = ({
   const [inputType, setInputType] = useState<'text'| 'password'>(password ? 'password' : 'text')
   const style: any = {
     input: {
-      'borderLeft': error ? `1px solid #F54135` : `1px solid lightgray`,
-      'borderTop': error ? `1px solid #F54135` : `1px solid lightgray`,
-      'borderBottom': error ? `1px solid #F54135` : `1px solid lightgray`,
-      'borderRight': eye ? 'none' : `1px solid ${error ? '#F54135' : 'lightgray'}`,
+      'borderLeft': errorMessage !== 'notError' ? `1px solid #F54135` : `1px solid lightgray`,
+      'borderTop': errorMessage !== 'notError' ? `1px solid #F54135` : `1px solid lightgray`,
+      'borderBottom': errorMessage !== 'notError' ? `1px solid #F54135` : `1px solid lightgray`,
+      'borderRight': eye ? 'none' : `1px solid ${errorMessage !== 'notError' ? '#F54135' : 'lightgray'}`,
       'borderTopRightRadius': eye ? '0' : '8px',
       'borderBottomRightRadius': eye ? '0' : '8px',
     },
     icon: {
-      'backgroundImage': isEyeOpen ? `url(${eyeOpenIcon.src})` : `url(${eyeCloseIcon.src})`,
+      'backgroundImage': !isEyeOpen ? `url(${eyeOpenIcon.src})` : `url(${eyeCloseIcon.src})`,
     },
     iconWrap: {
       'display': eye ? 'flex' : 'none',
-      'borderRight': eye ? `1px solid ${error ? '#F54135' : 'lightgray'}` : 'none',
-      'borderTop': eye ? `1px solid ${error ? '#F54135' : 'lightgray'}` : 'none',
-      'borderBottom': eye ? `1px solid ${error ? '#F54135' : 'lightgray'}` : 'none',
+      'borderRight': eye ? `1px solid ${errorMessage !== 'notError' ? '#F54135' : 'lightgray'}` : 'none',
+      'borderTop': eye ? `1px solid ${errorMessage !== 'notError' ? '#F54135' : 'lightgray'}` : 'none',
+      'borderBottom': eye ? `1px solid ${errorMessage !== 'notError' ? '#F54135' : 'lightgray'}` : 'none',
     }
   }
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
@@ -61,9 +59,8 @@ export const AuthInput:FC<props> = ({
     if (!number && !mail) {
       if (textLength <= maxLength) {
         setText(text)
-        setError(false)
+        setErrorMessage('notError')
       } else if (textLength > maxLength) {
-        setError(true)
         setErrorMessage('Максимальная длина - ' + maxLength)
       }
     }
@@ -79,10 +76,9 @@ export const AuthInput:FC<props> = ({
     if (number) {
       if (textLength <= maxLength) {
         setText(formatPhoneNumber(text))
-        setError(false)
+        setErrorMessage('notError')
       } else if (textLength > maxLength) {
         setErrorMessage('Максимальная длина - ' + maxLength)
-        setError(true)
       }
     }
     if (mail) {
@@ -90,20 +86,18 @@ export const AuthInput:FC<props> = ({
       if (textLength <= maxLength) {
         if (validated) {
           setText(text)
-          setError(false)
+          setErrorMessage('notError')
         }else {
           setText(text)
           setErrorMessage('Неверный формат почты! Пример: test@example.com')
-          setError(true)
         }
       } else if (textLength > maxLength) {
         if (validated) {
           setText(text)
-          setError(false)
+          setErrorMessage('notError')
         }else {
           setText(text)
           setErrorMessage('Неверный формат почты! Пример: test@example.com')
-          setError(true)
         }
       }
     }
@@ -111,7 +105,7 @@ export const AuthInput:FC<props> = ({
       setSecure('')
     }
     if (textLength === 0) {
-      setError(false)
+      setErrorMessage('notError')
     }
   }
   return (

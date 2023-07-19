@@ -10,9 +10,9 @@ interface props {
   number?:boolean
   passwordSignInMode?: boolean
   text: string
-  error: boolean
+  errorMessage: string
   setText: (text: string) => void
-  setError: (error: boolean) => void
+  setErrorMessage: (error: string) => void
 }
 
 export const AuthInputLabel:FC<props> = ({
@@ -24,15 +24,14 @@ export const AuthInputLabel:FC<props> = ({
      number=false,
      text,
      setText,
-     error,
-     setError,
+     errorMessage,
+     setErrorMessage,
 }) => {
   const [secure, setSecure] = useState<string>('')
-  const [errorMessage, setErrorMessage] = useState<string>('error')
   const [color, setColor] = useState<string>('#DA4242')
   const style = {
     label: {
-      'color': error ? '#F54135' : '#222'
+      'color': errorMessage !== 'notError' ? '#F54135' : '#222'
     },
     secure: {
       'color': color,
@@ -56,8 +55,7 @@ export const AuthInputLabel:FC<props> = ({
       <AuthInput 
         eye={eye} 
         inputName={inputName} 
-        setError={setError} 
-        error={error} 
+        errorMessage={errorMessage}
         setErrorMessage={setErrorMessage} 
         setSecure={setSecure}
         password={password}
@@ -67,14 +65,14 @@ export const AuthInputLabel:FC<props> = ({
         setText={setText}
       />
       {!password &&
-        <h4 style={{opacity: error ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
+        <h4 style={{opacity: errorMessage !== 'notError' ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
       }
       {passwordSignInMode 
-        ? <h4 style={{opacity: error ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
+        ? <h4 style={{opacity: errorMessage !== 'notError' ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
         : password 
             &&
-            error 
-              ?  <h4 style={{opacity: error ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
+            errorMessage !== 'notError'
+              ?  <h4 style={{opacity: errorMessage !== 'notError' ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
               : 
                 (<div style={style.secureWrap} className={styles.securityWrap}>
                   <span style={style.secureBar} className={styles.securityBar}/> 

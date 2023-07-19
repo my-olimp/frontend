@@ -9,9 +9,9 @@ import { AuthButton } from "@/entities/buttons/authButton";
 interface props {
   signIn: boolean;
 }
-export const AuthForm: FC<props> = ({ signIn }) => {
-  const [errorMailOrNumber, setErrorMailOrNumber] = useState<boolean>(false)
-  const [errorPassword, setErrorPassword] = useState<boolean>(false)
+export const LoginForm: FC<props> = ({ signIn }) => {
+  const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] = useState<string>('notError')
+  const [errorPasswordMessage, setErrorPasswordMessage] = useState<string>('notError')
 
   const [mailOrNumber, setMailOrNumber] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
@@ -21,12 +21,17 @@ export const AuthForm: FC<props> = ({ signIn }) => {
   const [type, setType] = useState<"mail" | "number">("mail");
 
   useEffect(() => {
-    if (mailOrNumber.length !== 0 && passwordValue.length !== 0 && !errorPassword && !errorMailOrNumber) {
+    if (
+        mailOrNumber.length !== 0 &&
+        passwordValue.length !== 0 &&
+        errorPasswordMessage === 'notError' &&
+        errorMailOrNumberMessage === 'notError'
+    ) {
       setButtonDisabled('active')
     } else {
       setButtonDisabled('disabled')
     }
-  }, [mailOrNumber, passwordValue, errorPassword, errorMailOrNumber]);
+  }, [mailOrNumber, passwordValue, errorPasswordMessage, errorMailOrNumberMessage]);
 
   const handleSubmit = () => {
     console.log(mailOrNumber);
@@ -49,8 +54,8 @@ export const AuthForm: FC<props> = ({ signIn }) => {
                 inputName={type === 'mail' ? 'Почта' : 'Номер телефона'}
                 text={mailOrNumber}
                 setText={setMailOrNumber}
-                error={errorMailOrNumber}
-                setError={setErrorMailOrNumber}
+                errorMessage={errorMailOrNumberMessage}
+                setErrorMessage={setErrorMailOrNumberMessage}
             />
             <AuthInputLabel
               password={true}
@@ -59,8 +64,8 @@ export const AuthForm: FC<props> = ({ signIn }) => {
               eye={true}
               text={passwordValue}
               setText={setPasswordValue}
-              error={errorPassword}
-              setError={setErrorPassword}
+              errorMessage={errorPasswordMessage}
+              setErrorMessage={setErrorPasswordMessage}
             />
           </div>
           <AuthLoginHelp />

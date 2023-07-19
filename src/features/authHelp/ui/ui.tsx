@@ -6,7 +6,7 @@ export const AuthHelp: FC = ({}) => {
     return (
         <div className={styles.helpWrap}>
             <DisabledText>myolymp.ru</DisabledText>
-            <TextButton link={'/auth'}>Зарегистрироваться</TextButton>
+            <TextButton link={'/signin'}>Зарегистрироваться</TextButton>
         </div>
     )
 }
