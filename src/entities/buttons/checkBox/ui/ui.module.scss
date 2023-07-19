@@ -2,7 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  background: no-repeat center;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  transition: all .2s;
 }
 
 .wrap {
@@ -17,8 +21,6 @@
 }
 
 .checkBoxText {
-  font-family: "SF_Regular";
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+  transition: all .2s;
 }
