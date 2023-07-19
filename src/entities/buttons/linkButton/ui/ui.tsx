@@ -12,24 +12,36 @@ interface PropsType {
   link: string; // example: "/home"
   iconWidth?: number; // обязательно, если есть иконка | SafeNumber - специальный тип
   iconHeight?: number; // обязательно, если есть иконка | SafeNumber - специальный тип
+  hoverColor?: string;
+  transition?: string; // CSSProperty
 }
 
 export const LinkButton: FC<PropsType> = ({
   children,
   color,
+  hoverColor,
   textSize,
   onClick,
   icon = false,
   iconIsHover,
   link,
   iconWidth,
+  transition,
   iconHeight,
 }) => {
   const [hover, setHover] = useState<boolean>(false);
   const style = {
     buttonStyle: {
-      color: hover ? "#3579F8" : color ? color : "#222",
+      color:
+        hover && !hoverColor
+          ? "#3579F8"
+          : hover && hoverColor
+          ? hoverColor
+          : color && !hover
+          ? color
+          : "#222",
       fontSize: textSize ? textSize : "14px",
+      transition: transition ? transition : "0",
     },
   };
 
