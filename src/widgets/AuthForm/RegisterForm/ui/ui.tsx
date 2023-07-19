@@ -5,6 +5,7 @@ import { AuthLoginHelp } from "@/features/authLoginHelp";
 import { AuthHelp } from "@/features/authHelp";
 import { AuthButton } from "@/entities/buttons/authButton";
 import styles from "./ui.module.scss";
+import {RegisterRulesAccept} from '@/entities/registerRulesAccept';
 
 interface props {
 }
@@ -26,15 +27,16 @@ export const RegisterForm: FC<props> = ({ }) => {
             mailOrNumber.length !== 0 &&
             passwordValue.length !== 0 &&
             passwordSecondValue.length !== 0 &&
-            !errorPasswordMessage &&
-            !errorMailOrNumberMessage &&
-            !errorSecondPasswordMessage
+            !(errorPasswordMessage !== 'notError') &&
+            !(errorMailOrNumberMessage !== 'notError') &&
+            !(errorSecondPasswordMessage !== 'notError') &&
+            passwordValue === passwordSecondValue
         ) {
             setButtonDisabled('active')
         } else {
             setButtonDisabled('disabled')
         }
-    }, [mailOrNumber, passwordValue, errorPasswordMessage, errorMailOrNumberMessage, errorSecondPasswordMessage, passwordSecondValue]);
+    }, [mailOrNumber, passwordValue, passwordSecondValue]);
 
     useEffect(() => {
         if (passwordValue !== passwordSecondValue) {
@@ -94,11 +96,11 @@ export const RegisterForm: FC<props> = ({ }) => {
                         use={isButtonDisabled}
                         onClick={handleSubmit}
                     >
-                        Войти
+                        Зарегистрироваться
                     </AuthButton>
+                    <RegisterRulesAccept/>
                 </div>
             </div>
-            <AuthHelp />
         </div>
     );
 };
