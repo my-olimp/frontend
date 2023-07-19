@@ -1,7 +1,7 @@
 export default function validatePassword(password: string) {
 
     if (password.length < 5) {
-        return 'password rules'
+        return 'Слабый пароль'
     }
 
     if (password.match(/^[a-z]+$/) || password.match(/^\d+$/)) {
