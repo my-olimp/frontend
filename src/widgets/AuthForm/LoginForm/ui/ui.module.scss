@@ -1,15 +1,16 @@
-$bgScreenColor: #F2F2F2;
+$bgScreenColor: #f2f2f2;
 $bgFormColor: #fff;
-
 
 .wrap {
   display: flex;
-  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 0;
   align-items: center;
   flex-direction: column;
   gap: 8px;
   width: 55vw;
   height: 60vh;
+
   border-radius: 16px;
   background-color: $bgFormColor;
 }
@@ -31,7 +32,7 @@ $bgFormColor: #fff;
   align-items: center;
   flex-direction: column;
   gap: 8px;
-  width:461px;
+  width: 461px;
   height: 514px;
   border-radius: 16px;
   background-color: white;
@@ -50,16 +51,16 @@ $bgFormColor: #fff;
   gap: 8px;
 }
 .header {
-  color: #3579F8;
-  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
-  width: 100%;
   text-align: center;
+  max-height: 32px;
 }
 
 .text {
-  font-size: 16px;
-  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
-  font-weight: lighter;
-  width: 100%;
   text-align: center;
+
+  font-family: "SF_Regular", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
 }
