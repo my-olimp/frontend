@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import {FC, useEffect, useState} from 'react';
 import styles from "./ui.module.scss";
 import { AuthInputLabel } from "@/features/authInputLabel";
 import { AuthTypeBlock } from "@/features/authTypeBlock";
@@ -10,10 +10,28 @@ interface props {
   signIn: boolean;
 }
 export const AuthForm: FC<props> = ({ signIn }) => {
+  const [errorMailOrNumber, setErrorMailOrNumber] = useState<boolean>(false)
+  const [errorPassword, setErrorPassword] = useState<boolean>(false)
+
   const [mailOrNumber, setMailOrNumber] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
+
+  const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled')
+
   const [type, setType] = useState<"mail" | "number">("mail");
-  const handleSubmit = () => {};
+
+  useEffect(() => {
+    if (mailOrNumber.length !== 0 && passwordValue.length !== 0 && !errorPassword && !errorMailOrNumber) {
+      setButtonDisabled('active')
+    } else {
+      setButtonDisabled('disabled')
+    }
+  }, [mailOrNumber, passwordValue, errorPassword, errorMailOrNumber]);
+
+  const handleSubmit = () => {
+    console.log(mailOrNumber);
+    console.log(passwordValue);
+  };
 
   return (
     <div className={styles.screen}>
@@ -26,10 +44,13 @@ export const AuthForm: FC<props> = ({ signIn }) => {
           <AuthTypeBlock type={type} setType={setType} />
           <div className={styles.inputWrap}>
             <AuthInputLabel
-                mail={true}
-                inputName={"Почта"}
+                mail={type === 'mail'}
+                number={type === 'number'}
+                inputName={type === 'mail' ? 'Почта' : 'Номер телефона'}
                 text={mailOrNumber}
                 setText={setMailOrNumber}
+                error={errorMailOrNumber}
+                setError={setErrorMailOrNumber}
             />
             <AuthInputLabel
               password={true}
@@ -38,6 +59,8 @@ export const AuthForm: FC<props> = ({ signIn }) => {
               eye={true}
               text={passwordValue}
               setText={setPasswordValue}
+              error={errorPassword}
+              setError={setErrorPassword}
             />
           </div>
           <AuthLoginHelp />
@@ -45,9 +68,10 @@ export const AuthForm: FC<props> = ({ signIn }) => {
               type="register"
               width="medium"
               height="medium"
-              use={mailOrNumber.length !== 0 && passwordValue.length !== 0 ? 'active' : 'disabled'}
+              use={isButtonDisabled}
+              onClick={handleSubmit}
           >
-            Зарегистрироваться
+            Войти
           </AuthButton>
         </div>
       </div>

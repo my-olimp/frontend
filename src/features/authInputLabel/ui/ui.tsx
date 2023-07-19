@@ -10,7 +10,9 @@ interface props {
   number?:boolean
   passwordSignInMode?: boolean
   text: string
+  error: boolean
   setText: (text: string) => void
+  setError: (error: boolean) => void
 }
 
 export const AuthInputLabel:FC<props> = ({
@@ -21,9 +23,10 @@ export const AuthInputLabel:FC<props> = ({
      mail=false,
      number=false,
      text,
-     setText
+     setText,
+     error,
+     setError,
 }) => {
-  const [error, setError] = useState<boolean>(false)
   const [secure, setSecure] = useState<string>('')
   const [errorMessage, setErrorMessage] = useState<string>('error')
   const [color, setColor] = useState<string>('#DA4242')

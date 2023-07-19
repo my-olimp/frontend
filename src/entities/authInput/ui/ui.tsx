@@ -21,18 +21,18 @@ interface props {
 }
 
 export const AuthInput:FC<props> = ({
-    eye=false,
-    maxLength=26,
-    inputName,
-    setError,
-    error,
-    password,
-    mail,
-    number,
-    setErrorMessage,
-    setSecure,
-    text,
-    setText
+      eye=false,
+      maxLength=26,
+      inputName,
+      setError,
+      error,
+      password,
+      mail,
+      number,
+      setErrorMessage,
+      setSecure,
+      text,
+      setText
 }) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false)
   const [inputType, setInputType] = useState<'text'| 'password'>(password ? 'password' : 'text')
@@ -55,7 +55,7 @@ export const AuthInput:FC<props> = ({
       'borderBottom': eye ? `1px solid ${error ? '#F54135' : 'lightgray'}` : 'none',
     }
   }
-  const handleInput = (event: FormEvent<HTMLInputElement>) => { 
+  const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const text = (event.target as HTMLInputElement).value
     const textLength = text.length
     if (!number && !mail) {
