@@ -10,6 +10,8 @@ interface props {
   signIn: boolean;
 }
 export const AuthForm: FC<props> = ({ signIn }) => {
+  const [mailOrNumber, setMailOrNumber] = useState<string>('')
+  const [passwordValue, setPasswordValue] = useState<string>('')
   const [type, setType] = useState<"mail" | "number">("mail");
   const handleSubmit = () => {};
 
@@ -23,16 +25,28 @@ export const AuthForm: FC<props> = ({ signIn }) => {
           </div>
           <AuthTypeBlock type={type} setType={setType} />
           <div className={styles.inputWrap}>
-            <AuthInputLabel mail={true} inputName={"Почта"} />
+            <AuthInputLabel
+                mail={true}
+                inputName={"Почта"}
+                text={mailOrNumber}
+                setText={setMailOrNumber}
+            />
             <AuthInputLabel
               password={true}
               passwordSignInMode={signIn}
               inputName={"Пароль"}
               eye={true}
+              text={passwordValue}
+              setText={setPasswordValue}
             />
           </div>
           <AuthLoginHelp />
-          <AuthButton type="register" width="medium" height="medium">
+          <AuthButton
+              type="register"
+              width="medium"
+              height="medium"
+              use={mailOrNumber.length !== 0 && passwordValue.length !== 0 ? 'active' : 'disabled'}
+          >
             Зарегистрироваться
           </AuthButton>
         </div>

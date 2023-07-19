@@ -23,7 +23,7 @@ export const AuthButton: FC<props> = ({
 }) => {
   const [hover, setHover] = useState<boolean>(false);
   const isDisable = (use: string): boolean => {
-    return use === "disabled" ? true : false;
+    return use === "disabled";
   };
   const buttonClassNameVariant: string = `button button-${use} ${
     hover && use === "active" && type !== "next"
@@ -65,6 +65,8 @@ export const AuthButton: FC<props> = ({
           : type === "next"
           ? "#FFF"
           : null,
+      cursor:
+        isDisable(use) ? "default" : "pointer"
     },
   };
 

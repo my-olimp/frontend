@@ -9,9 +9,20 @@ interface props {
   mail?:boolean
   number?:boolean
   passwordSignInMode?: boolean
+  text: string
+  setText: (text: string) => void
 }
 
-export const AuthInputLabel:FC<props> = ({inputName, eye=false, password=false, passwordSignInMode=false, mail=false, number=false}) => {
+export const AuthInputLabel:FC<props> = ({
+     inputName,
+     eye=false,
+     password=false,
+     passwordSignInMode=false,
+     mail=false,
+     number=false,
+     text,
+     setText
+}) => {
   const [error, setError] = useState<boolean>(false)
   const [secure, setSecure] = useState<string>('')
   const [errorMessage, setErrorMessage] = useState<string>('error')
@@ -49,6 +60,8 @@ export const AuthInputLabel:FC<props> = ({inputName, eye=false, password=false, 
         password={password}
         mail={mail}
         number={number}
+        text={text}
+        setText={setText}
       />
       {!password &&
         <h4 style={{opacity: error ? 1 : 0}} className={styles.error}>{errorMessage}</h4>

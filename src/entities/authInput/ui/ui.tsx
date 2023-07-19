@@ -13,13 +13,27 @@ interface props {
   password: boolean
   mail:boolean
   number:boolean
+  text: string,
+  setText: (text: string) => void
   setError: (value: boolean) => void
   setErrorMessage: (message: string) => void
   setSecure?: (secure: string) => void
 }
 
-export const AuthInput:FC<props> = ({eye=false, maxLength=26, inputName, setError, error, password, mail, number, setErrorMessage, setSecure}) => {
-  const [text, setText] = useState<string>('')
+export const AuthInput:FC<props> = ({
+    eye=false,
+    maxLength=26,
+    inputName,
+    setError,
+    error,
+    password,
+    mail,
+    number,
+    setErrorMessage,
+    setSecure,
+    text,
+    setText
+}) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false)
   const [inputType, setInputType] = useState<'text'| 'password'>(password ? 'password' : 'text')
   const style: any = {

@@ -16,7 +16,7 @@ import { FC, useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
-  const width = useRef(window.innerWidth);
+  const width = useRef(window && window.innerWidth);
   useEffect(() => {
     if (width.current < 900) {
       setMobile(true);
