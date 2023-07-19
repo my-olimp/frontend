@@ -67,26 +67,24 @@ export const AuthInput:FC<props> = ({
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const text = (event.target as HTMLInputElement).value
     const textLength = text.length
-    if (!number && !mail) {
+    if (password && setSecure) {
+      setSecure(validatePassword(text))
+    }
+    if (password) {
       if (textLength <= maxLength) {
         setText(text)
         setErrorMessage('notError')
       } else if (textLength > maxLength) {
         setErrorMessage('Максимальная длина - ' + maxLength)
       }
-    }
-    if (password && setSecure) {
-      setSecure(validatePassword(text))
-    }
-    if (number) {
+    } else if (number) {
       if (textLength <= maxLength) {
         setText(formatPhoneNumber(text))
         setErrorMessage('notError')
       } else if (textLength > maxLength) {
         setErrorMessage('Максимальная длина - ' + maxLength)
       }
-    }
-    if (mail) {
+    } else if (mail) {
       const validated = validateEmail(text)
       if (textLength <= maxLength) {
         if (validated) {
@@ -107,9 +105,9 @@ export const AuthInput:FC<props> = ({
       }
     }
     if (textLength === 0 && setSecure) {
+      setErrorMessage('notError')
       setSecure('')
-    }
-    if (textLength === 0) {
+    } else if (textLength === 0) {
       setErrorMessage('notError')
     }
   }
