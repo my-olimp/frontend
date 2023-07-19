@@ -41,7 +41,7 @@ export const AuthInputLabel:FC<props> = ({
        'width': secure === 'Слабый пароль' ? '33%' : (secure === 'Средний пароль' ? '66%' : (secure === 'Надежный пароль' ? '100%' : '100%'))
     },
     secureWrap: {
-      'opacity': secure !== ''  ?  1 : 0
+      'display': secure !== ''  ?  'flex' : 'none'
     }
   }
   useEffect(() => {
@@ -70,14 +70,14 @@ export const AuthInputLabel:FC<props> = ({
         setText={setText}
       />
       {!password &&
-        <h4 style={{opacity: errorMessage !== 'notError' ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
+        <h4 style={{display: errorMessage !== 'notError' ? 'block' : 'none'}} className={styles.error}>{errorMessage}</h4>
       }
       {passwordSignInMode 
-        ? <h4 style={{opacity: errorMessage !== 'notError' ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
+        ? <h4 style={{display: errorMessage !== 'notError' ? 'block' : 'none'}} className={styles.error}>{errorMessage}</h4>
         : password 
             &&
             errorMessage !== 'notError'
-              ?  <h4 style={{opacity: errorMessage !== 'notError' ? 1 : 0}} className={styles.error}>{errorMessage}</h4>
+              ?  <h4 style={{display: errorMessage !== 'notError' ? 'block' : 'none'}} className={styles.error}>{errorMessage}</h4>
               : 
                 (<div style={style.secureWrap} className={styles.securityWrap}>
                   <span style={style.secureBar} className={styles.securityBar}/> 

@@ -1,4 +1,6 @@
 import eyeCloseIcon from '../../../../public/auth/eyeClose.svg';
+import eyeCloseIconRed from '../../../../public/auth/eyeCloseRed.svg';
+import eyeOpenIconRed from '../../../../public/auth/eyeOpenRed.svg';
 import eyeOpenIcon from '../../../../public/auth/eyeOpen.svg';
 import { FC, FormEvent, useState } from "react";
 import formatPhoneNumber from '../lib/formatPhoneNumber';
@@ -35,6 +37,7 @@ export const AuthInput:FC<props> = ({
 }) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false)
   const [inputType, setInputType] = useState<'text'| 'password'>(password ? 'password' : 'text')
+  console.log('ddwdw');
   const style: any = {
     input: {
       'borderLeft': errorMessage !== 'notError' ? `1px solid #F54135` : `1px solid lightgray`,
@@ -45,7 +48,14 @@ export const AuthInput:FC<props> = ({
       'borderBottomRightRadius': eye ? '0' : '8px',
     },
     icon: {
-      'backgroundImage': !isEyeOpen ? `url(${eyeOpenIcon.src})` : `url(${eyeCloseIcon.src})`,
+      'backgroundImage':
+          !isEyeOpen
+              ? errorMessage !== 'notError'
+                ? `url(${eyeOpenIconRed.src})`
+                : `url(${eyeOpenIcon.src})`
+              : errorMessage !== 'notError'
+                ? `url(${eyeCloseIconRed.src})`
+                : `url(${eyeCloseIcon.src})`
     },
     iconWrap: {
       'display': eye ? 'flex' : 'none',
