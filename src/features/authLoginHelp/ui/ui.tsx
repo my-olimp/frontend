@@ -9,7 +9,7 @@ export const AuthLoginHelp = () => {
     <>
       <div className={styles.wrap}>
         <CheckBox isText={true}>Запомнить меня</CheckBox>
-        <LinkButton onClick={() => router.push("/page")}>
+        <LinkButton link="/forgotPage" onClick={() => router.push("/page")}>
           Забыли пароль?
         </LinkButton>
       </div>
