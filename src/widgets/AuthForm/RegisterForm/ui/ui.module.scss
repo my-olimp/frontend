@@ -8,10 +8,10 @@ $bgFormColor: #fff;
   align-items: center;
   flex-direction: column;
   gap: 8px;
-  width: 55vw;
-  height: 60vh;
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
   background-color: $bgFormColor;
+  width:461px;
+  height: 572px;
 }
 
 .screen {
@@ -22,20 +22,9 @@ $bgFormColor: #fff;
   align-items: center;
   background-color: $bgScreenColor;
   flex-direction: column;
-  gap: 16px;
 }
 
-.wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
-  width:461px;
-  height: 572px;
-  border-radius: 16px;
-  background-color: white;
-}
+
 
 .container {
   width: 368px;

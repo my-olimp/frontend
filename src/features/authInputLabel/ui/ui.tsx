@@ -83,9 +83,7 @@ export const AuthInputLabel:FC<props> = ({
                   <span style={style.secureBar} className={styles.securityBar}/> 
                   <span className={styles.securityFullBar}/> 
                   <h4 style={style.secure} className={styles.security}>{
-                      secure !== 'password rules'
-                          ? secure
-                          : <h4 className={styles.security}>Пароль должен содержать как минимум <i className={styles.focus}>6 символов</i>, как минимум <i className={styles.focus}>1 специальный символ</i> и как минимум <i className={styles.focus}>одну заглавую букву</i>.</h4>
+                      secure
                   }</h4>
                 </div>)  
       }
