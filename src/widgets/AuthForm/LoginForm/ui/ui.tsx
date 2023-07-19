@@ -3,7 +3,7 @@ import styles from "./ui.module.scss";
 import { AuthInputLabel } from "@/features/authInputLabel";
 import { AuthTypeBlock } from "@/features/authTypeBlock";
 import { AuthLoginHelp } from "@/features/authLoginHelp";
-import { AuthHelp } from "@/features/authHelp";
+import { LoginHelp } from "@/features/authHelp/LoginHelp";
 import { AuthButton } from "@/entities/buttons/authButton";
 
 interface props {
@@ -80,7 +80,7 @@ export const LoginForm: FC<props> = ({ signIn }) => {
           </AuthButton>
         </div>
       </div>
-      <AuthHelp />
+      <LoginHelp />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { LinkButton } from "@/entities/buttons/linkButton";
 import styles from "./ui.module.scss";
-export const AuthHelp: FC = ({}) => {
+export const LoginHelp: FC = ({}) => {
   return (
     <div className={styles.helpWrap}>
       <LinkButton

@@ -1,0 +1,26 @@
+
+.helpWrap {
+  display: flex;
+  width: 461px;
+  height: 83px;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #F2F2F2;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.32);;
+  align-items: center;
+}
+
+.text {
+  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+  line-height: 21px;
+  font-size: 12px;
+  color: #222222;
+}
+
+.link {
+  color: #3579F8;
+  font-family: "SF_Regular", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  line-height: 21px;
+}

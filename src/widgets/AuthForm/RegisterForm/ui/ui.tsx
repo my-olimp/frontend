@@ -1,11 +1,10 @@
 import {FC, useEffect, useState} from 'react';
 import { AuthInputLabel } from "@/features/authInputLabel";
 import { AuthTypeBlock } from "@/features/authTypeBlock";
-import { AuthLoginHelp } from "@/features/authLoginHelp";
-import { AuthHelp } from "@/features/authHelp";
 import { AuthButton } from "@/entities/buttons/authButton";
 import styles from "./ui.module.scss";
 import {RegisterRulesAccept} from '@/entities/registerRulesAccept';
+import {RegisterHelp} from '@/features/authHelp/RegisterHelp';
 
 interface props {
 }
@@ -101,6 +100,7 @@ export const RegisterForm: FC<props> = ({ }) => {
                     <RegisterRulesAccept/>
                 </div>
             </div>
+            <RegisterHelp/>
         </div>
     );
 };
