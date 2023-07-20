@@ -6,6 +6,7 @@ import { AuthLoginHelp } from "@/features/authLoginHelp";
 import { LoginHelp } from "@/features/authHelp/LoginHelp";
 import { AuthButton } from "@/entities/buttons/authButton";
 import Image from "next/image";
+import {Gapped} from '@/shared/Gapped/ui/ui';
 
 interface props {
   signIn: boolean;
@@ -27,10 +28,10 @@ export const LoginForm: FC<props> = ({ signIn }) => {
 
   useEffect(() => {
     if (
-      mailOrNumber.length !== 0 &&
-      passwordValue.length !== 0 &&
-      errorPasswordMessage === "notError" &&
-      errorMailOrNumberMessage === "notError"
+        mailOrNumber.length !== 0 &&
+        passwordValue.length !== 0 &&
+        !(errorPasswordMessage !== "notError") &&
+        !(errorMailOrNumberMessage !== "notError")
     ) {
       setButtonDisabled("active");
     } else {
@@ -39,8 +40,6 @@ export const LoginForm: FC<props> = ({ signIn }) => {
   }, [
     mailOrNumber,
     passwordValue,
-    errorPasswordMessage,
-    errorMailOrNumberMessage,
   ]);
 
   const handleSubmit = () => {

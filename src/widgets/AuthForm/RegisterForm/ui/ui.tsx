@@ -138,6 +138,7 @@ export const RegisterForm: FC<props> = ({}) => {
                 errorMessage={errorSecondPasswordMessage}
                 setErrorMessage={setErrorSecondPasswordMessage}
               />
+              <Gapped gap={'24px'}/>
               <AuthButton
                 type="register"
                 width="medium"
