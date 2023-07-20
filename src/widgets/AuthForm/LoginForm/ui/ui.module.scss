@@ -29,3 +29,9 @@ $bgFormColor: #fff;
   width: 254px;
   text-align: center;
 }
+
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

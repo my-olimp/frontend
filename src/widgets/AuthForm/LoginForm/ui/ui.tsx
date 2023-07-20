@@ -86,7 +86,6 @@ export const LoginForm: FC<props> = ({ signIn }) => {
                       height={28}
                     />
                   </div>
-
                   <h4 className={styles.text}>Войти</h4>
                 </Gapped>
                 <AuthTypeBlock type={type} setType={setType} />
@@ -110,6 +109,7 @@ export const LoginForm: FC<props> = ({ signIn }) => {
                       setText={setMailOrNumber}
                       errorMessage={errorMailOrNumberMessage}
                       setErrorMessage={setErrorMailOrNumberMessage}
+                     
                     />
                     <AuthInputLabel
                       password={true}
