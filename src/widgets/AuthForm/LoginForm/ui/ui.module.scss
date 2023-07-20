@@ -2,65 +2,30 @@ $bgScreenColor: #f2f2f2;
 $bgFormColor: #fff;
 
 .wrap {
-  display: flex;
-  padding-top: 0;
-  padding-bottom: 0;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
-  width: 55vw;
-  height: 60vh;
-
-  border-radius: 16px;
+  display: block;
+  border-radius: 10px;
   background-color: $bgFormColor;
+  width: 460px;
+  height: auto;
 }
 
 .screen {
   width: 100vw;
   height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
   background-color: $bgScreenColor;
-  flex-direction: column;
-  gap: 16px;
 }
 
-.wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
-  width: 461px;
-  height: 514px;
-  border-radius: 16px;
-  background-color: white;
-}
-
-.container {
-  width: 368px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.headerWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 .header {
+  width: 100%;
   text-align: center;
-  max-height: 32px;
 }
 
 .text {
-  text-align: center;
-
-  font-family: "SF_Regular", sans-serif;
   font-size: 16px;
-  font-style: normal;
+  font-family: "SF_Regular", sans-serif;
   font-weight: 400;
-  line-height: 24px;
+  width: 254px;
+  text-align: center;
 }

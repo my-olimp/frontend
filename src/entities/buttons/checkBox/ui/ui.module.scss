@@ -6,7 +6,6 @@
   background-size: contain;
   width: 20px;
   height: 20px;
-  transition: all .2s;
 }
 
 .wrap {
@@ -18,9 +17,11 @@
   justify-content: center;
 
   cursor: pointer;
+
+  transition: all .2s;
 }
 
 .checkBoxText {
   font-family: "SF_Regular", Arial, Helvetica, sans-serif;
-  transition: all .2s;
+  
 }

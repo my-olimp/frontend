@@ -1,31 +1,53 @@
-export default function formatPhoneNumber(input: string) {
-  const match = input.match(/^(\+?)(\d{0,1})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,4})$/);
+const PATTERN = /\D/g;
+const getInputNumbersValue = (value: string) => {
+  return value.replace(PATTERN, "");
+};
+export default function formatPhoneNumber(input: any) {
+  let inputNumbersValue = getInputNumbersValue(input);
+  let formattedInputValue = "";
 
-  if (!match) {
-    return input;
+  if (!inputNumbersValue) {
+    return (input = "");
   }
 
-  let formattedNumber = '';
-
-  if (match[1]) {
-    formattedNumber += match[1];
-  }
-
-  if (match[2]) {
-    formattedNumber += match[2];
-    if (match[3]) {
-      formattedNumber += ' ' + match[3];
-      if (match[4]) {
-        formattedNumber += ' ' + match[4];
-        if (match[5]) {
-          formattedNumber += ' ' + match[5];
-          if (match[6]) {
-            formattedNumber += ' ' + match[6];
-          }
-        }
-      }
+  if (["7", "8", "9"].indexOf(inputNumbersValue[0]) > -1) {
+    if (inputNumbersValue[0] === "9") {
+      inputNumbersValue = "7" + inputNumbersValue;
     }
   }
 
-  return formattedNumber;
+  const firstSymbol = inputNumbersValue[0] === "8" ? "8" : "+7";
+  formattedInputValue = firstSymbol + " ";
+
+  if (inputNumbersValue.length > 1) {
+    formattedInputValue += "(" + inputNumbersValue.substring(1, 4);
+    console.error(input);
+    if (inputNumbersValue.length >= 5) {
+      formattedInputValue += ") " + inputNumbersValue.substring(4, 7);
+  
+      console.error(true);
+      input = formattedInputValue;
+     
+  }
+ 
+  }
+  if (inputNumbersValue.length >= 8) {
+    formattedInputValue += "-" + inputNumbersValue.substring(7, 9);
+
+    input = formattedInputValue;
+    
+  }
+  if (inputNumbersValue.length >= 10) {
+    formattedInputValue += "-" + inputNumbersValue.substring(9, 11);
+
+    input = formattedInputValue;
+  
+  } else {
+    // Not Russian numbers | 35
+    formattedInputValue = "+" + inputNumbersValue.substring(0, 16);
+  }
+
+  input = formattedInputValue;
+
+  return input;
 }

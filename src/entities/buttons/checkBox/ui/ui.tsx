@@ -1,5 +1,5 @@
-import {FC, PropsWithChildren, useState} from 'react';
-import styles from './ui.module.scss'
+import { FC, PropsWithChildren, useState } from "react";
+import styles from "./ui.module.scss";
 
 interface props {
   children?: string;
@@ -18,27 +18,26 @@ export const CheckBox: FC<PropsWithChildren<props>> = ({
     textStyle: {
       display: isText ? "block" : "none",
       fontSize: textSize ? textSize : "14px",
-      color: hover ? "#3579F8" : "#222"
+      color: hover ? "#3579F8" : "#222",
     },
     checkBox: {
-        backgroundImage:
-            active
-                ? 'url("/auth/checkboxActive.svg")'
-                : hover
-                    ? 'url(/auth/checkboxHover.svg)'
-                    : 'url(/auth/checkbox.svg)'
-    }
+      backgroundImage: active
+        ? 'url("/auth/checkboxActive.svg")'
+        : hover
+        ? "url(/auth/checkboxHover.svg)"
+        : "url(/auth/checkbox.svg)",
+    },
   };
   return (
     <div
-        className={styles.wrap}
-        onMouseOver={() => setHover(true)}
-        onMouseOut={() => setHover(false)}
+      className={styles.wrap}
+      onMouseOver={() => setHover(true)}
+      onMouseOut={() => setHover(false)}
     >
       <span
-          className={styles.checkBox}
-          onClick={() => setActive(!active)}
-          style={style.checkBox}
+        className={styles.checkBox}
+        onClick={() => setActive(!active)}
+        style={style.checkBox}
       />
       <span
         onClick={() => setActive(!active)}
