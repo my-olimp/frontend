@@ -43,23 +43,23 @@ export default function Home() {
 
   useEffect(() => {
     const handleResize = () => {
-      setWidth(global.innerWidth);
+      setWidth(global?.window.innerWidth);
     };
 
     // Set initial width
-    setWidth(global.innerWidth);
+    setWidth(global?.window.innerWidth);
 
     
 
     // Add event listener for window resize (only on the client-side)
-    if (typeof global !== 'undefined') {
-      global.addEventListener('resize', handleResize);
+    if (typeof global?.window !== 'undefined') {
+      global?.window.addEventListener('resize', handleResize);
     }
-    console.log(global.innerWidth);
+    console.log(global?.window.innerWidth);
     // Clean up the event listener when the component is unmounted
     return () => {
-      if (typeof global !== 'undefined') {
-        global.removeEventListener('resize', handleResize);
+      if (typeof global?.window !== 'undefined') {
+        global?.window.removeEventListener('resize', handleResize);
       }
     };
   }, []);
