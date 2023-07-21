@@ -83,12 +83,13 @@ export const LoginForm: FC<props> = ({  }) => {
                   alignItems="center"
                   gap="8px"
                 >
-                  <div style={{ textAlign: "center" }}>
+                  <div    className={styles.logo} style={{ textAlign: "center" }}>
                     <Image
                       src="/logo/myOlimpLogo.svg"
                       alt="logo"
                       width={115}
                       height={28}
+                      className={styles.logo}
                     />
                   </div>
                   <h4 className={styles.text}>Войти</h4>

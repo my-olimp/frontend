@@ -2,12 +2,12 @@ import eyeCloseIcon from "../../../../public/auth/eyeClose.svg";
 import eyeCloseIconRed from "../../../../public/auth/eyeCloseRed.svg";
 import eyeOpenIconRed from "../../../../public/auth/eyeOpenRed.svg";
 import eyeOpenIcon from "../../../../public/auth/eyeOpen.svg";
-import {FC, FormEvent, useState,  ChangeEvent, FocusEvent} from 'react';
+import { FC, FormEvent, useState } from "react";
+
 import validateEmail from "../lib/validateEmail";
 import validatePassword from "../lib/validatePassword";
 import styles from "./ui.module.scss";
-import InputMask from "react-input-mask";
-
+import ReactInputMask from "react-input-mask";
 interface props {
   eye?: boolean;
   maxLength?: number;
@@ -85,14 +85,45 @@ export const AuthInput: FC<props> = ({
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const text = (event.target as HTMLInputElement).value;
     const textLength = text.length;
-    if (textLength < maxLength) {
-      setText(text)
-    } else {
-      setErrorMessage(`Максимальная длина - ${maxLength} символов`)
+    if (!number && !mail) {
+      if (textLength <= maxLength) {
+        setText(text);
+        setErrorMessage("notError");
+      } else if (textLength > maxLength) {
+        setErrorMessage("Максимальная длина - " + maxLength);
+      }
     }
-
     if (password && setSecure) {
       setSecure(validatePassword(text));
+    }
+    if (number) {
+      if (true) {
+        setText(text); //  setText(formatPhoneNumber(text))
+        setErrorMessage("notError");
+      } else if (textLength > maxLength) {
+        setErrorMessage("Максимальная длина - " + maxLength);
+      }
+    }
+    if (mail) {
+      const validated = validateEmail(text);
+      if (textLength <= maxLength) {
+        if (validated) {
+          setText(text);
+          setErrorMessage("notError");
+          console.info(`length ${text.length}`);
+        } else {
+          setText(text);
+          setErrorMessage("Неверный формат почты! Пример: test@example.com");
+        }
+      } else if (textLength > maxLength) {
+        if (validated) {
+          setText(text);
+          setErrorMessage("notError");
+        } else {
+          setText(text);
+          setErrorMessage("Неверный формат почты! Пример: test@example.com");
+        }
+      }
     }
     if (textLength === 0 && setSecure) {
       setSecure("");
@@ -100,70 +131,61 @@ export const AuthInput: FC<props> = ({
     if (textLength === 0) {
       setErrorMessage("notError");
     }
-  }
-
-  const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
-    if (text === '') {
-      setErrorMessage(`${event.target.name} не может быть пуст${event.target.name === 'Почта' ? 'ой' : 'ым'}!`)
-    }
-    if (mail) {
-      const validated = validateEmail(text)
-      if (validated) {
-        setErrorMessage("notError");
-      } else {
-        setText(text);
-        setErrorMessage("Неверный формат почты! Пример: test@example.com");
-      }
-    }
   };
-  const handleFocus = () => {
-    if (errorMessage.match(/^Максимальная/)) {
-
-    } else {
-      setErrorMessage('notError')
+  console.info(text);
+  console.info(`length ${text.length}`);
+  console.info(`maxLength ${maxLength}`)
+  const bluerHandler = (e: any) => {
+    if (e.target.name === "Почта" && text !== "") {
+      setErrorMessage("Поле заполнено неверно");
     }
-  }
+    /*    if (e.target.name === "Номер телефона" && text !== "") {
+      setErrorMessage("Поле заполнено неверно");
+      
+    }*/
+    // нужен более умный if
+  };
 
   return (
-      <div className={styles.wrap}>
-        {number ?
-            <InputMask
-                mask="+9(999) 999-99-99"
-                value={text}
-                onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
-                onFocus={() => handleFocus()}
-            >
-              <input
-                  style={style.input}
-                  className={styles.input}
-                  name={inputName}
-                  value={text}
-                  type="tel"
-                  onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
-              />
-            </InputMask>
-        :  <input
-                style={style.input}
-                className={styles.input}
-                name={inputName}
-                value={text}
-                type={inputType}
-                onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
-                onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
-                onChange={(event: ChangeEvent<HTMLInputElement>) => setText(event.target.value)}
-                onFocus={() => handleFocus()}
-            />}
-
-        <div
-            style={style.iconWrap}
-            className={styles.iconWrap}
-            onClick={() => {
-              setInputType(inputType === "text" ? "password" : "text");
-              setEyeOpen(!isEyeOpen);
-            }}
+    <div className={styles.wrap}>
+      {inputName === "Номер телефона" ? (
+        <ReactInputMask
+          mask="+9(999) 999-99-99"
+          value={text}
+          onBlur={(e: any) => bluerHandler(e)}
         >
-          <i style={style.icon} className={styles.icon} draggable="false" />
-        </div>
+          {
+            <input
+              style={style.input}
+              className={styles.input}
+              name={inputName}
+              value={text}
+              onInput={(event) => handleInput(event)}
+            />
+          }
+        </ReactInputMask>
+      ) : (
+        <input
+          style={style.input}
+          className={styles.input}
+          name={inputName}
+          value={text}
+          type={inputType}
+          onInput={(event) => handleInput(event)}
+          onBlur={(e: any) => bluerHandler(e)}
+        />
+      )}
+
+      <div
+        style={style.iconWrap}
+        className={styles.iconWrap}
+        onClick={() => {
+          setInputType(inputType === "text" ? "password" : "text");
+          setEyeOpen(!isEyeOpen);
+        }}
+      >
+        <i style={style.icon} className={styles.icon} draggable="false" />
       </div>
+    </div>
   );
 };

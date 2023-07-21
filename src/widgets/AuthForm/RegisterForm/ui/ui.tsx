@@ -98,6 +98,7 @@ export const RegisterForm: FC<props> = ({}) => {
                     alt="logo"
                     width={115}
                     height={28}
+                    className={styles.logo}
                   />
                 </div>
 

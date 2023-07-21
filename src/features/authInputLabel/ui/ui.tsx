@@ -10,9 +10,9 @@ interface props {
   number?:boolean
   passwordSignInMode?: boolean
   text: string
-  maxLength?: number
   errorMessage: string
   setText: (text: string) => void
+  maxLength?: number
   setErrorMessage: (error: string) => void
 }
 
@@ -25,9 +25,9 @@ export const AuthInputLabel:FC<props> = ({
      number=false,
      text,
      setText,
+     maxLength=30,
      errorMessage,
      setErrorMessage,
-    maxLength=30,
 }) => {
   const [secure, setSecure] = useState<string>('')
   const [color, setColor] = useState<string>('#DA4242')
@@ -56,11 +56,8 @@ export const AuthInputLabel:FC<props> = ({
         secure !== 'Слабый пароль'
     ) setColor('#999')
   }, [secure])
-  useEffect(() => {
-      if (text === '') {
-          setSecure('')
-      }
-  }, [text])
+
+  
   return (
     <div className={styles.wrap}>
       <label style={style.label} htmlFor={inputName} className={styles.label}>{inputName}</label>
