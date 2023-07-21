@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 function checkMobile() {
   const userAgent =
-    typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+    typeof global?.window.navigator === "undefined" ? "" : navigator.userAgent;
   const mobileKeywords = [
     "android",
     "webos",
