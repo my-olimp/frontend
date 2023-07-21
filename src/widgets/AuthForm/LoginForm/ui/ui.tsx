@@ -9,9 +9,8 @@ import Image from "next/image";
 import { Gapped } from "@/shared/Gapped/ui/ui";
 
 interface props {
-  signIn: boolean;
 }
-export const LoginForm: FC<props> = ({ signIn }) => {
+export const LoginForm: FC<props> = ({  }) => {
   const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] =
     useState<string>("notError");
   const [errorPasswordMessage, setErrorPasswordMessage] =
@@ -43,6 +42,12 @@ export const LoginForm: FC<props> = ({ signIn }) => {
     errorPasswordMessage,
     errorMailOrNumberMessage,
   ]);
+  useEffect(() => {
+    setMailOrNumber('')
+    setPasswordValue('')
+    setErrorMailOrNumberMessage('notError')
+    setErrorPasswordMessage('notError')
+  }, [type]);
 
   const handleSubmit = () => {
     console.log(mailOrNumber);
@@ -109,11 +114,12 @@ export const LoginForm: FC<props> = ({ signIn }) => {
                       setText={setMailOrNumber}
                       errorMessage={errorMailOrNumberMessage}
                       setErrorMessage={setErrorMailOrNumberMessage}
+                      maxLength={type === 'number' ? 11 : 30}
                      
                     />
                     <AuthInputLabel
                       password={true}
-                      passwordSignInMode={signIn}
+                      passwordSignInMode={true}
                       inputName={"Пароль"}
                       eye={true}
                       text={passwordValue}

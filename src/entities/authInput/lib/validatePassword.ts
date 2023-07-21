@@ -1,4 +1,7 @@
 export default function validatePassword(password: string) {
+    if (password.match(/\s/)) {
+        return 'Пароль не может содержать в себе пробелы.'
+    }
 
     if (password.length < 5) {
         return 'Слабый пароль'

@@ -51,6 +51,15 @@ export const RegisterForm: FC<props> = ({}) => {
     }
   }, [passwordSecondValue, passwordValue]);
 
+  useEffect(() => {
+    setMailOrNumber('')
+    setPasswordValue('')
+    setPasswordSecondValue('')
+    setErrorMailOrNumberMessage('notError')
+    setErrorPasswordMessage('notError')
+    setErrorSecondPasswordMessage('notError')
+  }, [type]);
+
   const handleSubmit = () => {
     console.log(mailOrNumber);
     console.log(passwordValue);
