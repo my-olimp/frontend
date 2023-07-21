@@ -1,4 +1,3 @@
-$bgScreenColor: #f2f2f2;
 $bgFormColor: #fff;
 
 .wrap {
@@ -9,13 +8,6 @@ $bgFormColor: #fff;
   height: auto;
 }
 
-.screen {
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  background-color: $bgScreenColor;
-}
 
 .header {
   width: 100%;

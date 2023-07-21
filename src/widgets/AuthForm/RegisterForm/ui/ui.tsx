@@ -58,12 +58,6 @@ export const RegisterForm: FC<props> = ({}) => {
 
   return (
     <>
-      <Gapped
-        className={styles.screen}
-        vertical
-        verticalAlign="middle"
-        gap="0px"
-      >
         <Gapped gap="0px" vertical verticalAlign="middle">
         <Gapped
           className={styles.wrap}
@@ -155,7 +149,6 @@ export const RegisterForm: FC<props> = ({}) => {
         </Gapped>
         <RegisterHelp />
         </Gapped>
-      </Gapped>
     </>
   );
 };

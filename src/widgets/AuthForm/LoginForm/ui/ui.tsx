@@ -9,9 +9,8 @@ import Image from "next/image";
 import {Gapped} from '@/shared/Gapped/ui/ui';
 
 interface props {
-  signIn: boolean;
 }
-export const LoginForm: FC<props> = ({ signIn }) => {
+export const LoginForm: FC<props> = ({  }) => {
   const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] =
     useState<string>("notError");
   const [errorPasswordMessage, setErrorPasswordMessage] =
@@ -48,7 +47,7 @@ export const LoginForm: FC<props> = ({ signIn }) => {
   };
 
   return (
-    <div className={styles.screen}>
+    <>
       <div className={styles.wrap}>
         <div className={styles.container}>
           <div className={styles.headerWrap}>
@@ -75,7 +74,7 @@ export const LoginForm: FC<props> = ({ signIn }) => {
             />
             <AuthInputLabel
               password={true}
-              passwordSignInMode={signIn}
+              passwordSignInMode={true}
               inputName={"Пароль"}
               eye={true}
               text={passwordValue}
@@ -97,6 +96,6 @@ export const LoginForm: FC<props> = ({ signIn }) => {
         </div>
       </div>
       <LoginHelp />
-    </div>
+    </>
   );
 };
