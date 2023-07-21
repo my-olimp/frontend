@@ -11,7 +11,8 @@ import { ScrollCards } from "@/widgets/Landing/scrollCards/ui";
 import { TitleScroll } from "@/shared/Landing/scrollCardContentTitle/ui";
 import { Footer } from "@/widgets/Landing/footer/ui";
 import { Cover } from "@/shared/Landing/cover/ui";
-import { useEffect, useState, useRef, use } from "react";
+import { useEffect, useState, useRef, } from "react";
+import dynamic from 'next/dynamic'
 
 /*function checkMobile() {
   const userAgent =
@@ -30,24 +31,41 @@ import { useEffect, useState, useRef, use } from "react";
     userAgent.toLowerCase().includes(keyword)
   );
 }*/
+/*const BoardDynamic = dynamic(() => import('../components/Board.tsx'), {
+  ssr: false,
+})*/
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
 
-  const width = useRef(global?.window && window.innerWidth);
+  
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    if (width.current < 900) {
-      setMobile(true);
-      console.log(width);
-      console.log(width.current);
-    }
-  }, []);
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
 
-  /* useEffect(() => {
-    setMobile(checkMobile());
+    // Set initial width
+    setWidth(window.innerWidth);
+
     
-  }, []);*/
+
+    // Add event listener for window resize (only on the client-side)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+    }
+    console.log(window.innerWidth);
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
+    };
+  }, []);
+  
+
+
 
   return (
     <>
