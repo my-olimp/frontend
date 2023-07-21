@@ -3,10 +3,9 @@ import "./globals.scss";
 export const metadata = {
   title: "MyOlimp",
   description: "...",
-
-  signup: {
-    title: "Регистрация",
-  },
+  icons: {
+    icon: ['/icon.ico?v=4'],
+  }
 };
 
 export default function RootLayout({
@@ -16,6 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
+       <link rel="icon" href="/icon.ico" sizes="any" />
       <body>{children}</body>
     </html>
   );
