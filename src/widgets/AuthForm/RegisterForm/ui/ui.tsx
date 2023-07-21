@@ -8,7 +8,6 @@ import { RegisterRulesAccept } from "@/entities/registerRulesAccept";
 import { RegisterHelp } from "@/features/authHelp/RegisterHelp";
 import { Gapped } from "@/shared/Gapped/ui/ui";
 import Image from "next/image";
-import { Metadata } from "next";
 
 interface props {}
 export const RegisterForm: FC<props> = ({}) => {
@@ -46,8 +45,9 @@ export const RegisterForm: FC<props> = ({}) => {
   }, [mailOrNumber, passwordValue, passwordSecondValue]);
 
   useEffect(() => {
-    if (passwordValue !== passwordSecondValue) {
+    if (passwordValue !== passwordSecondValue && passwordValue === " ") {
       setErrorSecondPasswordMessage("Пароли должны совпадать!");
+      console.log(passwordValue);
     }
   }, [passwordSecondValue, passwordValue]);
 
@@ -59,97 +59,96 @@ export const RegisterForm: FC<props> = ({}) => {
   return (
     <>
         <Gapped gap="0px" vertical verticalAlign="middle">
-        <Gapped
-          className={styles.wrap}
-          vertical
-          gap="16px"
-          verticalAlign="middle"
-          style={{
-            paddingTop: "40px",
-            paddingBottom: "16px",
-            paddingLeft: "40px",
-            paddingRight: "40px",
-          }}
-        >
           <Gapped
-            className={styles.headerWrap}
-            gap="24px"
-            verticalAlign="middle"
+            className={styles.wrap}
             vertical
+            gap="16px"
+            verticalAlign="middle"
+            style={{
+              paddingTop: "40px",
+              paddingBottom: "16px",
+              paddingLeft: "40px",
+              paddingRight: "40px",
+            }}
           >
             <Gapped
-              vertical
+              className={styles.headerWrap}
+              gap="24px"
               verticalAlign="middle"
-              alignItems="center"
-              gap="8px"
-            >
-              <div style={{ textAlign: "center" }}>
-                <Image
-                  src="/logo/myOlimpLogo.svg"
-                  alt="logo"
-                  width={115}
-                  height={28}
-                />
-              </div>
-
-              <h4 className={styles.text}>
-                Для создания учетной записи укажите свои данные:
-              </h4>
-            </Gapped>
-            <AuthTypeBlock type={type} setType={setType} />
-
-            <Gapped
-              className={styles.inputWrap}
               vertical
-              verticalAlign="middle"
             >
-              <AuthInputLabel
-                mail={type === "mail"}
-                number={type === "number"}
-                inputName={type === "mail" ? "Почта" : "Номер телефона"}
-                text={mailOrNumber}
-                setText={setMailOrNumber}
-                errorMessage={errorMailOrNumberMessage}
-                setErrorMessage={setErrorMailOrNumberMessage}
-              />{" "}
-              <AuthInputLabel
-                password={true}
-                passwordSignInMode={false}
-                inputName={"Пароль"}
-                eye={true}
-                text={passwordValue}
-                setText={setPasswordValue}
-                errorMessage={errorPasswordMessage}
-                setErrorMessage={setErrorPasswordMessage}
-              />
-              <AuthInputLabel
-                password={true}
-                passwordSignInMode={true}
-                inputName={"Подтверждение пароля"}
-                eye={true}
-                text={passwordSecondValue}
-                setText={setPasswordSecondValue}
-                errorMessage={errorSecondPasswordMessage}
-                setErrorMessage={setErrorSecondPasswordMessage}
-              />
-              <Gapped gap={'24px'}/>
-              <AuthButton
-                type="register"
-                width="medium"
-                height="medium"
-                btnStyle={{ width: "100%" }}
-                use={isButtonDisabled}
-                onClick={handleSubmit}
+              <Gapped
+                vertical
+                verticalAlign="middle"
+                alignItems="center"
+                gap="8px"
               >
-                Зарегистрироваться
-              </AuthButton>
-              <RegisterRulesAccept />
+                <div style={{ textAlign: "center" }}>
+                  <Image
+                    src="/logo/myOlimpLogo.svg"
+                    alt="logo"
+                    width={115}
+                    height={28}
+                  />
+                </div>
+
+                <h4 className={styles.text}>
+                  Для создания учетной записи укажите свои данные:
+                </h4>
+              </Gapped>
+              <AuthTypeBlock type={type} setType={setType} />
+
+              <Gapped
+                className={styles.inputWrap}
+                vertical
+                verticalAlign="middle"
+                gap="16px"
+              >
+                <AuthInputLabel
+                  mail={type === "mail"}
+                  number={type === "number"}
+                  inputName={type === "mail" ? "Почта" : "Номер телефона"}
+                  text={mailOrNumber}
+                  setText={setMailOrNumber}
+                  errorMessage={errorMailOrNumberMessage}
+                  setErrorMessage={setErrorMailOrNumberMessage}
+                />{" "}
+                <AuthInputLabel
+                  password={true}
+                  passwordSignInMode={false}
+                  inputName={"Пароль"}
+                  eye={true}
+                  text={passwordValue}
+                  setText={setPasswordValue}
+                  errorMessage={errorPasswordMessage}
+                  setErrorMessage={setErrorPasswordMessage}
+                />
+                <AuthInputLabel
+                  password={true}
+                  passwordSignInMode={true}
+                  inputName={"Подтверждение пароля"}
+                  eye={true}
+                  text={passwordSecondValue}
+                  setText={setPasswordSecondValue}
+                  errorMessage={errorSecondPasswordMessage}
+                  setErrorMessage={setErrorSecondPasswordMessage}
+                />
+                <AuthButton
+                  type="register"
+                  width="medium"
+                  height="medium"
+                  btnStyle={{ width: "100%" }}
+                  use={isButtonDisabled}
+                  onClick={handleSubmit}
+                >
+                  Зарегистрироваться
+                </AuthButton>
+                <RegisterRulesAccept />
+              </Gapped>
             </Gapped>
           </Gapped>
-        </Gapped>
-        <RegisterHelp />
+          <RegisterHelp />
         </Gapped>
     </>
   );
 };
-

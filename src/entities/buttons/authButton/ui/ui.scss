@@ -20,6 +20,8 @@ $btnTextColor-disabled: #222;
   color: $btnTextColor-active;
 
   cursor: pointer;
+
+  transition: all 0.1s;
 }
 
 .button-active {

@@ -43,6 +43,9 @@ export const LinkButton: FC<PropsType> = ({
       fontSize: textSize ? textSize : "14px",
       transition: transition ? transition : "0",
     },
+    imgStyle: {
+      transition: transition ? transition : "0",
+    }
   };
 
   return (
@@ -65,6 +68,7 @@ export const LinkButton: FC<PropsType> = ({
             alt="icon"
             width={iconWidth}
             height={iconHeight}
+            style={style.imgStyle}
           />
         ) : null}
       </Link>

@@ -6,11 +6,12 @@ import { AuthLoginHelp } from "@/features/authLoginHelp";
 import { LoginHelp } from "@/features/authHelp/LoginHelp";
 import { AuthButton } from "@/entities/buttons/authButton";
 import Image from "next/image";
-import {Gapped} from '@/shared/Gapped/ui/ui';
+import { Gapped } from "@/shared/Gapped/ui/ui";
 
 interface props {
+  signIn: boolean;
 }
-export const LoginForm: FC<props> = ({  }) => {
+export const LoginForm: FC<props> = ({ signIn }) => {
   const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] =
     useState<string>("notError");
   const [errorPasswordMessage, setErrorPasswordMessage] =
@@ -27,10 +28,10 @@ export const LoginForm: FC<props> = ({  }) => {
 
   useEffect(() => {
     if (
-        mailOrNumber.length !== 0 &&
-        passwordValue.length !== 0 &&
-        !(errorPasswordMessage !== "notError") &&
-        !(errorMailOrNumberMessage !== "notError")
+      mailOrNumber.length !== 0 &&
+      passwordValue.length !== 0 &&
+      errorPasswordMessage === "notError" &&
+      errorMailOrNumberMessage === "notError"
     ) {
       setButtonDisabled("active");
     } else {
@@ -39,6 +40,8 @@ export const LoginForm: FC<props> = ({  }) => {
   }, [
     mailOrNumber,
     passwordValue,
+    errorPasswordMessage,
+    errorMailOrNumberMessage,
   ]);
 
   const handleSubmit = () => {
@@ -48,54 +51,94 @@ export const LoginForm: FC<props> = ({  }) => {
 
   return (
     <>
-      <div className={styles.wrap}>
-        <div className={styles.container}>
-          <div className={styles.headerWrap}>
-            <h1 className={styles.header}>
-              <Image
-                src="/logo/myOlimpLogo.svg"
-                alt="logo"
-                width={115}
-                height={28}
-              />
-            </h1>
-            <h4 className={styles.text}>Вход в сервис</h4>
-          </div>
-          <AuthTypeBlock type={type} setType={setType} />
-          <div className={styles.inputWrap}>
-            <AuthInputLabel
-              mail={type === "mail"}
-              number={type === "number"}
-              inputName={type === "mail" ? "Почта" : "Номер телефона"}
-              text={mailOrNumber}
-              setText={setMailOrNumber}
-              errorMessage={errorMailOrNumberMessage}
-              setErrorMessage={setErrorMailOrNumberMessage}
-            />
-            <AuthInputLabel
-              password={true}
-              passwordSignInMode={true}
-              inputName={"Пароль"}
-              eye={true}
-              text={passwordValue}
-              setText={setPasswordValue}
-              errorMessage={errorPasswordMessage}
-              setErrorMessage={setErrorPasswordMessage}
-            />
-          </div>
-          <AuthLoginHelp />
-          <AuthButton
-            type="register"
-            width="medium"
-            height="medium"
-            use={isButtonDisabled}
-            onClick={handleSubmit}
-          >
-            Войти
-          </AuthButton>
-        </div>
-      </div>
-      <LoginHelp />
+      <Gapped className={styles.screen} vertical verticalAlign="middle">
+        <Gapped gap="16px" vertical verticalAlign="middle">
+          <Gapped gap="0px" vertical verticalAlign="middle">
+            <Gapped
+              className={styles.wrap}
+              vertical
+              gap="16px"
+              verticalAlign="middle"
+              style={{
+                paddingTop: "40px",
+                paddingBottom: "16px",
+                paddingLeft: "40px",
+                paddingRight: "40px",
+              }}
+            >
+              <Gapped
+                className={styles.headerWrap}
+                gap="24px"
+                verticalAlign="middle"
+                vertical
+              >
+                <Gapped
+                  vertical
+                  verticalAlign="middle"
+                  alignItems="center"
+                  gap="8px"
+                >
+                  <div style={{ textAlign: "center" }}>
+                    <Image
+                      src="/logo/myOlimpLogo.svg"
+                      alt="logo"
+                      width={115}
+                      height={28}
+                    />
+                  </div>
+                  <h4 className={styles.text}>Войти</h4>
+                </Gapped>
+                <AuthTypeBlock type={type} setType={setType} />
+                <Gapped
+                  vertical
+                  verticalAlign="middle"
+                  gap="24px"
+                  style={{ marginBottom: "16px" }}
+                >
+                  <Gapped
+                    className={styles.inputWrap}
+                    vertical
+                    verticalAlign="middle"
+                    gap="24px"
+                  >
+                    <AuthInputLabel
+                      mail={type === "mail"}
+                      number={type === "number"}
+                      inputName={type === "mail" ? "Почта" : "Номер телефона"}
+                      text={mailOrNumber}
+                      setText={setMailOrNumber}
+                      errorMessage={errorMailOrNumberMessage}
+                      setErrorMessage={setErrorMailOrNumberMessage}
+                     
+                    />
+                    <AuthInputLabel
+                      password={true}
+                      passwordSignInMode={signIn}
+                      inputName={"Пароль"}
+                      eye={true}
+                      text={passwordValue}
+                      setText={setPasswordValue}
+                      errorMessage={errorPasswordMessage}
+                      setErrorMessage={setErrorPasswordMessage}
+                    />
+                    <AuthLoginHelp />
+                  </Gapped>
+                  <AuthButton
+                    type="register"
+                    width="medium"
+                    height="medium"
+                    use={isButtonDisabled}
+                    onClick={handleSubmit}
+                  >
+                    Войти
+                  </AuthButton>
+                </Gapped>
+              </Gapped>
+            </Gapped>
+          </Gapped>
+          <LoginHelp />
+        </Gapped>
+      </Gapped>
     </>
   );
 };

@@ -19,7 +19,8 @@ export const LoginHelp: FC = ({}) => {
         iconHeight={20}
         icon="/arrows/right.svg"
         iconIsHover="/arrows/rightIsHover.svg"
-        link="/signin"
+        link="/signup"
+        transition="all 0.0001ms"
       >
         Зарегистрироваться
       </LinkButton>
