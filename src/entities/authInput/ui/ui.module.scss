@@ -10,6 +10,7 @@ $input-height: 44px;
   padding: 12px;
   font-size: 16px;
   font-family: "SF_Regular", sans-serif;
+  color: #222;
 }
 
 .icon {
@@ -42,4 +43,8 @@ $input-height: 44px;
   height: auto;
   flex-direction: row;
   align-items: center;
+}
+
+.mask{
+  color: #fff;
 }

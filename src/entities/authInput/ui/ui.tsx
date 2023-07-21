@@ -1,9 +1,10 @@
+"use client"; // ставится, когда используются хуки из React
+
 import eyeCloseIcon from "../../../../public/auth/eyeClose.svg";
 import eyeCloseIconRed from "../../../../public/auth/eyeCloseRed.svg";
 import eyeOpenIconRed from "../../../../public/auth/eyeOpenRed.svg";
 import eyeOpenIcon from "../../../../public/auth/eyeOpen.svg";
-import { FC, FormEvent, useState } from "react";
-
+import { FC, FormEvent, useState, useRef, useEffect, useCallback } from "react";
 import validateEmail from "../lib/validateEmail";
 import validatePassword from "../lib/validatePassword";
 import styles from "./ui.module.scss";
@@ -97,8 +98,8 @@ export const AuthInput: FC<props> = ({
       setSecure(validatePassword(text));
     }
     if (number) {
-      if (true) {
-        setText(text); //  setText(formatPhoneNumber(text))
+      if (/*textLength <= maxLength*/ true) {
+        setText(text); // TODO: пофиксить условие
         setErrorMessage("notError");
       } else if (textLength > maxLength) {
         setErrorMessage("Максимальная длина - " + maxLength);
@@ -132,9 +133,6 @@ export const AuthInput: FC<props> = ({
       setErrorMessage("notError");
     }
   };
-  console.info(text);
-  console.info(`length ${text.length}`);
-  console.info(`maxLength ${maxLength}`)
   const bluerHandler = (e: any) => {
     if (e.target.name === "Почта" && text !== "") {
       setErrorMessage("Поле заполнено неверно");
@@ -150,7 +148,7 @@ export const AuthInput: FC<props> = ({
     <div className={styles.wrap}>
       {inputName === "Номер телефона" ? (
         <ReactInputMask
-          mask="+9(999) 999-99-99"
+          mask="+7 999 999-99-99"
           value={text}
           onBlur={(e: any) => bluerHandler(e)}
         >
@@ -161,6 +159,7 @@ export const AuthInput: FC<props> = ({
               name={inputName}
               value={text}
               onInput={(event) => handleInput(event)}
+              type="text"
             />
           }
         </ReactInputMask>
