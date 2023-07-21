@@ -16,12 +16,12 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
-  let width = useRef(0);
+  let width: number;
   if (typeof window !== undefined) {
-    width = useRef!(window && window.innerWidth);
+    width = window && window.innerWidth;
   }
   useEffect(() => {
-    if (width.current < 900) {
+    if (width < 900) {
       setMobile(true);
       console.log(setMobile);
     }
