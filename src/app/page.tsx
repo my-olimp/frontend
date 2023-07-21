@@ -11,24 +11,35 @@ import { ScrollCards } from "@/widgets/Landing/scrollCards/ui";
 import { TitleScroll } from "@/shared/Landing/scrollCardContentTitle/ui";
 import { Footer } from "@/widgets/Landing/footer/ui";
 import { Cover } from "@/shared/Landing/cover/ui";
+import { useEffect, useState } from "react";
 
-import { useEffect, useRef, useState } from "react";
+function checkMobile() {
+  const userAgent =
+    typeof window.navigator === "undefined" ? "" : navigator.userAgent;
+  const mobileKeywords = [
+    "android",
+    "webos",
+    "iphone",
+    "ipad",
+    "ipod",
+    "blackberry",
+    "windows phone",
+  ];
+
+  return mobileKeywords.some((keyword) =>
+    userAgent.toLowerCase().includes(keyword)
+  );
+}
 
 export default function Home() {
+
   const [mobile, setMobile] = useState(false);
-  let width: number;
-
-
-  useEffect(() =>{
-    width = window && window.innerWidth;
-  })
 
   useEffect(() => {
-    if (width < 900) {
-      setMobile(true);
-      console.log(setMobile);
-    }
-  });
+    setMobile(checkMobile());
+    
+  }, []);
+
   return (
     <>
       <NavBar mobile={mobile} />
