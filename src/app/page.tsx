@@ -17,7 +17,7 @@ import { useEffect, useRef, useState } from "react";
 export default function Home() {
   const [mobile, setMobile] = useState(false);
   let width: number;
-  if (typeof window !== undefined) {
+  if (typeof window !== "undefined") {
     width = window && window.innerWidth;
   }
   useEffect(() => {
@@ -25,7 +25,7 @@ export default function Home() {
       setMobile(true);
       console.log(setMobile);
     }
-  }, []);
+  });
   return (
     <>
       <NavBar mobile={mobile} />
