@@ -19,7 +19,7 @@ export const FooterItemsInfo = () => {
               {FooterItemsFirst.map((data: FooterItemsType) => {
                 return (
                   <>
-                    <Link href={data.link} className={styles.item__text}>
+                    <Link href={data.link} className={styles.item__text} key={data.id}>
                       {data.text}
                     </Link>
                   </>
@@ -33,7 +33,7 @@ export const FooterItemsInfo = () => {
               {FooterItemsSecond.map((data: FooterItemsType) => {
                 return (
                   <>
-                    <Link href={data.link} className={styles.item__text}>
+                    <Link href={data.link} className={styles.item__text} key={data.id}>
                       {data.text}
                     </Link>
                   </>
@@ -47,7 +47,7 @@ export const FooterItemsInfo = () => {
               {FooterItemsThird.map((data: FooterItemsType) => {
                 return (
                   <>
-                    <Link href={data.link} className={styles.item__text}>
+                    <Link href={data.link} className={styles.item__text} key={data.id}>
                       {data.text}
                     </Link>
                   </>
@@ -61,7 +61,7 @@ export const FooterItemsInfo = () => {
               {FooterItemsFourth.map((data: FooterItemsType) => {
                 return (
                   <>
-                    <Link href={data.link} className={styles.item__text}>
+                    <Link href={data.link} className={styles.item__text} key={data.id}>
                       {data.text}
                     </Link>
                   </>

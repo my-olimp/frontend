@@ -12,11 +12,14 @@ import { TitleScroll } from "@/shared/Landing/scrollCardContentTitle/ui";
 import { Footer } from "@/widgets/Landing/footer/ui";
 import { Cover } from "@/shared/Landing/cover/ui";
 
-import { FC, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
-  const width = useRef(window && window.innerWidth);
+  let width = useRef(0);
+  if (window) {
+     width = useRef(window && window.innerWidth);
+  }
   useEffect(() => {
     if (width.current < 900) {
       setMobile(true);
