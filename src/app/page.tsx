@@ -17,8 +17,8 @@ import { useEffect, useRef, useState } from "react";
 export default function Home() {
   const [mobile, setMobile] = useState(false);
   let width = useRef(0);
-  if (window) {
-     width = useRef!(window && window.innerWidth);
+  if (typeof window !== undefined) {
+    width = useRef!(window && window.innerWidth);
   }
   useEffect(() => {
     if (width.current < 900) {
