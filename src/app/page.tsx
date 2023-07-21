@@ -11,9 +11,9 @@ import { ScrollCards } from "@/widgets/Landing/scrollCards/ui";
 import { TitleScroll } from "@/shared/Landing/scrollCardContentTitle/ui";
 import { Footer } from "@/widgets/Landing/footer/ui";
 import { Cover } from "@/shared/Landing/cover/ui";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, use } from "react";
 
-function checkMobile() {
+/*function checkMobile() {
   const userAgent =
     typeof global?.window.navigator === "undefined" ? "" : navigator.userAgent;
   const mobileKeywords = [
@@ -29,16 +29,25 @@ function checkMobile() {
   return mobileKeywords.some((keyword) =>
     userAgent.toLowerCase().includes(keyword)
   );
-}
+}*/
 
 export default function Home() {
-
   const [mobile, setMobile] = useState(false);
 
+  const width = useRef(global?.window && window.innerWidth);
+
   useEffect(() => {
+    if (width.current < 900) {
+      setMobile(true);
+      console.log(width);
+      console.log(width.current);
+    }
+  }, []);
+
+  /* useEffect(() => {
     setMobile(checkMobile());
     
-  }, []);
+  }, []);*/
 
   return (
     <>
