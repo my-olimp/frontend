@@ -7,6 +7,7 @@ import { LoginHelp } from "@/features/authHelp/LoginHelp";
 import { AuthButton } from "@/entities/buttons/authButton";
 import Image from "next/image";
 import { Gapped } from "@/shared/Gapped/ui/ui";
+import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg"; 
 
 interface props {
 }
@@ -85,7 +86,7 @@ export const LoginForm: FC<props> = ({  }) => {
                 >
                   <div    className={styles.logo} style={{ textAlign: "center" }}>
                     <Image
-                      src="/logo/myOlimpLogo.svg"
+                      src={myOlimpLogo}
                       alt="logo"
                       width={115}
                       height={28}
