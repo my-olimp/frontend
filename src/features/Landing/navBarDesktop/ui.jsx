@@ -16,7 +16,9 @@ export const NavBarDesktop = ({ show }) => {
       navbar.classList.remove(SCROLLED_STATE_CLASS);
     }
   };
-  window.addEventListener("scroll", onScroll);
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", onScroll);
+  }
   //В этом случае лучше не использовать moduleCSS, т.к. классы не добавляются
 
   return (

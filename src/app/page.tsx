@@ -12,7 +12,6 @@ import { TitleScroll } from "@/shared/Landing/scrollCardContentTitle/ui";
 import { Footer } from "@/widgets/Landing/footer/ui";
 import { Cover } from "@/shared/Landing/cover/ui";
 import { useEffect, useState, useRef, } from "react";
-import dynamic from 'next/dynamic'
 
 /*function checkMobile() {
   const userAgent =
@@ -58,8 +57,8 @@ export default function Home() {
     console.log(global?.window.innerWidth);
     // Clean up the event listener when the component is unmounted
     return () => {
-      if (typeof global?.window !== 'undefined') {
-        global?.window.removeEventListener('resize', handleResize);
+      if (typeof global !== 'undefined') {
+        global.window.removeEventListener('resize', handleResize);
       }
     };
   }, []);
