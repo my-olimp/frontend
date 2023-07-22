@@ -1,3 +1,7 @@
+import VK from "./../../../../../public/social/VK.svg"
+import TG from "./../../../../../public/social/Telegram.svg";
+
+
 export interface FooterItemsType {
   id: number;
   text: string;
@@ -98,13 +102,13 @@ export const SocialNetwork: SocialNetworkType[] = [
   {
     id: 0,
     link: "https://vk.com/myolimpolimpiadnik",
-    icon: "./../../../../../public/social/VK.svg",
+    icon: VK.src,
     name: "ВКонтакте",
   },
   {
     id: 1,
     link: "/",
-    icon: "./../../../../public/social/Telegram.svg",
+    icon: TG.src,
     name: "Телеграм",
   },
 ];

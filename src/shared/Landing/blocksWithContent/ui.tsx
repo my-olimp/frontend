@@ -6,6 +6,7 @@ import bigImg from "./../../../../public/landing/bigImage.svg";
 
 
 export function Content() {
+  console.log(Phone);
   return (
     <>
       <div className={styles.wrapper}>
