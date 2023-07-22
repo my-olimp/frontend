@@ -99,16 +99,14 @@ export const ScrollCards = () => {
       >
         {Items.map((data: itemsType) => {
           return (
-            <>
-              <ScrollCard
-                key={data.id}
-                id={data.id}
-                name={data.name}
-                subject={data.subject}
-                text={data.text}
-                avatarLink={data.avatarLink}
-              />
-            </>
+            <ScrollCard
+              key={data.id}
+              id={data.id}
+              name={data.name}
+              subject={data.subject}
+              text={data.text}
+              avatarLink={data.avatarLink}
+            />
           );
         })}
       </div>
