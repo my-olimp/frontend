@@ -8,6 +8,8 @@ import { RegisterRulesAccept } from "@/entities/registerRulesAccept";
 import { RegisterHelp } from "@/features/authHelp/RegisterHelp";
 import { Gapped } from "@/shared/Gapped/ui/ui";
 import Image from "next/image";
+import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg"; 
+
 
 interface props {}
 export const RegisterForm: FC<props> = ({}) => {
@@ -94,7 +96,7 @@ export const RegisterForm: FC<props> = ({}) => {
               >
                 <div style={{ textAlign: "center" }}>
                   <Image
-                    src="/logo/myOlimpLogo.svg"
+                    src={myOlimpLogo}
                     alt="logo"
                     width={115}
                     height={28}

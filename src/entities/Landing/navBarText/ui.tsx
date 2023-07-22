@@ -1,10 +1,22 @@
-import { FC, PropsWithChildren } from "react"
-import styles from './ui.module.scss'
+"use client";
 
-export const NavBarText:FC<PropsWithChildren> = ({children}) => {
-  return (
-    <h4 className={styles.textButton}>
-      {children}
-    </h4>
-  )
+import { FC } from "react";
+import styles from "./ui.module.scss";
+import { useRouter } from "next/navigation";
+
+interface Props {
+  link?: string;
+  children: string;
 }
+
+export const NavBarText: FC<Props> = ({ children, link }) => {
+  const router = useRouter();
+  return (
+    <button
+      onClick={() => router.push(`${link}`)}
+      className={styles.textButton}
+    >
+      {children}
+    </button>
+  );
+};

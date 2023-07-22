@@ -3,6 +3,7 @@ import Image from "next/image";
 import { SocialNetwork, SocialNetworkType } from "@/widgets/Landing/footer/data/data";
 import Link from "next/link";
 
+
 export const FooterContacts = () => {
   return (
     <>

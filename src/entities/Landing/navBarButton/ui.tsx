@@ -10,7 +10,7 @@ export const NavBarButton: FC<PropsWithChildren> = ({ children }) => {
   return (
     <button
       type="button"
-      onClick={() => router.push("/signin")}
+      onClick={() => router.push("/signup")}
       className={styles.button}
       onMouseOver={() => setOver(true)}
       onMouseOut={() => setOver(false)}

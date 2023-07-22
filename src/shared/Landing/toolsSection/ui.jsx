@@ -3,6 +3,9 @@
 import { useState } from "react";
 import "./ui.scss";
 import Image from "next/image";
+import firstImg from "./../../../../public/landing/firstImage.svg"
+import secondImg from "./../../../../public/landing/secondImage.svg"
+import thirdImg from "./../../../../public/landing/thirdImage.svg"
 
 // Ужасный код, его надо переделать
 
@@ -72,21 +75,21 @@ export const Tools = () => {
         </div>
         <Image
           className={`image ${activeBtn === "3" ? "activeImage" : ""}`}
-          src="/landing/firstImage.svg"
+          src={firstImg}
           alt="Новости"
           width={600}
           height={600}
         />
         <Image
           className={`image ${activeBtn === "2" ? "activeImage" : ""}`}
-          src="/landing/secondImage.svg"
+          src={secondImg}
           alt="Календарь"
           width={600}
           height={600}
         />
         <Image
           className={`image ${activeBtn === "1" ? "activeImage" : ""}`}
-          src="/landing/thirdImage.svg"
+          src={thirdImg}
           alt="Олимпиады"
           width={600}
           height={600}

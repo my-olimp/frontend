@@ -1,5 +1,9 @@
 import styles from "./ui.module.scss";
 import Image from "next/image";
+import Phone from "./../../../../public/landing/phone.svg";
+import Star from "./../../../../public/landing/star.svg";
+import bigImg from "./../../../../public/landing/bigImage.svg";
+
 
 export function Content() {
   return (
@@ -9,7 +13,7 @@ export function Content() {
           <div className={styles.block__first}>
             <Image
               className={styles.first_img}
-              src="/landing/phone.svg"
+              src={Phone}
               width={400}
               height={400}
               alt="Phone"
@@ -25,7 +29,7 @@ export function Content() {
             </p>
             <Image
               className={styles.star}
-              src="/landing/star.svg"
+              src={Star}
               alt="star"
               width={48}
               height={48}
@@ -35,7 +39,7 @@ export function Content() {
         <div className={styles.block__large}>
           <Image
             className={styles.bigImg}
-            src="/landing/bigImage.svg"
+            src={bigImg}
             width={520}
             height={520}
             alt="bigImg"

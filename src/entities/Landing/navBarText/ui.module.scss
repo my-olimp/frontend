@@ -17,6 +17,8 @@ $textHoverColor: #e6e6e6; // плохо смотрится => заменить
   border: none;
 
   text-align: center;
+
+  background-color: transparent;
 }
 .textButton:hover {
   color: $textHoverColor;

@@ -4,6 +4,7 @@ import { NavBarButton } from "@/entities/Landing/navBarButton/ui";
 import { NavBarLogo } from "@/entities/Landing/navBarLogo/ui";
 import { NavBarText } from "@/entities/Landing/navBarText/ui";
 import "./ui.scss";
+import { useRouter } from "next/router";
 
 export const NavBarDesktop = ({ show }) => {
   const SCROLLED_STATE_CLASS = "scrolled";
@@ -20,7 +21,7 @@ export const NavBarDesktop = ({ show }) => {
     window.addEventListener("scroll", onScroll);
   }
   //В этом случае лучше не использовать moduleCSS, т.к. классы не добавляются
-
+ 
   return (
     <div className="layout">
       <header id="navbar" className="wrap">
@@ -30,7 +31,7 @@ export const NavBarDesktop = ({ show }) => {
           <NavBarText>О проекте</NavBarText>
         </div>
         <div className="blockRight">
-          <NavBarText>Войти</NavBarText>
+          <NavBarText link="/signin">Войти</NavBarText>
           <NavBarButton>Присоедениться</NavBarButton>
         </div>
       </header>

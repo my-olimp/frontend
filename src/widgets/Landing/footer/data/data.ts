@@ -93,17 +93,18 @@ export interface SocialNetworkType {
   name: string;
 }
 
+
 export const SocialNetwork: SocialNetworkType[] = [
   {
     id: 0,
-    link: "https://vk.com/id158407389",
-    icon: "/social/VK.svg",
+    link: "https://vk.com/myolimpolimpiadnik",
+    icon: "./../../../../../public/social/VK.svg",
     name: "ВКонтакте",
   },
   {
     id: 1,
     link: "/",
-    icon: "/social/Telegram.svg",
+    icon: "./../../../../public/social/Telegram.svg",
     name: "Телеграм",
   },
 ];
