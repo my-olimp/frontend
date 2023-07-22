@@ -4,7 +4,7 @@ import eyeCloseIcon from "../../../../public/auth/eyeClose.svg";
 import eyeCloseIconRed from "../../../../public/auth/eyeCloseRed.svg";
 import eyeOpenIconRed from "../../../../public/auth/eyeOpenRed.svg";
 import eyeOpenIcon from "../../../../public/auth/eyeOpen.svg";
-import { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useState, useRef, useEffect, useCallback } from "react";
 import validateEmail from "../lib/validateEmail";
 import validatePassword from "../lib/validatePassword";
 import styles from "./ui.module.scss";
@@ -45,7 +45,7 @@ export const AuthInput: FC<props> = ({
     input: {
       borderLeft:
         errorMessage !== "notError"
-          ? `1px solid #F5Ё4135`
+          ? `1px solid #F54135`
           : `1px solid lightgray`,
       borderTop:
         errorMessage !== "notError"
@@ -98,8 +98,12 @@ export const AuthInput: FC<props> = ({
       setSecure(validatePassword(text));
     }
     if (number) {
-      setText(text);
-      setErrorMessage("notError");
+      if (/*textLength <= maxLength*/ true) {
+        setText(text); // TODO: пофиксить условие
+        setErrorMessage("notError");
+      } else if (textLength > maxLength) {
+        setErrorMessage("Максимальная длина - " + maxLength);
+      }
     }
     if (mail) {
       const validated = validateEmail(text);
@@ -135,7 +139,7 @@ export const AuthInput: FC<props> = ({
     }
     /*    if (e.target.name === "Номер телефона" && text !== "") {
       setErrorMessage("Поле заполнено неверно");
-
+      
     }*/
     // нужен более умный if
   };

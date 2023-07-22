@@ -1,5 +1,8 @@
 import { FC, PropsWithChildren, useState } from "react";
 import styles from "./ui.module.scss";
+import ActiveCheckBox from "./../../../../../public/auth/checkboxActive.svg";
+import HoverCheckBox from "./../../../../../public/auth/checkboxHover.svg";
+import DefaultCheckBox from "./../../../../../public/auth/checkbox.svg";
 
 interface props {
   children?: string;
@@ -22,10 +25,10 @@ export const CheckBox: FC<PropsWithChildren<props>> = ({
     },
     checkBox: {
       backgroundImage: active
-        ? 'url("/auth/checkboxActive.svg")'
+        ? `url(${ActiveCheckBox.src})`
         : hover
-        ? "url(/auth/checkboxHover.svg)"
-        : "url(/auth/checkbox.svg)",
+        ? `url(${HoverCheckBox.src})`
+        : `url(${DefaultCheckBox.src})`,
     },
   };
   return (
