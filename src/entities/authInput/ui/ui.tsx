@@ -16,7 +16,6 @@ interface props {
   password: boolean;
   mail: boolean;
   number: boolean;
-  confirm: boolean;
   errorMessage: string;
   text: string;
   setText: (text: string) => void;
