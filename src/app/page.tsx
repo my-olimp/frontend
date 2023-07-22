@@ -13,27 +13,6 @@ import { Footer } from "@/widgets/Landing/footer/ui";
 import { Cover } from "@/shared/Landing/cover/ui";
 import { useEffect, useState, useRef, } from "react";
 
-/*function checkMobile() {
-  const userAgent =
-    typeof global?.window.navigator === "undefined" ? "" : navigator.userAgent;
-  const mobileKeywords = [
-    "android",
-    "webos",
-    "iphone",
-    "ipad",
-    "ipod",
-    "blackberry",
-    "windows phone",
-  ];
-
-  return mobileKeywords.some((keyword) =>
-    userAgent.toLowerCase().includes(keyword)
-  );
-}*/
-/*const BoardDynamic = dynamic(() => import('../components/Board.tsx'), {
-  ssr: false,
-})*/
-
 export default function Home() {
   const [mobile, setMobile] = useState(false);
 
@@ -54,7 +33,12 @@ export default function Home() {
     if (typeof global?.window !== 'undefined') {
       global?.window.addEventListener('resize', handleResize);
     }
-    console.log(global?.window.innerWidth);
+    
+
+    if(global?.window.innerWidth < 900){
+      setMobile(true);
+    }
+    
     // Clean up the event listener when the component is unmounted
     return () => {
       if (typeof global !== 'undefined') {
