@@ -1,14 +1,14 @@
 "use client"; // ставится, когда используются хуки из React
-
-import eyeCloseIcon from "../../../../public/auth/eyeClose.svg";
 import eyeCloseIconRed from "../../../../public/auth/eyeCloseRed.svg";
+import eyeCloseIcon from "../../../../public/auth/eyeClose.svg";
 import eyeOpenIconRed from "../../../../public/auth/eyeOpenRed.svg";
 import eyeOpenIcon from "../../../../public/auth/eyeOpen.svg";
-import { FC, FormEvent, useState } from "react";
+import {FC, FormEvent, useState,  ChangeEvent, FocusEvent} from 'react';
 import validateEmail from "../lib/validateEmail";
 import validatePassword from "../lib/validatePassword";
 import styles from "./ui.module.scss";
-import ReactInputMask from "react-input-mask";
+import InputMask from "react-input-mask";
+
 interface props {
   eye?: boolean;
   maxLength?: number;
@@ -128,59 +128,70 @@ export const AuthInput: FC<props> = ({
     if (textLength === 0) {
       setErrorMessage("notError");
     }
-  };
-  const bluerHandler = (e: any) => {
-    if (e.target.name === "Почта" && text !== "") {
-      setErrorMessage("Поле заполнено неверно");
-    }
-    /*    if (e.target.name === "Номер телефона" && text !== "") {
-      setErrorMessage("Поле заполнено неверно");
+  }
 
-    }*/
-    // нужен более умный if
+  const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
+    if (text === '') {
+      setErrorMessage(`${event.target.name} не может быть пуст${event.target.name === 'Почта' ? 'ой' : 'ым'}!`)
+    }
+    if (mail) {
+      const validated = validateEmail(text)
+      if (validated) {
+        setErrorMessage("notError");
+      } else {
+        setText(text);
+        setErrorMessage("Неверный формат почты! Пример: test@example.com");
+      }
+    }
   };
+  const handleFocus = () => {
+    if (errorMessage.match(/^Максимальная/)) {
+
+    } else {
+      setErrorMessage('notError')
+    }
+  }
 
   return (
-    <div className={styles.wrap}>
-      {inputName === "Номер телефона" ? (
-        <ReactInputMask
-          mask="+7 999 999-99-99"
-          value={text}
-          onBlur={(e: any) => bluerHandler(e)}
-        >
-          {
-            <input
-              style={style.input}
-              className={styles.input}
-              name={inputName}
-              value={text}
-              onInput={(event) => handleInput(event)}
-              type="text"
-            />
-          }
-        </ReactInputMask>
-      ) : (
-        <input
-          style={style.input}
-          className={styles.input}
-          name={inputName}
-          value={text}
-          type={inputType}
-          onInput={(event) => handleInput(event)}
-          onBlur={(e: any) => bluerHandler(e)}
-        />
-      )}
+      <div className={styles.wrap}>
+        {number ?
+            <InputMask
+                mask="+9(999) 999-99-99"
+                value={text}
+                onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
+                onFocus={() => handleFocus()}
+            >
+              <input
+                  style={style.input}
+                  className={styles.input}
+                  name={inputName}
+                  value={text}
+                  type="tel"
+                  onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
+              />
+            </InputMask>
+            :  <input
+                style={style.input}
+                className={styles.input}
+                name={inputName}
+                value={text}
+                type={inputType}
+                onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
+                onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setText(event.target.value)}
+                onFocus={() => handleFocus()}
+            />}
 
-      <div
-        style={style.iconWrap}
-        className={styles.iconWrap}
-        onClick={() => {
-          setInputType(inputType === "text" ? "password" : "text");
-          setEyeOpen(!isEyeOpen);
-        }}
-      >
-        <i style={style.icon} className={styles.icon} draggable="false" />
+        <div
+            style={style.iconWrap}
+            className={styles.iconWrap}
+            onClick={() => {
+              setInputType(inputType === "text" ? "password" : "text");
+              setEyeOpen(!isEyeOpen);
+            }}
+        >
+          <i style={style.icon} className={styles.icon} draggable="false" />
+        </div>
       </div>
-    </div>
   );
 };
