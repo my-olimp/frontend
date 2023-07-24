@@ -95,31 +95,7 @@ export const AuthInput: FC<props> = ({
     if (password && setSecure) {
       setSecure(validatePassword(text));
     }
-    if (number) {
-      setText(text);
-      setErrorMessage("notError");
-    }
-    if (mail) {
-      const validated = validateEmail(text);
-      if (textLength <= maxLength) {
-        if (validated) {
-          setText(text);
-          setErrorMessage("notError");
-          console.info(`length ${text.length}`);
-        } else {
-          setText(text);
-          setErrorMessage("Неверный формат почты! Пример: test@example.com");
-        }
-      } else if (textLength > maxLength) {
-        if (validated) {
-          setText(text);
-          setErrorMessage("notError");
-        } else {
-          setText(text);
-          setErrorMessage("Неверный формат почты! Пример: test@example.com");
-        }
-      }
-    }
+   
     if (textLength === 0 && setSecure) {
       setSecure("");
     }
