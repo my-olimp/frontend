@@ -31,7 +31,8 @@ export const LoginForm: FC<props> = ({  }) => {
       mailOrNumber.length !== 0 &&
       passwordValue.length !== 0 &&
       errorPasswordMessage === "notError" &&
-      errorMailOrNumberMessage === "notError"
+      errorMailOrNumberMessage === "notError" &&
+      !(type === "number" && mailOrNumber.length !== 18)
     ) {
       setButtonDisabled("active");
     } else {
@@ -42,6 +43,7 @@ export const LoginForm: FC<props> = ({  }) => {
     passwordValue,
     errorPasswordMessage,
     errorMailOrNumberMessage,
+    type
   ]);
   useEffect(() => {
     setMailOrNumber('')

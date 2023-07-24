@@ -9,8 +9,8 @@ import React, {
   useState,
   ChangeEvent,
   FocusEvent,
-  KeyboardEvent
-} from "react";
+  KeyboardEvent,
+} from 'react';
 import validateEmail from "../lib/validateEmail";
 import validatePassword from "../lib/validatePassword";
 import styles from "./ui.module.scss";
@@ -94,12 +94,10 @@ export const AuthInput: FC<props> = ({
         : "none",
     },
   };
-
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.target as HTMLInputElement;
     const text = input.value;
     const textLength = text.length;
-
 
     input.setSelectionRange(textLength + 2, textLength + 2);
 
@@ -160,8 +158,21 @@ export const AuthInput: FC<props> = ({
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Backspace") {
+    if (event.key === "Backspace" || event.key === "Delete") {
       event.preventDefault()
+
+      const input = event.target as HTMLInputElement
+      const selectionEnd = input.selectionEnd as number
+      const selectionStart = input.selectionStart as number
+
+      if (selectionStart !== selectionEnd) {
+        setText(text.slice(0, selectionStart) + text.slice(selectionEnd))
+        setTimeout(() => {
+          input.setSelectionRange(selectionEnd, selectionEnd)
+        })
+        return;
+      }
+
       if (text === '' || text === '+' || text === '+7' || text === '+7 ' || text === '+7 (') {
         return;
       }
