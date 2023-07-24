@@ -20,6 +20,7 @@ interface props {
   errorMessage: string;
   text: string;
   setText: (text: string) => void;
+  passwordSignInMode: boolean;
   setErrorMessage: (message: string) => void;
   setSecure?: (secure: string) => void;
 }
@@ -36,6 +37,7 @@ export const AuthInput: FC<props> = ({
   setSecure,
   text,
   setText,
+  passwordSignInMode
 }) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
   const [inputType, setInputType] = useState<"text" | "password">(
@@ -89,10 +91,21 @@ export const AuthInput: FC<props> = ({
     const text = input.value;
     const textLength = text.length;
 
-    setText(text)
+    if (!password) {
+      setText(text)
+    }
 
     if (password && setSecure) {
+      setText(text)
       setSecure(validatePassword(text));
+    }
+    if (passwordSignInMode) {
+      const tested = text.match(/^[!@#$%^\w]+$/)
+      if (tested) {
+        setText(text)
+      } else {
+        setErrorMessage('Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)')
+      }
     }
 
     if (textLength === 0 && setSecure) {
@@ -121,7 +134,10 @@ export const AuthInput: FC<props> = ({
     }
   };
   const handleFocus = () => {
-    if (errorMessage.match(/^Максимальная/)) {
+    if (
+        errorMessage.match(/^Максимальная/) ||
+        errorMessage.match(/^Пароль может/)
+    ) {
     } else {
       setErrorMessage("notError");
     }

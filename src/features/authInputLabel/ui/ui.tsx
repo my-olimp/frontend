@@ -73,6 +73,7 @@ export const AuthInputLabel:FC<props> = ({
         text={text}
         setText={setText}
         maxLength={maxLength}
+        passwordSignInMode={passwordSignInMode}
       />
       {!password &&
         <h4 style={{display: errorMessage !== 'notError' ? 'block' : 'none'}} className={styles.error}>{errorMessage}</h4>
