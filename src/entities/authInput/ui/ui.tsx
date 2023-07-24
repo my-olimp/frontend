@@ -34,6 +34,10 @@ interface props {
   setSecure?: (secure: string) => void;
 }
 
+interface ref{
+  current: HTMLInputElement
+}
+
 export const AuthInput: FC<props> = ({
   eye = false,
   maxLength = 26,
@@ -54,8 +58,10 @@ export const AuthInput: FC<props> = ({
   );
   const [shownValue, setShownValue] = useState("");
   const [position, setPosition] = useState(0);
+  
 
   const inputRef = useRef(null);
+  
   const style: any = {
     input: {
       borderLeft:
@@ -102,6 +108,14 @@ export const AuthInput: FC<props> = ({
     const input = event.target as HTMLInputElement;
     const text = input.value;
     const textLength = text.length;
+
+    
+      // возвращаем курсор на оригинальную позицию
+      input.setSelectionRange(4, 15);
+    
+      console.log("position", position);
+      console.log(inputRef.current)
+    
 
     if (!password) {
       setText(text);
@@ -193,6 +207,16 @@ export const AuthInput: FC<props> = ({
     setPosition(e.target.selectionStart);
   }, []);
 
+  /*useEffect(() => {
+    if ( inputRef.current !== null) {
+      // возвращаем курсор на оригинальную позицию
+      inputRef.current?.setSelectionRange(4, 15);
+    
+      console.log("position", position);
+      console.log(inputRef.current)
+    }
+  }, [position]);*/
+
   return (
     <div className={styles.wrap}>
       {number ? (
@@ -203,7 +227,7 @@ export const AuthInput: FC<props> = ({
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
           style={style.input}
-          onChange={(e) => handleChange(e)}
+          onChange={ handleChange}
         >
           <input
             style={style.input}
@@ -211,6 +235,7 @@ export const AuthInput: FC<props> = ({
             name={inputName}
             value={text}
             type="tel"
+            ref={inputRef}
             onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
           />
         </MaskedInput>
