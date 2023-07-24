@@ -41,6 +41,7 @@ export const MaskedInput: FC<MaskProps> = ({
           onFocus={onFocus}
           onChange={onChange}
           style={style}
+
         
         >
           {children}

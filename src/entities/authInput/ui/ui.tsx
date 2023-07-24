@@ -85,13 +85,11 @@ export const AuthInput: FC<props> = ({
     },
   };
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
-    const text = (event.target as HTMLInputElement).value;
+    const input = (event.target as HTMLInputElement)
+    const text = input.value;
     const textLength = text.length;
-    if (true) { // здесь ошибка, если ставить условие textLength < maxLength
-      setText(text);
-    } else {
-      setErrorMessage(`Максимальная длина - ${maxLength} символов`);
-    }
+
+    setText(text)
 
     if (password && setSecure) {
       setSecure(validatePassword(text));
@@ -130,11 +128,13 @@ export const AuthInput: FC<props> = ({
   };
 
 
+
   return (
     <div className={styles.wrap}>
       {number ? (
         <MaskedInput
-          mask="+7(999) 999-99-99"
+          mask={"+7 (999) 999-99-99"}
+          maskPlaceholder={""}
           value={text}
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
