@@ -46,7 +46,7 @@ export const AuthInput: FC<props> = ({
   setSecure,
   text,
   setText,
-  passwordSignInMode
+  passwordSignInMode,
 }) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
   const [inputType, setInputType] = useState<"text" | "password">(
@@ -99,12 +99,12 @@ export const AuthInput: FC<props> = ({
     },
   };
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
-    const input = (event.target as HTMLInputElement)
+    const input = event.target as HTMLInputElement;
     const text = input.value;
     const textLength = text.length;
 
     if (!password) {
-      setText(text)
+      setText(text);
       const input = event.target as HTMLInputElement;
 
       if (input !== null) {
@@ -113,18 +113,39 @@ export const AuthInput: FC<props> = ({
         input.selectionEnd = position;
         console.log("position", position);
       }
-      setText(text);
+      if (true) {
+        // здесь ошибка, если ставить условие textLength < maxLength
+        setText(text);
+      } else {
+        setErrorMessage(`Максимальная длина - ${maxLength} символов`);
+      }
 
       if (password && setSecure) {
-        setText(text)
+        setText(text);
         setSecure(validatePassword(text));
       }
       if (passwordSignInMode) {
-        const tested = text.match(/^[!@#$%^\w]+$/)
+        const tested = text.match(/^[!@#$%^\w]+$/);
         if (tested) {
-          setText(text)
+          setText(text);
         } else {
-          setErrorMessage('Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)')
+          setErrorMessage(
+            "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
+          );
+        }
+      }
+      if (password && setSecure) {
+        setText(text);
+        setSecure(validatePassword(text));
+      }
+      if (passwordSignInMode) {
+        const tested = text.match(/^[!@#$%^\w]+$/);
+        if (tested) {
+          setText(text);
+        } else {
+          setErrorMessage(
+            "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
+          );
         }
       }
 
@@ -135,76 +156,42 @@ export const AuthInput: FC<props> = ({
         setErrorMessage("notError");
       }
     }
-  }
+  };
 
-    const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
-      if (text === "") {
-        setErrorMessage(
-            `${event.target.name} не может быть пуст${
-                event.target.name === "Почта" ? "ой" : "ым"
-            }!`
-        );
-      } else if (mail) {
-        const validated = validateEmail(text);
-        if (validated) {
-          setErrorMessage("notError");
-        } else {
-          setText(text);
-          setErrorMessage("Неверный формат почты! Пример: test@example.com");
-        }
-      }
-    };
-    const handleFocus = () => {
-      if (
-          errorMessage.match(/^Максимальная/) ||
-          errorMessage.match(/^Пароль может/)
-      ) {
-      } else {
+  const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
+    if (text === "") {
+      setErrorMessage(
+        `${event.target.name} не может быть пуст${
+          event.target.name === "Почта" ? "ой" : "ым"
+        }!`
+      );
+    } else if (mail) {
+      const validated = validateEmail(text);
+      if (validated) {
         setErrorMessage("notError");
+      } else {
+        setText(text);
+        setErrorMessage("Неверный формат почты! Пример: test@example.com");
       }
-    };
+    }
+  };
+  const handleFocus = () => {
+    if (
+      errorMessage.match(/^Максимальная/) ||
+      errorMessage.match(/^Пароль может/)
+    ) {
+    } else {
+      setErrorMessage("notError");
+    }
+  };
 
-    const handleChange = useCallback((e: any) => {
-      let value = e.target.value.replace(/_/g, "");
-      let newValue =
-          value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
-      setShownValue(newValue);
-      setPosition(e.target.selectionStart);
-    }, []);
-
-    /* useEffect(() => {
-      if (inputRef !== null && inputRef.current ) {
-        // возвращаем курсор на оригинальную позицию
-        inputRef.current.selectionStart = position;
-        inputRef.current.selectionEnd = position;
-        console.log("position", position);
-      }
-    }, [position]);*/
-
-    //  console.log("inputRef.current", inputRef.current);
-    const handleCursorPosition = (e: FormEvent<HTMLInputElement>) => {
-      const input = e.target as HTMLInputElement;
-
-      if (input !== null) {
-        // возвращаем курсор на оригинальную позицию
-        input.selectionStart = position;
-        input.selectionEnd = position;
-        console.log("position", position);
-      }
-    };
-    /* const handleCursorPosition = (e: any) => {
-      if (e !== null) {
-        const { target } = e;
-
-        if (target !== null) {
-          // возвращаем курсор на оригинальную позицию
-          target.selectionStart = position;
-          target.selectionEnd = position;
-          console.log("position", position);
-        }
-      }
-    };*/
-
+  const handleChange = useCallback((e: any) => {
+    let value = e.target.value.replace(/_/g, "");
+    let newValue =
+      value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
+    setShownValue(newValue);
+    setPosition(e.target.selectionStart);
+  }, []);
 
   return (
     <div className={styles.wrap}>
@@ -216,7 +203,7 @@ export const AuthInput: FC<props> = ({
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
           style={style.input}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         >
           <input
             style={style.input}
@@ -224,8 +211,7 @@ export const AuthInput: FC<props> = ({
             name={inputName}
             value={text}
             type="tel"
-            ref={(e: any) => handleCursorPosition(e)}
-            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event) }
+            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
           />
         </MaskedInput>
       ) : (
@@ -257,4 +243,3 @@ export const AuthInput: FC<props> = ({
     </div>
   );
 };
-
