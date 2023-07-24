@@ -56,8 +56,6 @@ export const AuthInput: FC<props> = ({
   const [inputType, setInputType] = useState<"text" | "password">(
       password ? "password" : "text"
   );
-  const [shownValue, setShownValue] = useState("");
-  const [position, setPosition] = useState(0);
 
 
   const inputRef = useRef(null);
@@ -111,25 +109,12 @@ export const AuthInput: FC<props> = ({
 
 
     // возвращаем курсор на оригинальную позицию
-    input.setSelectionRange(4, 15);
-
-    console.log("position", position);
-    console.log(inputRef.current)
+    input.setSelectionRange(textLength + 2, textLength + 2);
 
 
     if (!password) {
       setText(text)
-      const input = event.target as HTMLInputElement;
-
-      if (input !== null) {
-        // возвращаем курсор на оригинальную позицию
-        input.selectionStart = position;
-        input.selectionEnd = position;
-        console.log("position", position);
-      }
-      setText(text);
     }
-
     if (password && setSecure) {
       setText(text);
       setSecure(validatePassword(text));
@@ -181,13 +166,6 @@ export const AuthInput: FC<props> = ({
     }
   }
 
-  const handleChange = useCallback((e: any) => {
-    let value = e.target.value.replace(/_/g, "");
-    let newValue =
-      value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
-    setShownValue(newValue);
-    setPosition(e.target.selectionStart);
-  }, []);
 
   return (
     <div className={styles.wrap}>
@@ -199,7 +177,6 @@ export const AuthInput: FC<props> = ({
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
           style={style.input}
-          onChange={ handleChange}
         >
           <input
             style={style.input}
