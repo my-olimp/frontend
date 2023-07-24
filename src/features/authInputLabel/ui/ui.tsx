@@ -56,7 +56,7 @@ export const AuthInputLabel:FC<props> = ({
         secure !== 'Слабый пароль'
     ) setColor('#999')
   }, [secure])
-
+  
   
   return (
     <div className={styles.wrap}>

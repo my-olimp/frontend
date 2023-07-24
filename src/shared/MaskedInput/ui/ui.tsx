@@ -1,5 +1,7 @@
-import React, { ReactElement, FC } from "react";
+import React, { ReactElement, FC, CSSProperties } from "react";
 import InputMask from "react-input-mask";
+import { FocusEvent } from "react";
+import styles from "./ui.module.scss"
 
 /*https://github.com/sanniassin/react-input-mask - Документация для Props*/
 
@@ -10,9 +12,10 @@ interface MaskProps {
   alwaysShowMask?: boolean;
   beforeMaskedStateChange?: Function;
   value: any;
-  onBlur?: () => void;
-  onFocus?: () => void;
-  onChange?: () => void;
+  onBlur?: ((e: FocusEvent<HTMLInputElement>) => void) | (() => void);
+  onFocus?: ((e: FocusEvent<HTMLInputElement>) => void) | (() => void);
+  onChange?: ((e: FocusEvent<HTMLInputElement>) => void) | (() => void);
+  style?: CSSProperties
 }
 
 export const MaskedInput: FC<MaskProps> = ({
@@ -24,21 +27,26 @@ export const MaskedInput: FC<MaskProps> = ({
   onBlur,
   onFocus,
   onChange,
+  style
 }) => {
   return (
-    <span>
-      <InputMask
-        alwaysShowMask={alwaysShowMask}
-        maskPlaceholder={maskPlaceholder}
-        mask={mask}
-        value={value}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        onChange={onChange}
-      >
-        {children}
-      </InputMask>
-    </span>
+   
+      <span className={styles.wrap}>
+        <InputMask
+          alwaysShowMask={alwaysShowMask}
+          maskPlaceholder={maskPlaceholder}
+          mask={mask}
+          value={value}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onChange={onChange}
+          style={style}
+        
+        >
+          {children}
+        </InputMask>
+      </span>
+  
   );
 };
 
