@@ -29,9 +29,9 @@ interface props {
   errorMessage: string;
   text: string;
   setText: (text: string) => void;
+  passwordSignInMode: boolean;
   setErrorMessage: (message: string) => void;
   setSecure?: (secure: string) => void;
-  passwordSignInMode: boolean;
 }
 
 export const AuthInput: FC<props> = ({
@@ -46,7 +46,7 @@ export const AuthInput: FC<props> = ({
   setSecure,
   text,
   setText,
-  passwordSignInMode,
+  passwordSignInMode
 }) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
   const [inputType, setInputType] = useState<"text" | "password">(
@@ -103,13 +103,16 @@ export const AuthInput: FC<props> = ({
     const text = input.value;
     const textLength = text.length;
 
+    if (!password) {
+      setText(text)
+      const input = event.target as HTMLInputElement;
+
     if (input !== null) {
       // возвращаем курсор на оригинальную позицию
       input.selectionStart = position;
       input.selectionEnd = position;
       console.log("position", position);
-      console.log("selectionStart", input.selectionStart)
-      console.log("selectionEnd", input.selectionEnd)
+     
     }
     if (true) {
       // здесь ошибка, если ставить условие textLength < maxLength
@@ -132,83 +135,67 @@ export const AuthInput: FC<props> = ({
         );
       }
     }
+      if (password && setSecure) {
+        setText(text)
+        setSecure(validatePassword(text));
+      }
+      if (passwordSignInMode) {
+        const tested = text.match(/^[!@#$%^\w]+$/)
+        if (tested) {
+          setText(text)
+        } else {
+          setErrorMessage('Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)')
+        }
+      }
 
-    if (textLength === 0 && setSecure) {
-      setSecure("");
-    }
-    if (textLength === 0) {
-      setErrorMessage("notError");
-    }
-  };
-
-  const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
-    if (text === "") {
-      setErrorMessage(
-        `${event.target.name} не может быть пуст${
-          event.target.name === "Почта" ? "ой" : "ым"
-        }!`
-      );
-    } else if (mail) {
-      const validated = validateEmail(text);
-      if (validated) {
+      if (textLength === 0 && setSecure) {
+        setSecure("");
+      }
+      if (textLength === 0) {
         setErrorMessage("notError");
+      }
+    }
+  }
+
+
+ 
+    const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
+      if (text === "") {
+        setErrorMessage(
+            `${event.target.name} не может быть пуст${
+                event.target.name === "Почта" ? "ой" : "ым"
+            }!`
+        );
+      } else if (mail) {
+        const validated = validateEmail(text);
+        if (validated) {
+          setErrorMessage("notError");
+        } else {
+          setText(text);
+          setErrorMessage("Неверный формат почты! Пример: test@example.com");
+        }
+      }
+    };
+    const handleFocus = () => {
+      if (
+          errorMessage.match(/^Максимальная/) ||
+          errorMessage.match(/^Пароль может/)
+      ) {
       } else {
-        setText(text);
-        setErrorMessage("Неверный формат почты! Пример: test@example.com");
+        setErrorMessage("notError");
       }
-    }
-  };
-  const handleFocus = () => {
-    if (
-      errorMessage.match(/^Максимальная/) ||
-      errorMessage.match(/^Пароль может/)
-    ) {
-    } else {
-      setErrorMessage("notError");
-    }
-  };
+    };
 
-  const handleChange = useCallback((e: any) => {
-    let value = e.target.value.replace(/_/g, "");
-    let newValue =
-      value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
-    setShownValue(newValue);
-    setPosition(e.target.selectionStart);
-  }, []);
+    const handleChange = useCallback((e: any) => {
+      let value = e.target.value.replace(/_/g, "");
+      let newValue =
+          value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
+      setShownValue(newValue);
+      setPosition(e.target.selectionStart);
+    }, []);
 
-  /* useEffect(() => {
-    if (inputRef !== null && inputRef.current ) {
-      // возвращаем курсор на оригинальную позицию
-      inputRef.current.selectionStart = position;
-      inputRef.current.selectionEnd = position;
-      console.log("position", position);
-    }
-  }, [position]);*/
+   
 
-  //  console.log("inputRef.current", inputRef.current);
-  /* const handleCursorPosition = (e: FormEvent<HTMLInputElement>) => {
-    const input = e.target as HTMLInputElement;
-
-    if (input !== null) {
-      // возвращаем курсор на оригинальную позицию
-      input.selectionStart = position;
-      input.selectionEnd = position;
-      console.log("position", position);
-    }
-  };*/
-
-  /* const handleCursorPosition = (e: any) => {
-    if (e !== null) {
-      const { target } = e;
-
-      if (target !== null) {
-        // возвращаем курсор на оригинальную позицию
-        target.selectionStart = position;
-        target.selectionEnd = position;
-        console.log("position", position);
-      }
-    }
-  };*/
 
   return (
     <div className={styles.wrap}>
@@ -220,7 +207,7 @@ export const AuthInput: FC<props> = ({
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
           style={style.input}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         >
           <input
             style={style.input}
@@ -260,3 +247,4 @@ export const AuthInput: FC<props> = ({
     </div>
   );
 };
+
