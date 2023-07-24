@@ -1,4 +1,4 @@
-import React, { ReactElement, FC, CSSProperties } from "react";
+import React, { ReactElement, FC, CSSProperties, KeyboardEvent } from "react";
 import InputMask from "react-input-mask";
 import { FocusEvent } from "react";
 import styles from "./ui.module.scss"
@@ -12,9 +12,10 @@ interface MaskProps {
   alwaysShowMask?: boolean;
   beforeMaskedStateChange?: Function;
   value: any;
-  onBlur?: ((e: FocusEvent<HTMLInputElement>) => void) | (() => void);
-  onFocus?: ((e: FocusEvent<HTMLInputElement>) => void) | (() => void);
-  onChange?: ((e: FocusEvent<HTMLInputElement>) => void) | (() => void);
+  onBlur?: ((event: FocusEvent<HTMLInputElement>) => void) | (() => void);
+  onFocus?: ((event: FocusEvent<HTMLInputElement>) => void) | (() => void);
+  onChange?: ((event: FocusEvent<HTMLInputElement>) => void) | (() => void);
+  onKeyDown?: ((event: KeyboardEvent<HTMLInputElement>) => void) | (() => void)
   style?: CSSProperties
 }
 
@@ -27,6 +28,7 @@ export const MaskedInput: FC<MaskProps> = ({
   onBlur,
   onFocus,
   onChange,
+  onKeyDown,
   style
 }) => {
   return (
@@ -41,6 +43,7 @@ export const MaskedInput: FC<MaskProps> = ({
           onFocus={onFocus}
           onChange={onChange}
           style={style}
+          onKeyDown={onKeyDown}
 
         
         >

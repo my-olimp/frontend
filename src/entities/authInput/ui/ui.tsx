@@ -9,9 +9,7 @@ import React, {
   useState,
   ChangeEvent,
   FocusEvent,
-  useRef,
-  useCallback,
-  useEffect,
+  KeyboardEvent
 } from "react";
 import validateEmail from "../lib/validateEmail";
 import validatePassword from "../lib/validatePassword";
@@ -34,9 +32,6 @@ interface props {
   setSecure?: (secure: string) => void;
 }
 
-interface ref{
-  current: HTMLInputElement
-}
 
 export const AuthInput: FC<props> = ({
   eye = false,
@@ -56,13 +51,8 @@ export const AuthInput: FC<props> = ({
   const [inputType, setInputType] = useState<"text" | "password">(
     password ? "password" : "text"
   );
-  const [shownValue, setShownValue] = useState("");
-  const [position, setPosition] = useState(0);
 
-
-  const inputRef = useRef(null);
-  
-  const style: any = {
+  const style = {
     input: {
       borderLeft:
         errorMessage !== "notError"
@@ -104,30 +94,18 @@ export const AuthInput: FC<props> = ({
         : "none",
     },
   };
+
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const input = event.target as HTMLInputElement;
     const text = input.value;
     const textLength = text.length;
 
 
-    // возвращаем курсор на оригинальную позицию
-    input.setSelectionRange(4, 15);
-
-    console.log("position", position);
-    console.log(inputRef.current)
+    input.setSelectionRange(textLength + 2, textLength + 2);
 
 
     if (!password) {
       setText(text)
-      const input = event.target as HTMLInputElement;
-
-      if (input !== null) {
-        // возвращаем курсор на оригинальную позицию
-        input.selectionStart = position;
-        input.selectionEnd = position;
-        console.log("position", position);
-      }
-      setText(text);
     }
 
     if (password && setSecure) {
@@ -153,7 +131,6 @@ export const AuthInput: FC<props> = ({
         setErrorMessage("notError");
       }
     }
-  };
 
   const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
     if (text === "") {
@@ -182,13 +159,20 @@ export const AuthInput: FC<props> = ({
     }
   };
 
-  const handleChange = useCallback((e: any) => {
-    let value = e.target.value.replace(/_/g, "");
-    let newValue =
-      value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
-    setShownValue(newValue);
-    setPosition(e.target.selectionStart);
-  }, []);
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Backspace") {
+      event.preventDefault()
+      if (/^\s*$/.test(text.slice(-1))) {
+        setText(text.slice(0, -3))
+        return
+      }
+      if (!/^\d$/.test(text.slice(-1))) {
+        setText(text.slice(0, -2))
+        return;
+      }
+      setText(text.slice(0, -1))
+    }
+  }
 
   return (
     <div className={styles.wrap}>
@@ -197,10 +181,10 @@ export const AuthInput: FC<props> = ({
           mask={"+7 (999) 999-99-99"}
           maskPlaceholder={""}
           value={text}
-          onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
+          onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
           onFocus={() => handleFocus()}
           style={style.input}
-          onChange={ handleChange}
+          onKeyDown={event => handleKeyDown(event)}
         >
           <input
             style={style.input}
@@ -208,7 +192,6 @@ export const AuthInput: FC<props> = ({
             name={inputName}
             value={text}
             type="tel"
-            ref={inputRef}
             onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
           />
         </MaskedInput>
