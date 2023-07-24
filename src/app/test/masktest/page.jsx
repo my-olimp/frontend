@@ -9,6 +9,8 @@ export default function CursorPositionSaver() {
 
   const inputRef = useRef(null);
 
+ 
+
   // применяем простую маску, при которой курсор прыгает в конец
   const handleChange = useCallback((evt) => {
     let value = evt.target.value.replace(/_/g, "");
@@ -32,8 +34,14 @@ export default function CursorPositionSaver() {
   return (
     <>
       <div>
-        <MaskedInput mask="+7(999) 999 99 99" value={shownValue} onChange={handleChange}>
-          <input value={shownValue}  ref={inputRef} />
+        <MaskedInput
+          onBlur={(e) => blurHandler(e)}
+          onFocus={() => handleFocus()}
+          mask="+7(999) 999 99 99"
+          value={shownValue}
+          onChange={handleChange}
+        >
+          <input value={shownValue} ref={inputRef} />
         </MaskedInput>
       </div>
     </>
