@@ -86,24 +86,18 @@ export const AuthInput: FC<props> = ({
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
     const text = (event.target as HTMLInputElement).value;
     const textLength = text.length;
-    if (!number && !mail) {
-      if (textLength <= maxLength) {
-        setText(text);
-        setErrorMessage("notError");
-      } else if (textLength > maxLength) {
-        setErrorMessage("Максимальная длина - " + maxLength);
-      }
+    if (textLength < maxLength) {
+      setText(text)
+    } else {
+      setErrorMessage(`Максимальная длина - ${maxLength} символов`)
     }
+
     if (password && setSecure) {
       setSecure(validatePassword(text));
     }
     if (number) {
-      if (/*textLength <= maxLength*/ true) {
-        setText(text); // TODO: пофиксить условие
-        setErrorMessage("notError");
-      } else if (textLength > maxLength) {
-        setErrorMessage("Максимальная длина - " + maxLength);
-      }
+      setText(text);
+      setErrorMessage("notError");
     }
     if (mail) {
       const validated = validateEmail(text);
