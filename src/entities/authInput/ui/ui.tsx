@@ -162,6 +162,9 @@ export const AuthInput: FC<props> = ({
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Backspace") {
       event.preventDefault()
+      if (text === '' || text === '+' || text === '+7' || text === '+7 ' || text === '+7 (') {
+        return;
+      }
       if (/^\s*$/.test(text.slice(-1))) {
         setText(text.slice(0, -3))
         return
