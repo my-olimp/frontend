@@ -29,9 +29,9 @@ interface props {
   errorMessage: string;
   text: string;
   setText: (text: string) => void;
-  passwordSignInMode: boolean;
   setErrorMessage: (message: string) => void;
   setSecure?: (secure: string) => void;
+  passwordSignInMode: boolean;
 }
 
 export const AuthInput: FC<props> = ({
@@ -46,7 +46,7 @@ export const AuthInput: FC<props> = ({
   setSecure,
   text,
   setText,
-  passwordSignInMode
+  passwordSignInMode,
 }) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
   const [inputType, setInputType] = useState<"text" | "password">(
@@ -99,40 +99,37 @@ export const AuthInput: FC<props> = ({
     },
   };
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
-    const input = (event.target as HTMLInputElement)
+    const input = event.target as HTMLInputElement;
     const text = input.value;
     const textLength = text.length;
-<<<<<<< HEAD
-
-    if (!password) {
-      setText(text)
-=======
-    const input = event.target as HTMLInputElement;
 
     if (input !== null) {
       // возвращаем курсор на оригинальную позицию
       input.selectionStart = position;
       input.selectionEnd = position;
       console.log("position", position);
+      console.log("selectionStart", input.selectionStart)
+      console.log("selectionEnd", input.selectionEnd)
     }
     if (true) {
       // здесь ошибка, если ставить условие textLength < maxLength
       setText(text);
     } else {
       setErrorMessage(`Максимальная длина - ${maxLength} символов`);
->>>>>>> de43934 (testing new fiches)
     }
 
     if (password && setSecure) {
-      setText(text)
+      setText(text);
       setSecure(validatePassword(text));
     }
     if (passwordSignInMode) {
-      const tested = text.match(/^[!@#$%^\w]+$/)
+      const tested = text.match(/^[!@#$%^\w]+$/);
       if (tested) {
-        setText(text)
+        setText(text);
       } else {
-        setErrorMessage('Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)')
+        setErrorMessage(
+          "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
+        );
       }
     }
 
@@ -163,8 +160,8 @@ export const AuthInput: FC<props> = ({
   };
   const handleFocus = () => {
     if (
-        errorMessage.match(/^Максимальная/) ||
-        errorMessage.match(/^Пароль может/)
+      errorMessage.match(/^Максимальная/) ||
+      errorMessage.match(/^Пароль может/)
     ) {
     } else {
       setErrorMessage("notError");
@@ -189,7 +186,7 @@ export const AuthInput: FC<props> = ({
   }, [position]);*/
 
   //  console.log("inputRef.current", inputRef.current);
-  const handleCursorPosition = (e: FormEvent<HTMLInputElement>) => {
+  /* const handleCursorPosition = (e: FormEvent<HTMLInputElement>) => {
     const input = e.target as HTMLInputElement;
 
     if (input !== null) {
@@ -198,7 +195,7 @@ export const AuthInput: FC<props> = ({
       input.selectionEnd = position;
       console.log("position", position);
     }
-  };
+  };*/
 
   /* const handleCursorPosition = (e: any) => {
     if (e !== null) {
@@ -213,17 +210,12 @@ export const AuthInput: FC<props> = ({
     }
   };*/
 
-
   return (
     <div className={styles.wrap}>
       {number ? (
         <MaskedInput
-<<<<<<< HEAD
           mask={"+7 (999) 999-99-99"}
           maskPlaceholder={""}
-=======
-          mask="+7(999) 999 99 99"
->>>>>>> de43934 (testing new fiches)
           value={text}
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
@@ -236,8 +228,7 @@ export const AuthInput: FC<props> = ({
             name={inputName}
             value={text}
             type="tel"
-            ref={(e: any) => handleCursorPosition(e)}
-            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event) }
+            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
           />
         </MaskedInput>
       ) : (
