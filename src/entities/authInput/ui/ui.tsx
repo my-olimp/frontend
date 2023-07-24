@@ -99,7 +99,7 @@ export const AuthInput: FC<props> = ({
     },
   };
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
-    const input = event.target as HTMLInputElement;
+    const input = (event.target as HTMLInputElement)
     const text = input.value;
     const textLength = text.length;
 
@@ -107,34 +107,14 @@ export const AuthInput: FC<props> = ({
       setText(text)
       const input = event.target as HTMLInputElement;
 
-    if (input !== null) {
-      // возвращаем курсор на оригинальную позицию
-      input.selectionStart = position;
-      input.selectionEnd = position;
-      console.log("position", position);
-     
-    }
-    if (true) {
-      // здесь ошибка, если ставить условие textLength < maxLength
-      setText(text);
-    } else {
-      setErrorMessage(`Максимальная длина - ${maxLength} символов`);
-    }
-
-    if (password && setSecure) {
-      setText(text);
-      setSecure(validatePassword(text));
-    }
-    if (passwordSignInMode) {
-      const tested = text.match(/^[!@#$%^\w]+$/);
-      if (tested) {
-        setText(text);
-      } else {
-        setErrorMessage(
-          "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
-        );
+      if (input !== null) {
+        // возвращаем курсор на оригинальную позицию
+        input.selectionStart = position;
+        input.selectionEnd = position;
+        console.log("position", position);
       }
-    }
+      setText(text);
+
       if (password && setSecure) {
         setText(text)
         setSecure(validatePassword(text));
@@ -157,8 +137,6 @@ export const AuthInput: FC<props> = ({
     }
   }
 
-
- 
     const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
       if (text === "") {
         setErrorMessage(
@@ -194,7 +172,38 @@ export const AuthInput: FC<props> = ({
       setPosition(e.target.selectionStart);
     }, []);
 
-   
+    /* useEffect(() => {
+      if (inputRef !== null && inputRef.current ) {
+        // возвращаем курсор на оригинальную позицию
+        inputRef.current.selectionStart = position;
+        inputRef.current.selectionEnd = position;
+        console.log("position", position);
+      }
+    }, [position]);*/
+
+    //  console.log("inputRef.current", inputRef.current);
+    const handleCursorPosition = (e: FormEvent<HTMLInputElement>) => {
+      const input = e.target as HTMLInputElement;
+
+      if (input !== null) {
+        // возвращаем курсор на оригинальную позицию
+        input.selectionStart = position;
+        input.selectionEnd = position;
+        console.log("position", position);
+      }
+    };
+    /* const handleCursorPosition = (e: any) => {
+      if (e !== null) {
+        const { target } = e;
+
+        if (target !== null) {
+          // возвращаем курсор на оригинальную позицию
+          target.selectionStart = position;
+          target.selectionEnd = position;
+          console.log("position", position);
+        }
+      }
+    };*/
 
 
   return (
@@ -207,7 +216,7 @@ export const AuthInput: FC<props> = ({
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
           style={style.input}
-          onChange={(e) => handleChange(e)}
+          onChange={handleChange}
         >
           <input
             style={style.input}
@@ -215,7 +224,8 @@ export const AuthInput: FC<props> = ({
             name={inputName}
             value={text}
             type="tel"
-            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
+            ref={(e: any) => handleCursorPosition(e)}
+            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event) }
           />
         </MaskedInput>
       ) : (
