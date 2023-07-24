@@ -54,54 +54,54 @@ export const AuthInput: FC<props> = ({
 }) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
   const [inputType, setInputType] = useState<"text" | "password">(
-      password ? "password" : "text"
+    password ? "password" : "text"
   );
   const [shownValue, setShownValue] = useState("");
   const [position, setPosition] = useState(0);
-
+  
 
   const inputRef = useRef(null);
-
+  
   const style: any = {
     input: {
       borderLeft:
-          errorMessage !== "notError"
-              ? `1px solid #F54135`
-              : `1px solid lightgray`,
+        errorMessage !== "notError"
+          ? `1px solid #F54135`
+          : `1px solid lightgray`,
       borderTop:
-          errorMessage !== "notError"
-              ? `1px solid #F54135`
-              : `1px solid lightgray`,
+        errorMessage !== "notError"
+          ? `1px solid #F54135`
+          : `1px solid lightgray`,
       borderBottom:
-          errorMessage !== "notError"
-              ? `1px solid #F54135`
-              : `1px solid lightgray`,
+        errorMessage !== "notError"
+          ? `1px solid #F54135`
+          : `1px solid lightgray`,
       borderRight: eye
-          ? "none"
-          : `1px solid ${errorMessage !== "notError" ? "#F54135" : "lightgray"}`,
+        ? "none"
+        : `1px solid ${errorMessage !== "notError" ? "#F54135" : "lightgray"}`,
       borderTopRightRadius: eye ? "0" : "8px",
       borderBottomRightRadius: eye ? "0" : "8px",
     },
     icon: {
       backgroundImage: !isEyeOpen
-          ? errorMessage !== "notError"
-              ? `url(${eyeOpenIconRed.src})`
-              : `url(${eyeOpenIcon.src})`
-          : errorMessage !== "notError"
-              ? `url(${eyeCloseIconRed.src})`
-              : `url(${eyeCloseIcon.src})`,
+        ? errorMessage !== "notError"
+          ? `url(${eyeOpenIconRed.src})`
+          : `url(${eyeOpenIcon.src})`
+        : errorMessage !== "notError"
+        ? `url(${eyeCloseIconRed.src})`
+        : `url(${eyeCloseIcon.src})`,
     },
     iconWrap: {
       display: eye ? "flex" : "none",
       borderRight: eye
-          ? `1px solid ${errorMessage !== "notError" ? "#F54135" : "lightgray"}`
-          : "none",
+        ? `1px solid ${errorMessage !== "notError" ? "#F54135" : "lightgray"}`
+        : "none",
       borderTop: eye
-          ? `1px solid ${errorMessage !== "notError" ? "#F54135" : "lightgray"}`
-          : "none",
+        ? `1px solid ${errorMessage !== "notError" ? "#F54135" : "lightgray"}`
+        : "none",
       borderBottom: eye
-          ? `1px solid ${errorMessage !== "notError" ? "#F54135" : "lightgray"}`
-          : "none",
+        ? `1px solid ${errorMessage !== "notError" ? "#F54135" : "lightgray"}`
+        : "none",
     },
   };
   const handleInput = (event: FormEvent<HTMLInputElement>) => {
@@ -109,16 +109,16 @@ export const AuthInput: FC<props> = ({
     const text = input.value;
     const textLength = text.length;
 
-
-    // возвращаем курсор на оригинальную позицию
-    input.setSelectionRange(4, 15);
-
-    console.log("position", position);
-    console.log(inputRef.current)
-
+    
+      // возвращаем курсор на оригинальную позицию
+      input.setSelectionRange(4, 15);
+    
+      console.log("position", position);
+      console.log(inputRef.current)
+    
 
     if (!password) {
-      setText(text)
+      setText(text);
       const input = event.target as HTMLInputElement;
 
       if (input !== null) {
@@ -127,32 +127,50 @@ export const AuthInput: FC<props> = ({
         input.selectionEnd = position;
         console.log("position", position);
       }
-      setText(text);
-    }
-
-    if (password && setSecure) {
-      setText(text);
-      setSecure(validatePassword(text));
-    }
-
-    if (passwordSignInMode) {
-      const tested = text.match(/^[!@#$%^\w]+$/);
-      if (tested) {
+      if (true) {
+        // здесь ошибка, если ставить условие textLength < maxLength
         setText(text);
       } else {
-        setErrorMessage(
+        setErrorMessage(`Максимальная длина - ${maxLength} символов`);
+      }
+
+      if (password && setSecure) {
+        setText(text);
+        setSecure(validatePassword(text));
+      }
+      if (passwordSignInMode) {
+        const tested = text.match(/^[!@#$%^\w]+$/);
+        if (tested) {
+          setText(text);
+        } else {
+          setErrorMessage(
             "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
-        );
+          );
+        }
+      }
+      if (password && setSecure) {
+        setText(text);
+        setSecure(validatePassword(text));
+      }
+      if (passwordSignInMode) {
+        const tested = text.match(/^[!@#$%^\w]+$/);
+        if (tested) {
+          setText(text);
+        } else {
+          setErrorMessage(
+            "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
+          );
+        }
+      }
+
+      if (textLength === 0 && setSecure) {
+        setSecure("");
+      }
+      if (textLength === 0) {
+        setErrorMessage("notError");
       }
     }
-
-    if (textLength === 0 && setSecure) {
-      setSecure("");
-    }
-    if (textLength === 0) {
-      setErrorMessage("notError");
-    }
-  }
+  };
 
   const blurHandler = (event: FocusEvent<HTMLInputElement>) => {
     if (text === "") {
@@ -179,15 +197,24 @@ export const AuthInput: FC<props> = ({
     } else {
       setErrorMessage("notError");
     }
-  }
+  };
 
   const handleChange = useCallback((e: any) => {
     let value = e.target.value.replace(/_/g, "");
-    let newValue =
-      value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
+    let newValue = value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
     setShownValue(newValue);
     setPosition(e.target.selectionStart);
   }, []);
+
+  /*useEffect(() => {
+    if ( inputRef.current !== null) {
+      // возвращаем курсор на оригинальную позицию
+      inputRef.current?.setSelectionRange(4, 15);
+    
+      console.log("position", position);
+      console.log(inputRef.current)
+    }
+  }, [position]);*/
 
   return (
     <div className={styles.wrap}>
@@ -199,7 +226,7 @@ export const AuthInput: FC<props> = ({
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
           style={style.input}
-          onChange={ handleChange}
+          onChange={(e) => handleChange(e)}
         >
           <input
             style={style.input}
