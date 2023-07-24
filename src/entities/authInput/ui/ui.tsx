@@ -3,7 +3,16 @@ import eyeCloseIconRed from "../../../../public/auth/eyeCloseRed.svg";
 import eyeCloseIcon from "../../../../public/auth/eyeClose.svg";
 import eyeOpenIconRed from "../../../../public/auth/eyeOpenRed.svg";
 import eyeOpenIcon from "../../../../public/auth/eyeOpen.svg";
-import { FC, FormEvent, useState, ChangeEvent, FocusEvent } from "react";
+import React, {
+  FC,
+  FormEvent,
+  useState,
+  ChangeEvent,
+  FocusEvent,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
 import validateEmail from "../lib/validateEmail";
 import validatePassword from "../lib/validatePassword";
 import styles from "./ui.module.scss";
@@ -43,7 +52,10 @@ export const AuthInput: FC<props> = ({
   const [inputType, setInputType] = useState<"text" | "password">(
     password ? "password" : "text"
   );
+  const [shownValue, setShownValue] = useState("");
+  const [position, setPosition] = useState(0);
 
+  const inputRef = useRef(null);
   const style: any = {
     input: {
       borderLeft:
@@ -90,9 +102,25 @@ export const AuthInput: FC<props> = ({
     const input = (event.target as HTMLInputElement)
     const text = input.value;
     const textLength = text.length;
+<<<<<<< HEAD
 
     if (!password) {
       setText(text)
+=======
+    const input = event.target as HTMLInputElement;
+
+    if (input !== null) {
+      // возвращаем курсор на оригинальную позицию
+      input.selectionStart = position;
+      input.selectionEnd = position;
+      console.log("position", position);
+    }
+    if (true) {
+      // здесь ошибка, если ставить условие textLength < maxLength
+      setText(text);
+    } else {
+      setErrorMessage(`Максимальная длина - ${maxLength} символов`);
+>>>>>>> de43934 (testing new fiches)
     }
 
     if (password && setSecure) {
@@ -143,18 +171,64 @@ export const AuthInput: FC<props> = ({
     }
   };
 
+  const handleChange = useCallback((e: any) => {
+    let value = e.target.value.replace(/_/g, "");
+    let newValue =
+      value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
+    setShownValue(newValue);
+    setPosition(e.target.selectionStart);
+  }, []);
+
+  /* useEffect(() => {
+    if (inputRef !== null && inputRef.current ) {
+      // возвращаем курсор на оригинальную позицию
+      inputRef.current.selectionStart = position;
+      inputRef.current.selectionEnd = position;
+      console.log("position", position);
+    }
+  }, [position]);*/
+
+  //  console.log("inputRef.current", inputRef.current);
+  const handleCursorPosition = (e: FormEvent<HTMLInputElement>) => {
+    const input = e.target as HTMLInputElement;
+
+    if (input !== null) {
+      // возвращаем курсор на оригинальную позицию
+      input.selectionStart = position;
+      input.selectionEnd = position;
+      console.log("position", position);
+    }
+  };
+
+  /* const handleCursorPosition = (e: any) => {
+    if (e !== null) {
+      const { target } = e;
+
+      if (target !== null) {
+        // возвращаем курсор на оригинальную позицию
+        target.selectionStart = position;
+        target.selectionEnd = position;
+        console.log("position", position);
+      }
+    }
+  };*/
 
 
   return (
     <div className={styles.wrap}>
       {number ? (
         <MaskedInput
+<<<<<<< HEAD
           mask={"+7 (999) 999-99-99"}
           maskPlaceholder={""}
+=======
+          mask="+7(999) 999 99 99"
+>>>>>>> de43934 (testing new fiches)
           value={text}
           onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
           onFocus={() => handleFocus()}
           style={style.input}
+          onChange={handleChange}
         >
           <input
             style={style.input}
@@ -162,7 +236,8 @@ export const AuthInput: FC<props> = ({
             name={inputName}
             value={text}
             type="tel"
-            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
+            ref={(e: any) => handleCursorPosition(e)}
+            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event) }
           />
         </MaskedInput>
       ) : (
