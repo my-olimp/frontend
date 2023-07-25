@@ -1,21 +1,15 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import styles from "./ui.module.scss";
-import { AuthInputLabel } from "@/features/authInputLabel";
-import { AuthTypeBlock } from "@/features/authTypeBlock";
-import { AuthLoginHelp } from "@/features/authLoginHelp";
-import { LoginHelp } from "@/features/authHelp/LoginHelp";
-import { AuthButton } from "@/entities/buttons/authButton";
-import Image from "next/image";
-import { Gapped } from "@/shared/Gapped/ui/ui";
-import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg";
+import Logo from '@/entities/Logo/ui/ui';
 
 interface props {
+
 }
-export const LoginForm: FC<props> = ({  }) => {
+export const ConfirmationForm: FC<props> = ({  }) => {
 
     return (
         <>
-
+            <Logo/>
         </>
     );
 };

@@ -7,8 +7,7 @@ import styles from "./ui.module.scss";
 import { RegisterRulesAccept } from "@/entities/registerRulesAccept";
 import { RegisterHelp } from "@/features/authHelp/RegisterHelp";
 import { Gapped } from "@/shared/Gapped/ui/ui";
-import Image from "next/image";
-import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg";
+import Logo from '@/entities/Logo/ui/ui';
 
 interface props {}
 export const RegisterForm: FC<props> = ({}) => {
@@ -94,16 +93,7 @@ export const RegisterForm: FC<props> = ({}) => {
                 alignItems="center"
                 gap="8px"
               >
-                <div style={{ textAlign: "center" }}>
-                  <Image
-                    src={myOlimpLogo}
-                    alt="logo"
-                    width={115}
-                    height={28}
-                    className={styles.logo}
-                  />
-                </div>
-
+                <Logo/>
                 <h4 className={styles.text}>
                   Для создания учетной записи укажите свои данные:
                 </h4>

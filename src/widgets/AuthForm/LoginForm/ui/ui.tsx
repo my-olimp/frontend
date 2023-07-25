@@ -5,10 +5,8 @@ import { AuthTypeBlock } from "@/features/authTypeBlock";
 import { AuthLoginHelp } from "@/features/authLoginHelp";
 import { LoginHelp } from "@/features/authHelp/LoginHelp";
 import { AuthButton } from "@/entities/buttons/authButton";
-import Image from "next/image";
 import { Gapped } from "@/shared/Gapped/ui/ui";
-import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg";
-import adaptivMyOlimpLogo from "./../../../../../public/logo/adaptivMyOlimpLogo.svg";
+import Logo from '@/entities/Logo/ui/ui';
 interface props {}
 export const LoginForm: FC<props> = ({}) => {
   const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] =
@@ -94,16 +92,8 @@ export const LoginForm: FC<props> = ({}) => {
                   alignItems="center"
                   gap="8px"
                 >
-                  <div className={styles.logo} style={{ textAlign: "center" }}>
-                    <Image
-                      src={myOlimpLogo}
-                      alt="logo"
-                      width={115}
-                      height={28}
-                      className={styles.logo}
-                    />
-                  </div>
-                  <h4 className={styles.text}>Войти</h4>
+                  <Logo/>
+                  <h4 className={styles.text}>Вход в сервис</h4>
                 </Gapped>
                 <AuthTypeBlock type={type} setType={setType} />
                 <Gapped
