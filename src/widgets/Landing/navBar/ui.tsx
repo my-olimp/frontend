@@ -22,7 +22,7 @@ export const NavBar: FC<props> = ({ mobile }) => {
                     <SideNavBar show={show} />
                 </>
             ) : (
-                <NavBarDesktop show={show} />
+                <NavBarDesktop />
             )}
         </>
     );
