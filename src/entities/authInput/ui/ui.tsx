@@ -178,7 +178,7 @@ export const AuthInput: FC<props> = ({
     if (event.key === "ArrowLeft" && selectionStart === 4) {
       event.preventDefault();
     } else if (selectionStart < 4) {
-      input.setSelectionRange(5,5);
+      input.setSelectionRange(4,4);
     }
 
     if (event.key === "Backspace" || event.key === "Delete") {
