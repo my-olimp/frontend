@@ -2,50 +2,45 @@ $inputBorder: #ddd;
 $input-height: 44px;
 
 .input {
-  height: $input-height;
-  border: 1px solid $inputBorder;
-  outline: none;
-  border-radius: 8px;
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  font-family: "SF_Regular", sans-serif;
-  color: #222;
-
-
+    height: $input-height;
+    border: 1px solid $inputBorder;
+    outline: none;
+    border-radius: 8px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-family: 'SF_Regular', sans-serif;
+    color: #222;
 }
 
 .icon {
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 24px;
-  height: 24px;
-  transition: 0.2s;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    transition: 0.2s;
 }
 
 .iconWrap {
-  border-radius: 8px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border: 1px solid $inputBorder;
-  border-left: none;
-  height: $input-height;
-  cursor: pointer;
-  display: flex;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  width: $input-height;
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border: 1px solid $inputBorder;
+    border-left: none;
+    height: $input-height;
+    cursor: pointer;
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: $input-height;
 }
 
 .wrap {
-  display: flex;
-  height: auto;
-  flex-direction: row;
-  align-items: center;
-
-  
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
 }
-

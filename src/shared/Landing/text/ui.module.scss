@@ -1,28 +1,28 @@
 .wrap {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
-  color: #3579f8;
+    color: #3579f8;
 
-  font-family: "SF_Medium", sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+    font-family: 'SF_Medium', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 
-  margin-bottom: 16px;
+    margin-bottom: 16px;
 }
 
 .text {
-  color: #222;
+    color: #222;
 
-  font-family: "SF_Regular", sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+    font-family: 'SF_Regular', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-  max-width: 795px;
+    max-width: 795px;
 }

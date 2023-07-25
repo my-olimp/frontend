@@ -1,31 +1,32 @@
 {
-  "name": "myolimp",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@types/node": "20.3.2",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
-    "eslint": "8.43.0",
-    "eslint-config-next": "13.4.7",
-    "next": "13.4.7",
-    "react": "18.2.0",
-    "react-css-modules": "^4.7.11",
-    "react-dom": "18.2.0",
-    "react-input-mask": "^3.0.0-alpha.2",
-    "saas": "^1.0.0",
-    "typescript": "5.1.6"
-  },
-  "devDependencies": {
-    "@types/react-input-mask": "^3.0.2",
-    "node-sass": "^9.0.0",
-    "sass": "^1.63.6",
-    "sass-loader": "^13.3.2"
-  }
+    "name": "myolimp",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "format": "prettier --write ."
+    },
+    "dependencies": {
+        "@types/node": "20.3.2",
+        "@types/react": "18.2.14",
+        "@types/react-dom": "18.2.6",
+        "eslint": "8.43.0",
+        "eslint-config-next": "13.4.7",
+        "next": "13.4.7",
+        "react": "18.2.0",
+        "react-css-modules": "^4.7.11",
+        "react-dom": "18.2.0",
+        "react-input-mask": "^3.0.0-alpha.2",
+        "saas": "^1.0.0",
+        "typescript": "5.1.6"
+    },
+    "devDependencies": {
+        "@types/react-input-mask": "^3.0.2",
+        "node-sass": "^9.0.0",
+        "sass": "^1.63.6",
+        "sass-loader": "^13.3.2"
+    }
 }

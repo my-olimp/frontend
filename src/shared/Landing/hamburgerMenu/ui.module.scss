@@ -1,6 +1,6 @@
 $hamburgerColor: #fff;
 
-.burgerContainer{
+.burgerContainer {
     width: 30px;
     height: 18px;
 
@@ -9,7 +9,8 @@ $hamburgerColor: #fff;
     align-items: center;
 }
 
-.wrap, .open {
+.wrap,
+.open {
     width: 30px;
     height: 18px;
 
@@ -32,7 +33,8 @@ $hamburgerColor: #fff;
     cursor: pointer;
 }
 
-.wrap span, .open span {
+.wrap span,
+.open span {
     display: block;
     position: absolute;
 
@@ -57,7 +59,7 @@ $hamburgerColor: #fff;
 }
 
 .wrap span:nth-child(1) {
-    top: 0px;
+    top: 0;
 }
 
 .wrap span:nth-child(2),
@@ -67,7 +69,7 @@ $hamburgerColor: #fff;
 
 .open span:nth-child(1) {
     top: 11px;
-    width: 0%;
+    width: 0;
     left: 50%;
 }
 
@@ -87,6 +89,6 @@ $hamburgerColor: #fff;
 
 .open span:nth-child(4) {
     top: 11px;
-    width: 0%;
+    width: 0;
     left: 50%;
 }

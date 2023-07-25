@@ -1,1 +1,1 @@
-export { AuthInputLabel } from "./ui/ui";
+export { AuthInputLabel } from './ui/ui';

@@ -1,21 +1,18 @@
 .wrap {
-  width: 50vw;
+    width: 50vw;
 
-  text-align: center;
+    text-align: center;
 
-  color: white;
+    border-radius: 15px;
 
-  border-radius: 15px;
-  
-
-  color: #fff;
-  font-family: "SF_Medium";
-  font-size: 17px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+    color: #fff;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .wrap:active {
-  background-color: #3579f8; /*button hover blue color*/
+    background-color: #3579f8; /*button hover blue color*/
 }

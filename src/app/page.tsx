@@ -1,81 +1,55 @@
-"use client";
+'use client';
 
-import "./fonts.scss";
-import { NavBar } from "@/widgets/Landing/navBar/ui";
-import { GroupAudItems } from "@/shared/Landing/groupAudienceItems/ui";
-import { Layout } from "@/shared/layouts/landing/ui";
-import { Tools } from "@/shared/Landing/toolsSection/ui";
-import { Content } from "@/shared/Landing/blocksWithContent/ui";
-import { Team } from "@/widgets/Landing/team/ui";
-import { ScrollCards } from "@/widgets/Landing/scrollCards/ui";
-import { TitleScroll } from "@/shared/Landing/scrollCardContentTitle/ui";
-import { Footer } from "@/widgets/Landing/footer/ui";
-import { Cover } from "@/shared/Landing/cover/ui";
-import { useEffect, useState, useRef, } from "react";
+import './fonts.scss';
+import { NavBar } from '@/widgets/Landing/navBar/ui';
+import { GroupAudItems } from '@/shared/Landing/groupAudienceItems/ui';
+import { Layout } from '@/shared/layouts/landing/ui';
+import { Tools } from '@/shared/Landing/toolsSection/ui';
+import { Content } from '@/shared/Landing/blocksWithContent/ui';
+import { Team } from '@/widgets/Landing/team/ui';
+import { ScrollCards } from '@/widgets/Landing/scrollCards/ui';
+import { TitleScroll } from '@/shared/Landing/scrollCardContentTitle/ui';
+import { Footer } from '@/widgets/Landing/footer/ui';
+import { Cover } from '@/shared/Landing/cover/ui';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
-  const [mobile, setMobile] = useState(false);
+    const [mobile, setMobile] = useState(false);
+    const width = useRef(0);
 
-  
-  const [width, setWidth] = useState(0);
+    useEffect(() => {
+        width.current = window && window.innerWidth;
+        if (width.current < 900) {
+            setMobile(true);
+        }
+    }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(global?.window.innerWidth);
-    };
-
-    // Set initial width
-    setWidth(global?.window.innerWidth);
-
-    
-
-    // Add event listener for window resize (only on the client-side)
-    if (typeof global?.window !== 'undefined') {
-      global?.window.addEventListener('resize', handleResize);
-    }
-    
-
-    if(global?.window.innerWidth < 900){
-      setMobile(true);
-    }
-    
-    // Clean up the event listener when the component is unmounted
-    return () => {
-      if (typeof global !== 'undefined') {
-        global.window.removeEventListener('resize', handleResize);
-      }
-    };
-  }, []);
-  
-
-
-
-  return (
-    <>
-      <NavBar mobile={mobile} />
-      {!mobile && (
-        <Cover
-          title="Путеводитель  по миру олимпиад"
-          description="Победа в олимпиадах дает возможность получить льготы при поступления в ВУЗ"
-        />
-      )}
-      {mobile && (
-        <Cover
-          title="Путеводитель  по миру олимпиад"
-          description="Победа в олимпиадах дает возможность получить льготы при поступления в ВУЗ"
-        />
-      )}
-      <Layout>
-        <GroupAudItems />
-        <Tools />
-        <Content />
-        <Team />
-        <TitleScroll />
-      </Layout>
-      <ScrollCards />
-      <Layout>
-        <Footer />
-      </Layout>
-    </>
-  );
+    return (
+        <>
+            <NavBar mobile={mobile} />
+            {!mobile && (
+                <Cover
+                    title="Путеводитель  по миру олимпиад"
+                    description="Победа в олимпиадах дает возможность получить льготы при поступления в ВУЗ"
+                />
+            )}
+            {mobile && (
+                <Cover
+                    title="Путеводитель  по миру олимпиад"
+                    description="Победа в олимпиадах дает возможность получить льготы при поступления в ВУЗ"
+                />
+            )}
+            <Layout>
+                <GroupAudItems />
+                <Tools />
+                <Content />
+                <Team />
+                <TitleScroll />
+            </Layout>
+            <ScrollCards />
+            <Layout>
+                <Footer />
+            </Layout>
+        </>
+    );
 }

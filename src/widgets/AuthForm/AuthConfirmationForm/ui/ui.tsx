@@ -1,15 +1,12 @@
-import { FC } from "react";
-import styles from "./ui.module.scss";
+import { FC } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 
-interface props {
+interface props {}
 
-}
-export const ConfirmationForm: FC<props> = ({  }) => {
-
+export const ConfirmationForm: FC<props> = ({}) => {
     return (
         <>
-            <Logo/>
+            <Logo />
         </>
     );
 };

@@ -1,35 +1,34 @@
 .layout__landing {
-  max-width: 1080px;
+    max-width: 1080px;
 
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 
-  width: calc(100% - 200px);
+    width: calc(100% - 200px);
 
-  display: flex;
-  flex-direction: column;
-  gap: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 150px;
 }
 
 @media screen and (max-width: 600px) {
-  .layout__landing {
-    max-width: 1280px;
+    .layout__landing {
+        max-width: 1280px;
 
-    margin-left: auto;
-    margin-right: auto;
+        margin-left: auto;
+        margin-right: auto;
 
-    width: calc(100% - 56px);
-  }
+        width: calc(100% - 56px);
+    }
 }
 
-
 @media screen and (max-width: 480px) {
-  .layout__landing {
-    max-width: 1280px;
+    .layout__landing {
+        max-width: 1280px;
 
-    margin-left: auto;
-    margin-right: auto;
+        margin-left: auto;
+        margin-right: auto;
 
-    width: calc(100% - 32px);
-  }
+        width: calc(100% - 32px);
+    }
 }

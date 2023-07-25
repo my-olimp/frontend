@@ -1,25 +1,20 @@
-
 .title {
     color: #222;
-    font-family: "SF_Medium";
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
     font-size: 48px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .title{
+}
+
+@media screen and (max-width: 768px) {
+    .title {
         font-size: 32px;
     }
-  }
+}
 
-    
-  @media screen and (max-width: 512px) {
-    .title{
+@media screen and (max-width: 512px) {
+    .title {
         font-size: 28px;
     }
-  }
-
-  
-  
+}

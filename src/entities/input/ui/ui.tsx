@@ -1,15 +1,9 @@
 import React from 'react';
 
-interface props {
-
-}
+interface props {}
 
 const Input = () => {
-    return (
-        <div>
-
-        </div>
-    );
+    return <div></div>;
 };
 
 export default Input;

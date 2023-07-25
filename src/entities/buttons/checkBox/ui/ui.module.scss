@@ -1,27 +1,26 @@
 .checkBox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: no-repeat center;
-  background-size: contain;
-  width: 20px;
-  height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: no-repeat center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
 }
 
 .wrap {
-  display: flex;
-  gap: 8px;
+    display: flex;
+    gap: 8px;
 
-  align-items: center;
-  text-align: center;
-  justify-content: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  transition: all .2s;
+    transition: all 0.2s;
 }
 
 .checkBoxText {
-  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
-  
+    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
 }

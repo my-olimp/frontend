@@ -1,1 +1,1 @@
-export { RegisterRulesAccept } from './ui/ui'
+export { RegisterRulesAccept } from './ui/ui';

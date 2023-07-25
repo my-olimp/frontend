@@ -1,21 +1,19 @@
 .wrap {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
 }
 
 .left,
 .right {
-  width: 48px;
-  height: 48px;
+    width: 48px;
+    height: 48px;
 
-  color: #3579F8;
+    color: #3579f8;
 }
 
 .left:hover,
 .right:hover {
-  cursor: pointer;
-  color: #757575;
+    cursor: pointer;
+    color: #757575;
 }
-
-

@@ -2,137 +2,136 @@ $textColor: #222;
 $accentColor: #3579f8;
 
 .main__title {
-  color: $textColor;
+    color: $textColor;
 
-  font-family: "SF_Medium", sans-serif;
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+    font-family: 'SF_Medium', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 
-  margin-bottom: 40px;
-  margin-right: 0;
+    margin-bottom: 40px;
+    margin-right: 0;
 
-  max-width: 512px;
+    max-width: 512px;
 }
 
 .button {
-  background-color: inherit;
-  color: #222;
+    background-color: inherit;
+    color: #222;
 
-  font-family: "SF_Medium", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+    font-family: 'SF_Medium', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 
-  margin-bottom: 16px;
+    margin-bottom: 16px;
 
-  text-align: left;
+    text-align: left;
 
-  &::after {
-    display: block;
-    width: 0;
-    height: 2px;
-    background-color: $accentColor;
-    content: "";
-    transition: width 0.3s ease-out;
-  }
+    &::after {
+        display: block;
+        width: 0;
+        height: 2px;
+        background-color: $accentColor;
+        content: '';
+        transition: width 0.3s ease-out;
+    }
 
-  &::hover::after,
-  &::focus:after {
-    width: 40px;
-  }
+    &:hover::after,
+    &:focus::after {
+        width: 40px;
+    }
 }
 
 .active {
-  color: $accentColor;
-  &::after {
-    display: block;
-  }
+    color: $accentColor;
 
-  &::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 2.5px;
-    background-color: $accentColor;
-  }
+    &::after {
+        display: block;
+    }
+
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 2.5px;
+        background-color: $accentColor;
+    }
 }
 
 .text {
-  color: $textColor;
+    color: $textColor;
 
-  display: none;
+    display: none;
 
-  font-family: "SF_Regular", sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+    font-family: 'SF_Regular', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-  margin-bottom: 28px;
+    margin-bottom: 28px;
 
-  text-align: left;
+    text-align: left;
 }
 
 .activeText {
-  display: block;
+    display: block;
 }
 
 .image {
-  float: right;
-  overflow: hidden;
+    float: right;
+    overflow: hidden;
 
-  margin-top: -100px;
-  display: none;
+    margin-top: -100px;
+    display: none;
 }
 
 .info__block {
-  max-width: 512px;
+    max-width: 512px;
 }
 
 .block {
-  display: flex;
+    display: flex;
 }
 
 .activeImage {
-  display: block;
+    display: block;
 }
 
-
 @media screen and (max-width: 1000px) {
-  .block{
-    flex-direction: column;
-  }
+    .block {
+        flex-direction: column;
+    }
 
-  .image{
-    width: 100%;
-    margin: 0 0 0 0;
-  }
+    .image {
+        width: 100%;
+        margin: 0 0 0 0;
+    }
 }
 
 @media screen and (max-width: 700px) {
-  .block{
-    flex-direction: column;
-  }
+    .block {
+        flex-direction: column;
+    }
 
-  .image{
-    width: 100%;
-    height: auto;
-    margin: 0 0 0 0;
-  }
+    .image {
+        width: 100%;
+        height: auto;
+        margin: 0 0 0 0;
+    }
 }
 
 @media screen and (max-width: 512px) {
-  .main__title{
-    font-size: 28px;
-  }
-  .button{
-    font-size: 18px;
-  }
-  .text{
-    font-size: 16px;
-  }
+    .main__title {
+        font-size: 28px;
+    }
+    .button {
+        font-size: 18px;
+    }
+    .text {
+        font-size: 16px;
+    }
 }
-

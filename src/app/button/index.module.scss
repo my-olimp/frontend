@@ -1,15 +1,14 @@
-
 .button {
-  background-color: blue;
-  color: #F2F2F2;
-  border: none;
-  width: 10rem;
-  height: 2rem;
-  transition: background .3s;
-  border-radius: 10px;
+    background-color: blue;
+    color: #f2f2f2;
+    border: none;
+    width: 10rem;
+    height: 2rem;
+    transition: background 0.3s;
+    border-radius: 10px;
 }
 
 .button:hover {
-  background-color: blueviolet;
-  cursor: pointer;
+    background-color: blueviolet;
+    cursor: pointer;
 }

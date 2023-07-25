@@ -1,1 +1,1 @@
-export { AuthTypeBlock } from './ui/ui'
+export { AuthTypeBlock } from './ui/ui';

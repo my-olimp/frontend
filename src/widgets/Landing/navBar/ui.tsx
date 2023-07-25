@@ -1,29 +1,29 @@
-"use client";
+'use client';
 
-import { NavBarMobile } from "@/features/Landing/navBarMobile/ui";
-import { NavBarDesktop } from "../../../features/Landing/navBarDesktop/ui";
-import { SideNavBar } from "@/features/Landing/sideNavBar/ui";
-import { FC, useState } from "react";
+import { NavBarMobile } from '@/features/Landing/navBarMobile/ui';
+import { NavBarDesktop } from '@/features/Landing/navBarDesktop/ui';
+import { SideNavBar } from '@/features/Landing/sideNavBar/ui';
+import { FC, useState } from 'react';
 
 interface props {
-  mobile: boolean;
+    mobile: boolean;
 }
 
 export const NavBar: FC<props> = ({ mobile }) => {
-  const [show, setShow] = useState<boolean>(false);
-  const handleClickSide = () => {
-    setShow(!show);
-  };
-  return (
-    <>
-      {mobile ? (
+    const [show, setShow] = useState<boolean>(false);
+    const handleClickSide = () => {
+        setShow(!show);
+    };
+    return (
         <>
-          <NavBarMobile handleClickSide={handleClickSide} />
-          <SideNavBar show={show} />
+            {mobile ? (
+                <>
+                    <NavBarMobile handleClickSide={handleClickSide} />
+                    <SideNavBar show={show} />
+                </>
+            ) : (
+                <NavBarDesktop show={show} />
+            )}
         </>
-      ) : (
-        <NavBarDesktop show={show} />
-      )}
-    </>
-  );
+    );
 };

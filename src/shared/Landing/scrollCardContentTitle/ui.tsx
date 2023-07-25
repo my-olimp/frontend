@@ -1,10 +1,10 @@
-import styles from "./ui.module.scss";
+import styles from './ui.module.scss';
 
 export const TitleScroll = () => {
-  return (
-    <div className={styles.title}>
-      Нам доверяют свое <br />
-      обучение
-    </div>
-  );
+    return (
+        <div className={styles.title}>
+            Нам доверяют свое <br />
+            обучение
+        </div>
+    );
 };

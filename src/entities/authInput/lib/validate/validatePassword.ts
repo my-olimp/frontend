@@ -1,14 +1,14 @@
 export default function validatePassword(password: string) {
     if (password.match(/\s/)) {
-        return 'Пароль не может содержать в себе пробелы.'
+        return 'Пароль не может содержать в себе пробелы.';
     }
 
     if (password.length < 5) {
-        return 'Слабый пароль'
+        return 'Слабый пароль';
     }
 
     if (password.match(/^[a-z]+$/) || password.match(/^\d+$/)) {
-        return "Слабый пароль";
+        return 'Слабый пароль';
     }
     if (
         password.match(/^[a-z\d]+$/) ||
@@ -16,13 +16,11 @@ export default function validatePassword(password: string) {
         password.match(/^[\d!@#$%^&*]+$/) ||
         password.match(/^[a-zA-Z]+$/)
     ) {
-        return "Средний пароль";
+        return 'Средний пароль';
     }
     if (password.match(/^(?=.*[a-z\d!@#$%^&*])|(?=.*[A-Z\d]).+$/)) {
-        return "Надежный пароль";
+        return 'Надежный пароль';
     }
-
 
     return 'Пароль может состоять только из английских букв верхнего и нижнего регистра, цифр, и специальных символов.';
 }
-

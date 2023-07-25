@@ -2,65 +2,65 @@ $bgScreenColor: #f2f2f2;
 $bgFormColor: #fff;
 
 .wrap {
-  display: block;
-  border-radius: 10px;
-  background-color: $bgFormColor;
-  min-width: 460px;
-  height: auto;
-  padding-top: 40px;
-  padding-bottom: 16px;
-  padding-left: 40px;
-  padding-right: 40px;
-  @media screen and (max-width: 500px) {
-    display: flex !important;
-    min-width: 400px;
-  }
-  @media screen and (max-width: 420px) {
-    display: flex !important;
-    min-width: 350px;
-  }
-  @media screen and (max-width: 360px) {
-    display: flex !important;
-    min-width: auto;
-    width: 100%;
-    padding-top: 32px;
+    display: block;
+    border-radius: 10px;
+    background-color: $bgFormColor;
+    min-width: 460px;
+    height: auto;
+    padding-top: 40px;
     padding-bottom: 16px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+    padding-left: 40px;
+    padding-right: 40px;
+    @media screen and (max-width: 500px) {
+        display: flex !important;
+        min-width: 400px;
+    }
+    @media screen and (max-width: 420px) {
+        display: flex !important;
+        min-width: 350px;
+    }
+    @media screen and (max-width: 360px) {
+        display: flex !important;
+        min-width: auto;
+        width: 100%;
+        padding-top: 32px;
+        padding-bottom: 16px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
 }
 
 .mobile_version {
-  width: auto;
-  display: flex;
+    width: auto;
+    display: flex;
 }
 
 .screen {
-  width: 100vw;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  background-color: $bgScreenColor;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: $bgScreenColor;
 }
 
 .header {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .text {
-  font-size: 16px;
-  font-family: "SF_Regular", sans-serif;
-  font-weight: 400;
-  width: 254px;
-  text-align: center;
+    font-size: 16px;
+    font-family: 'SF_Regular', sans-serif;
+    font-weight: 400;
+    width: 254px;
+    text-align: center;
 }
 
 .inputWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 .logo {
-  user-select: none;
+    user-select: none;
 }

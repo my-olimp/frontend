@@ -1,58 +1,58 @@
 .slide,
 .active {
-  height: 60vh;
-  border-radius: 20px;
-  flex: 1;
-  position: relative;
-  cursor: pointer;
-  margin-left: 32px;
-  margin-top: 24px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: all 0.5s ease-in-out;
-
-
+    height: 60vh;
+    border-radius: 20px;
+    flex: 1;
+    position: relative;
+    cursor: pointer;
+    margin-left: 32px;
+    margin-top: 24px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease-in-out;
 }
 
 .slide {
-  max-width: 134px;
+    max-width: 134px;
+}
 
+.info {
+    opacity: 0;
 }
-.info{
-  opacity: 0;
-}
+
 .active {
-  max-width: 400px;
+    max-width: 400px;
 }
+
 .active .info {
-  position: absolute;
-  top: 1.3rem;
-  width: 100%;
-  padding-left: 26px;
-  text-align: start;
-  color: white;
-  opacity: 1;
-  transition: opacity 0.3s ease-in 0.4s;
+    position: absolute;
+    top: 1.3rem;
+    width: 100%;
+    padding-left: 26px;
+    text-align: start;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.3s ease-in 0.4s;
 }
 
 .text {
-  color: #fff;
-  font-family: "SF_Regular";
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+    color: #fff;
+    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .title {
-  font-family: "SF_Medium";
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 
-  color: #fff;
+    color: #fff;
 
-  margin-bottom: 4px;
+    margin-bottom: 4px;
 }

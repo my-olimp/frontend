@@ -2,24 +2,25 @@ $textColor: #fff;
 $textHoverColor: #e6e6e6; // плохо смотрится => заменить
 
 .textButton {
-  color: $textColor;
+    color: $textColor;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  font-size: 17px;
-  font-family: "SF_Medium";
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+    font-size: 17px;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 
-  transition: all 0.1s;
+    transition: all 0.1s;
 
-  border: none;
+    border: none;
 
-  text-align: center;
+    text-align: center;
 
-  background-color: transparent;
+    background-color: transparent;
 }
+
 .textButton:hover {
-  color: $textHoverColor;
+    color: $textHoverColor;
 }

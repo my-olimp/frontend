@@ -1,61 +1,60 @@
 $navBarHeight: 96px;
 /*Тут надо менять*/
 .wrap {
-  position: fixed;
+    position: fixed;
 
-  width: 100%;
+    width: 100%;
 
-  height: $navBarHeight;
+    height: $navBarHeight;
 
-  background-color: transparent;
+    background-color: transparent;
 
-  z-index: 2000;
+    z-index: 2000;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 
-  padding-left: 78px;
-  padding-right: 78px;
+    padding-left: 78px;
+    padding-right: 78px;
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .switchNavbar {
-  color: white;
-  border: none;
-  background: none;
-  transition: all 0.3s;
+    color: white;
+    border: none;
+    background: none;
+    transition: all 0.3s;
 }
 
 .blockLeft {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-  float: left;
+    float: left;
 }
 
 .blockRight {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-  float: right;
+    float: right;
 }
 
 @media screen and (max-width: 700px) {
-  .wrap {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
+    .wrap {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
 }
 
 @media screen and (max-width: 430px) {
-  .wrap {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+    .wrap {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
 }
-

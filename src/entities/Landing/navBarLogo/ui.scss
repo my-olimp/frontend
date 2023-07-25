@@ -1,17 +1,17 @@
 .navBarLogo {
-  color: transparent;
+    color: transparent;
 
-  background-image: url("./assets/navLogo.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+    background-image: url('./assets/navLogo.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  display: inline-block;
+    display: inline-block;
 
-  width: 120px;
-  height: 96px;
+    width: 120px;
+    height: 96px;
 
-  user-select: none;
+    user-select: none;
 }
