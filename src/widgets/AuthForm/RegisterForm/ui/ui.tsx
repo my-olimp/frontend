@@ -8,8 +8,7 @@ import { RegisterRulesAccept } from "@/entities/registerRulesAccept";
 import { RegisterHelp } from "@/features/authHelp/RegisterHelp";
 import { Gapped } from "@/shared/Gapped/ui/ui";
 import Image from "next/image";
-import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg"; 
-
+import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg";
 
 interface props {}
 export const RegisterForm: FC<props> = ({}) => {
@@ -55,12 +54,12 @@ export const RegisterForm: FC<props> = ({}) => {
   }, [passwordSecondValue, passwordValue]);
 
   useEffect(() => {
-    setMailOrNumber('')
-    setPasswordValue('')
-    setPasswordSecondValue('')
-    setErrorMailOrNumberMessage('notError')
-    setErrorPasswordMessage('notError')
-    setErrorSecondPasswordMessage('notError')
+    setMailOrNumber("");
+    setPasswordValue("");
+    setPasswordSecondValue("");
+    setErrorMailOrNumberMessage("notError");
+    setErrorPasswordMessage("notError");
+    setErrorSecondPasswordMessage("notError");
   }, [type]);
 
   const handleSubmit = () => {
@@ -70,18 +69,18 @@ export const RegisterForm: FC<props> = ({}) => {
 
   return (
     <>
-        <Gapped gap="0px" vertical verticalAlign="middle">
+      <Gapped className={styles.form} vertical verticalAlign="middle">
+        <Gapped
+          gap="0px"
+          vertical
+          verticalAlign="middle"
+          style={{ display: "flex", width: "100%" }}
+        >
           <Gapped
             className={styles.wrap}
             vertical
             gap="16px"
             verticalAlign="middle"
-            style={{
-              paddingTop: "40px",
-              paddingBottom: "16px",
-              paddingLeft: "40px",
-              paddingRight: "40px",
-            }}
           >
             <Gapped
               className={styles.headerWrap}
@@ -116,6 +115,7 @@ export const RegisterForm: FC<props> = ({}) => {
                 vertical
                 verticalAlign="middle"
                 gap="16px"
+                style={{ display: "flex", width: "100%" }}
               >
                 <AuthInputLabel
                   mail={type === "mail"}
@@ -162,6 +162,7 @@ export const RegisterForm: FC<props> = ({}) => {
           </Gapped>
           <RegisterHelp />
         </Gapped>
+      </Gapped>
     </>
   );
 };
