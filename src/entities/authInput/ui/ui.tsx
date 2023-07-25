@@ -177,8 +177,10 @@ export const AuthInput: FC<props> = ({
     const selectionStart = input.selectionStart as number;
     if (event.key === "ArrowLeft" && selectionStart === 4) {
       event.preventDefault();
-      console.log(selectionStart);
+    } else if (selectionStart < 4) {
+      input.setSelectionRange(5,5);
     }
+
     if (event.key === "Backspace" || event.key === "Delete") {
       event.preventDefault();
       const input = event.target as HTMLInputElement;
@@ -214,8 +216,6 @@ export const AuthInput: FC<props> = ({
     }
   };
 
- 
-
   return (
     <div className={styles.wrap}>
       {number ? (
@@ -234,7 +234,6 @@ export const AuthInput: FC<props> = ({
             name={inputName}
             value={text}
             type="tel"
-           
             onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
           />
         </MaskedInput>
