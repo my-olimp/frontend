@@ -38,13 +38,14 @@ export const RegisterForm: FC<props> = ({}) => {
       !(errorPasswordMessage !== "notError") &&
       !(errorMailOrNumberMessage !== "notError") &&
       !(errorSecondPasswordMessage !== "notError") &&
-      passwordValue === passwordSecondValue
+      passwordValue === passwordSecondValue &&
+      !(type === "number" && mailOrNumber.length !== 18)
     ) {
       setButtonDisabled("active");
     } else {
       setButtonDisabled("disabled");
     }
-  }, [mailOrNumber, passwordValue, passwordSecondValue]);
+  }, [mailOrNumber, passwordValue, passwordSecondValue, type]);
 
   useEffect(() => {
     if (passwordValue !== passwordSecondValue && passwordValue === " ") {

@@ -9,9 +9,8 @@ import React, {
   useState,
   ChangeEvent,
   FocusEvent,
-  useRef,
-  useCallback,
-  useEffect,
+  KeyboardEvent,
+  MouseEvent,
 } from "react";
 import validateEmail from "../lib/validateEmail";
 import validatePassword from "../lib/validatePassword";
@@ -34,10 +33,6 @@ interface props {
   setSecure?: (secure: string) => void;
 }
 
-interface ref{
-  current: HTMLInputElement
-}
-
 export const AuthInput: FC<props> = ({
   eye = false,
   maxLength = 26,
@@ -56,13 +51,8 @@ export const AuthInput: FC<props> = ({
   const [inputType, setInputType] = useState<"text" | "password">(
     password ? "password" : "text"
   );
-  const [shownValue, setShownValue] = useState("");
-  const [position, setPosition] = useState(0);
-  
 
-  const inputRef = useRef(null);
-  
-  const style: any = {
+  const style = {
     input: {
       borderLeft:
         errorMessage !== "notError"
@@ -109,66 +99,49 @@ export const AuthInput: FC<props> = ({
     const text = input.value;
     const textLength = text.length;
 
-    
-      // возвращаем курсор на оригинальную позицию
-      input.setSelectionRange(4, 15);
-    
-      console.log("position", position);
-      console.log(inputRef.current)
-    
+    input.setSelectionRange(textLength + 2, textLength + 2);
 
     if (!password) {
       setText(text);
       const input = event.target as HTMLInputElement;
 
-      if (input !== null) {
-        // возвращаем курсор на оригинальную позицию
-        input.selectionStart = position;
-        input.selectionEnd = position;
-        console.log("position", position);
-      }
-      if (true) {
-        // здесь ошибка, если ставить условие textLength < maxLength
+      setText(text);
+    }
+
+    if (password && setSecure) {
+      setText(text);
+      setSecure(validatePassword(text));
+    }
+    if (passwordSignInMode) {
+      const tested = text.match(/^[!@#$%^\w]+$/);
+      if (tested) {
         setText(text);
       } else {
-        setErrorMessage(`Максимальная длина - ${maxLength} символов`);
+        setErrorMessage(
+          "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
+        );
       }
-
-      if (password && setSecure) {
+    }
+    if (password && setSecure) {
+      setText(text);
+      setSecure(validatePassword(text));
+    }
+    if (passwordSignInMode) {
+      const tested = text.match(/^[!@#$%^\w]+$/);
+      if (tested) {
         setText(text);
-        setSecure(validatePassword(text));
+      } else {
+        setErrorMessage(
+          "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
+        );
       }
-      if (passwordSignInMode) {
-        const tested = text.match(/^[!@#$%^\w]+$/);
-        if (tested) {
-          setText(text);
-        } else {
-          setErrorMessage(
-            "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
-          );
-        }
-      }
-      if (password && setSecure) {
-        setText(text);
-        setSecure(validatePassword(text));
-      }
-      if (passwordSignInMode) {
-        const tested = text.match(/^[!@#$%^\w]+$/);
-        if (tested) {
-          setText(text);
-        } else {
-          setErrorMessage(
-            "Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)"
-          );
-        }
-      }
+    }
 
-      if (textLength === 0 && setSecure) {
-        setSecure("");
-      }
-      if (textLength === 0) {
-        setErrorMessage("notError");
-      }
+    if (textLength === 0 && setSecure) {
+      setSecure("");
+    }
+    if (textLength === 0) {
+      setErrorMessage("notError");
     }
   };
 
@@ -199,22 +172,49 @@ export const AuthInput: FC<props> = ({
     }
   };
 
-  const handleChange = useCallback((e: any) => {
-    let value = e.target.value.replace(/_/g, "");
-    let newValue = value.length <= 10 ? value + "_".repeat(10 - value.length) : value;
-    setShownValue(newValue);
-    setPosition(e.target.selectionStart);
-  }, []);
-
-  /*useEffect(() => {
-    if ( inputRef.current !== null) {
-      // возвращаем курсор на оригинальную позицию
-      inputRef.current?.setSelectionRange(4, 15);
-    
-      console.log("position", position);
-      console.log(inputRef.current)
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    const input = event.target as HTMLInputElement;
+    const selectionStart = input.selectionStart as number;
+    if (event.key === "ArrowLeft" && selectionStart === 4) {
+      event.preventDefault();
+      console.log(selectionStart);
     }
-  }, [position]);*/
+    if (event.key === "Backspace" || event.key === "Delete") {
+      event.preventDefault();
+      const input = event.target as HTMLInputElement;
+      const selectionEnd = input.selectionEnd as number;
+      const selectionStart = input.selectionStart as number;
+
+      if (selectionStart !== selectionEnd) {
+        setText(text.slice(0, selectionStart) + text.slice(selectionEnd));
+        setTimeout(() => {
+          input.setSelectionRange(selectionEnd, selectionEnd);
+        });
+        return;
+      }
+
+      if (
+        text === "" ||
+        text === "+" ||
+        text === "+7" ||
+        text === "+7 " ||
+        text === "+7 ("
+      ) {
+        return;
+      }
+      if (/^\s*$/.test(text.slice(-1))) {
+        setText(text.slice(0, -3));
+        return;
+      }
+      if (!/^\d$/.test(text.slice(-1))) {
+        setText(text.slice(0, -2));
+        return;
+      }
+      setText(text.slice(0, -1));
+    }
+  };
+
+ 
 
   return (
     <div className={styles.wrap}>
@@ -223,10 +223,10 @@ export const AuthInput: FC<props> = ({
           mask={"+7 (999) 999-99-99"}
           maskPlaceholder={""}
           value={text}
-          onBlur={(e: FocusEvent<HTMLInputElement>) => blurHandler(e)}
+          onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
           onFocus={() => handleFocus()}
           style={style.input}
-          onChange={(e) => handleChange(e)}
+          onKeyDown={(event) => handleKeyDown(event)}
         >
           <input
             style={style.input}
@@ -234,7 +234,7 @@ export const AuthInput: FC<props> = ({
             name={inputName}
             value={text}
             type="tel"
-            ref={inputRef}
+           
             onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
           />
         </MaskedInput>
