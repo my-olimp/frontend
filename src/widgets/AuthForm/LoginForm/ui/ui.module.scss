@@ -5,8 +5,34 @@ $bgFormColor: #fff;
   display: block;
   border-radius: 10px;
   background-color: $bgFormColor;
-  width: 460px;
+  min-width: 460px;
   height: auto;
+  padding-top: 40px;
+  padding-bottom: 16px;
+  padding-left: 40px;
+  padding-right: 40px;
+  @media screen and (max-width: 500px) {
+    display: flex !important;
+    min-width: 400px;
+  }
+  @media screen and (max-width: 420px) {
+    display: flex !important;
+    min-width: 350px;
+  }
+  @media screen and (max-width: 360px) {
+    display: flex !important;
+    min-width: auto;
+    width: 100%;
+    padding-top: 32px;
+    padding-bottom: 16px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+.mobile_version {
+  width: auto;
+  display: flex;
 }
 
 .screen {
@@ -35,6 +61,6 @@ $bgFormColor: #fff;
   flex-direction: column;
   gap: 24px;
 }
-.logo{
+.logo {
   user-select: none;
 }

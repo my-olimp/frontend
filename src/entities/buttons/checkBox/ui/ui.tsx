@@ -1,11 +1,11 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren, ReactElement, useState } from "react";
 import styles from "./ui.module.scss";
 import ActiveCheckBox from "./../../../../../public/auth/checkboxActive.svg";
 import HoverCheckBox from "./../../../../../public/auth/checkboxHover.svg";
 import DefaultCheckBox from "./../../../../../public/auth/checkbox.svg";
 
 interface props {
-  children?: string;
+  children?: string | ReactElement;
   isText?: boolean;
   textSize?: string;
 }

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styles from "./ui.module.scss";
-import { FC, useState, MouseEventHandler } from "react";
+import React, { FC, useState, MouseEventHandler, ReactElement } from "react";
 import Image from "next/image";
 interface PropsType {
-  children: string;
+  children: string | ReactElement;
   color?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   textSize?: string;

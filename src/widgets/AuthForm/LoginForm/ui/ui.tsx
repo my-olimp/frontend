@@ -7,16 +7,15 @@ import { LoginHelp } from "@/features/authHelp/LoginHelp";
 import { AuthButton } from "@/entities/buttons/authButton";
 import Image from "next/image";
 import { Gapped } from "@/shared/Gapped/ui/ui";
-import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg"; 
-
-interface props {
-}
-export const LoginForm: FC<props> = ({  }) => {
+import myOlimpLogo from "./../../../../../public/logo/myOlimpLogo.svg";
+import adaptivMyOlimpLogo from "./../../../../../public/logo/adaptivMyOlimpLogo.svg";
+interface props {}
+export const LoginForm: FC<props> = ({}) => {
   const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] =
     useState<string>("notError");
   const [errorPasswordMessage, setErrorPasswordMessage] =
     useState<string>("notError");
-
+  const [screenWidth, setScreenWidth] = useState<number>(0);
   const [mailOrNumber, setMailOrNumber] = useState<string>("");
   const [passwordValue, setPasswordValue] = useState<string>("");
 
@@ -25,6 +24,10 @@ export const LoginForm: FC<props> = ({  }) => {
   );
 
   const [type, setType] = useState<"mail" | "number">("mail");
+
+  useEffect(() => {
+    setScreenWidth(global?.window.innerWidth);
+  }, []);
 
   useEffect(() => {
     if (
@@ -43,13 +46,13 @@ export const LoginForm: FC<props> = ({  }) => {
     passwordValue,
     errorPasswordMessage,
     errorMailOrNumberMessage,
-    type
+    type,
   ]);
   useEffect(() => {
-    setMailOrNumber('')
-    setPasswordValue('')
-    setErrorMailOrNumberMessage('notError')
-    setErrorPasswordMessage('notError')
+    setMailOrNumber("");
+    setPasswordValue("");
+    setErrorMailOrNumberMessage("notError");
+    setErrorPasswordMessage("notError");
   }, [type]);
 
   const handleSubmit = () => {
@@ -60,25 +63,30 @@ export const LoginForm: FC<props> = ({  }) => {
   return (
     <>
       <Gapped className={styles.screen} vertical verticalAlign="middle">
-        <Gapped gap="16px" vertical verticalAlign="middle">
-          <Gapped gap="0px" vertical verticalAlign="middle">
+        <Gapped
+          className={styles.center}
+          gap="16px"
+          vertical
+          verticalAlign="middle"
+        >
+          <Gapped
+            gap="0px"
+            vertical
+            verticalAlign="middle"
+            style={{ display: "flex", width: "100%" }}
+          >
             <Gapped
               className={styles.wrap}
               vertical
               gap="16px"
               verticalAlign="middle"
-              style={{
-                paddingTop: "40px",
-                paddingBottom: "16px",
-                paddingLeft: "40px",
-                paddingRight: "40px",
-              }}
             >
               <Gapped
                 className={styles.headerWrap}
                 gap="24px"
                 verticalAlign="middle"
                 vertical
+                style={{ display: "flex", width: "100%" }}
               >
                 <Gapped
                   vertical
@@ -86,7 +94,7 @@ export const LoginForm: FC<props> = ({  }) => {
                   alignItems="center"
                   gap="8px"
                 >
-                  <div    className={styles.logo} style={{ textAlign: "center" }}>
+                  <div className={styles.logo} style={{ textAlign: "center" }}>
                     <Image
                       src={myOlimpLogo}
                       alt="logo"
@@ -102,13 +110,18 @@ export const LoginForm: FC<props> = ({  }) => {
                   vertical
                   verticalAlign="middle"
                   gap="24px"
-                  style={{ marginBottom: "16px" }}
+                  style={{
+                    marginBottom: "16px",
+                    display: "flex",
+                    width: "100%",
+                  }}
                 >
                   <Gapped
                     className={styles.inputWrap}
                     vertical
                     verticalAlign="middle"
                     gap="24px"
+                    style={{ display: "flex", width: "100%" }}
                   >
                     <AuthInputLabel
                       mail={type === "mail"}
@@ -118,8 +131,7 @@ export const LoginForm: FC<props> = ({  }) => {
                       setText={setMailOrNumber}
                       errorMessage={errorMailOrNumberMessage}
                       setErrorMessage={setErrorMailOrNumberMessage}
-                      maxLength={type === 'number' ? 11 : 30}
-                     
+                      maxLength={type === "number" ? 11 : 30}
                     />
                     <AuthInputLabel
                       password={true}
@@ -135,7 +147,7 @@ export const LoginForm: FC<props> = ({  }) => {
                   </Gapped>
                   <AuthButton
                     type="register"
-                    width="medium"
+                    width="fit-content"
                     height="medium"
                     use={isButtonDisabled}
                     onClick={handleSubmit}

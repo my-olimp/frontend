@@ -7,8 +7,8 @@ interface props {
   isLoading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   use?: "active" | "disabled";
-  width: "small" | "medium" | "large"; // 320px | 368px | 412px
-  height: "small" | "medium" | "large"; // 32 | 40 px | 44 px
+  width: "small" | "medium" | "large" | "fit-content"; // 320px | 368px | 412px
+  height: "small" | "medium" | "large" | "fit-content"; // 32 | 40 px | 44 px
   type?: "auth" | "register" | "next"; // black | black | blue (colors)
   btnStyle?: CSSProperties | undefined;
 }
@@ -21,7 +21,7 @@ export const AuthButton: FC<props> = ({
   width = "100%",
   height = "40px",
   type,
-  btnStyle
+  btnStyle,
 }) => {
   const [hover, setHover] = useState<boolean>(false);
   const isDisable = (use: string): boolean => {
@@ -44,6 +44,8 @@ export const AuthButton: FC<props> = ({
           ? "368px"
           : width === "large"
           ? "412px"
+          : width === "fit-content"
+          ? "100%"
           : null,
       height:
         height === "small"
@@ -52,6 +54,8 @@ export const AuthButton: FC<props> = ({
           ? "40px"
           : height === "large"
           ? "44px"
+          : width === "fit-content"
+          ? "100%"
           : null,
       background:
         type === "auth" || (type === "register" && !isDisable(use))
@@ -69,7 +73,7 @@ export const AuthButton: FC<props> = ({
         ? "#FFF"
         : null,
       cursor: isDisable(use) ? "not-allowed" : "pointer",
-      ...btnStyle
+      ...btnStyle,
     },
   };
 
