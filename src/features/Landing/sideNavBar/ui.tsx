@@ -19,7 +19,7 @@ export const SideNavBar: FC<props> = ({ show }) => {
     <div className={styles.wrap} style={style.wrap}>
       <SideBarElement>Преимущества</SideBarElement>
       <SideBarElement>О Проекте</SideBarElement>
-      <SideBarElement>Войти</SideBarElement>
+      <SideBarElement link="/signin">Войти</SideBarElement>
       <NavBarButton>Присоединиться</NavBarButton>
     </div>
   );
