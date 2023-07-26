@@ -6,16 +6,15 @@ import { AuthButton } from '@/entities/buttons/authButton';
 import { LoginHelp } from '@/features/authHelp/LoginHelp';
 import { Input } from '@/entities/input';
 import { useEventListener } from 'usehooks-ts';
-import { RefObject } from 'react';
+
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
-
-    const first = useRef<RefObject<Document>>(null);
+    const first = useRef<HTMLInputElement>(null);
     const second = useRef<HTMLInputElement>(null);
     const third = useRef<HTMLInputElement>(null);
     const fourth = useRef<HTMLInputElement>(null);
-  
+
     const mail: string = 'aaaaaa@gmail.com';
     const number: string = '+71111111111';
 
@@ -35,11 +34,15 @@ export const ConfirmationForm: FC<props> = ({}) => {
             setButtonDisabled('disabled');
         }
     }
-
+    //@ts-ignore
     useEventListener('input', setButtonActive, first.current);
+    //@ts-ignore
     useEventListener('input', setButtonActive, second.current);
+    //@ts-ignore
     useEventListener('input', setButtonActive, third.current);
+    //@ts-ignore
     useEventListener('input', setButtonActive, fourth.current);
+
     const handleSubmit = (): void => {
         console.log(
             first.current?.value,
