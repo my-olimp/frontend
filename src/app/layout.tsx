@@ -1,5 +1,6 @@
 import { ReduxProvider } from '@/store/provider';
 import './globals.scss';
+import { ReactNode } from 'react';
 
 export const metadata = {
     title: 'MyOlimp',
@@ -9,7 +10,7 @@ export const metadata = {
     },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="ru">
             <link rel="icon" href="/icon.ico" sizes="any" />

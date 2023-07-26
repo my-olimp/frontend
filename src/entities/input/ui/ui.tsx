@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, FormEvent, RefObject } from 'react';
+import React, { CSSProperties, FC, FormEvent, RefObject, useEffect, useState } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
@@ -22,7 +22,12 @@ export const Input: FC<props> = ({
     type = 'text',
     handleInput = () => {},
 }) => {
+    const [disabled, setDisabled] = useState<boolean>(true);
+    useEffect(() => {
+        setDisabled(false);
+    }, []);
     const style: CSSProperties = {
+        backgroundColor: disabled ? '#efefef' : 'white',
         width: `${width}px`,
         height: `${height}px`,
         fontSize: `${fontSize}px`,
@@ -36,6 +41,7 @@ export const Input: FC<props> = ({
                 style={style}
                 className={styles.input}
                 maxLength={maxLength}
+                disabled={disabled}
                 onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event, inputRef)}
             />
         </>

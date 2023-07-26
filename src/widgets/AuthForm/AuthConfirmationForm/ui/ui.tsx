@@ -1,9 +1,7 @@
-import { FC, FormEvent, RefObject, useRef, useState } from 'react';
+import { FC, FormEvent, KeyboardEvent, RefObject, useRef, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
-import { AuthButton } from '@/entities/buttons/authButton';
-import { LoginHelp } from '@/features/authHelp/LoginHelp';
 import { Input } from '@/entities/input';
 import { useEventListener } from 'usehooks-ts';
 
@@ -18,41 +16,46 @@ export const ConfirmationForm: FC<props> = ({}) => {
     const mail: string = 'aaaaaa@gmail.com';
     const number: string = '+71111111111';
 
-    const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled');
-
     const [type, setType] = useState<'mail' | 'number'>('mail');
 
-    function setButtonActive() {
-        if (
-            first.current?.value.length !== 0 &&
-            second.current?.value.length !== 0 &&
-            third.current?.value.length !== 0 &&
-            fourth.current?.value.length !== 0
-        ) {
-            setButtonDisabled('active');
+    const setButtonActive = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (isNaN(parseInt(event.key))) {
+            if (event.key === 'Backspace' || event.key === 'Delete') {
+                const input = event.target as HTMLInputElement;
+                if (input.value !== '') {
+                    input.value = '';
+                }
+            }
         } else {
-            setButtonDisabled('disabled');
-        }
+            if (
+                first.current?.value !== '' &&
+                second.current?.value !== '' &&
+                third.current?.value !== '' &&
+                fourth.current?.value !== ''
+            ) {
+                handleSubmit();
+            }
 
-        if (first.current?.value !== '') {
-            second.current?.focus();
+            if (first.current?.value !== '') {
+                second.current?.focus();
+            }
+            if (second.current?.value !== '') {
+                third.current?.focus();
+            }
+            if (third.current?.value !== '') {
+                fourth.current?.focus();
+            }
         }
-        if (second.current?.value !== '') {
-            third.current?.focus();
-        }
-        if (third.current?.value !== '') {
-            fourth.current?.focus();
-        }
-    }
+    };
 
     //@ts-ignore
-    useEventListener('input', setButtonActive, first.current);
+    useEventListener('keydown', (event) => setButtonActive(event), first.current);
     //@ts-ignore
-    useEventListener('input', setButtonActive, second.current);
+    useEventListener('keydown', (event) => setButtonActive(event), second.current);
     //@ts-ignore
-    useEventListener('input', setButtonActive, third.current);
+    useEventListener('keydown', (event) => setButtonActive(event), third.current);
     //@ts-ignore
-    useEventListener('input', setButtonActive, fourth.current);
+    useEventListener('keydown', (event) => setButtonActive(event), fourth.current);
 
     const handleInput = (
         event: FormEvent<HTMLInputElement>,
@@ -158,19 +161,10 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         verticalAlign="middle"
                                         gap="24px"
                                         style={{ display: 'flex', width: '100%' }}></Gapped>
-                                    <AuthButton
-                                        type="register"
-                                        width="fit-content"
-                                        height="medium"
-                                        use={isButtonDisabled}
-                                        onClick={handleSubmit}>
-                                        Подтвердить
-                                    </AuthButton>
                                 </Gapped>
                             </Gapped>
                         </Gapped>
                     </Gapped>
-                    <LoginHelp />
                 </Gapped>
             </Gapped>
         </>
