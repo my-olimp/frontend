@@ -1,6 +1,6 @@
-import { AuthInput } from '@/entities/authInput';
 import { FC, useEffect, useState } from 'react';
 import styles from './ui.module.scss';
+import { AuthInput } from '@/entities/authInput';
 
 interface props {
     inputName: string;

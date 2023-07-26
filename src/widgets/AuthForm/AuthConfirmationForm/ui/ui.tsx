@@ -42,19 +42,22 @@ export const ConfirmationForm: FC<props> = ({}) => {
                         gap="0px"
                         vertical
                         verticalAlign="middle"
-                        style={{ display: 'flex', width: '100%' }}>
+                        style={{ display: 'flex', width: '100%' }}
+                    >
                         <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
                             <Gapped
                                 className={styles.headerWrap}
                                 gap="24px"
                                 verticalAlign="middle"
                                 vertical
-                                style={{ display: 'flex', width: '100%' }}>
+                                style={{ display: 'flex', width: '100%' }}
+                            >
                                 <Gapped
                                     vertical
                                     verticalAlign="middle"
                                     alignItems="center"
-                                    gap="8px">
+                                    gap="8px"
+                                >
                                     <Logo />
                                     <h4 className={styles.text}>
                                         Подтверждение{' '}
@@ -74,19 +77,22 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         marginBottom: '16px',
                                         display: 'flex',
                                         width: '100%',
-                                    }}>
+                                    }}
+                                >
                                     <Gapped
                                         className={styles.inputWrap}
                                         vertical
                                         verticalAlign="middle"
                                         gap="24px"
-                                        style={{ display: 'flex', width: '100%' }}></Gapped>
+                                        style={{ display: 'flex', width: '100%' }}
+                                    ></Gapped>
                                     <AuthButton
                                         type="register"
                                         width="fit-content"
                                         height="medium"
                                         use={isButtonDisabled}
-                                        onClick={handleSubmit}>
+                                        onClick={handleSubmit}
+                                    >
                                         Подтвердить
                                     </AuthButton>
                                 </Gapped>
