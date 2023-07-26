@@ -31,7 +31,7 @@ export const NavBarDesktop = ({}) => {
                 </div>
                 <div className="blockRight">
                     <NavBarText link="/signin">Войти</NavBarText>
-                    <NavBarButton>Присоедениться</NavBarButton>
+                    <NavBarButton>Присоединиться</NavBarButton>
                 </div>
             </header>
         </div>

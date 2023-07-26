@@ -3,14 +3,7 @@ import eyeCloseIconRed from '../../../../public/auth/eyeCloseRed.svg';
 import eyeCloseIcon from '../../../../public/auth/eyeClose.svg';
 import eyeOpenIconRed from '../../../../public/auth/eyeOpenRed.svg';
 import eyeOpenIcon from '../../../../public/auth/eyeOpen.svg';
-import React, {
-    FC,
-    FormEvent,
-    useState,
-    ChangeEvent,
-    FocusEvent,
-    KeyboardEvent,
-} from 'react';
+import React, { FC, FormEvent, useState, ChangeEvent, FocusEvent, KeyboardEvent } from 'react';
 import validateEmail from '../lib/validate/validateEmail';
 import validatePassword from '../lib/validate/validatePassword';
 import styles from './ui.module.scss';
@@ -87,43 +80,26 @@ export const AuthInput: FC<props> = ({
         const text = input.value;
         const textLength = text.length;
 
-
-
         input.setSelectionRange(textLength + 2, textLength + 2);
-        console.log(textLength);
+
         if (!password && textLength <= 18) {
             setText(text);
             const input = event.target as HTMLInputElement;
 
             setText(text);
-            console.log(text);
         }
 
         if (password && setSecure) {
             setText(text);
             setSecure(validatePassword(text));
         }
-        if (passwordSignInMode) {
+        if (passwordSignInMode ) {
             const tested = text.match(/^[!@#$%^\w]+$/);
             if (tested) {
                 setText(text);
             } else {
                 setErrorMessage(
-                    'Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
-                );
-            }
-        }
-        if (password && setSecure) {
-            setText(text);
-            setSecure(validatePassword(text));
-        }
-        if (passwordSignInMode) {
-            const tested = text.match(/^[!@#$%^\w]+$/);
-            if (tested) {
-                setText(text);
-            } else {
-                setErrorMessage(
-                    'Пароль может состоять только из букв английского алфавита верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
+                    'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
                 );
             }
         }
