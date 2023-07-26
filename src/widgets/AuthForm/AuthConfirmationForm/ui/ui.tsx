@@ -1,37 +1,51 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
 import { AuthButton } from '@/entities/buttons/authButton';
 import { LoginHelp } from '@/features/authHelp/LoginHelp';
+import { Input } from '@/entities/input';
+import { useEventListener } from 'usehooks-ts';
 
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
-    const [first, setFirst] = useState('');
-    const [second, setSecond] = useState('');
-    const [third, setThird] = useState('');
-    const [fourth, setFourth] = useState('');
+    const first = useRef<HTMLInputElement>(null);
+    const second = useRef<HTMLInputElement>(null);
+    const third = useRef<HTMLInputElement>(null);
+    const fourth = useRef<HTMLInputElement>(null);
+
     const mail: string = 'aaaaaa@gmail.com';
     const number: string = '+71111111111';
+
     const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled');
 
     const [type, setType] = useState<'mail' | 'number'>('mail');
 
-    useEffect((): void => {
+    function setButtonActive() {
         if (
-            first.length !== 0 &&
-            second.length !== 0 &&
-            third.length !== 0 &&
-            fourth.length !== 0
+            first.current?.value.length !== 0 &&
+            second.current?.value.length !== 0 &&
+            third.current?.value.length !== 0 &&
+            fourth.current?.value.length !== 0
         ) {
             setButtonDisabled('active');
         } else {
             setButtonDisabled('disabled');
         }
-    }, [first, second, third, fourth]);
+    }
+
+    useEventListener('input', setButtonActive, first.current);
+    useEventListener('input', setButtonActive, second.current);
+    useEventListener('input', setButtonActive, third.current);
+    useEventListener('input', setButtonActive, fourth.current);
     const handleSubmit = (): void => {
-        console.log(first, second, third, fourth);
+        console.log(
+            first.current?.value,
+            second.current?.value,
+            third.current?.value,
+            fourth.current?.value,
+        );
     };
 
     return (
@@ -42,22 +56,19 @@ export const ConfirmationForm: FC<props> = ({}) => {
                         gap="0px"
                         vertical
                         verticalAlign="middle"
-                        style={{ display: 'flex', width: '100%' }}
-                    >
+                        style={{ display: 'flex', width: '100%' }}>
                         <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
                             <Gapped
                                 className={styles.headerWrap}
                                 gap="24px"
                                 verticalAlign="middle"
                                 vertical
-                                style={{ display: 'flex', width: '100%' }}
-                            >
+                                style={{ display: 'flex', width: '100%' }}>
                                 <Gapped
                                     vertical
                                     verticalAlign="middle"
                                     alignItems="center"
-                                    gap="8px"
-                                >
+                                    gap="8px">
                                     <Logo />
                                     <h4 className={styles.text}>
                                         Подтверждение{' '}
@@ -70,29 +81,63 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                     </h4>
                                 </Gapped>
                                 <Gapped
-                                    vertical
-                                    verticalAlign="middle"
+                                    vertical={false}
                                     gap="24px"
                                     style={{
                                         marginBottom: '16px',
                                         display: 'flex',
                                         width: '100%',
-                                    }}
-                                >
+                                        gap: '8px',
+                                        justifyContent: 'center',
+                                    }}>
+                                    <Input
+                                        inputRef={first}
+                                        width={56}
+                                        height={63}
+                                        fontSize={32}
+                                        center={true}
+                                        maxLength={1}
+                                        type={'number'}
+                                    />
+                                    <Input
+                                        inputRef={second}
+                                        width={56}
+                                        height={63}
+                                        fontSize={32}
+                                        center={true}
+                                        maxLength={1}
+                                        type={'number'}
+                                    />
+                                    <Input
+                                        inputRef={third}
+                                        width={56}
+                                        height={63}
+                                        fontSize={32}
+                                        center={true}
+                                        maxLength={1}
+                                        type={'number'}
+                                    />
+                                    <Input
+                                        inputRef={fourth}
+                                        width={56}
+                                        height={63}
+                                        fontSize={32}
+                                        center={true}
+                                        maxLength={1}
+                                        type={'number'}
+                                    />
                                     <Gapped
                                         className={styles.inputWrap}
                                         vertical
                                         verticalAlign="middle"
                                         gap="24px"
-                                        style={{ display: 'flex', width: '100%' }}
-                                    ></Gapped>
+                                        style={{ display: 'flex', width: '100%' }}></Gapped>
                                     <AuthButton
                                         type="register"
                                         width="fit-content"
                                         height="medium"
                                         use={isButtonDisabled}
-                                        onClick={handleSubmit}
-                                    >
+                                        onClick={handleSubmit}>
                                         Подтвердить
                                     </AuthButton>
                                 </Gapped>

@@ -2,62 +2,58 @@ $bgScreenColor: #f2f2f2;
 $bgFormColor: #fff;
 
 .wrap {
-    display: block;
-    border-radius: 10px;
-    background-color: $bgFormColor;
-    min-width: 460px;
-    max-width: 460px;
-    height: auto;
-    padding: 40px 40px 16px;
-    @media screen and (max-width: 500px) {
-        display: flex !important;
-        min-width: 400px;
-    }
-    @media screen and (max-width: 420px) {
-        display: flex !important;
-        min-width: 350px;
-    }
-    @media screen and (max-width: 360px) {
-        display: flex !important;
-        min-width: auto;
-        width: 100%;
-        padding: 32px 32px 16px 32px;
-    }
+  display: block;
+  border-radius: 10px;
+  background-color: $bgFormColor;
+  min-width: 460px;
+  max-width: 460px;
+  height: auto;
+  padding: 40px 40px 16px;
+  @media screen and (max-width: 500px) {
+    display: flex !important;
+    min-width: 400px;
+  }
+  @media screen and (max-width: 420px) {
+    display: flex !important;
+    min-width: 350px;
+  }
+  @media screen and (max-width: 360px) {
+    display: flex !important;
+    min-width: auto;
+    width: 100%;
+    padding: 32px 32px 16px 32px;
+  }
 }
 
 .mobile_version {
-    width: auto;
-    display: flex;
+  width: auto;
+  display: flex;
 }
 
 .screen {
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background-color: $bgScreenColor;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: $bgScreenColor;
 }
 
 .header {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 .text {
-    font-size: 16px;
-    font-family: 'SF_SemiBold', sans-serif;
-    width: 254px;
-    text-align: center;
+  font-size: 16px;
+  font-family: 'SF_SemiBold', sans-serif;
+  width: 254px;
+  text-align: center;
 }
 
 .subTitle {
-    text-align: center;
-    font-size: 14px;
-    font-weight: normal;
+  text-align: center;
+  font-size: 14px;
+  font-weight: normal;
+  width: 328px;
 }
 
-.inputWrap {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-}
