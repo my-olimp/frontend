@@ -1,3 +1,4 @@
+import { ReduxProvider } from '@/store/provider';
 import './globals.scss';
 
 export const metadata = {
@@ -12,7 +13,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="ru">
             <link rel="icon" href="/icon.ico" sizes="any" />
-            <body>{children}</body>
+            <body>
+                <ReduxProvider>{children}</ReduxProvider>
+            </body>
         </html>
     );
 }
