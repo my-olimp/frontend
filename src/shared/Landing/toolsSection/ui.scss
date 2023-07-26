@@ -27,9 +27,9 @@ $accentColor: #3579f8;
     line-height: normal;
 
     margin-bottom: 16px;
-    
+
     text-align: left;
-  
+
     &::after {
         display: block;
         width: 0;
@@ -41,7 +41,8 @@ $accentColor: #3579f8;
 
     &:hover::after,
     &:focus::after {
-        width: 40px;
+        width: 100%;
+        transition: width 0.5s ease-out;
     }
 }
 
