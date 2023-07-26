@@ -19,10 +19,7 @@ export default function validatePassword(password: string) {
         password.match(/^(?=.*[a-z!@#$%^&*])[^A-Z\d]+$/) ||
         password.match(/^[\d!@#$%^&*]+$/) ||
         password.match(/^[a-zA-Z]+$/) ||
-        (password.match(/123/) &&
-            password.length > 6 &&
-            password.length < 8 &&
-            !password.match(/^\d+$/))
+        (password.match(/123/) && password.length < 8 && !password.match(/^\d+$/))
     ) {
         return 'Средний пароль';
     }
