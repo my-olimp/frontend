@@ -45,20 +45,32 @@ export const LinkButton: FC<PropsType> = ({
         },
         imgStyle: {
             transition: transition ? transition : '0',
+            color:
+                hover && !hoverColor
+                    ? '#3579F8'
+                    : hover && hoverColor
+                    ? hoverColor
+                    : color && !hover
+                    ? color
+                    : '#222',
         },
     };
 
     return (
         <>
-            <Link className={styles.wrap} href={link ? link : ''}>
+            <Link
+                onMouseOver={() => setHover(true)}
+                onMouseOut={() => setHover(false)}
+                style={style.buttonStyle}
+                className={styles.wrap}
+                href={link ? link : ''}>
                 <button
                     type="button"
                     onMouseOver={() => setHover(true)}
                     onMouseOut={() => setHover(false)}
                     className={styles.button}
                     style={style.buttonStyle}
-                    onClick={onClick}
-                >
+                    onClick={onClick}>
                     {children}
                 </button>
                 {icon ? (
@@ -66,6 +78,8 @@ export const LinkButton: FC<PropsType> = ({
                         className={styles.icon}
                         src={hover ? iconIsHover : icon}
                         alt="icon"
+                        onMouseOver={() => setHover(true)}
+                        onMouseOut={() => setHover(false)}
                         width={iconWidth}
                         height={iconHeight}
                         style={style.imgStyle}
