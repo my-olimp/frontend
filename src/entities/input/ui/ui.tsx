@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, RefObject } from 'react';
+import React, { CSSProperties, FC, FormEvent, RefObject } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
@@ -9,6 +9,7 @@ interface props {
     center?: boolean;
     maxLength?: number;
     type?: string;
+    handleInput?: (event: FormEvent<HTMLInputElement>, input: RefObject<HTMLInputElement>) => void;
 }
 
 export const Input: FC<props> = ({
@@ -19,6 +20,7 @@ export const Input: FC<props> = ({
     center = false,
     maxLength,
     type = 'text',
+    handleInput = () => {},
 }) => {
     const style: CSSProperties = {
         width: `${width}px`,
@@ -34,6 +36,7 @@ export const Input: FC<props> = ({
                 style={style}
                 className={styles.input}
                 maxLength={maxLength}
+                onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event, inputRef)}
             />
         </>
     );

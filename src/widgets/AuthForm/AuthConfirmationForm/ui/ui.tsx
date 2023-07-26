@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { FC, FormEvent, RefObject, useRef, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
@@ -33,7 +33,18 @@ export const ConfirmationForm: FC<props> = ({}) => {
         } else {
             setButtonDisabled('disabled');
         }
+
+        if (first.current?.value !== '') {
+            second.current?.focus();
+        }
+        if (second.current?.value !== '') {
+            third.current?.focus();
+        }
+        if (third.current?.value !== '') {
+            fourth.current?.focus();
+        }
     }
+
     //@ts-ignore
     useEventListener('input', setButtonActive, first.current);
     //@ts-ignore
@@ -43,13 +54,25 @@ export const ConfirmationForm: FC<props> = ({}) => {
     //@ts-ignore
     useEventListener('input', setButtonActive, fourth.current);
 
-    const handleSubmit = (): void => {
-        console.log(
-            first.current?.value,
-            second.current?.value,
-            third.current?.value,
-            fourth.current?.value,
+    const handleInput = (
+        event: FormEvent<HTMLInputElement>,
+        input: RefObject<HTMLInputElement>,
+    ): void => {
+        const numericValue: string = (event.target as HTMLInputElement).value.replace(
+            /[^0-9]/g,
+            '',
         );
+        if (numericValue.length < 1) {
+            if (input.current !== null) {
+                input.current.value = numericValue;
+            }
+        }
+    };
+
+    const handleSubmit = (): void => {
+        const total: string | undefined =
+            `${first.current?.value}${second.current?.value}${third.current?.value}${fourth.current?.value}`.trim();
+        console.log(total);
     };
 
     return (
@@ -100,8 +123,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         height={63}
                                         fontSize={32}
                                         center={true}
-                                        maxLength={1}
-                                        type={'number'}
+                                        handleInput={handleInput}
                                     />
                                     <Input
                                         inputRef={second}
@@ -110,7 +132,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         fontSize={32}
                                         center={true}
                                         maxLength={1}
-                                        type={'number'}
+                                        handleInput={handleInput}
                                     />
                                     <Input
                                         inputRef={third}
@@ -119,7 +141,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         fontSize={32}
                                         center={true}
                                         maxLength={1}
-                                        type={'number'}
+                                        handleInput={handleInput}
                                     />
                                     <Input
                                         inputRef={fourth}
@@ -128,7 +150,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         fontSize={32}
                                         center={true}
                                         maxLength={1}
-                                        type={'number'}
+                                        handleInput={handleInput}
                                     />
                                     <Gapped
                                         className={styles.inputWrap}
