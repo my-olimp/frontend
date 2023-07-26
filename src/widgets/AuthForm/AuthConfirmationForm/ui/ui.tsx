@@ -6,15 +6,16 @@ import { AuthButton } from '@/entities/buttons/authButton';
 import { LoginHelp } from '@/features/authHelp/LoginHelp';
 import { Input } from '@/entities/input';
 import { useEventListener } from 'usehooks-ts';
-
+import { RefObject } from 'react';
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
-    const first = useRef<HTMLInputElement>(null);
+
+    const first = useRef<RefObject<Document>>(null);
     const second = useRef<HTMLInputElement>(null);
     const third = useRef<HTMLInputElement>(null);
     const fourth = useRef<HTMLInputElement>(null);
-
+  
     const mail: string = 'aaaaaa@gmail.com';
     const number: string = '+71111111111';
 
