@@ -3,7 +3,7 @@ $bgFormColor: #fff;
 
 .wrap {
   display: block;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0 0;
   background-color: $bgFormColor;
   min-width: 460px;
   max-width: 460px;
@@ -58,8 +58,7 @@ $bgFormColor: #fff;
   width: 328px;
 }
 
-
-.confTime{
+.confTime {
   margin-top: auto;
-margin-bottom: 8px;
+  margin-bottom: 8px;
 }

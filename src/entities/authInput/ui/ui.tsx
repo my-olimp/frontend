@@ -183,7 +183,8 @@ export const AuthInput: FC<props> = ({
                     onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
                     onFocus={() => handleFocus()}
                     style={style.input}
-                    onKeyDown={(event) => handleKeyDown(event)}>
+                    onKeyDown={(event) => handleKeyDown(event)}
+                >
                     <input
                         style={style.input}
                         className={styles.input}
@@ -215,7 +216,8 @@ export const AuthInput: FC<props> = ({
                 onClick={() => {
                     setInputType(inputType === 'text' ? 'password' : 'text');
                     setEyeOpen(!isEyeOpen);
-                }}>
+                }}
+            >
                 <i style={style.icon} className={styles.icon} draggable="false" />
             </div>
         </div>

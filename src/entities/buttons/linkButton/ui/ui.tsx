@@ -65,14 +65,16 @@ export const LinkButton: FC<PropsType> = ({
                 onMouseOut={() => setHover(false)}
                 style={style.buttonStyle}
                 className={styles.wrap}
-                href={link ? link : ''}>
+                href={link ? link : ''}
+            >
                 <button
                     type="button"
                     onMouseOver={() => setHover(true)}
                     onMouseOut={() => setHover(false)}
                     className={`${styles.button}  ${buttonClassName}`}
                     style={style.buttonStyle}
-                    onClick={onClick}>
+                    onClick={onClick}
+                >
                     {children}
                 </button>
                 {icon ? (

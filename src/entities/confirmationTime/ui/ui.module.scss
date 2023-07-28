@@ -1,20 +1,20 @@
 .button {
-    text-align: center;
-    background-color: transparent;
-    font-family: 'SF_Regular';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    &:hover {
-        cursor: pointer;
-        color: #3579f8;
-    }
+  text-align: center;
+  background-color: transparent;
+  font-family: "SF_Regular", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  &:hover {
+    cursor: pointer;
+    color: #3579f8;
+  }
 }
 
 .wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,4 +1,4 @@
-import { FC, FormEvent, KeyboardEvent, RefObject, useRef, useState } from 'react';
+import { FC, FormEvent, KeyboardEvent, RefObject, useRef } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
@@ -7,6 +7,7 @@ import { useEventListener } from 'usehooks-ts';
 import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
 import { useAppSelector } from '@/store/store';
+
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
@@ -17,7 +18,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
     const mail: string = useAppSelector((state) => state.authReducer.value.mailOrPhone);
     const number: string = useAppSelector((state) => state.authReducer.value.mailOrPhone);
     const type: string = useAppSelector((state) => state.authReducer.value.type);
-   
+
     const setButtonActive = (event: KeyboardEvent<HTMLInputElement>) => {
         if (isNaN(parseInt(event.key))) {
             if (event.key === 'Backspace' || event.key === 'Delete') {

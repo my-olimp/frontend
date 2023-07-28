@@ -8,11 +8,13 @@ import { RegisterRulesAccept } from '@/entities/registerRulesAccept';
 import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
-import { mailOrNumberData, typeData } from '@/store/features/auth-slice';
+import { mailOrNumberData } from '@/store/features/auth-slice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import { useRouter } from 'next/navigation';
+
 interface props {}
+
 export const RegisterForm: FC<props> = ({}) => {
     const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] = useState<string>('notError');
     const [errorPasswordMessage, setErrorPasswordMessage] = useState<string>('notError');
@@ -24,7 +26,7 @@ export const RegisterForm: FC<props> = ({}) => {
     const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled');
     const dispatch = useDispatch<AppDispatch>();
     const [type, setType] = useState<'mail' | 'number'>('mail');
-const router = useRouter();
+    const router = useRouter();
     useEffect(() => {
         if (
             mailOrNumber.length !== 0 &&
@@ -59,9 +61,8 @@ const router = useRouter();
     }, [type]);
 
     const handleSubmit = () => {
-
-        dispatch(mailOrNumberData(mailOrNumber))
-        router.push('/confirmation')
+        dispatch(mailOrNumberData(mailOrNumber));
+        router.push('/confirmation');
         console.log(mailOrNumber);
         console.log(passwordValue);
         console.log(type);
@@ -128,7 +129,6 @@ const router = useRouter();
                                     type="register"
                                     width="medium"
                                     height="medium"
-                                    
                                     btnStyle={{ width: '100%' }}
                                     use={isButtonDisabled}
                                     onClick={handleSubmit}>
