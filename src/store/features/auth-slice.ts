@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { WritableDraft } from 'immer/src/types/types-external';
 
 type InitialState = {
     value: AuthState;
@@ -20,28 +21,31 @@ const initialState = {
     } as AuthState,
 } as InitialState;
 
+interface mailOrNumberPayload {
+    mailOrPhone: string;
+    type: string;
+}
+
 export const auth = createSlice({
     name: 'auth',
     initialState: initialState,
     reducers: {
-        mailOrNumberData: (state, action: PayloadAction<string>) => {
+        mailOrNumberData: (
+            state: WritableDraft<InitialState>,
+            action: PayloadAction<mailOrNumberPayload>,
+        ) => {
             return {
                 value: {
                     userId: '1',
-                    mailOrPhone: action.payload,
+                    isAuth: state.value.isAuth,
+                    mailOrPhone: action.payload.mailOrPhone,
+                    type: action.payload.type,
                 },
             };
         },
-        typeData: (state, action: PayloadAction<string>) =>{
-            return{
-                value:{
-                 type: action.payload   
-                }
-            }
-        }
     },
 });
 
-export const { mailOrNumberData, typeData } = auth.actions;
+export const { mailOrNumberData } = auth.actions;
 
 export default auth.reducer;
