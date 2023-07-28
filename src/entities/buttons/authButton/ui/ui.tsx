@@ -1,6 +1,6 @@
 import ClipLoader from '@/shared/spinners/btnAuthSpinner/ui';
 import { CSSProperties, FC, MouseEventHandler, useState } from 'react';
-import './ui.scss';
+import styles from './ui.module.scss';
 
 interface props {
     children?: string;
@@ -27,7 +27,7 @@ export const AuthButton: FC<props> = ({
     const isDisable = (use: string): boolean => {
         return use === 'disabled';
     };
-    const buttonClassNameVariant: string = `button button-${use} ${
+    const buttonClassNameVariant: string = `${styles.button} button-${use} ${
         hover && use === 'active' && type !== 'next'
             ? 'isHover'
             : hover && use && type === 'next' && !isDisable(use)

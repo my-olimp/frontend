@@ -39,7 +39,6 @@ export const ScrollCards: FC = () => {
 
         const { isScrolling, clientX, scrollX } = state;
 
-        console.log(isScrolling);
         if (isScrolling) {
             ref.current.scrollLeft = scrollX + event.clientX - clientX;
             let sX = scrollX + event.clientX - clientX;
@@ -95,8 +94,7 @@ export const ScrollCards: FC = () => {
                 onMouseDown={onMouseDown}
                 onMouseUp={onMouseUp}
                 onMouseMove={onMouseMove}
-                className={styles.wrap}
-            >
+                className={styles.wrap}>
                 {Items.map((data: itemsType) => {
                     return (
                         <ScrollCard
