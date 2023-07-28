@@ -61,11 +61,13 @@ export const RegisterForm: FC<props> = ({}) => {
     }, [type]);
 
     const handleSubmit = () => {
-        dispatch(mailOrNumberData(mailOrNumber));
+        dispatch(
+            mailOrNumberData({
+                mailOrPhone: mailOrNumber,
+                type: type,
+            }),
+        );
         router.push('/confirmation');
-        console.log(mailOrNumber);
-        console.log(passwordValue);
-        console.log(type);
     };
 
     return (

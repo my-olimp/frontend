@@ -1,9 +1,8 @@
 import styles from './ui.module.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const ConfirmationTime = () => {
     const [seconds, setSeconds] = useState<number>(10);
-    const [buttonActive, setButtonActive] = useState<boolean>(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
