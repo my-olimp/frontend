@@ -1,5 +1,5 @@
 export default function validatePassword(password: string) {
-    if (!password.match(/^.*[a-zA-Z0-9!@#$%^&*].*$/)) {
+    if (!password.match(/^[a-zA-Z0-9!@#$%^&*]*$/)) {
         return 'Пароль может состоять только из английских букв верхнего и нижнего регистра, цифр, и специальных символов(!@#$%^&*).';
     }
     if (password.match(/\s/)) {
