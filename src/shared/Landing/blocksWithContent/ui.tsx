@@ -5,7 +5,6 @@ import Star from './../../../../public/landing/star.svg';
 import bigImg from './../../../../public/landing/bigImage.svg';
 
 export function Content() {
-    console.log(Phone);
     return (
         <>
             <div className={styles.wrapper}>
