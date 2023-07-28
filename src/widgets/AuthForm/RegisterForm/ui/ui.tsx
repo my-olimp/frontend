@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from 'react';
 import { AuthInputLabel } from '@/features/authInputLabel';
@@ -12,9 +14,7 @@ import { mailOrNumberData } from '@/store/features/auth-slice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import { useRouter } from 'next/navigation';
-
 interface props {}
-
 export const RegisterForm: FC<props> = ({}) => {
     const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] = useState<string>('notError');
     const [errorPasswordMessage, setErrorPasswordMessage] = useState<string>('notError');
