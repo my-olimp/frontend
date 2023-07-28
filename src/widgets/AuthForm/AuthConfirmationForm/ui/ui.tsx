@@ -24,6 +24,19 @@ export const ConfirmationForm: FC<props> = ({}) => {
                 const input = event.target as HTMLInputElement;
                 if (input.value !== '') {
                     input.value = '';
+                    if (input.id === '4') {
+                        setTimeout(() => {
+                            third.current?.focus();
+                        }, 0);
+                    } else if (input.id === '3'){
+                        setTimeout(() => {
+                            second.current?.focus();
+                        }, 0);
+                    } else if (input.id === '2'){
+                        setTimeout(() =>{
+                            first.current?.focus();
+                        })
+                    }
                 }
             }
         } else {
@@ -127,6 +140,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         fontSize={32}
                                         center={true}
                                         handleInput={handleInput}
+                                        id="1"
                                     />
                                     <Input
                                         inputRef={second}
@@ -136,6 +150,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         center={true}
                                         maxLength={1}
                                         handleInput={handleInput}
+                                        id="2"
                                     />
                                     <Input
                                         inputRef={third}
@@ -145,6 +160,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         center={true}
                                         maxLength={1}
                                         handleInput={handleInput}
+                                        id="3"
                                     />
                                     <Input
                                         inputRef={fourth}
@@ -154,6 +170,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         center={true}
                                         maxLength={1}
                                         handleInput={handleInput}
+                                        id="4"
                                     />
                                     <Gapped
                                         className={styles.inputWrap}

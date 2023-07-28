@@ -10,6 +10,7 @@ interface props {
     maxLength?: number;
     type?: string;
     handleInput?: (event: FormEvent<HTMLInputElement>, input: RefObject<HTMLInputElement>) => void;
+    id?: string;
 }
 
 export const Input: FC<props> = ({
@@ -21,6 +22,7 @@ export const Input: FC<props> = ({
     maxLength,
     type = 'text',
     handleInput = () => {},
+    id,
 }) => {
     const [disabled, setDisabled] = useState<boolean>(true);
     useEffect(() => {
@@ -36,6 +38,7 @@ export const Input: FC<props> = ({
     return (
         <>
             <input
+                id={id}
                 type={type}
                 ref={inputRef}
                 style={style}

@@ -23,6 +23,7 @@ interface props {
     passwordSignInMode: boolean;
     setErrorMessage: (message: string) => void;
     setSecure?: (secure: string) => void;
+    id?: string;
 }
 
 export const AuthInput: FC<props> = ({
@@ -38,6 +39,7 @@ export const AuthInput: FC<props> = ({
     text,
     setText,
     passwordSignInMode,
+    id,
 }) => {
     const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
     const [inputType, setInputType] = useState<'text' | 'password'>(password ? 'password' : 'text');
@@ -199,6 +201,7 @@ export const AuthInput: FC<props> = ({
                     name={inputName}
                     value={text}
                     type={inputType}
+                    id={id}
                     onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
                     onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setText(event.target.value)}
