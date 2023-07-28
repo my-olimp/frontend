@@ -1,5 +1,5 @@
 .button {
-    background-color: inherit;
+    background-color: transparent;
 
     cursor: pointer;
 }
@@ -12,4 +12,15 @@
     &::hover{
       color: #3579F8;
     }
+}
+
+
+.buttonText {
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: "SF_Medium";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }

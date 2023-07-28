@@ -9,11 +9,12 @@ interface PropsType {
     textSize?: string;
     icon?: any; // объект / ссылка
     iconIsHover?: any; // объект / ссылка
-    link: string; // example: "/home"
+    link?: string; // example: "/home"
     iconWidth?: number; // обязательно, если есть иконка | SafeNumber - специальный тип
     iconHeight?: number; // обязательно, если есть иконка | SafeNumber - специальный тип
     hoverColor?: string;
     transition?: string; // CSSProperty
+    buttonClassName?: string;
 }
 
 export const LinkButton: FC<PropsType> = ({
@@ -28,6 +29,7 @@ export const LinkButton: FC<PropsType> = ({
     iconWidth,
     transition,
     iconHeight,
+    buttonClassName,
 }) => {
     const [hover, setHover] = useState<boolean>(false);
     const style = {
@@ -68,7 +70,7 @@ export const LinkButton: FC<PropsType> = ({
                     type="button"
                     onMouseOver={() => setHover(true)}
                     onMouseOut={() => setHover(false)}
-                    className={styles.button}
+                    className={`${styles.button}  ${buttonClassName}`}
                     style={style.buttonStyle}
                     onClick={onClick}>
                     {children}

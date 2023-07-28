@@ -3,11 +3,12 @@ $bgFormColor: #fff;
 
 .wrap {
   display: block;
-  border-radius: 10px;
+  border-radius: 10px 10px 0px 0px;
   background-color: $bgFormColor;
   min-width: 460px;
   max-width: 460px;
   height: auto;
+  min-height: 480px;
   padding: 40px 40px 16px;
   @media screen and (max-width: 500px) {
     display: flex !important;
@@ -57,3 +58,8 @@ $bgFormColor: #fff;
   width: 328px;
 }
 
+
+.confTime{
+  margin-top: auto;
+margin-bottom: 8px;
+}

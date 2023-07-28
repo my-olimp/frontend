@@ -4,6 +4,8 @@ import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
 import { Input } from '@/entities/input';
 import { useEventListener } from 'usehooks-ts';
+import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
+import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
 
 interface props {}
 
@@ -28,14 +30,14 @@ export const ConfirmationForm: FC<props> = ({}) => {
                         setTimeout(() => {
                             third.current?.focus();
                         }, 0);
-                    } else if (input.id === '3'){
+                    } else if (input.id === '3') {
                         setTimeout(() => {
                             second.current?.focus();
                         }, 0);
-                    } else if (input.id === '2'){
-                        setTimeout(() =>{
+                    } else if (input.id === '2') {
+                        setTimeout(() => {
                             first.current?.focus();
-                        })
+                        });
                     }
                 }
             }
@@ -94,13 +96,17 @@ export const ConfirmationForm: FC<props> = ({}) => {
     return (
         <>
             <Gapped className={styles.screen} vertical verticalAlign="middle">
-                <Gapped className={styles.center} gap="16px" vertical verticalAlign="middle">
+                <Gapped className={styles.center} gap="0px" vertical verticalAlign="middle">
                     <Gapped
                         gap="0px"
                         vertical
                         verticalAlign="middle"
                         style={{ display: 'flex', width: '100%' }}>
-                        <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
+                        <Gapped
+                            className={styles.wrap}
+                            vertical
+                            verticalAlign="middle"
+                            style={{ zIndex: '99' }}>
                             <Gapped
                                 className={styles.headerWrap}
                                 gap="24px"
@@ -123,11 +129,11 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         его для завершения регистрации
                                     </h4>
                                 </Gapped>
+
                                 <Gapped
                                     vertical={false}
                                     gap="24px"
                                     style={{
-                                        marginBottom: '16px',
                                         display: 'flex',
                                         width: '100%',
                                         gap: '8px',
@@ -172,16 +178,19 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         handleInput={handleInput}
                                         id="4"
                                     />
-                                    <Gapped
-                                        className={styles.inputWrap}
-                                        vertical
-                                        verticalAlign="middle"
-                                        gap="24px"
-                                        style={{ display: 'flex', width: '100%' }}></Gapped>
                                 </Gapped>
+                                
                             </Gapped>
+                            <Gapped
+                                        className={styles.confTime}
+                                        verticalAlign="middle"
+                                        vertical
+                                        style={{ display: 'flex', width: '100%' }}>
+                                        <ConfirmationTime />
+                                    </Gapped>
                         </Gapped>
                     </Gapped>
+                    <RegisterHelp />
                 </Gapped>
             </Gapped>
         </>
