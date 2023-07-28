@@ -19,6 +19,7 @@ export default function validatePassword(password: string) {
         password.match(/^(?=.*[a-z!@#$%^&*])[^A-Z\d]+$/) ||
         password.match(/^[\d!@#$%^&*]+$/) ||
         password.match(/^[a-zA-Z]+$/) ||
+        password.match(/^[a-zA-Z!@#$%^&*]+$/) ||
         (password.match(/123/) && password.length < 8 && !password.match(/^\d+$/))
     ) {
         return 'Средний пароль';
@@ -30,5 +31,5 @@ export default function validatePassword(password: string) {
         return 'Надежный пароль';
     }
 
-    return 'Пароль может состоять только из английских букв верхнего и нижнего регистра, цифр, и специальных символов.';
+    return 'Пароль может состоять только из английских букв верхнего и нижнего регистра, цифр, и специальных символов(!@#$%^&*).';
 }
