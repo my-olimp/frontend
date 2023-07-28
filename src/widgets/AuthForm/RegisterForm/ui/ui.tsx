@@ -8,22 +8,23 @@ import { RegisterRulesAccept } from '@/entities/registerRulesAccept';
 import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
-
+import { mailOrNumberData, typeData } from '@/store/features/auth-slice';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/store/store';
+import { useRouter } from 'next/navigation';
 interface props {}
 export const RegisterForm: FC<props> = ({}) => {
     const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] = useState<string>('notError');
     const [errorPasswordMessage, setErrorPasswordMessage] = useState<string>('notError');
     const [errorSecondPasswordMessage, setErrorSecondPasswordMessage] =
         useState<string>('notError');
-
     const [mailOrNumber, setMailOrNumber] = useState<string>('');
     const [passwordValue, setPasswordValue] = useState<string>('');
     const [passwordSecondValue, setPasswordSecondValue] = useState<string>('');
-
     const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled');
-
+    const dispatch = useDispatch<AppDispatch>();
     const [type, setType] = useState<'mail' | 'number'>('mail');
-
+const router = useRouter();
     useEffect(() => {
         if (
             mailOrNumber.length !== 0 &&
@@ -58,8 +59,12 @@ export const RegisterForm: FC<props> = ({}) => {
     }, [type]);
 
     const handleSubmit = () => {
+
+        dispatch(mailOrNumberData(mailOrNumber))
+        router.push('/confirmation')
         console.log(mailOrNumber);
         console.log(passwordValue);
+        console.log(type);
     };
 
     return (
@@ -69,15 +74,13 @@ export const RegisterForm: FC<props> = ({}) => {
                     gap="0px"
                     vertical
                     verticalAlign="middle"
-                    style={{ display: 'flex', width: '100%' }}
-                >
+                    style={{ display: 'flex', width: '100%' }}>
                     <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
                         <Gapped
                             className={styles.headerWrap}
                             gap="24px"
                             verticalAlign="middle"
-                            vertical
-                        >
+                            vertical>
                             <Gapped vertical verticalAlign="middle" alignItems="center" gap="8px">
                                 <Logo />
                                 <h4 className={styles.text}>
@@ -91,8 +94,7 @@ export const RegisterForm: FC<props> = ({}) => {
                                 vertical
                                 verticalAlign="middle"
                                 gap="16px"
-                                style={{ display: 'flex', width: '100%' }}
-                            >
+                                style={{ display: 'flex', width: '100%' }}>
                                 <AuthInputLabel
                                     mail={type === 'mail'}
                                     number={type === 'number'}
@@ -126,10 +128,10 @@ export const RegisterForm: FC<props> = ({}) => {
                                     type="register"
                                     width="medium"
                                     height="medium"
+                                    
                                     btnStyle={{ width: '100%' }}
                                     use={isButtonDisabled}
-                                    onClick={handleSubmit}
-                                >
+                                    onClick={handleSubmit}>
                                     Зарегистрироваться
                                 </AuthButton>
                                 <RegisterRulesAccept />

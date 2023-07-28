@@ -6,7 +6,7 @@ import { Input } from '@/entities/input';
 import { useEventListener } from 'usehooks-ts';
 import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
-
+import { useAppSelector } from '@/store/store';
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
@@ -14,12 +14,10 @@ export const ConfirmationForm: FC<props> = ({}) => {
     const second = useRef<HTMLInputElement>(null);
     const third = useRef<HTMLInputElement>(null);
     const fourth = useRef<HTMLInputElement>(null);
-
-    const mail: string = 'aaaaaa@gmail.com';
-    const number: string = '+71111111111';
-
-    const [type, setType] = useState<'mail' | 'number'>('mail');
-
+    const mail: string = useAppSelector((state) => state.authReducer.value.mailOrPhone);
+    const number: string = useAppSelector((state) => state.authReducer.value.mailOrPhone);
+    const type: string = useAppSelector((state) => state.authReducer.value.type);
+   
     const setButtonActive = (event: KeyboardEvent<HTMLInputElement>) => {
         if (isNaN(parseInt(event.key))) {
             if (event.key === 'Backspace' || event.key === 'Delete') {
@@ -179,15 +177,14 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         id="4"
                                     />
                                 </Gapped>
-                                
                             </Gapped>
                             <Gapped
-                                        className={styles.confTime}
-                                        verticalAlign="middle"
-                                        vertical
-                                        style={{ display: 'flex', width: '100%' }}>
-                                        <ConfirmationTime />
-                                    </Gapped>
+                                className={styles.confTime}
+                                verticalAlign="middle"
+                                vertical
+                                style={{ display: 'flex', width: '100%' }}>
+                                <ConfirmationTime />
+                            </Gapped>
                         </Gapped>
                     </Gapped>
                     <RegisterHelp />
