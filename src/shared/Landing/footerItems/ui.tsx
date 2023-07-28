@@ -2,10 +2,10 @@ import styles from './ui.module.scss';
 import Link from 'next/link';
 import {
     FooterItemsFirst,
-    FooterItemsType,
+    FooterItemsFourth,
     FooterItemsSecond,
     FooterItemsThird,
-    FooterItemsFourth,
+    FooterItemsType,
 } from '@/widgets/Landing/footer/data/data';
 
 export const FooterItemsInfo = () => {
@@ -18,15 +18,12 @@ export const FooterItemsInfo = () => {
                         <div className={styles.item__links}>
                             {FooterItemsFirst.map((data: FooterItemsType) => {
                                 return (
-                                    <>
-                                        <Link
-                                            href={data.link}
-                                            className={styles.item__text}
-                                            key={data.id}
-                                        >
-                                            {data.text}
-                                        </Link>
-                                    </>
+                                    <Link
+                                        href={data.link}
+                                        className={styles.item__text}
+                                        key={data.id}>
+                                        {data.text}
+                                    </Link>
                                 );
                             })}
                         </div>
@@ -36,15 +33,12 @@ export const FooterItemsInfo = () => {
                         <div className={styles.item__links}>
                             {FooterItemsSecond.map((data: FooterItemsType) => {
                                 return (
-                                    <>
-                                        <Link
-                                            href={data.link}
-                                            className={styles.item__text}
-                                            key={data.id}
-                                        >
-                                            {data.text}
-                                        </Link>
-                                    </>
+                                    <Link
+                                        href={data.link}
+                                        className={styles.item__text}
+                                        key={data.id}>
+                                        {data.text}
+                                    </Link>
                                 );
                             })}
                         </div>
@@ -54,15 +48,12 @@ export const FooterItemsInfo = () => {
                         <div className={styles.item__links}>
                             {FooterItemsThird.map((data: FooterItemsType) => {
                                 return (
-                                    <>
-                                        <Link
-                                            href={data.link}
-                                            className={styles.item__text}
-                                            key={data.id}
-                                        >
-                                            {data.text}
-                                        </Link>
-                                    </>
+                                    <Link
+                                        href={data.link}
+                                        className={styles.item__text}
+                                        key={data.id}>
+                                        {data.text}
+                                    </Link>
                                 );
                             })}
                         </div>
@@ -72,15 +63,12 @@ export const FooterItemsInfo = () => {
                         <div className={styles.item__links}>
                             {FooterItemsFourth.map((data: FooterItemsType) => {
                                 return (
-                                    <>
-                                        <Link
-                                            href={data.link}
-                                            className={styles.item__text}
-                                            key={data.id}
-                                        >
-                                            {data.text}
-                                        </Link>
-                                    </>
+                                    <Link
+                                        href={data.link}
+                                        className={styles.item__text}
+                                        key={data.id}>
+                                        {data.text}
+                                    </Link>
                                 );
                             })}
                         </div>
