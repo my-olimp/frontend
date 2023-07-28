@@ -18,7 +18,6 @@ export const Tools = () => {
         sibLings.forEach((sibLings) => sibLings.classList.remove('active'));
         btn.classList.add('active');
         setActiveBtn(btn.id);
-        console.log(activeBtn); // тип Unit тест написал
     };
 
     return (
@@ -34,8 +33,7 @@ export const Tools = () => {
                             <button
                                 id="1"
                                 className={`button ${activeBtn === '1' ? 'active' : ''}`}
-                                onClick={handleClick}
-                            >
+                                onClick={handleClick}>
                                 Достижения в одном месте
                             </button>
                             <div className={`text ${activeBtn === '1' ? 'activeText' : ''}`}>
@@ -47,8 +45,7 @@ export const Tools = () => {
                             <button
                                 id="2"
                                 className={`button ${activeBtn === '2' ? 'active' : ''}`}
-                                onClick={handleClick}
-                            >
+                                onClick={handleClick}>
                                 Напомним о каждой олимпиаде
                             </button>
                             <div className={`text ${activeBtn === '2' ? 'activeText' : ''}`}>
@@ -60,8 +57,7 @@ export const Tools = () => {
                             <button
                                 id="3"
                                 className={`button ${activeBtn === '3' ? 'active' : ''}`}
-                                onClick={handleClick}
-                            >
+                                onClick={handleClick}>
                                 Новостная лента
                             </button>
                             <div className={`text ${activeBtn === '3' ? 'activeText' : ''}`}>
