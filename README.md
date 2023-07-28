@@ -1,1 +1,2 @@
-Ну а что тут читать, если и так все понятно?
+
+https://mack1ch.github.io/myOlimp)https://mack1ch.github.io/myOlimp
