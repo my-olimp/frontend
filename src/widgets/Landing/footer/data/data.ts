@@ -74,6 +74,11 @@ export const FooterItemsThird: FooterItemsType[] = [
         text: 'Диана Спиридонова',
         link: 'https://vk.com/dinrinx',
     },
+    {
+        id: 6,
+        text: 'Роман Параваев',
+        link: 'https://vk.com/f4lkomer',
+    },
 ];
 
 export const FooterItemsFourth: FooterItemsType[] = [

@@ -77,13 +77,15 @@ export const RegisterForm: FC<props> = ({}) => {
                     gap="0px"
                     vertical
                     verticalAlign="middle"
-                    style={{ display: 'flex', width: '100%' }}>
+                    style={{ display: 'flex', width: '100%' }}
+                >
                     <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
                         <Gapped
                             className={styles.headerWrap}
                             gap="24px"
                             verticalAlign="middle"
-                            vertical>
+                            vertical
+                        >
                             <Gapped vertical verticalAlign="middle" alignItems="center" gap="8px">
                                 <Logo />
                                 <h4 className={styles.text}>
@@ -97,7 +99,8 @@ export const RegisterForm: FC<props> = ({}) => {
                                 vertical
                                 verticalAlign="middle"
                                 gap="16px"
-                                style={{ display: 'flex', width: '100%' }}>
+                                style={{ display: 'flex', width: '100%' }}
+                            >
                                 <AuthInputLabel
                                     mail={type === 'mail'}
                                     number={type === 'number'}
@@ -133,7 +136,8 @@ export const RegisterForm: FC<props> = ({}) => {
                                     height="medium"
                                     btnStyle={{ width: '100%' }}
                                     use={isButtonDisabled}
-                                    onClick={handleSubmit}>
+                                    onClick={handleSubmit}
+                                >
                                     Зарегистрироваться
                                 </AuthButton>
                                 <RegisterRulesAccept />

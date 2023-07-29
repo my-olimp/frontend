@@ -1,25 +1,25 @@
 .button {
-  background-color: transparent;
+    background-color: transparent;
 
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  &:hover {
-    color: #3579f8;
-  }
+    &:hover {
+        color: #3579f8;
+    }
 }
 
 .buttonText {
-  text-align: center;
-  font-feature-settings: 'clig' off, 'liga' off;
-  font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }

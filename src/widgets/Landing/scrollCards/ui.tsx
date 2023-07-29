@@ -94,7 +94,8 @@ export const ScrollCards: FC = () => {
                 onMouseDown={onMouseDown}
                 onMouseUp={onMouseUp}
                 onMouseMove={onMouseMove}
-                className={styles.wrap}>
+                className={styles.wrap}
+            >
                 {Items.map((data: itemsType) => {
                     return (
                         <ScrollCard

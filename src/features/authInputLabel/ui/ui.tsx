@@ -88,20 +88,23 @@ export const AuthInputLabel: FC<props> = ({
             {!password && (
                 <h4
                     style={{ display: errorMessage !== 'notError' ? 'block' : 'none' }}
-                    className={styles.error}>
+                    className={styles.error}
+                >
                     {errorMessage}
                 </h4>
             )}
             {passwordSignInMode ? (
                 <h4
                     style={{ display: errorMessage !== 'notError' ? 'block' : 'none' }}
-                    className={styles.error}>
+                    className={styles.error}
+                >
                     {errorMessage}
                 </h4>
             ) : password && errorMessage !== 'notError' ? (
                 <h4
                     style={{ display: errorMessage !== 'notError' ? 'block' : 'none' }}
-                    className={styles.error}>
+                    className={styles.error}
+                >
                     {errorMessage}
                 </h4>
             ) : (

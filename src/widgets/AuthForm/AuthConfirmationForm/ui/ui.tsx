@@ -36,7 +36,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                     } else if (input.id === '2') {
                         setTimeout(() => {
                             first.current?.focus();
-                        });
+                        }, 0);
                     }
                 }
             }
@@ -100,23 +100,27 @@ export const ConfirmationForm: FC<props> = ({}) => {
                         gap="0px"
                         vertical
                         verticalAlign="middle"
-                        style={{ display: 'flex', width: '100%' }}>
+                        style={{ display: 'flex', width: '100%' }}
+                    >
                         <Gapped
                             className={styles.wrap}
                             vertical
                             verticalAlign="middle"
-                            style={{ zIndex: '99' }}>
+                            style={{ zIndex: '99' }}
+                        >
                             <Gapped
                                 className={styles.headerWrap}
                                 gap="24px"
                                 verticalAlign="middle"
                                 vertical
-                                style={{ display: 'flex', width: '100%' }}>
+                                style={{ display: 'flex', width: '100%' }}
+                            >
                                 <Gapped
                                     vertical
                                     verticalAlign="middle"
                                     alignItems="center"
-                                    gap="8px">
+                                    gap="8px"
+                                >
                                     <Logo />
                                     <h4 className={styles.text}>
                                         Подтверждение{' '}
@@ -137,7 +141,8 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         width: '100%',
                                         gap: '8px',
                                         justifyContent: 'center',
-                                    }}>
+                                    }}
+                                >
                                     <Input
                                         inputRef={first}
                                         width={56}
@@ -183,7 +188,8 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                 className={styles.confTime}
                                 verticalAlign="middle"
                                 vertical
-                                style={{ display: 'flex', width: '100%' }}>
+                                style={{ display: 'flex', width: '100%' }}
+                            >
                                 <ConfirmationTime />
                             </Gapped>
                         </Gapped>

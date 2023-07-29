@@ -21,7 +21,8 @@ export const FooterItemsInfo = () => {
                                     <Link
                                         href={data.link}
                                         className={styles.item__text}
-                                        key={data.id}>
+                                        key={data.id}
+                                    >
                                         {data.text}
                                     </Link>
                                 );
@@ -36,7 +37,8 @@ export const FooterItemsInfo = () => {
                                     <Link
                                         href={data.link}
                                         className={styles.item__text}
-                                        key={data.id}>
+                                        key={data.id}
+                                    >
                                         {data.text}
                                     </Link>
                                 );
@@ -51,7 +53,8 @@ export const FooterItemsInfo = () => {
                                     <Link
                                         href={data.link}
                                         className={styles.item__text}
-                                        key={data.id}>
+                                        key={data.id}
+                                    >
                                         {data.text}
                                     </Link>
                                 );
@@ -66,7 +69,8 @@ export const FooterItemsInfo = () => {
                                     <Link
                                         href={data.link}
                                         className={styles.item__text}
-                                        key={data.id}>
+                                        key={data.id}
+                                    >
                                         {data.text}
                                     </Link>
                                 );
