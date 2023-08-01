@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Phone from './../../../../public/landing/phone.svg';
 import Star from './../../../../public/landing/star.svg';
 import bigImg from './../../../../public/landing/bigImage.svg';
-
 export function Content() {
     return (
         <>
