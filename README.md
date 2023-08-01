@@ -1,1 +1,1 @@
-https://mack1ch.github.io/myOlimp
+https://myolimp.github.io/frontend/
