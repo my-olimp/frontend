@@ -7,7 +7,7 @@ import { createAnimation } from './helpers/animation';
 const clip = createAnimation(
     'ClipLoader',
     '0% {transform: rotate(0deg) scale(1)} 100% {transform: rotate(360deg) scale(1)}',
-    'clip',
+    'clip'
 );
 /*
  * Показывайте спиннер, если после вызова команды прошло больше 300 мс

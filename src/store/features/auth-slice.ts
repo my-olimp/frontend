@@ -32,8 +32,9 @@ export const auth = createSlice({
     reducers: {
         mailOrNumberData: (
             state: WritableDraft<InitialState>,
-            action: PayloadAction<mailOrNumberPayload>,
+            action: PayloadAction<mailOrNumberPayload>
         ) => {
+            console.log(action.payload);
             return {
                 value: {
                     userId: '1',

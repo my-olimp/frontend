@@ -1,6 +1,7 @@
 import ClipLoader from '@/shared/spinners/btnAuthSpinner/ui';
 import { CSSProperties, FC, MouseEventHandler, useState } from 'react';
 import styles from './ui.module.scss';
+import { match } from 'ts-pattern';
 
 interface props {
     children?: string;
@@ -34,47 +35,38 @@ export const AuthButton: FC<props> = ({
             ? 'next-isHover'
             : null
     }`;
+    const buttonWidth = match(width)
+        .with('small', () => '320px')
+        .with('medium', () => '368px')
+        .with('large', () => '412px')
+        .with('fit-content', () => '100%')
+        .otherwise(() => '0px');
+    const buttonHeight = match(height)
+        .with('small', () => '32px')
+        .with('medium', () => '40px')
+        .with('large', () => '44px')
+        .with('fit-content', () => '100%')
+        .otherwise(() => '0px');
+    const buttonBackground = match(type)
+        .with('auth', () => (!isDisable(use) ? '#3D3D3D' : undefined))
+        .with('register', () => (!isDisable(use) ? '#3D3D3D' : undefined))
+        .with('next', () => (!isDisable(use) ? '#3579F8' : undefined))
+        .otherwise(() => 'transparent');
 
-    const style: any = {
-        buttonStyle: {
-            width:
-                width === 'small'
-                    ? '320px'
-                    : width === 'medium'
-                    ? '368px'
-                    : width === 'large'
-                    ? '412px'
-                    : width === 'fit-content'
-                    ? '100%'
-                    : null,
-            height:
-                height === 'small'
-                    ? '32px'
-                    : height === 'medium'
-                    ? '40px'
-                    : height === 'large'
-                    ? '44px'
-                    : width === 'fit-content'
-                    ? '100%'
-                    : null,
-            background:
-                type === 'auth' || (type === 'register' && !isDisable(use))
-                    ? '#3D3D3D'
-                    : type === 'next' && !isDisable(use)
-                    ? '#3579F8'
-                    : type === 'next' && isDisable(use)
-                    ? '#8CB2FB'
-                    : null,
-            color: isDisable(use)
-                ? '#222'
-                : type === 'auth' || type === 'register'
-                ? '#FFF'
-                : type === 'next'
-                ? '#FFF'
-                : null,
-            cursor: isDisable(use) ? 'not-allowed' : 'pointer',
-            ...btnStyle,
-        },
+    const buttonColor = match(use)
+        .with('disabled', () => '#222')
+        .with('active', () =>
+            type === 'auth' || type === 'register' || type === 'next' ? '#FFF' : 'transparent'
+        )
+        .otherwise(() => 'transparent');
+
+    const style: CSSProperties = {
+        width: buttonWidth,
+        height: buttonHeight,
+        background: buttonBackground,
+        color: buttonColor,
+        cursor: isDisable(use) ? 'not-allowed' : 'pointer',
+        ...btnStyle,
     };
 
     return (
@@ -86,7 +78,7 @@ export const AuthButton: FC<props> = ({
                 disabled={isDisable(use)}
                 onMouseOver={() => setHover(true)}
                 onMouseOut={() => setHover(false)}
-                style={style.buttonStyle}
+                style={style}
             >
                 {isLoading ? <ClipLoader /> : children}
             </button>

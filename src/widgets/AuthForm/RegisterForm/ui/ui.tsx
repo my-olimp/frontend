@@ -1,6 +1,5 @@
 'use client';
 
-/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from 'react';
 import { AuthInputLabel } from '@/features/authInputLabel';
 import { AuthTypeBlock } from '@/features/authTypeBlock';
@@ -14,58 +13,55 @@ import { mailOrNumberData } from '@/store/features/auth-slice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import { useRouter } from 'next/navigation';
+import useAuthInput from '@/hooks/useAuthInput';
+
 interface props {}
+
 export const RegisterForm: FC<props> = ({}) => {
-    const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] = useState<string>('notError');
-    const [errorPasswordMessage, setErrorPasswordMessage] = useState<string>('notError');
-    const [errorSecondPasswordMessage, setErrorSecondPasswordMessage] =
-        useState<string>('notError');
-    const [mailOrNumber, setMailOrNumber] = useState<string>('');
-    const [passwordValue, setPasswordValue] = useState<string>('');
-    const [passwordSecondValue, setPasswordSecondValue] = useState<string>('');
-    const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled');
     const dispatch = useDispatch<AppDispatch>();
+    const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled');
     const [type, setType] = useState<'mail' | 'number'>('mail');
+    const [errorMessage, setErrorMessage, value, setValue] = useAuthInput(type);
+
+    const [passwordErrorMessage, setPasswordErrorMessage, password, setPassword] =
+        useAuthInput(type);
+
+    const [repeatErrorMessage, setRepeatErrorMessage, repeatPassword, setRepeatPassword] =
+        useAuthInput(type);
     const router = useRouter();
     useEffect(() => {
         if (
-            mailOrNumber.length !== 0 &&
-            passwordValue.length !== 0 &&
-            passwordSecondValue.length !== 0 &&
-            !(errorPasswordMessage !== 'notError') &&
-            !(errorMailOrNumberMessage !== 'notError') &&
-            !(errorSecondPasswordMessage !== 'notError') &&
-            passwordValue === passwordSecondValue &&
-            !(type === 'number' && mailOrNumber.length !== 18)
+            value.length !== 0 &&
+            password.length !== 0 &&
+            repeatPassword.length !== 0 &&
+            !(passwordErrorMessage !== 'notError') &&
+            !(errorMessage !== 'notError') &&
+            !(repeatErrorMessage !== 'notError') &&
+            password !== repeatPassword &&
+            password !== '' &&
+            repeatPassword !== '' &&
+            !(type === 'number' && value.length !== 18)
         ) {
             setButtonDisabled('active');
         } else {
             setButtonDisabled('disabled');
         }
-    }, [mailOrNumber, passwordValue, passwordSecondValue, type]);
-
-    useEffect(() => {
-        if (passwordValue !== passwordSecondValue && passwordValue === ' ') {
-            setErrorSecondPasswordMessage('Пароли должны совпадать!');
-            console.log(passwordValue);
-        }
-    }, [passwordSecondValue, passwordValue]);
-
-    useEffect(() => {
-        setMailOrNumber('');
-        setPasswordValue('');
-        setPasswordSecondValue('');
-        setErrorMailOrNumberMessage('notError');
-        setErrorPasswordMessage('notError');
-        setErrorSecondPasswordMessage('notError');
-    }, [type]);
+    }, [
+        value,
+        password,
+        repeatPassword,
+        type,
+        passwordErrorMessage,
+        errorMessage,
+        repeatErrorMessage,
+    ]);
 
     const handleSubmit = () => {
         dispatch(
             mailOrNumberData({
-                mailOrPhone: mailOrNumber,
+                mailOrPhone: value,
                 type: type,
-            }),
+            })
         );
         router.push('/confirmation');
     };
@@ -105,30 +101,33 @@ export const RegisterForm: FC<props> = ({}) => {
                                     mail={type === 'mail'}
                                     number={type === 'number'}
                                     inputName={type === 'mail' ? 'Почта' : 'Номер телефона'}
-                                    text={mailOrNumber}
-                                    setText={setMailOrNumber}
-                                    errorMessage={errorMailOrNumberMessage}
-                                    setErrorMessage={setErrorMailOrNumberMessage}
+                                    text={value}
+                                    setText={setValue}
+                                    type={type}
+                                    errorMessage={errorMessage}
+                                    setErrorMessage={setErrorMessage}
                                 />{' '}
                                 <AuthInputLabel
                                     password={true}
                                     passwordSignInMode={false}
                                     inputName={'Пароль'}
                                     eye={true}
-                                    text={passwordValue}
-                                    setText={setPasswordValue}
-                                    errorMessage={errorPasswordMessage}
-                                    setErrorMessage={setErrorPasswordMessage}
+                                    text={password}
+                                    setText={setPassword}
+                                    type={type}
+                                    errorMessage={passwordErrorMessage}
+                                    setErrorMessage={setPasswordErrorMessage}
                                 />
                                 <AuthInputLabel
                                     password={true}
                                     passwordSignInMode={true}
                                     inputName={'Подтверждение пароля'}
                                     eye={true}
-                                    text={passwordSecondValue}
-                                    setText={setPasswordSecondValue}
-                                    errorMessage={errorSecondPasswordMessage}
-                                    setErrorMessage={setErrorSecondPasswordMessage}
+                                    text={repeatPassword}
+                                    type={type}
+                                    setText={setRepeatPassword}
+                                    errorMessage={repeatErrorMessage}
+                                    setErrorMessage={setRepeatErrorMessage}
                                 />
                                 <AuthButton
                                     type="register"

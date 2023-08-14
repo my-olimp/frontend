@@ -73,11 +73,11 @@ export const ConfirmationForm: FC<props> = ({}) => {
 
     const handleInput = (
         event: FormEvent<HTMLInputElement>,
-        input: RefObject<HTMLInputElement>,
+        input: RefObject<HTMLInputElement>
     ): void => {
         const numericValue: string = (event.target as HTMLInputElement).value.replace(
             /[^0-9]/g,
-            '',
+            ''
         );
         if (numericValue.length < 1) {
             if (input.current !== null) {

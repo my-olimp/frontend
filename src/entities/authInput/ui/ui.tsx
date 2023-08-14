@@ -1,13 +1,21 @@
-'use client'; // ставится, когда используются хуки из React
 import eyeCloseIconRed from '../../../../public/auth/eyeCloseRed.svg';
 import eyeCloseIcon from '../../../../public/auth/eyeClose.svg';
 import eyeOpenIconRed from '../../../../public/auth/eyeOpenRed.svg';
 import eyeOpenIcon from '../../../../public/auth/eyeOpen.svg';
-import React, { ChangeEvent, FC, FocusEvent, FormEvent, KeyboardEvent, useState } from 'react';
+import React, {
+    ChangeEvent,
+    Dispatch,
+    FC,
+    FocusEvent,
+    FormEvent,
+    KeyboardEvent,
+    SetStateAction,
+    useState,
+} from 'react';
 import validateEmail from '../lib/validate/validateEmail';
 import validatePassword from '../lib/validate/validatePassword';
 import styles from './ui.module.scss';
-
+import { match } from 'ts-pattern';
 import { MaskedInput } from '@/shared/MaskedInput/ui/ui';
 
 interface props {
@@ -19,10 +27,10 @@ interface props {
     number: boolean;
     errorMessage: string;
     text: string;
-    setText: (text: string) => void;
     passwordSignInMode: boolean;
-    setErrorMessage: (message: string) => void;
-    setSecure?: (secure: string) => void;
+    setText: Dispatch<SetStateAction<string>>;
+    setErrorMessage: Dispatch<SetStateAction<string>>;
+    setSecure?: Dispatch<SetStateAction<string>>;
     id?: string;
 }
 
@@ -98,7 +106,7 @@ export const AuthInput: FC<props> = ({
                 setText(text);
             } else {
                 setErrorMessage(
-                    'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
+                    'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)'
                 );
             }
         }
@@ -116,7 +124,7 @@ export const AuthInput: FC<props> = ({
             setErrorMessage(
                 `${event.target.name} не может быть пуст${
                     event.target.name === 'Почта' ? 'ой' : 'ым'
-                }!`,
+                }!`
             );
         } else if (mail) {
             const validated = validateEmail(text);
@@ -184,41 +192,47 @@ export const AuthInput: FC<props> = ({
 
     return (
         <div className={styles.wrap}>
-            {number ? (
-                <MaskedInput
-                    mask={'+7 (999) 999-99-99'}
-                    maskPlaceholder={''}
-                    value={text}
-                    onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
-                    onFocus={() => handleFocus()}
-                    style={style.input}
-                    onKeyDown={(event) => handleKeyDown(event)}
-                >
-                    <input
-                        style={style.input}
-                        className={styles.input}
-                        name={inputName}
+            {match(number)
+                .with(true, () => (
+                    <MaskedInput
+                        mask={'+7 (999) 999-99-99'}
+                        maskPlaceholder={''}
                         value={text}
-                        type="tel"
-                        max="10"
-                        onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
-                    />
-                </MaskedInput>
-            ) : (
-                <input
-                    style={style.input}
-                    className={styles.input}
-                    name={inputName}
-                    value={text}
-                    type={inputType}
-                    id={id}
-                    onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
-                    onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) => setText(event.target.value)}
-                    onFocus={() => handleFocus()}
-                />
-            )}
-
+                        onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
+                        onFocus={() => handleFocus()}
+                        style={style.input}
+                        onKeyDown={(event) => handleKeyDown(event)}
+                    >
+                        <input
+                            style={style.input}
+                            className={styles.input}
+                            name={inputName}
+                            value={text}
+                            type="tel"
+                            max="10"
+                            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
+                        />
+                    </MaskedInput>
+                ))
+                .with(false, () => (
+                    <>
+                        <input
+                            style={style.input}
+                            className={styles.input}
+                            name={inputName}
+                            value={text}
+                            type={inputType}
+                            id={id}
+                            onInput={(event: FormEvent<HTMLInputElement>) => handleInput(event)}
+                            onBlur={(event: FocusEvent<HTMLInputElement>) => blurHandler(event)}
+                            onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                                setText(event.target.value)
+                            }
+                            onFocus={() => handleFocus()}
+                        />
+                    </>
+                ))
+                .exhaustive()}
             <div
                 style={style.iconWrap}
                 className={styles.iconWrap}

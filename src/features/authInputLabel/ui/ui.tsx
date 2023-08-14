@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { AuthInput } from '@/entities/authInput';
 import styles from './ui.module.scss';
 
@@ -11,9 +11,10 @@ interface props {
     passwordSignInMode?: boolean;
     text: string;
     errorMessage: string;
-    setText: (text: string) => void;
+    setText: Dispatch<SetStateAction<string>>;
     maxLength?: number;
-    setErrorMessage: (error: string) => void;
+    setErrorMessage: Dispatch<SetStateAction<string>>;
+    type: 'mail' | 'number';
 }
 
 export const AuthInputLabel: FC<props> = ({
@@ -28,6 +29,7 @@ export const AuthInputLabel: FC<props> = ({
     maxLength = 30,
     errorMessage,
     setErrorMessage,
+    type,
 }) => {
     const [secure, setSecure] = useState<string>('');
     const [color, setColor] = useState<string>('#DA4242');
@@ -65,7 +67,9 @@ export const AuthInputLabel: FC<props> = ({
         )
             setColor('#999');
     }, [secure]);
-
+    useEffect(() => {
+        setSecure('');
+    }, [type]);
     return (
         <div className={styles.wrap}>
             <label style={style.label} htmlFor={inputName} className={styles.label}>
