@@ -56,7 +56,7 @@ export const AuthButton: FC<props> = ({
     const buttonColor = match(use)
         .with('disabled', () => '#222')
         .with('active', () =>
-            type === 'auth' || type === 'register' || type === 'next' ? '#FFF' : 'transparent'
+            type === 'auth' || type === 'register' || type === 'next' ? '#FFF' : 'transparent',
         )
         .otherwise(() => 'transparent');
 

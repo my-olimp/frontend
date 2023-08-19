@@ -1,39 +1,23 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './ui.module.scss';
-import { AuthInputLabel } from '@/features/authInputLabel';
 import { AuthTypeBlock } from '@/features/authTypeBlock';
 import { AuthLoginHelp } from '@/features/authLoginHelp';
 import { LoginHelp } from '@/features/authHelp/LoginHelp';
 import { AuthButton } from '@/entities/buttons/authButton';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
-import useAuthInput from '@/hooks/useAuthInput';
+import { AuthInputWrap } from '@/features/authInputWrap';
 
 interface props {}
 
 export const LoginForm: FC<props> = ({}) => {
-    const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled');
+    const [isButtonDisabled, setButton] = useState<'active' | 'disabled'>('disabled');
+
+    const [value, setValue] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
     const [type, setType] = useState<'mail' | 'number'>('mail');
-
-    const [errorMessage, setErrorMessage, value, setValue] = useAuthInput(type);
-    const [passwordErrorMessage, setPasswordErrorMessage, password, setPassword] =
-        useAuthInput(type);
-
-    useEffect(() => {
-        if (
-            value.length !== 0 &&
-            password.length !== 0 &&
-            errorMessage === 'notError' &&
-            passwordErrorMessage === 'notError' &&
-            !(type === 'number' && value.length !== 18)
-        ) {
-            setButtonDisabled('active');
-        } else {
-            setButtonDisabled('disabled');
-        }
-    }, [value, password, errorMessage, passwordErrorMessage, type]);
 
     const handleSubmit = () => {
         console.log(value);
@@ -48,19 +32,22 @@ export const LoginForm: FC<props> = ({}) => {
                         gap="0px"
                         vertical
                         verticalAlign="middle"
-                        style={{ display: 'flex', width: '100%' }}>
+                        style={{ display: 'flex', width: '100%' }}
+                    >
                         <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
                             <Gapped
                                 className={styles.headerWrap}
                                 gap="24px"
                                 verticalAlign="middle"
                                 vertical
-                                style={{ display: 'flex', width: '100%' }}>
+                                style={{ display: 'flex', width: '100%' }}
+                            >
                                 <Gapped
                                     vertical
                                     verticalAlign="middle"
                                     alignItems="center"
-                                    gap="8px">
+                                    gap="8px"
+                                >
                                     <Logo />
                                     <h4 className={styles.text}>Вход в сервис</h4>
                                 </Gapped>
@@ -73,45 +60,50 @@ export const LoginForm: FC<props> = ({}) => {
                                         marginBottom: '16px',
                                         display: 'flex',
                                         width: '100%',
-                                    }}>
-                                    <Gapped
-                                        className={styles.inputWrap}
-                                        vertical
-                                        verticalAlign="middle"
-                                        gap="24px"
-                                        style={{ display: 'flex', width: '100%' }}>
-                                        <AuthInputLabel
-                                            mail={type === 'mail'}
-                                            number={type === 'number'}
-                                            inputName={type === 'mail' ? 'Почта' : 'Номер телефона'}
-                                            text={value}
-                                            setText={setValue}
-                                            type={type}
-                                            errorMessage={errorMessage}
-                                            setErrorMessage={setErrorMessage}
-                                            maxLength={type === 'number' ? 11 : 30}
-                                        />
-                                        <AuthInputLabel
-                                            password={true}
-                                            passwordSignInMode={true}
-                                            inputName={'Пароль'}
-                                            eye={true}
-                                            text={password}
-                                            setText={setPassword}
-                                            type={type}
-                                            errorMessage={passwordErrorMessage}
-                                            setErrorMessage={setPasswordErrorMessage}
-                                        />
-                                        <AuthLoginHelp />
-                                    </Gapped>
-                                    <AuthButton
-                                        type="register"
-                                        width="fit-content"
-                                        height="medium"
-                                        use={isButtonDisabled}
-                                        onClick={handleSubmit}>
-                                        Войти
-                                    </AuthButton>
+                                    }}
+                                >
+                                    <form>
+                                        <Gapped
+                                            className={styles.inputWrap}
+                                            vertical
+                                            verticalAlign="middle"
+                                            gap="24px"
+                                            style={{ display: 'flex', width: '100%' }}
+                                        >
+                                            <AuthInputWrap
+                                                mail={type === 'mail'}
+                                                inputName={
+                                                    type === 'mail' ? 'Почта' : 'Номер телефона'
+                                                }
+                                                text={value}
+                                                setText={setValue}
+                                                type={type}
+                                                setButton={setButton}
+                                                autoComplete={type === 'mail' ? 'email' : 'tel'}
+                                            />
+                                            <AuthInputWrap
+                                                password={true}
+                                                passwordSignInMode={true}
+                                                inputName={'Пароль'}
+                                                eye={true}
+                                                text={password}
+                                                setText={setPassword}
+                                                type={type}
+                                                setButton={setButton}
+                                                autoComplete={'current-password'}
+                                            />
+                                            <AuthLoginHelp />
+                                        </Gapped>
+                                        <AuthButton
+                                            type="register"
+                                            width="fit-content"
+                                            height="medium"
+                                            use={isButtonDisabled}
+                                            onClick={handleSubmit}
+                                        >
+                                            Войти
+                                        </AuthButton>
+                                    </form>
                                 </Gapped>
                             </Gapped>
                         </Gapped>

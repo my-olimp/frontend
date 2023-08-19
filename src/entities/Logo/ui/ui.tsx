@@ -14,6 +14,7 @@ const Logo: FC = () => {
                     width={115}
                     className={styles.svg}
                     height={28}
+                    priority={false}
                 />
             </Link>
         </>

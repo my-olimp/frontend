@@ -7,6 +7,7 @@ import { useEventListener } from 'usehooks-ts';
 import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
 import { useAppSelector } from '@/store/store';
+import { setButtonActive } from '@/widgets/AuthForm/AuthConfirmationForm/lib/setButtonActive';
 
 interface props {}
 
@@ -15,69 +16,37 @@ export const ConfirmationForm: FC<props> = ({}) => {
     const second = useRef<HTMLInputElement>(null);
     const third = useRef<HTMLInputElement>(null);
     const fourth = useRef<HTMLInputElement>(null);
+
     const mail: string = useAppSelector((state) => state.authReducer.value.mailOrPhone);
     const number: string = useAppSelector((state) => state.authReducer.value.mailOrPhone);
     const type: string = useAppSelector((state) => state.authReducer.value.type);
 
-    const setButtonActive = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (isNaN(parseInt(event.key))) {
-            if (event.key === 'Backspace' || event.key === 'Delete') {
-                const input = event.target as HTMLInputElement;
-                if (input.value !== '') {
-                    input.value = '';
-                    if (input.id === '4') {
-                        setTimeout(() => {
-                            third.current?.focus();
-                        }, 0);
-                    } else if (input.id === '3') {
-                        setTimeout(() => {
-                            second.current?.focus();
-                        }, 0);
-                    } else if (input.id === '2') {
-                        setTimeout(() => {
-                            first.current?.focus();
-                        }, 0);
-                    }
-                }
-            }
-        } else {
-            if (
-                first.current?.value !== '' &&
-                second.current?.value !== '' &&
-                third.current?.value !== '' &&
-                fourth.current?.value !== ''
-            ) {
-                handleSubmit();
-            }
-
-            if (first.current?.value !== '') {
-                second.current?.focus();
-            }
-            if (second.current?.value !== '') {
-                third.current?.focus();
-            }
-            if (third.current?.value !== '') {
-                fourth.current?.focus();
-            }
-        }
-    };
+    const handleKeydown = (event: KeyboardEvent<HTMLInputElement>) =>
+        setButtonActive(event, first, second, third, fourth, handleSubmit);
 
     //@ts-ignore
-    useEventListener('keydown', (event) => setButtonActive(event), first.current);
+    //prettier-ignore
+    useEventListener('keydown', (event: KeyboardEvent<HTMLInputElement>) => handleKeydown(event), first.current);
+
     //@ts-ignore
-    useEventListener('keydown', (event) => setButtonActive(event), second.current);
+    //prettier-ignore
+    useEventListener('keydown', (event: KeyboardEvent<HTMLInputElement>) => handleKeydown(event), second.current);
+
     //@ts-ignore
-    useEventListener('keydown', (event) => setButtonActive(event), third.current);
+    //prettier-ignore
+    useEventListener('keydown', (event: KeyboardEvent<HTMLInputElement>) => handleKeydown(event), third.current);
+
     //@ts-ignore
-    useEventListener('keydown', (event) => setButtonActive(event), fourth.current);
+    //prettier-ignore
+    useEventListener('keydown', (event: KeyboardEvent<HTMLInputElement>) => handleKeydown(event), fourth.current);
 
     const handleInput = (
         event: FormEvent<HTMLInputElement>,
-        input: RefObject<HTMLInputElement>
+        input: RefObject<HTMLInputElement>,
     ): void => {
         const numericValue: string = (event.target as HTMLInputElement).value.replace(
             /[^0-9]/g,
-            ''
+            '',
         );
         if (numericValue.length < 1) {
             if (input.current !== null) {

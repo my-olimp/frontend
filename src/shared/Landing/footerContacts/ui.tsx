@@ -17,11 +17,9 @@ export const FooterContacts = () => {
                 <div className={styles.rightInfo}>
                     {SocialNetwork.map((data: SocialNetworkType) => {
                         return (
-                            <>
-                                <Link key={data.id} href={data.link}>
-                                    <Image src={data.icon} alt={data.name} width={42} height={42} />
-                                </Link>
-                            </>
+                            <Link key={data.id} href={data.link}>
+                                <Image src={data.icon} alt={data.name} width={42} height={42} />
+                            </Link>
                         );
                     })}
                 </div>
