@@ -8,10 +8,13 @@ import { AuthButton } from '@/entities/buttons/authButton';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
 import { AuthInputWrap } from '@/features/authInputWrap';
+import { useRouter } from 'next/navigation';
 
 interface props {}
 
 export const LoginForm: FC<props> = ({}) => {
+    const router = useRouter();
+
     const [isButtonDisabled, setButton] = useState<'active' | 'disabled'>('disabled');
 
     const [value, setValue] = useState<string>('');
@@ -20,8 +23,7 @@ export const LoginForm: FC<props> = ({}) => {
     const [type, setType] = useState<'mail' | 'number'>('mail');
 
     const handleSubmit = () => {
-        console.log(value);
-        console.log(password);
+        router.push('/confirmation');
     };
 
     return (
@@ -32,22 +34,19 @@ export const LoginForm: FC<props> = ({}) => {
                         gap="0px"
                         vertical
                         verticalAlign="middle"
-                        style={{ display: 'flex', width: '100%' }}
-                    >
+                        style={{ display: 'flex', width: '100%' }}>
                         <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
                             <Gapped
                                 className={styles.headerWrap}
                                 gap="24px"
                                 verticalAlign="middle"
                                 vertical
-                                style={{ display: 'flex', width: '100%' }}
-                            >
+                                style={{ display: 'flex', width: '100%' }}>
                                 <Gapped
                                     vertical
                                     verticalAlign="middle"
                                     alignItems="center"
-                                    gap="8px"
-                                >
+                                    gap="8px">
                                     <Logo />
                                     <h4 className={styles.text}>Вход в сервис</h4>
                                 </Gapped>
@@ -60,16 +59,14 @@ export const LoginForm: FC<props> = ({}) => {
                                         marginBottom: '16px',
                                         display: 'flex',
                                         width: '100%',
-                                    }}
-                                >
+                                    }}>
                                     <form>
                                         <Gapped
                                             className={styles.inputWrap}
                                             vertical
                                             verticalAlign="middle"
                                             gap="24px"
-                                            style={{ display: 'flex', width: '100%' }}
-                                        >
+                                            style={{ display: 'flex', width: '100%' }}>
                                             <AuthInputWrap
                                                 mail={type === 'mail'}
                                                 inputName={
@@ -99,8 +96,7 @@ export const LoginForm: FC<props> = ({}) => {
                                             width="fit-content"
                                             height="medium"
                                             use={isButtonDisabled}
-                                            onClick={handleSubmit}
-                                        >
+                                            onClick={handleSubmit}>
                                             Войти
                                         </AuthButton>
                                     </form>

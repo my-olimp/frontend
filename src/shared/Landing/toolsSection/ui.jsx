@@ -29,12 +29,11 @@ export const Tools = () => {
                         <br /> концентрации
                     </div>
                     <div className="info__block">
-                        <div className="firstSection">
+                        <div className="selection">
                             <button
                                 id="1"
                                 className={`button ${activeBtn === '1' ? 'active' : ''}`}
-                                onClick={handleClick}
-                            >
+                                onClick={handleClick}>
                                 Достижения в одном месте
                             </button>
                             <div className={`text ${activeBtn === '1' ? 'activeText' : ''}`}>
@@ -42,12 +41,11 @@ export const Tools = () => {
                             </div>
                         </div>
 
-                        <div className="secondSection">
+                        <div className="selection">
                             <button
                                 id="2"
                                 className={`button ${activeBtn === '2' ? 'active' : ''}`}
-                                onClick={handleClick}
-                            >
+                                onClick={handleClick}>
                                 Напомним о каждой олимпиаде
                             </button>
                             <div className={`text ${activeBtn === '2' ? 'activeText' : ''}`}>
@@ -55,12 +53,11 @@ export const Tools = () => {
                             </div>
                         </div>
 
-                        <div className="thirdSection">
+                        <div className="selection">
                             <button
                                 id="3"
                                 className={`button ${activeBtn === '3' ? 'active' : ''}`}
-                                onClick={handleClick}
-                            >
+                                onClick={handleClick}>
                                 Новостная лента
                             </button>
                             <div className={`text ${activeBtn === '3' ? 'activeText' : ''}`}>

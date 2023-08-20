@@ -34,14 +34,11 @@ export const auth = createSlice({
             state: WritableDraft<InitialState>,
             action: PayloadAction<mailOrNumberPayload>,
         ) => {
-            console.log(action.payload);
+            const { mailOrPhone, type } = action.payload;
             return {
-                value: {
-                    userId: '1',
-                    isAuth: state.value.isAuth,
-                    mailOrPhone: action.payload.mailOrPhone,
-                    type: action.payload.type,
-                },
+                ...state,
+                mailOrPhone: mailOrPhone,
+                type: type,
             };
         },
     },
