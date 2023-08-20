@@ -45,5 +45,4 @@ export const auth = createSlice({
 });
 
 export const { mailOrNumberData } = auth.actions;
-
 export default auth.reducer;

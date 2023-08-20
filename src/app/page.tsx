@@ -22,6 +22,7 @@ export default function Home() {
         if (width.current < 900) {
             setMobile(true);
         }
+        navigator.serviceWorker.register('/sw.js');
     }, []);
 
     return (

@@ -14,11 +14,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="ru">
             <head>
-                <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>{metadata.title}</title>
                 <link rel="manifest" href="/manifest.json" />
-                <link rel="icon" href="/icon.ico" sizes="any" />
+                <meta name="theme-color" content="#84ADF8" />
             </head>
             <body>
                 <ReduxProvider>{children}</ReduxProvider>

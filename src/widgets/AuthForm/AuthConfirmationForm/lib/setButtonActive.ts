@@ -1,51 +1,38 @@
 import { KeyboardEvent, RefObject } from 'react';
 
+const INPUT_COUNT = 4;
+
 export const setButtonActive = (
-    event: KeyboardEvent<HTMLInputElement>,
-    first: RefObject<HTMLInputElement>,
-    second: RefObject<HTMLInputElement>,
-    third: RefObject<HTMLInputElement>,
-    fourth: RefObject<HTMLInputElement>,
+    oldEvent: Event,
+    inputs: RefObject<HTMLInputElement>[],
     handleSubmit: () => void,
-) => {
-    if (isNaN(parseInt(event.key))) {
-        if (event.key === 'Backspace' || event.key === 'Delete') {
+): void => {
+    const event = oldEvent as unknown as KeyboardEvent<HTMLInputElement>;
+    const key = event.key;
+
+    if (isNaN(parseInt(key))) {
+        if (key === 'Backspace' || key === 'Delete') {
             const input = event.target as HTMLInputElement;
             if (input.value !== '') {
                 input.value = '';
-                if (input.id === '4') {
+                const currentIndex = inputs.findIndex((inputRef) => inputRef.current === input);
+                if (currentIndex > 0) {
                     setTimeout(() => {
-                        third.current?.focus();
-                    }, 0);
-                } else if (input.id === '3') {
-                    setTimeout(() => {
-                        second.current?.focus();
-                    }, 0);
-                } else if (input.id === '2') {
-                    setTimeout(() => {
-                        first.current?.focus();
+                        inputs[currentIndex - 1].current?.focus();
                     }, 0);
                 }
             }
         }
     } else {
-        if (
-            first.current?.value !== '' &&
-            second.current?.value !== '' &&
-            third.current?.value !== '' &&
-            fourth.current?.value !== ''
-        ) {
+        const allInputsFilled = inputs.every((inputRef) => inputRef.current?.value !== '');
+        if (allInputsFilled) {
             handleSubmit();
         }
 
-        if (first.current?.value !== '') {
-            second.current?.focus();
-        }
-        if (second.current?.value !== '') {
-            third.current?.focus();
-        }
-        if (third.current?.value !== '') {
-            fourth.current?.focus();
+        const currentInput = event.currentTarget;
+        const currentIndex = inputs.findIndex((inputRef) => inputRef.current === currentInput);
+        if (currentIndex !== -1 && currentIndex < INPUT_COUNT - 1) {
+            inputs[currentIndex + 1].current?.focus();
         }
     }
 };
