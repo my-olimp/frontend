@@ -1,0 +1,23 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main # или другая ветка, на которой вы хотите реагировать
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t myolimp .
+          docker tag myolimp ${{ secrets.DOCKERHUB_USERNAME }}/myolimp
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/myolimp

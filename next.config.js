@@ -22,6 +22,8 @@ const withPWA = withPWAInit({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'export',
+    target: 'server',
+    
     reactStrictMode: false,
     experimental: {
         appDir: true,
