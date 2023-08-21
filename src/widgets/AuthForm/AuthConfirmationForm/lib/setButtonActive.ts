@@ -1,7 +1,7 @@
 import { KeyboardEvent, RefObject } from 'react';
 
 const INPUT_COUNT = 4;
-run
+
 export const setButtonActive = (
     oldEvent: Event,
     inputs: RefObject<HTMLInputElement>[],
