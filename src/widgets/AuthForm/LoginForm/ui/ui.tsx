@@ -84,7 +84,6 @@ export const LoginForm: FC<props> = ({}) => {
                                             text={value}
                                             setText={setValue}
                                             type={type}
-                                            setButton={setButton}
                                             autoComplete={type === 'mail' ? 'email' : 'tel'}
                                             error={valueError}
                                             setError={setValueError}
@@ -97,7 +96,6 @@ export const LoginForm: FC<props> = ({}) => {
                                             text={password}
                                             setText={setPassword}
                                             type={type}
-                                            setButton={setButton}
                                             autoComplete={'current-password'}
                                             error={passwordError}
                                             setError={setPasswordError}
