@@ -40,7 +40,9 @@ export const LoginForm: FC<props> = ({}) => {
         }
     }, [value, password, passwordError, valueError, type]);
 
-    const handleSubmit = () => {};
+    const handleSubmit = () => {
+        console.log(value, password);
+    };
 
     return (
         <Gapped className={styles.screen} vertical verticalAlign="middle">
