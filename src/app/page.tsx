@@ -22,7 +22,9 @@ export default function Home() {
         if (width.current < 900) {
             setMobile(true);
         }
-        navigator.serviceWorker.register('/sw.js');
+        if (process.env.NODE_ENV === 'production') {
+            navigator.serviceWorker.register('/sw.js');
+        }
     }, []);
 
     return (

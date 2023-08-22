@@ -1,8 +1,7 @@
-import { Dispatch, FocusEvent, SetStateAction } from 'react';
-import validateEmail from '@/features/authInputWrap/lib/validate/validateEmail';
+import { Dispatch, SetStateAction } from 'react';
+import { validateEmail } from '@/features/authInputWrap/lib/validate/validateEmail';
 
 export const blurHandler = (
-    event: FocusEvent<HTMLInputElement>,
     text: string,
     mail: boolean,
     setErrorMessage: Dispatch<SetStateAction<string>>,
@@ -14,6 +13,6 @@ export const blurHandler = (
         setText(text);
         setErrorMessage('Неверный формат почты, пример: test@example.com');
     } else {
-        setErrorMessage('notError');
+        setErrorMessage('');
     }
 };

@@ -1,4 +1,4 @@
-import React, { FC, FocusEvent, FormEvent, KeyboardEvent, useState } from 'react';
+import React, { FC, FocusEvent, FormEvent, useState } from 'react';
 import styles from './ui.module.scss';
 import { match } from 'ts-pattern';
 import { MaskedInput } from '@/shared/MaskedInput/ui/ui';
@@ -14,7 +14,6 @@ interface props {
     autoComplete: string;
     onFocus: () => void | undefined;
     onInput: (event: FormEvent<HTMLInputElement>) => void | undefined;
-    onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void | undefined;
     onBlur: (event: FocusEvent<HTMLInputElement>) => void | undefined;
 }
 
@@ -27,7 +26,6 @@ export const AuthInput: FC<props> = ({
     mask = undefined,
     onFocus = undefined,
     onBlur = undefined,
-    onKeyDown = undefined,
     onInput = undefined,
     autoComplete,
 }) => {
@@ -35,6 +33,18 @@ export const AuthInput: FC<props> = ({
     const [inputType, setInputType] = useState<'text' | 'password'>(password ? 'password' : 'text');
 
     const style = eyeStyles(errorMessage, eye, isEyeOpen);
+
+    const beforeMaskedStateChange = ({ nextState }) => {
+        let { value } = nextState;
+        if (value.endsWith(')', '-', ' ')) {
+            value = value.slice(0, -1);
+        }
+
+        return {
+            ...nextState,
+            value,
+        };
+    };
 
     return (
         <div className={styles.wrap}>
@@ -47,21 +57,19 @@ export const AuthInput: FC<props> = ({
                         <MaskedInput
                             mask={mask ? mask : ''}
                             maskPlaceholder={''}
-                            value={text}
+                            alwaysShowMask={false}
+                            beforeMaskedStateChange={beforeMaskedStateChange}
                             onBlur={(event) => onBlur && onBlur(event)}
                             onFocus={onFocus}
-                            style={style.input}
-                            onKeyDown={(event) => onKeyDown && onKeyDown(event)}
-                        >
+                            value={text}
+                            onChange={(event) => onInput && onInput(event)}>
                             <input
                                 style={style.input}
                                 className={styles.input}
-                                value={text}
                                 type="tel"
                                 max="10"
                                 autoComplete={autoComplete}
                                 id={inputName}
-                                onInput={(event) => onInput && onInput(event)}
                             />
                         </MaskedInput>
                     ))
@@ -85,8 +93,7 @@ export const AuthInput: FC<props> = ({
                     onClick={() => {
                         setInputType(inputType === 'text' ? 'password' : 'text');
                         setEyeOpen(!isEyeOpen);
-                    }}
-                >
+                    }}>
                     <i style={style.icon} className={styles.icon} draggable="false" />
                 </div>
             </div>

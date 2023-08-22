@@ -14,30 +14,26 @@ export const handleInput = (
     const textLength = text.length;
 
     input.setSelectionRange(textLength + 2, textLength + 2);
-
-    if (!password && textLength <= 18) {
-        setText(text);
-    }
+    setText(text)
 
     if (password && setSecure) {
-        setText(text);
         setSecure(validatePassword(text));
     }
     if (passwordSignInMode) {
         const tested = text.match(/^[!@#$%^\w]+$/);
-        if (tested) {
-            setText(text);
-        } else {
+        if (!tested) {
             setErrorMessage(
                 'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
             );
         }
     }
 
+
+
     if (textLength === 0 && setSecure) {
         setSecure('');
     }
     if (textLength === 0) {
-        setErrorMessage('notError');
+        setErrorMessage('');
     }
 };

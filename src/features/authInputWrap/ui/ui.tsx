@@ -1,20 +1,9 @@
-import {
-    Dispatch,
-    FC,
-    FocusEvent,
-    FormEvent,
-    KeyboardEvent,
-    SetStateAction,
-    useCallback,
-    useEffect,
-    useState,
-} from 'react';
+import { Dispatch, FC, FormEvent, SetStateAction, useCallback, useEffect, useState } from 'react';
 import { AuthInput } from '@/entities/authInput';
 import { authInputWrapStyles } from '@/features/authInputWrap/lib/authInputWrapStyles';
 import styles from './ui.module.scss';
 import { handleFocus } from '@/features/authInputWrap/lib/handlers/handleFocusError';
 import { handleInput } from '@/features/authInputWrap/lib/handlers/handleInput';
-import { handleKeyDown } from '@/features/authInputWrap/lib/handlers/customDelete';
 import { blurHandler } from '@/features/authInputWrap/lib/handlers/blurHandler';
 
 interface props {
@@ -23,10 +12,11 @@ interface props {
     password?: boolean;
     mail?: boolean;
     passwordSignInMode?: boolean;
+    error: string;
+    setError: Dispatch<SetStateAction<string>>;
     autoComplete: string;
     text: string;
     setText: Dispatch<SetStateAction<string>>;
-    setButton: Dispatch<SetStateAction<'active' | 'disabled'>>;
     type: 'mail' | 'number';
 }
 
@@ -37,14 +27,14 @@ export const AuthInputWrap: FC<props> = ({
     passwordSignInMode = false,
     autoComplete,
     mail = false,
+    error,
+    setError,
     text,
     setText,
     type,
-    setButton,
 }) => {
     const [secure, setSecure] = useState<string>('');
     const [color, setColor] = useState<string>('#DA4242');
-    const [errorMessage, setErrorMessage] = useState<string>('notError');
 
     const style = authInputWrapStyles(color, secure);
 
@@ -55,37 +45,20 @@ export const AuthInputWrap: FC<props> = ({
         else setColor('#999');
     }, [secure]);
 
-    const onFocus = () =>
-        handleFocus([/^Максимальная/, /^Пароль может/], errorMessage, setErrorMessage);
+    const onFocus = () => handleFocus([/^Максимальная/, /^Пароль может/], error, setError);
 
     const onInput = (event: FormEvent<HTMLInputElement>) =>
-        handleInput(event, password, passwordSignInMode, setText, setErrorMessage, setSecure);
+        handleInput(event, password, passwordSignInMode, setText, setError, setSecure);
 
-    const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) =>
-        handleKeyDown(event, setText, text);
-
-    const onBlur = (event: FocusEvent<HTMLInputElement>) =>
-        blurHandler(event, text, mail, setErrorMessage, setText);
-
-    useEffect(() => {
-        if (
-            text.length &&
-            errorMessage === 'notError' &&
-            (secure === 'Надежный пароль' || secure === 'Средний пароль') &&
-            !(type === 'number' && text.length !== 18)
-        ) {
-            setButton('active');
-        } else {
-            setButton('disabled');
-        }
-    }, [text, errorMessage, type, setButton, secure]);
+    const onBlur = () => blurHandler(text, mail, setError, setText);
 
     useEffect(chooseColor, [secure, chooseColor]);
 
     useEffect(() => {
         setSecure('');
-        setErrorMessage('notError');
-    }, [type]);
+        setError('');
+        setText('');
+    }, [type, setText, setError]);
 
     return (
         <div className={styles.wrap}>
@@ -93,36 +66,26 @@ export const AuthInputWrap: FC<props> = ({
                 eye={eye}
                 inputName={inputName}
                 autoComplete={autoComplete}
-                errorMessage={errorMessage}
+                errorMessage={error}
                 password={password}
                 text={text}
                 mask={!password && !mail ? '+7 (999) 999-99-99' : undefined}
                 onFocus={onFocus}
                 onBlur={onBlur}
                 onInput={onInput}
-                onKeyDown={onKeyDown}
             />
             {!password && (
-                <h4
-                    style={{ display: errorMessage !== 'notError' ? 'block' : 'none' }}
-                    className={styles.error}
-                >
-                    {errorMessage}
+                <h4 style={{ display: error ? 'block' : 'none' }} className={styles.error}>
+                    {error}
                 </h4>
             )}
             {passwordSignInMode ? (
-                <h4
-                    style={{ display: errorMessage !== 'notError' ? 'block' : 'none' }}
-                    className={styles.error}
-                >
-                    {errorMessage}
+                <h4 style={{ display: error ? 'block' : 'none' }} className={styles.error}>
+                    {error}
                 </h4>
-            ) : password && errorMessage !== 'notError' ? (
-                <h4
-                    style={{ display: errorMessage !== 'notError' ? 'block' : 'none' }}
-                    className={styles.error}
-                >
-                    {errorMessage}
+            ) : password && error ? (
+                <h4 style={{ display: error ? 'block' : 'none' }} className={styles.error}>
+                    {error}
                 </h4>
             ) : (
                 <div style={style.secureWrap} className={styles.securityWrap}>

@@ -1,7 +1,7 @@
 $btnBgColor-active: #3d3d3d;
 $btnBgColor-hover: #222;
 $btnTextColor-active: #fff;
-$btnBgColor-disabled: #f2f2f2;
+$btnBgColor-disabled: #F2F2F2;
 $btnTextColor-disabled: #222;
 
 .button {
@@ -21,7 +21,7 @@ $btnTextColor-disabled: #222;
 
     cursor: pointer;
 
-    transition: all 0.1s;
+    transition: all 0.3s;
 
     width: 100%;
 }
@@ -41,5 +41,5 @@ $btnTextColor-disabled: #222;
 }
 
 .next-isHover {
-    background: #6a9eff !important; // потом изменится
+    background: #6a9eff !important;
 }

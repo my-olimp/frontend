@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { ReduxProvider } from '@/store/provider';
+import './globals.scss'
 
 export const metadata = {
     title: 'MyOlimp',

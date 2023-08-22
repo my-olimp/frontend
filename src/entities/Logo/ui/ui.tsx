@@ -10,11 +10,11 @@ const Logo: FC = () => {
             <Link href={'/'} className={styles.link}>
                 <Image
                     src={myOlimpLogo.src}
-                    alt={'MyOlymp'}
+                    alt={'MyOlimp'}
                     width={115}
                     className={styles.svg}
                     height={28}
-                    priority={false}
+                    priority={true}
                 />
             </Link>
         </>

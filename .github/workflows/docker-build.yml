@@ -20,5 +20,5 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker build -t myolimp .
-          docker tag myolimp $DOCKERHUB_USERNAME/myolimp
-          docker push $DOCKERHUB_USERNAME/myolimp
+          docker tag myolimp ${{ secrets.DOCKERHUB_USERNAME }}/myolimp
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/myolimp

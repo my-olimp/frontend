@@ -1,5 +1,6 @@
 $inputBorder: #ddd;
 $input-height: 44px;
+$eye-width: 45px;
 
 .input {
     height: $input-height;
@@ -32,9 +33,6 @@ $input-height: 44px;
 
 .iconWrap {
     border-radius: 0 8px 8px 0;
-    border: 1px solid $inputBorder;
-    border-left: none;
-    height: $input-height;
     cursor: pointer;
     display: flex;
     background-color: white;
@@ -42,6 +40,9 @@ $input-height: 44px;
     align-items: center;
     padding: 8px;
     width: $input-height;
+    margin-left: -$eye-width;
+    border: none;
+    height: 100%;
 }
 
 .wrap {

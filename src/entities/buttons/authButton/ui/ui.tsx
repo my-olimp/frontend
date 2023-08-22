@@ -30,9 +30,9 @@ export const AuthButton: FC<props> = ({
     };
     const buttonClassNameVariant: string = `${styles.button} button-${use} ${
         hover && use === 'active' && type !== 'next'
-            ? 'isHover'
+            ? styles.isHover
             : hover && use && type === 'next' && !isDisable(use)
-            ? 'next-isHover'
+            ? styles.nextIsHover
             : null
     }`;
     const buttonWidth = match(width)
@@ -48,9 +48,9 @@ export const AuthButton: FC<props> = ({
         .with('fit-content', () => '100%')
         .otherwise(() => '0px');
     const buttonBackground = match(type)
-        .with('auth', () => (!isDisable(use) ? '#3D3D3D' : undefined))
-        .with('register', () => (!isDisable(use) ? '#3D3D3D' : undefined))
-        .with('next', () => (!isDisable(use) ? '#3579F8' : undefined))
+        .with('auth', () => (!isDisable(use) ? '#3D3D3D' : '#F2F2F2'))
+        .with('register', () => (!isDisable(use) ? '#3D3D3D' : '#F2F2F2'))
+        .with('next', () => (!isDisable(use) ? '#3579F8' : '#F2F2F2'))
         .otherwise(() => 'transparent');
 
     const buttonColor = match(use)
