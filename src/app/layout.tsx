@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { ReduxProvider } from '@/store/provider';
-import './globals.scss'
+import './globals.scss';
 
 export const metadata = {
     title: 'MyOlimp',
@@ -16,6 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <html lang="ru">
             <head>
                 <title>{metadata.title}</title>
+                <meta name="description" content={metadata.description} />
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="theme-color" content="#84ADF8" />
             </head>
