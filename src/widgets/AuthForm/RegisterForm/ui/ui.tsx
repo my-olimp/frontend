@@ -35,6 +35,10 @@ export const RegisterForm: FC<props> = ({}) => {
     const router = useRouter();
 
     useEffect(() => {
+        setButton('disabled');
+    }, []);
+
+    useEffect(() => {
         if (value.length && password.length && repeatPassword.length) {
             setButton('active');
         }
