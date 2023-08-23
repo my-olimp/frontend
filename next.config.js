@@ -21,11 +21,6 @@ const withPWA = withPWAInit({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: process.env.DEPLOY_SERVER === 'github' ? 'export' : 'standalone',
-    images: {
-        loader: 'akamai',
-        path: '',
-    },
-
     reactStrictMode: false,
     experimental: {
         appDir: true,

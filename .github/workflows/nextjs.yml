@@ -31,10 +31,12 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: set nodeEnv
+            - name: set DEPLOY_SERVER
               run: |
                 touch .env
                 echo DEPLOY_SERVER=github >> .env
+            - name: Log DEPLOY_SERVER variable
+              run: echo "DEPLOY_SERVER value is $DEPLOY_SERVER"
             - name: Checkout
               uses: actions/checkout@v3
             - name: Detect package manager
