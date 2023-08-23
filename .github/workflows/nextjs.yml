@@ -4,6 +4,8 @@
 #
 name: Deploy Next.js site to Pages
 
+
+
 on:
     # Runs on pushes targeting the default branch
     push:
@@ -29,6 +31,10 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
+            - name: set nodeEnv
+              run: |
+                touch .env
+                echo DEPLOY_SERVER=github >> .env
             - name: Checkout
               uses: actions/checkout@v3
             - name: Detect package manager

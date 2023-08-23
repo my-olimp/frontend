@@ -1,0 +1,47 @@
+.wrapMaterials {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  height: 326px;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+
+  & h1 {
+    font-size: 20px;
+    font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+  }
+
+  &:hover * {
+    transition: all .3s;
+    color: #3579F8;
+  }
+}
+
+.titleWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 24px;
+  align-items: center;
+  height: fit-content;
+  & * {
+    user-select: auto;
+  }
+}

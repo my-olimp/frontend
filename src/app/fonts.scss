@@ -2,7 +2,7 @@
     font-family: 'SF_Regular';
     src: url('./../../public/font/SFProDisplay-Regular.woff2');
     src: local('SF_Regular'), url('./../../public/font/SFProDisplay-Regular.woff2') format('woff2');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -18,7 +18,7 @@
     font-family: 'SF_Bold';
     src: url('./../../public/font/SFProDisplay-Bold.woff2');
     src: local('SF_Bold'), url('./../../public/font/SFProDisplay-Bold.woff2') format('woff2');
-    font-weight: bold;
+    font-weight: 700;
     font-style: normal;
 }
 

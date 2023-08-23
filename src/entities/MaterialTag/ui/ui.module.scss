@@ -1,0 +1,15 @@
+
+.wrap {
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.20);
+  width: fit-content;
+  padding: 4px 8px;
+}
+.textContent {
+  font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  margin: 0;
+  color: white;
+  user-select: text;
+}
