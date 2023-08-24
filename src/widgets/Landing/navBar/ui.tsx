@@ -3,17 +3,26 @@
 import { NavBarMobile } from '@/features/Landing/navBarMobile/ui';
 import { NavBarDesktop } from '@/features/Landing/navBarDesktop/ui';
 import { SideNavBar } from '@/features/Landing/sideNavBar/ui';
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
-interface props {
-    mobile: boolean;
-}
+interface props {}
 
-export const NavBar: FC<props> = ({ mobile }) => {
+export const NavBar: FC<props> = () => {
+    const [mobile, setMobile] = useState(false);
+    const width = useRef(0);
+
+    useEffect(() => {
+        width.current = window && window.innerWidth;
+        if (width.current < 900) {
+            setMobile(true);
+        }
+    }, []);
+
     const [show, setShow] = useState<boolean>(false);
     const handleClickSide = () => {
         setShow(!show);
     };
+
     return (
         <>
             {mobile ? (

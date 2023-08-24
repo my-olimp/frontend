@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { ReduxProvider } from '@/store/provider';
 import './globals.scss';
-import NextNProgress from 'nextjs-progressbar';
+import { ServiceWorker } from '@/shared/ServiceWorker';
 
 export const metadata = {
     title: 'MyOlimp',
@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <meta name="theme-color" content="#84ADF8" />
             </head>
             <body>
-                <NextNProgress />
+                <ServiceWorker />
                 <ReduxProvider>{children}</ReduxProvider>
             </body>
         </html>

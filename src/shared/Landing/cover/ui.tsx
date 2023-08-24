@@ -1,5 +1,3 @@
-'use client';
-
 import { FC } from 'react';
 import styles from './ui.module.scss';
 import { TagsButton } from '../tagsButton/ui';
@@ -39,8 +37,7 @@ export const Cover: FC<Props> = ({ title, description }) => {
                 <div className={styles.cover}>
                     <div className={styles.innerLayout}>
                         <div
-                            className={`${styles.column} ${styles.text__left} ${styles.text__sm__center}`}
-                        >
+                            className={`${styles.column} ${styles.text__left} ${styles.text__sm__center}`}>
                             <h1 className={styles.title}>{title}</h1>
                             <p className={styles.description}>{description}</p>
                             <div className={styles.items}>
