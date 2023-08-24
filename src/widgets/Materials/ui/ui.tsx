@@ -69,8 +69,8 @@ export const Materials: FC<props> = ({}) => {
             <div className={styles.titleWrap}>
                 <h1 className={styles.title}>С чего начать ?</h1>
                 <Link href={'/'} className={styles.link}>
-                    <h1>Материалы</h1>
-                    <ArrowForwardIosIcon fontSize="small" />
+                    <h2>Материалы</h2>
+                    <ArrowForwardIosIcon />
                 </Link>
             </div>
             <div className={styles.wrapMaterials}>

@@ -4,7 +4,7 @@ import styles from './ui.module.scss';
 interface props {
     text: string;
 }
-export const MaterialTag: FC<props> = ({ text }) => {
+export const MaterialChip: FC<props> = ({ text }) => {
     return (
         <div className={styles.wrap}>
             <h1 className={styles.textContent}>{text}</h1>

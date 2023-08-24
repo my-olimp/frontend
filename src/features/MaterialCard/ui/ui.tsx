@@ -1,4 +1,4 @@
-import { MaterialTag } from '@/entities/MaterialTag';
+import { MaterialChip } from '@/entities/Chips/MaterialChip';
 import { Button } from '@/entities/buttons/button';
 import { ProgressCounter } from '@/entities/progressCounter';
 import styles from './ui.module.scss';
@@ -13,7 +13,7 @@ export const MaterialCard: FC<Props> = ({ material }) => {
         <div className={styles.wrap}>
             <div className={styles.tagWrap}>
                 {material.tags.map((tag) => {
-                    return <MaterialTag key={tag.id} text={tag.text} />;
+                    return <MaterialChip key={tag.id} text={tag.text} />;
                 })}
             </div>
             <div

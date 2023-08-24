@@ -7,6 +7,7 @@
   height: 326px;
   justify-content: center;
   align-items: center;
+  width: 90vw;
 }
 
 .wrap {
@@ -38,10 +39,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 24px;
   align-items: center;
   height: fit-content;
+  padding: 0 24px;
+  margin-bottom: 12px;
+
+
   & * {
     user-select: auto;
+    font-size: 17px;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+  }
+  & h1 {
+    font-size: 28px;
+    margin: 0;
   }
 }
