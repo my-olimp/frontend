@@ -10,6 +10,8 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "eslint": "^8.47.0",
+    "eslint-config-next": "^13.4.19",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
@@ -39,8 +41,6 @@
   "devDependencies": {
     "@types/react-input-mask": "^3.0.2",
     "@types/redux-logger": "^3.0.9",
-    "eslint": "^8.47.0",
-    "eslint-config-next": "^13.4.19",
     "node-sass": "^9.0.0",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2"
