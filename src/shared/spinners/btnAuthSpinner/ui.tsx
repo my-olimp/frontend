@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { FC } from 'react';
 
 import { cssValue } from './helpers/unitConverter';
 import { LoaderSizeProps } from './helpers/props';
@@ -14,14 +15,14 @@ const clip = createAnimation(
  * Если вы показали спиннер, держите его на экране минимум 1 секунду,
  * за это время анимация сделает полный цикл.
  */
-function ClipLoader({
+const ClipLoader: FC = ({
     loading = true,
     color = '#fff',
     speedMultiplier = 1,
     cssOverride = {},
     size = 20,
     ...additionalprops
-}: LoaderSizeProps): JSX.Element | null {
+}: LoaderSizeProps) => {
     const style: React.CSSProperties = {
         background: 'transparent !important',
         width: cssValue(size),
@@ -43,6 +44,6 @@ function ClipLoader({
     }
 
     return <span style={style} {...additionalprops} />;
-}
+};
 
 export default ClipLoader;
