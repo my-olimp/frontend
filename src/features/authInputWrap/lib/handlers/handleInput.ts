@@ -13,6 +13,8 @@ export const handleInput = (
     const text = input.value;
     const textLength = text.length;
 
+    console.log(text);
+
     input?.setSelectionRange(textLength + 2, textLength + 2);
     setText(text);
 
@@ -21,10 +23,13 @@ export const handleInput = (
     }
     if (passwordSignInMode) {
         const tested = text.match(/^[!@#$%^\w]+$/);
+        console.log(tested);
         if (!tested) {
             setErrorMessage(
                 'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
             );
+        } else {
+            setErrorMessage('');
         }
     }
 
