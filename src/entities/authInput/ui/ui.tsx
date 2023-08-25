@@ -81,7 +81,7 @@ export const AuthInput: FC<props> = ({
                             value={text}
                             type={inputType}
                             autoComplete={autoComplete}
-                            onInput={(event) => onInput && onInput(event)}
+                            onChange={(event) => onInput && onInput(event)}
                             onBlur={(event) => onBlur && onBlur(event)}
                             onFocus={onFocus}
                         />
