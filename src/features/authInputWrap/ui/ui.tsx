@@ -74,7 +74,6 @@ export const AuthInputWrap: FC<props> = ({
                 onFocus={onFocus}
                 onBlur={onBlur}
                 onInput={onInput}
-                setErrorMessage={setError}
             />
             {!password && (
                 <h4 style={{ display: error ? 'block' : 'none' }} className={styles.error}>
