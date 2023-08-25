@@ -20,7 +20,13 @@
   flex-direction: row;
   gap: 14px;
   align-items: center;
+
+  & h1 {
+    margin: 0;
+    height: fit-content;
+  }
 }
+
 .text {
   width: 195px;
   height: 33px;

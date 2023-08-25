@@ -1,4 +1,4 @@
-import React, { FC, FocusEvent, FormEvent, useState } from 'react';
+import React, { Dispatch, FC, FocusEvent, FormEvent, SetStateAction, useState } from 'react';
 import styles from './ui.module.scss';
 import { match } from 'ts-pattern';
 import { MaskedInput } from '@/shared/MaskedInput/ui/ui';
@@ -15,6 +15,7 @@ interface props {
     onFocus: () => void | undefined;
     onInput: (event: FormEvent<HTMLInputElement>) => void | undefined;
     onBlur: (event: FocusEvent<HTMLInputElement>) => void | undefined;
+    setErrorMessage: Dispatch<SetStateAction<string>>;
 }
 
 export const AuthInput: FC<props> = ({
@@ -28,6 +29,7 @@ export const AuthInput: FC<props> = ({
     onBlur = undefined,
     onInput = undefined,
     autoComplete,
+    setErrorMessage,
 }) => {
     const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
     const [inputType, setInputType] = useState<'text' | 'password'>(password ? 'password' : 'text');
@@ -91,6 +93,12 @@ export const AuthInput: FC<props> = ({
                     style={style.iconWrap}
                     className={styles.iconWrap}
                     onClick={() => {
+                        const tested = text.match(/^[!@#$%^\w]+$/);
+                        if (!tested) {
+                            setErrorMessage(
+                                'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
+                            );
+                        }
                         setInputType(inputType === 'text' ? 'password' : 'text');
                         setEyeOpen(!isEyeOpen);
                     }}>

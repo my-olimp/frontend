@@ -13,8 +13,8 @@ export const handleInput = (
     const text = input.value;
     const textLength = text.length;
 
-    input.setSelectionRange(textLength + 2, textLength + 2);
-    setText(text)
+    input?.setSelectionRange(textLength + 2, textLength + 2);
+    setText(text);
 
     if (password && setSecure) {
         setSecure(validatePassword(text));
@@ -27,8 +27,6 @@ export const handleInput = (
             );
         }
     }
-
-
 
     if (textLength === 0 && setSecure) {
         setSecure('');

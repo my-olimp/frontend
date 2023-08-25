@@ -45,12 +45,13 @@ export const AuthInputWrap: FC<props> = ({
         else setColor('#999');
     }, [secure]);
 
-    const onFocus = () => handleFocus([/^Максимальная/, /^Пароль может/], error, setError);
+    const onFocus = () =>
+        handleFocus([/^Максимальная/, /^Пароль может/], text, error, passwordSignInMode, setError);
 
     const onInput = (event: FormEvent<HTMLInputElement>) =>
         handleInput(event, password, passwordSignInMode, setText, setError, setSecure);
 
-    const onBlur = () => blurHandler(text, mail, setError, setText);
+    const onBlur = () => blurHandler(text, mail, passwordSignInMode, setError, setText);
 
     useEffect(chooseColor, [secure, chooseColor]);
 
@@ -73,6 +74,7 @@ export const AuthInputWrap: FC<props> = ({
                 onFocus={onFocus}
                 onBlur={onBlur}
                 onInput={onInput}
+                setErrorMessage={setError}
             />
             {!password && (
                 <h4 style={{ display: error ? 'block' : 'none' }} className={styles.error}>

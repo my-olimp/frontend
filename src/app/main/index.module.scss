@@ -1,17 +1,20 @@
 .screen {
   background: white;
-  width: 100vw;
-  overflow-y: hidden;
+  width: 98vw;
+  overflow-x: hidden !important;
   display: flex;
   min-height: 100vh;
-  justify-content: space-between;
+  justify-content: space-between  ;
   padding: 24px 0;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
   flex-direction: column;
   gap: 24px;
 }
 .wrap {
-  width: 90vw;
+  width: 95vw;
+  padding: 0 3.5vw;
   display: flex;
   flex-direction: row;
 }
