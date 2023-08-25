@@ -45,8 +45,7 @@ export const AuthInputWrap: FC<props> = ({
         else setColor('#999');
     }, [secure]);
 
-    const onFocus = () =>
-        handleFocus([/^Максимальная/, /^Пароль может/], text, error, passwordSignInMode, setError);
+    const onFocus = () => handleFocus([/^Максимальная/, /^Пароль может/], text, error);
 
     const onInput = (event: FormEvent<HTMLInputElement>) =>
         handleInput(event, password, passwordSignInMode, setText, setError, setSecure);
