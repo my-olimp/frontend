@@ -1,9 +1,9 @@
-import { MaterialChip } from '@/entities/Chips/MaterialChip';
 import { Button } from '@/entities/buttons/button';
 import { ProgressCounter } from '@/entities/progressCounter';
 import styles from './ui.module.scss';
 import { FC } from 'react';
 import { IMaterial } from '@/widgets/Materials';
+import { MaterialChip } from '@/entities/Chips/MaterialChip';
 
 interface Props {
     material: IMaterial;

@@ -1,6 +1,7 @@
 .screen {
   background: white;
   width: 100vw;
+  overflow-y: hidden;
   display: flex;
   min-height: 100vh;
   justify-content: space-between;
@@ -10,8 +11,7 @@
   gap: 24px;
 }
 .wrap {
-  width: 87vw;
-  gap: 42px;
+  width: 90vw;
   display: flex;
   flex-direction: row;
 }

@@ -11,7 +11,6 @@ const Main: NextPage = () => {
         <div className={styles.screen}>
             <div className={styles.wrap}>
                 <NearestOlimpList />
-                <NearestOlimpList />
             </div>
             <Materials />
         </div>

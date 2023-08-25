@@ -5,6 +5,14 @@
   justify-content: space-around;
   width: 418px;
   height: 75px;
+  border-radius: 10px;
+  transition: all .3s;
+  padding-top: 41px;
+  padding-bottom: 41px;
+
+  &:hover {
+    background: #E9E9E9;
+  }
 }
 
 .titleWrap {
