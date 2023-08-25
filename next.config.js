@@ -20,7 +20,7 @@ const withPWA = withPWAInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: process.env.DEPLOY_SERVER === 'github' ? 'export' : undefined,
+    output: 'export',
     reactStrictMode: false,
     experimental: {
         appDir: true,
