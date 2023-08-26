@@ -32,7 +32,7 @@ export const ConfirmationTime = () => {
                         Отправить SMS
                     </button>
                 ) : (
-                    <p className={styles.text}>Отправиь код повторно {formatTime(seconds)}</p>
+                    <p className={styles.text}>Отправить код повторно {formatTime(seconds)}</p>
                 )}
             </div>
         </>
