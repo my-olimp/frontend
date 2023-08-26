@@ -6,10 +6,19 @@
     width: 100%;
 }
 
-.checkBox {
-    transition: all 3s;
-}
+.checkWrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-.checkBoxText {
-    transition: all 3s;
+    & h1 {
+        font-size: 14px;
+        font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        transition: all .3s;
+    }
+
+    &:hover h1 {
+        color: #3579F9;
+    }
 }
