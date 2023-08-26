@@ -8,7 +8,7 @@ export const LoginHelp: FC = ({}) => {
         <div className={styles.helpWrap}>
             <Link href="/">myolimp.ru</Link>
             <div className={styles.buttonWrap}>
-                <Link href="/">Зарегестрироватся</Link>
+                <Link href={'/signup'}>Зарегестрироватся</Link>
                 <ArrowForwardIosIcon />
             </div>
         </div>
