@@ -13,8 +13,6 @@ export const handleInput = (
     const text = input.value;
     const textLength = text.length;
 
-    console.log(text);
-
     input?.setSelectionRange(textLength + 2, textLength + 2);
     setText(text);
 

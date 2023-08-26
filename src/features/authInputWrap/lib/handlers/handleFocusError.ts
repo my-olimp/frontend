@@ -17,7 +17,7 @@ export const handleFocus = (
         }
     }
 
-    if (!tested && passwordSignInMode) {
+    if (!tested && passwordSignInMode && text !== '') {
         setErrorMessage(
             'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
         );
