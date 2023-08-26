@@ -9,7 +9,11 @@ export const AuthLoginHelp = () => {
     return (
         <div className={styles.wrap}>
             <div className={styles.checkWrap}>
-                <Checkbox value={active} onClick={() => setActive(!active)} />
+                <Checkbox
+                    className={styles.checkBox}
+                    value={active}
+                    onClick={() => setActive(!active)}
+                />
                 <h1>Запомнить меня</h1>
             </div>
             <Link href="/" className={styles.link}>
