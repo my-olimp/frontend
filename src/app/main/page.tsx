@@ -6,16 +6,20 @@ import styles from './index.module.scss';
 import { Materials } from '@/widgets/Materials';
 import { NearestOlimpList } from '@/widgets/NearestOlimpList';
 import { PlansToday } from '@/widgets/PlansToday';
+import { Header } from '@/widgets/header';
 
 const Main: NextPage = () => {
     return (
-        <div className={styles.screen}>
-            <div className={styles.wrap}>
-                <NearestOlimpList />
-                <PlansToday />
+        <>
+            <Header />
+            <div className={styles.screen}>
+                <div className={styles.wrap}>
+                    <NearestOlimpList />
+                    <PlansToday />
+                </div>
+                <Materials />
             </div>
-            <Materials />
-        </div>
+        </>
     );
 };
 
