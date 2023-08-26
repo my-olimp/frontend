@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from './ui.module.scss';
-import Link from '@mui/material/Link';
+import Link from 'next/link';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export const LoginHelp: FC = ({}) => {
