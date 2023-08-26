@@ -2,25 +2,21 @@ import { ReactNode } from 'react';
 import { ReduxProvider } from '@/store/provider';
 import './globals.scss';
 import { ServiceWorker } from '@/shared/ServiceWorker';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'MyOlimp',
     description:
         'MyOlimp - платформа для для организации соревнований в сфере информационных технологий, олимпиад и проектов с социальной значимостью, ориентированных как на новичков, так и на опытных специалистов.',
     icons: {
         icon: ['/icon.ico?v=4'],
     },
+    manifest: '/manifest.json',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="ru">
-            <head>
-                <title>{metadata.title}</title>
-                <meta name="description" content={metadata.description} />
-                <link rel="manifest" href="/manifest.json" />
-                <meta name="theme-color" content="#84ADF8" />
-            </head>
             <body>
                 <ServiceWorker />
                 <ReduxProvider>{children}</ReduxProvider>
