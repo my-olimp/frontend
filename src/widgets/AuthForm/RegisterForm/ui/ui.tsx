@@ -1,8 +1,6 @@
 'use client';
 
-/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from 'react';
-import { AuthInputLabel } from '@/features/authInputLabel';
 import { AuthTypeBlock } from '@/features/authTypeBlock';
 import { AuthButton } from '@/entities/buttons/authButton';
 import styles from './ui.module.scss';
@@ -14,56 +12,53 @@ import { mailOrNumberData } from '@/store/features/auth-slice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import { useRouter } from 'next/navigation';
+import { AuthInputWrap } from '@/features/authInputWrap';
+
 interface props {}
+
 export const RegisterForm: FC<props> = ({}) => {
-    const [errorMailOrNumberMessage, setErrorMailOrNumberMessage] = useState<string>('notError');
-    const [errorPasswordMessage, setErrorPasswordMessage] = useState<string>('notError');
-    const [errorSecondPasswordMessage, setErrorSecondPasswordMessage] =
-        useState<string>('notError');
-    const [mailOrNumber, setMailOrNumber] = useState<string>('');
-    const [passwordValue, setPasswordValue] = useState<string>('');
-    const [passwordSecondValue, setPasswordSecondValue] = useState<string>('');
-    const [isButtonDisabled, setButtonDisabled] = useState<'active' | 'disabled'>('disabled');
     const dispatch = useDispatch<AppDispatch>();
+
+    const [isButtonDisabled, setButton] = useState<'active' | 'disabled'>('disabled');
+
     const [type, setType] = useState<'mail' | 'number'>('mail');
+
+    const [value, setValue] = useState<string>('');
+    const [valueError, setValueError] = useState<string>('');
+
+    const [password, setPassword] = useState<string>('');
+    const [passwordError, setPasswordError] = useState<string>('');
+
+    const [repeatPassword, setRepeatPassword] = useState<string>('');
+    const [repeatPasswordError, setRepeatPasswordError] = useState<string>('');
+
     const router = useRouter();
+
     useEffect(() => {
-        if (
-            mailOrNumber.length !== 0 &&
-            passwordValue.length !== 0 &&
-            passwordSecondValue.length !== 0 &&
-            !(errorPasswordMessage !== 'notError') &&
-            !(errorMailOrNumberMessage !== 'notError') &&
-            !(errorSecondPasswordMessage !== 'notError') &&
-            passwordValue === passwordSecondValue &&
-            !(type === 'number' && mailOrNumber.length !== 18)
-        ) {
-            setButtonDisabled('active');
+        setButton('disabled');
+    }, []);
+
+    useEffect(() => {
+        if (value.length && password.length && repeatPassword.length) {
+            setButton('active');
+        }
+        if (password === repeatPassword && password.length && repeatPassword.length) {
+            setButton('active');
         } else {
-            setButtonDisabled('disabled');
+            setButton('disabled');
         }
-    }, [mailOrNumber, passwordValue, passwordSecondValue, type]);
-
-    useEffect(() => {
-        if (passwordValue !== passwordSecondValue && passwordValue === ' ') {
-            setErrorSecondPasswordMessage('Пароли должны совпадать!');
-            console.log(passwordValue);
+        if (valueError || passwordError || repeatPasswordError) {
+            setButton('disabled');
         }
-    }, [passwordSecondValue, passwordValue]);
-
-    useEffect(() => {
-        setMailOrNumber('');
-        setPasswordValue('');
-        setPasswordSecondValue('');
-        setErrorMailOrNumberMessage('notError');
-        setErrorPasswordMessage('notError');
-        setErrorSecondPasswordMessage('notError');
-    }, [type]);
+        if (type === 'number' && value.length !== 18) {
+            setButton('disabled');
+        }
+    }, [password, repeatPassword, value, valueError, passwordError, repeatPasswordError, type]);
 
     const handleSubmit = () => {
         dispatch(
             mailOrNumberData({
-                mailOrPhone: mailOrNumber,
+                mailOrPhone: value,
                 type: type,
             }),
         );
@@ -71,64 +66,65 @@ export const RegisterForm: FC<props> = ({}) => {
     };
 
     return (
-        <>
-            <Gapped className={styles.form} vertical verticalAlign="middle">
-                <Gapped
-                    gap="0px"
-                    vertical
-                    verticalAlign="middle"
-                    style={{ display: 'flex', width: '100%' }}
-                >
-                    <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
-                        <Gapped
-                            className={styles.headerWrap}
-                            gap="24px"
-                            verticalAlign="middle"
-                            vertical
-                        >
-                            <Gapped vertical verticalAlign="middle" alignItems="center" gap="8px">
-                                <Logo />
-                                <h4 className={styles.text}>
-                                    Для создания учетной записи укажите свои данные:
-                                </h4>
-                            </Gapped>
-                            <AuthTypeBlock type={type} setType={setType} />
-
+        <Gapped className={styles.form} vertical verticalAlign="middle">
+            <Gapped
+                gap="0px"
+                vertical
+                verticalAlign="middle"
+                style={{ display: 'flex', width: '100%' }}>
+                <Gapped className={styles.wrap} vertical gap="16px" verticalAlign="middle">
+                    <Gapped
+                        className={styles.headerWrap}
+                        gap="24px"
+                        verticalAlign="middle"
+                        vertical>
+                        <Gapped vertical verticalAlign="middle" alignItems="center" gap="8px">
+                            <Logo />
+                            <h4 className={styles.text}>
+                                Для создания учетной записи укажите свои данные:
+                            </h4>
+                        </Gapped>
+                        <AuthTypeBlock type={type} setType={setType} />
+                        <form>
                             <Gapped
                                 className={styles.inputWrap}
                                 vertical
                                 verticalAlign="middle"
                                 gap="16px"
-                                style={{ display: 'flex', width: '100%' }}
-                            >
-                                <AuthInputLabel
+                                style={{ display: 'flex', width: '100%' }}>
+                                <AuthInputWrap
                                     mail={type === 'mail'}
-                                    number={type === 'number'}
                                     inputName={type === 'mail' ? 'Почта' : 'Номер телефона'}
-                                    text={mailOrNumber}
-                                    setText={setMailOrNumber}
-                                    errorMessage={errorMailOrNumberMessage}
-                                    setErrorMessage={setErrorMailOrNumberMessage}
-                                />{' '}
-                                <AuthInputLabel
+                                    text={value}
+                                    setText={setValue}
+                                    type={type}
+                                    autoComplete={type === 'mail' ? 'email' : 'tel'}
+                                    error={valueError}
+                                    setError={setValueError}
+                                />
+                                <AuthInputWrap
                                     password={true}
                                     passwordSignInMode={false}
                                     inputName={'Пароль'}
                                     eye={true}
-                                    text={passwordValue}
-                                    setText={setPasswordValue}
-                                    errorMessage={errorPasswordMessage}
-                                    setErrorMessage={setErrorPasswordMessage}
+                                    text={password}
+                                    setText={setPassword}
+                                    type={type}
+                                    autoComplete={'new-password'}
+                                    error={passwordError}
+                                    setError={setPasswordError}
                                 />
-                                <AuthInputLabel
+                                <AuthInputWrap
                                     password={true}
                                     passwordSignInMode={true}
                                     inputName={'Подтверждение пароля'}
                                     eye={true}
-                                    text={passwordSecondValue}
-                                    setText={setPasswordSecondValue}
-                                    errorMessage={errorSecondPasswordMessage}
-                                    setErrorMessage={setErrorSecondPasswordMessage}
+                                    text={repeatPassword}
+                                    type={type}
+                                    setText={setRepeatPassword}
+                                    autoComplete={'new-password'}
+                                    error={repeatPasswordError}
+                                    setError={setRepeatPasswordError}
                                 />
                                 <AuthButton
                                     type="register"
@@ -136,17 +132,16 @@ export const RegisterForm: FC<props> = ({}) => {
                                     height="medium"
                                     btnStyle={{ width: '100%' }}
                                     use={isButtonDisabled}
-                                    onClick={handleSubmit}
-                                >
+                                    onClick={handleSubmit}>
                                     Зарегистрироваться
                                 </AuthButton>
                                 <RegisterRulesAccept />
                             </Gapped>
-                        </Gapped>
+                        </form>
                     </Gapped>
-                    <RegisterHelp />
                 </Gapped>
+                <RegisterHelp />
             </Gapped>
-        </>
+        </Gapped>
     );
 };

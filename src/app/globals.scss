@@ -1,54 +1,58 @@
 @import './fonts.scss';
+@import '~normalize.css';
 
 $main-bg-color: #fff;
 
 * {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    box-sizing: border-box;
-    user-select: none;
-    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
-    color: #222;
-
-    -webkit-tap-highlight-color: transparent;
+  padding: 0 ;
+  margin: 0 ;
+  border: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
-    background-color: $main-bg-color;
+  background-color: $main-bg-color;
 }
 
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
+
+a {color:#222;}         /* Unvisited link  */
+a:visited {color:#222;} /* Visited link    */
+a:hover {color:#222;}   /* Mouse over link */
+a:active {color:#222;}  /* Selected link   */
 
 a,
 a:link,
 a:visited {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 ul,
 ul li {
-    list-style: none;
+  list-style: none;
 }
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
 input[type='number'] {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 input[type='password']::-ms-reveal,
 input[type='password']::-ms-clear {
-    display: none;
+  display: none;
 }
 
 /* Change Autocomplete styles in Chrome*/
@@ -61,5 +65,16 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    transition: background-color 5000s ease-in-out 0s;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: black;
+}
+
+::selection {
+  color: white;
+  background: black;
 }

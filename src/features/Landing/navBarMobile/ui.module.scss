@@ -1,5 +1,4 @@
 $navBarHeight: 96px;
-/*Тут надо менять*/
 .wrap {
     position: fixed;
 
@@ -16,10 +15,10 @@ $navBarHeight: 96px;
     justify-content: space-between;
     align-items: center;
 
-    padding-left: 78px;
-    padding-right: 78px;
-
     box-sizing: border-box;
+
+    padding-left: 72px;
+    padding-right: 72px;
 }
 
 .switchNavbar {

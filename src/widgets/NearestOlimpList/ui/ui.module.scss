@@ -1,0 +1,18 @@
+.olimpWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wrap {
+  background: #F3F3F3;
+  border-radius: 30px;
+  padding: 6px 24px 12px 24px;
+}
+
+.text {
+  font-size: 28px;
+  color: #222222;
+  font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+}

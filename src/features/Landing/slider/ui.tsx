@@ -1,7 +1,7 @@
 import { Slide } from '@/shared/Landing/card/ui';
 import styles from './ui.module.scss';
 import { FC } from 'react';
-import { sliderDataType } from '@/widgets/Landing/team/data/data'; // нельзя юзать компоненты, которые выше по уровню архитектуры. Надо переделать
+import { sliderDataType } from '@/widgets/Landing/team/data/data'; //TODO: нельзя юзать компоненты, которые выше по уровню архитектуры. Надо переделать
 
 interface props {
     data: sliderDataType[];

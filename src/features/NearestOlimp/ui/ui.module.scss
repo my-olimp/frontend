@@ -1,0 +1,44 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 418px;
+  height: 75px;
+  border-radius: 10px;
+  transition: all .3s;
+  padding-top: 41px;
+  padding-bottom: 41px;
+
+  &:hover {
+    background: #E9E9E9;
+  }
+}
+
+.titleWrap {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  align-items: center;
+
+  & h1 {
+    margin: 0;
+    height: fit-content;
+  }
+}
+
+.text {
+  width: 195px;
+  height: 33px;
+  font-size: 16px;
+  font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.chip {
+   & * {
+     font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+     font-weight: 400;
+     font-size: 14px;
+   }
+}

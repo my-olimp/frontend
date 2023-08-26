@@ -1,10 +1,12 @@
+import { ReactNode } from 'react';
 import { ReduxProvider } from '@/store/provider';
 import './globals.scss';
-import { ReactNode } from 'react';
+import { ServiceWorker } from '@/shared/ServiceWorker';
 
 export const metadata = {
     title: 'MyOlimp',
-    description: '...',
+    description:
+        'MyOlimp - платформа для для организации соревнований в сфере информационных технологий, олимпиад и проектов с социальной значимостью, ориентированных как на новичков, так и на опытных специалистов.',
     icons: {
         icon: ['/icon.ico?v=4'],
     },
@@ -13,8 +15,14 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="ru">
-            <link rel="icon" href="/icon.ico" sizes="any" />
+            <head>
+                <title>{metadata.title}</title>
+                <meta name="description" content={metadata.description} />
+                <link rel="manifest" href="/manifest.json" />
+                <meta name="theme-color" content="#84ADF8" />
+            </head>
             <body>
+                <ServiceWorker />
                 <ReduxProvider>{children}</ReduxProvider>
             </body>
         </html>

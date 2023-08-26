@@ -1,0 +1,19 @@
+{
+  "name": "MyOlimp",
+  "short_name": "MyOlimp",
+  "description": "Платформа для проведения олимпиад.",
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#84ADF8",
+  "display": "standalone",
+  "lang": "ru",
+  "dir": "ltr",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/logo/myOlimpLogo.svg",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

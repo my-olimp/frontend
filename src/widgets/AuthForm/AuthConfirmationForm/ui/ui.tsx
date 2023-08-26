@@ -1,4 +1,4 @@
-import { FC, FormEvent, KeyboardEvent, RefObject, useRef } from 'react';
+import { FC, FormEvent, RefObject, useRef } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
@@ -6,7 +6,8 @@ import { Input } from '@/entities/input';
 import { useEventListener } from 'usehooks-ts';
 import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
-import { useAppSelector } from '@/store/store';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { setButtonActive } from '@/widgets/AuthForm/AuthConfirmationForm/lib/setButtonActive';
 
 interface props {}
 
@@ -15,61 +16,20 @@ export const ConfirmationForm: FC<props> = ({}) => {
     const second = useRef<HTMLInputElement>(null);
     const third = useRef<HTMLInputElement>(null);
     const fourth = useRef<HTMLInputElement>(null);
-    const mail: string = useAppSelector((state) => state.authReducer.value.mailOrPhone);
-    const number: string = useAppSelector((state) => state.authReducer.value.mailOrPhone);
-    const type: string = useAppSelector((state) => state.authReducer.value.type);
 
-    const setButtonActive = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (isNaN(parseInt(event.key))) {
-            if (event.key === 'Backspace' || event.key === 'Delete') {
-                const input = event.target as HTMLInputElement;
-                if (input.value !== '') {
-                    input.value = '';
-                    if (input.id === '4') {
-                        setTimeout(() => {
-                            third.current?.focus();
-                        }, 0);
-                    } else if (input.id === '3') {
-                        setTimeout(() => {
-                            second.current?.focus();
-                        }, 0);
-                    } else if (input.id === '2') {
-                        setTimeout(() => {
-                            first.current?.focus();
-                        }, 0);
-                    }
-                }
-            }
-        } else {
-            if (
-                first.current?.value !== '' &&
-                second.current?.value !== '' &&
-                third.current?.value !== '' &&
-                fourth.current?.value !== ''
-            ) {
-                handleSubmit();
-            }
+    const mailOrNumber: string = useAppSelector((state) => state.auth.value.mailOrPhone);
+    const type: string = useAppSelector((state) => state.auth.value.type);
 
-            if (first.current?.value !== '') {
-                second.current?.focus();
-            }
-            if (second.current?.value !== '') {
-                third.current?.focus();
-            }
-            if (third.current?.value !== '') {
-                fourth.current?.focus();
-            }
-        }
-    };
+    const handleKeydown = (event: Event) =>
+        setButtonActive(event, [first, second, third, fourth], handleSubmit);
 
-    //@ts-ignore
-    useEventListener('keydown', (event) => setButtonActive(event), first.current);
-    //@ts-ignore
-    useEventListener('keydown', (event) => setButtonActive(event), second.current);
-    //@ts-ignore
-    useEventListener('keydown', (event) => setButtonActive(event), third.current);
-    //@ts-ignore
-    useEventListener('keydown', (event) => setButtonActive(event), fourth.current);
+    useEventListener('keydown', (event: Event) => handleKeydown(event), second);
+
+    useEventListener('keydown', (event: Event) => handleKeydown(event), second);
+
+    useEventListener('keydown', (event: Event) => handleKeydown(event), second);
+
+    useEventListener('keydown', (event: Event) => handleKeydown(event), second);
 
     const handleInput = (
         event: FormEvent<HTMLInputElement>,
@@ -100,36 +60,31 @@ export const ConfirmationForm: FC<props> = ({}) => {
                         gap="0px"
                         vertical
                         verticalAlign="middle"
-                        style={{ display: 'flex', width: '100%' }}
-                    >
+                        style={{ display: 'flex', width: '100%' }}>
                         <Gapped
                             className={styles.wrap}
                             vertical
                             verticalAlign="middle"
-                            style={{ zIndex: '99' }}
-                        >
+                            style={{ zIndex: '99' }}>
                             <Gapped
                                 className={styles.headerWrap}
                                 gap="24px"
                                 verticalAlign="middle"
                                 vertical
-                                style={{ display: 'flex', width: '100%' }}
-                            >
+                                style={{ display: 'flex', width: '100%' }}>
                                 <Gapped
                                     vertical
                                     verticalAlign="middle"
                                     alignItems="center"
-                                    gap="8px"
-                                >
+                                    gap="8px">
                                     <Logo />
                                     <h4 className={styles.text}>
                                         Подтверждение{' '}
                                         {type === 'mail' ? 'почты:' : 'номера телефона'}
                                     </h4>
                                     <h4 className={styles.subTitle}>
-                                        На {type === 'mail' ? 'почту' : 'номер'}{' '}
-                                        {type === 'mail' ? mail : number} был отправлен код, введите
-                                        его для завершения регистрации
+                                        На {type === 'mail' ? 'почту' : 'номер'} {mailOrNumber} был
+                                        отправлен код, введите его для завершения регистрации
                                     </h4>
                                 </Gapped>
 
@@ -141,8 +96,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         width: '100%',
                                         gap: '8px',
                                         justifyContent: 'center',
-                                    }}
-                                >
+                                    }}>
                                     <Input
                                         inputRef={first}
                                         width={56}
@@ -188,8 +142,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                 className={styles.confTime}
                                 verticalAlign="middle"
                                 vertical
-                                style={{ display: 'flex', width: '100%' }}
-                            >
+                                style={{ display: 'flex', width: '100%' }}>
                                 <ConfirmationTime />
                             </Gapped>
                         </Gapped>

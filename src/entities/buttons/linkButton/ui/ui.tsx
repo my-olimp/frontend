@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import styles from './ui.module.scss';
-import React, { FC, useState, MouseEventHandler, ReactElement } from 'react';
+import React, { FC, MouseEventHandler, ReactElement, useState } from 'react';
 import Image from 'next/image';
+
 interface PropsType {
     children: string | ReactElement;
     color?: string;
@@ -65,16 +66,12 @@ export const LinkButton: FC<PropsType> = ({
                 onMouseOut={() => setHover(false)}
                 style={style.buttonStyle}
                 className={styles.wrap}
-                href={link ? link : ''}
-            >
+                href={link ? link : ''}>
                 <button
                     type="button"
-                    onMouseOver={() => setHover(true)}
-                    onMouseOut={() => setHover(false)}
                     className={`${styles.button}  ${buttonClassName}`}
                     style={style.buttonStyle}
-                    onClick={onClick}
-                >
+                    onClick={onClick}>
                     {children}
                 </button>
                 {icon ? (
@@ -82,8 +79,6 @@ export const LinkButton: FC<PropsType> = ({
                         className={styles.icon}
                         src={hover ? iconIsHover : icon}
                         alt="icon"
-                        onMouseOver={() => setHover(true)}
-                        onMouseOut={() => setHover(false)}
                         width={iconWidth}
                         height={iconHeight}
                         style={style.imgStyle}

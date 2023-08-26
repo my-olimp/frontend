@@ -10,7 +10,7 @@ export const NavBarDesktop = ({}) => {
 
     const onScroll = () => {
         const scroll = document.documentElement.scrollTop;
-        if (scroll > 0) {
+        if (scroll > 0 && navbar) {
             navbar.classList.add(SCROLLED_STATE_CLASS);
         } else if (scroll <= 0) {
             navbar.classList.remove(SCROLLED_STATE_CLASS);
@@ -19,8 +19,6 @@ export const NavBarDesktop = ({}) => {
     if (typeof window !== 'undefined') {
         window.addEventListener('scroll', onScroll);
     }
-    //В этом случае лучше не использовать moduleCSS, т.к. классы не добавляются
-
     return (
         <div className="layout">
             <header id="navbar" className="wrap">
