@@ -9,7 +9,7 @@ interface Props {
 
 export const SideBarElement: FC<Props> = ({ children, link }) => {
     return (
-        <Link href={link ? link : ''} className={styles.wrap}>
+        <Link style={{ color: '#fff' }} href={link ? link : ''} className={styles.wrap}>
             {children}
         </Link>
     );

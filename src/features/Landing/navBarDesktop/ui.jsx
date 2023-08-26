@@ -10,13 +10,15 @@ export const NavBarDesktop = ({}) => {
 
     const onScroll = () => {
         const scroll = document.documentElement.scrollTop;
-        if (scroll > 0 && navbar) {
-            navbar.classList.add(SCROLLED_STATE_CLASS);
-        } else if (scroll <= 0) {
-            navbar.classList.remove(SCROLLED_STATE_CLASS);
+        if (navbar) {
+            if (scroll > 0) {
+                navbar.classList.add(SCROLLED_STATE_CLASS);
+            } else if (scroll <= 0) {
+                navbar.classList.remove(SCROLLED_STATE_CLASS);
+            }
         }
     };
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && navbar) {
         window.addEventListener('scroll', onScroll);
     }
     return (
