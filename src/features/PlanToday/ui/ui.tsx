@@ -1,3 +1,4 @@
+'use client';
 import React, { FC, useState } from 'react';
 import styles from './ui.module.scss';
 import { IPlan } from '@/widgets/PlansToday';
@@ -21,11 +22,8 @@ export const PlanToday: FC<props> = ({ plan }) => {
                     plan.completed = !plan.completed;
                 }}
             />
-            <h1
-                className={styles.text}
-                style={{ textDecoration: completed ? 'line-through' : 'none' }}>
-                {plan.title}
-            </h1>
+
+            <h1 className={completed ? styles.completedText : styles.text}>{plan.title}</h1>
         </div>
     );
 };

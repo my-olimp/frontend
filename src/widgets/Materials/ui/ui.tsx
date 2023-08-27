@@ -1,4 +1,3 @@
-'use client';
 import React, { FC } from 'react';
 import styles from './ui.module.scss';
 import { MaterialCard } from '@/features/MaterialCard';

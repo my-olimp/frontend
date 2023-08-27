@@ -1,3 +1,4 @@
+'use client';
 import { Button } from '@/entities/buttons/button';
 import { ProgressCounter } from '@/entities/progressCounter';
 import styles from './ui.module.scss';

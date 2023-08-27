@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { NextPage } from 'next';
 import styles from './index.module.scss';

@@ -7,3 +7,59 @@
     padding: 0 6vw;
     margin-bottom: 24px;
 }
+
+.linksWrap {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    align-items: center;
+
+}
+
+.infoWrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding-left: 16px;
+    border-left: 1px solid #ECECEC;
+
+
+    & * {
+        cursor: pointer;
+    }
+
+}
+
+.element:hover {
+    transition: all .3s;
+    color: #3579f8;
+}
+
+.popupWrapHidden {
+    height: 0;
+    width: 390px;
+    position: fixed;
+    top: 75px;
+    right: 100px;
+}
+
+.popupWrap {
+    position: fixed;
+    top: 75px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: transparent;
+    right: 100px;
+    animation: showPopup .3s forwards;
+}
+
+@keyframes showPopup {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 252px;
+    }
+}

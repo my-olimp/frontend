@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './ui.module.scss';
 import { AuthTypeBlock } from '@/features/authTypeBlock';
-import { AuthLoginHelp } from '@/features/authLoginHelp';
+import { AuthLoginHelp } from '@/features/authHelp/authLoginHelp';
 import { LoginHelp } from '@/features/authHelp/LoginHelp';
 import { AuthButton } from '@/entities/buttons/authButton';
 import { Gapped } from '@/shared/Gapped/ui/ui';

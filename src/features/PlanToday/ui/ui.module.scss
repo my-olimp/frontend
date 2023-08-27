@@ -3,17 +3,44 @@
   flex-direction: row;
   gap: 30px;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   background: white;
   border-radius: 25px;
   width: 663px;
   height: 75px;
 
-  & h1 {
+  & .text {
+    font-size: 16px;
+    height: fit-content;
+    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+  }
+
+  & .completedText {
     font-size: 16px;
     height: fit-content;
     font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
     font-weight: 400;
     position: relative;
+
+    &:after {
+      transition: all .3s;
+      animation: lineThrough .5s ease forwards;
+      position: absolute;
+      height: 2px;
+      content: "";
+      left: 0;
+      top: 50%;
+      background-color: black;
+    }
+  }
+}
+
+@keyframes lineThrough {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
   }
 }
