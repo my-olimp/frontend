@@ -17,3 +17,17 @@
   font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
   font-weight: 500;
 }
+
+@media (max-width: 1000px) {
+  .wrap {
+    width: 100%;
+  }
+  .olimpWrap {
+    justify-content: center;
+    align-items: center;
+  }
+  .text {
+    width: 100%;
+    text-align: center;
+  }
+}

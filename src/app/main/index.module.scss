@@ -9,13 +9,37 @@
     margin-left: auto;
     margin-right: auto;
     flex-direction: column;
-    gap: 24px;
-    padding-bottom: 24px;
+    gap: 48px;
+    padding-bottom: 48px;
+    margin-top: 80px;
 }
 .wrap {
     width: 95vw;
-    padding: 0 3.5vw;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     gap: 42px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 1000px) {
+    .wrap {
+        width: 50vw;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 650px) {
+    .wrap {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 450px) {
+    .wrap {
+        width: 95vw;
+    }
 }

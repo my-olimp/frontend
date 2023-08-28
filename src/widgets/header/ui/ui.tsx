@@ -1,17 +1,18 @@
 'use client';
-import styles from './ui.module.scss';
-import { Avatar } from '@mui/material';
-import Logo from '@/entities/Logo/ui/ui';
-import Link from 'next/link';
-import { useState } from 'react';
-import { Bell } from '@/features/Bell';
-import { INotice, Notifications } from '@/features/Notifications';
+import { FC, useLayoutEffect, useState } from 'react';
+import { INotice } from '@/features/Notifications';
+import { NavBarDesktop } from '@/features/NavbarDesktop/';
+import { NavBarMobile } from '@/features/NavbarMobile';
+
+interface props {
+    activeId: number;
+}
 
 const navBarData = [
     {
         id: 0,
         title: 'Главная',
-        link: '',
+        link: '/main',
     },
     {
         id: 1,
@@ -26,45 +27,35 @@ const navBarData = [
     {
         id: 3,
         title: 'Библиотека',
-        link: '',
+        link: '/library',
     },
 ];
 
 const notifications: INotice[] = [
-    { id: 0, title: 'Пришли результаты ВСОШ по математике', date: '2023-08-27T17:10:54.394Z' },
-    { id: 1, title: 'Пришли результаты ВСОШ по математике', date: '2023-08-26T17:10:54.394Z' },
+    { id: 0, title: 'Пришли результаты ВСОШ по математике', date: '2023-08-28T11:13:55.395Z' },
+    { id: 1, title: 'Пришли результаты ВСОШ по математике', date: '2023-08-28T11:12:55.395Z' },
 ];
 
-export const Header = () => {
-    const [showPopup, setShowPopup] = useState<boolean>(false);
-    const [clicked, setClicked] = useState<boolean>(false);
+export const Header: FC<props> = ({ activeId }) => {
+    const [mobile, setMobile] = useState(false);
+
+    useLayoutEffect(() => {
+        if (window.innerWidth < 900) {
+            setMobile(true);
+        }
+    }, []);
 
     return (
-        <header
-            style={{ display: 'flex', justifyContent: 'space-between' }}
-            className={styles.header}>
-            <div className={styles.linksWrap}>
-                <Logo />
-                {navBarData.map((data) => (
-                    <Link className={styles.element} key={data.id} href={data.link}>
-                        {data.title}
-                    </Link>
-                ))}
-            </div>
-            <div className={styles.infoWrap}>
-                <Bell
-                    showPopup={showPopup}
-                    clicked={clicked}
-                    setShowPopup={setShowPopup}
-                    setClicked={setClicked}
+        <>
+            {mobile ? (
+                <NavBarMobile notifications={notifications} navBarData={navBarData} />
+            ) : (
+                <NavBarDesktop
+                    notifications={notifications}
+                    navBarData={navBarData}
+                    activeId={activeId}
                 />
-                <Avatar></Avatar>
-            </div>
-            {showPopup && (
-                <div className={showPopup ? styles.popupWrap : styles.popupWrapHidden}>
-                    <Notifications notifications={notifications} />
-                </div>
             )}
-        </header>
+        </>
     );
 };

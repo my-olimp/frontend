@@ -2,7 +2,7 @@ import styles from './ui.module.scss';
 import { FooterItemsInfo } from '@/shared/Landing/footerItems/ui';
 import { FooterContacts } from '@/shared/Landing/footerContacts/ui';
 
-export const Footer = () => {
+export const LandingFooter = () => {
     return (
         <>
             <footer className={styles.footer}>

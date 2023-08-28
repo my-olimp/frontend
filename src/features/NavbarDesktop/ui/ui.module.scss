@@ -1,0 +1,50 @@
+.header {
+  width: 100%;
+  height: 64px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 0 6vw;
+}
+
+.linksWrap {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+
+}
+
+.infoWrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding-left: 16px;
+
+
+  & * {
+    cursor: pointer;
+  }
+
+}
+
+.element:hover {
+  transition: all .3s;
+  color: #3579f8;
+}
+
+
+.popupWrap {
+  width: 390px;
+  position: absolute;
+  top: 75px;
+  right: 100px;
+  overflow: hidden;
+  background-color: white;
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0px -3px 40px 20px rgba(154, 170, 207, 0.20), 0px 16px 40px 20px rgba(154, 170, 207, 0.20);;
+
+}
+

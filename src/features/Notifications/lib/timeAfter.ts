@@ -15,35 +15,39 @@ export const timeAfter = (date: string) => {
 
     if (yearsDifference >= 1) {
         timeValue = yearsDifference;
-        timeUnit = declension(timeValue, 'год');
+        timeUnit = `${timeValue} ` + getNoun(timeValue, 'год', 'года', 'лет');
     } else if (monthsDifference >= 1) {
         timeValue = monthsDifference;
-        timeUnit = declension(timeValue, 'месяц');
+        timeUnit = `${timeValue} ` + getNoun(timeValue, 'месяц', 'месяца', 'месяцев');
     } else if (daysDifference >= 1) {
         timeValue = daysDifference;
-        timeUnit = declension(timeValue, 'день');
+        timeUnit = `${timeValue} ` + getNoun(timeValue, 'день', 'дня', 'дней');
     } else if (hoursDifference >= 1) {
         timeValue = hoursDifference;
-        timeUnit = declension(timeValue, 'час');
+        timeUnit = `${timeValue} ` + getNoun(timeValue, 'час', 'часа', 'часов');
     } else if (minutesDifference >= 1) {
         timeValue = minutesDifference;
-        timeUnit = declension(timeValue, 'минута');
+        timeUnit = `${timeValue} ` + getNoun(timeValue, 'минуту', 'минуты', 'минут');
     } else {
         timeValue = secondsDifference;
-        timeUnit = declension(timeValue, 'секунда');
+        timeUnit = `${timeValue} ` + getNoun(timeValue, 'секунду', 'секунды', 'секунд');
     }
 
-    return `${timeValue} ${timeUnit} назад`;
+    return `${timeUnit} назад`;
 };
 
-// Функция для склонения числительных и единиц времени
-const declension = (number: number, word: string) => {
-    const cases = [2, 0, 1, 1, 1, 2]; // Формы склонения для русского языка
-
-    return (
-        word +
-        (number % 100 > 4 && number % 100 < 20
-            ? 'ов'
-            : ['', 'а', 'ов'][cases[Math.min(number % 10, 5)]])
-    );
-};
+function getNoun(number: number, one: string, two: string, five: string) {
+    let n = Math.abs(number);
+    n %= 100;
+    if (n >= 5 && n <= 20) {
+        return five;
+    }
+    n %= 10;
+    if (n === 1) {
+        return one;
+    }
+    if (n >= 2 && n <= 4) {
+        return two;
+    }
+    return five;
+}

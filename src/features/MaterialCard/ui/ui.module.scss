@@ -13,7 +13,7 @@
   position: relative;
   float: left;
   background-image: linear-gradient(180deg, #5E96FF, #1F68F0);
-  background-color: #ccc;
+  background-color: #CCCCCCFF;
   z-index: 1;
 }
 .wrap:after {
@@ -73,5 +73,26 @@
 .wrap:hover {
   & .icon {
     width: 200px;
+  }
+}
+
+@media (max-width: 800px) {
+  .wrap {
+    width: 180px;
+    height: 200px;
+    gap: 50px;
+  }
+
+  .icon {
+    width: 64px;
+    height: 128px;
+  }
+  .wrap:hover {
+    & .icon {
+      width: 82px;
+    }
+  }
+  .title {
+    font-size: 13px;
   }
 }

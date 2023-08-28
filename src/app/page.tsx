@@ -7,8 +7,8 @@ import { Content } from '@/shared/Landing/blocksWithContent/ui';
 import { Team } from '@/widgets/Landing/team/ui';
 import { ScrollCards } from '@/widgets/Landing/scrollCards/ui';
 import { TitleScroll } from '@/shared/Landing/scrollCardContentTitle/ui';
-import { Footer } from '@/widgets/Landing/footer/ui';
 import { Cover } from '@/shared/Landing/cover/ui';
+import { LandingFooter } from '@/widgets/Landing/footer/ui';
 
 export default function Home() {
     //TODO: очень много кода на лендинге нужно переделать
@@ -28,7 +28,7 @@ export default function Home() {
             </Layout>
             <ScrollCards />
             <Layout>
-                <Footer />
+                <LandingFooter />
             </Layout>
         </>
     );

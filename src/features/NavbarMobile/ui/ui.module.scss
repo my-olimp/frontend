@@ -1,0 +1,32 @@
+.wrap {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:  0 24px;
+  align-items: center;
+  border-bottom: 1px solid #E5E5E5;
+}
+
+.profileWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.popupWrap {
+  width: fit-content;
+  position: absolute;
+  top: 75px;
+  right: 0;
+  overflow: hidden;
+  background-color: white;
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0px -3px 40px 20px rgba(154, 170, 207, 0.20), 0px 16px 40px 20px rgba(154, 170, 207, 0.20);;
+}
+

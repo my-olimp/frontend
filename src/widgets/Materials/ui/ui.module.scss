@@ -13,6 +13,10 @@
 .wrap {
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  width: min-content;
+  align-items: center;
 }
 
 .link {
@@ -38,11 +42,11 @@
 .titleWrap {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  gap: 60vw;
+  justify-content: space-between;
   align-items: center;
-  height: fit-content;
+  width: 100%;
   margin-bottom: 12px;
+  padding: 0 32px;
 
 
   & * {
@@ -52,8 +56,28 @@
     font-weight: 500;
   }
   & h1 {
-    font-size: 28px;
+    font-size: 25px;
     margin: 0;
     user-select: text;
+  }
+}
+
+.linkWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .link svg {
+    margin-top: 50px;
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  .wrapMaterials {
+    width: 100vw;
+    gap: 12px;
+    height: 200px;
   }
 }

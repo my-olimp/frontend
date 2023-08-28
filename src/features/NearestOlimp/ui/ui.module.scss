@@ -5,6 +5,7 @@
   justify-content: space-around;
   width: 418px;
   height: 75px;
+  gap: 10px;
   border-radius: 10px;
   transition: all .3s;
   padding-top: 41px;
@@ -41,4 +42,39 @@
      font-weight: 400;
      font-size: 14px;
    }
+}
+
+@media (max-width: 1200px) {
+  .wrap {
+    width: 300px;
+  }
+  .text {
+    width: fit-content;
+  }
+}
+
+@media (max-width: 800px) {
+  .wrap {
+    flex-direction: row;
+  }
+  .titleWrap {
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+
+    & h1 {
+      font-size: 15px;
+      font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+      font-weight: 500;
+    }
+
+    & div {
+      width: 60%;
+      height: 25px;
+      & * {
+        font-size: 15px;
+      }
+    }
+  }
 }

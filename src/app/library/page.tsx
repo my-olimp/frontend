@@ -1,12 +1,10 @@
 import React from 'react';
-import { NextPage } from 'next';
 import styles from './index.module.scss';
-import { IMaterial, Materials } from '@/widgets/Materials';
-import { NearestOlimpList } from '@/widgets/NearestOlimpList';
-import { PlansToday } from '@/widgets/PlansToday';
-import materialIcon from '../../../public/materials/materialIcon.svg';
-import { Footer } from '@/widgets/Footer';
+import { NextPage } from 'next';
 import { Header } from '@/widgets/header';
+import { Footer } from '@/widgets/Footer';
+import { IMaterial, Materials } from '@/widgets/Materials';
+import materialIcon from '../../../public/materials/materialIcon.svg';
 
 const materialList: IMaterial[] = [
     {
@@ -54,20 +52,16 @@ const materialList: IMaterial[] = [
         icon: materialIcon.src,
     },
 ];
-const Main: NextPage = () => {
+
+const Library: NextPage = () => {
     return (
-        <>
-            <Header activeId={0} />
-            <div className={styles.screen}>
-                <div className={styles.wrap}>
-                    <NearestOlimpList />
-                    <PlansToday />
-                </div>
-                <Materials materialList={materialList} title={'С чего начать ?'} libMode={false} />
-            </div>
+        <div className={styles.screen}>
+            <Header activeId={3} />
+            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} />
+            <Materials materialList={materialList} title={'Может быть интересно'} libMode={true} />
             <Footer />
-        </>
+        </div>
     );
 };
 
-export default Main;
+export default Library;

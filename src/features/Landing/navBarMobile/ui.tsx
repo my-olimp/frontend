@@ -1,4 +1,4 @@
-import { HamburgerMenu } from '@/shared/Landing/hamburgerMenu/ui';
+import { HamburgerMenu } from '@/entities/hamburgerMenu/';
 import { NavBarLogo } from '@/entities/Landing/navBarLogo/ui';
 import { FC } from 'react';
 import styles from './ui.module.scss';

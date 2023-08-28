@@ -11,9 +11,11 @@ interface props {
 }
 export const PlanToday: FC<props> = ({ plan }) => {
     const [completed, setCompleted] = useState<boolean>(plan.completed);
+
     return (
         <div className={styles.wrap}>
             <Checkbox
+                className={styles.checkBox}
                 checked={completed}
                 icon={<RadioButtonUncheckedIcon fontSize="large" sx={{ color: 'black' }} />}
                 checkedIcon={<CheckCircleIcon fontSize="large" />}
@@ -22,8 +24,14 @@ export const PlanToday: FC<props> = ({ plan }) => {
                     plan.completed = !plan.completed;
                 }}
             />
-
-            <h1 className={completed ? styles.completedText : styles.text}>{plan.title}</h1>
+            <h1
+                className={styles.text}
+                style={{
+                    textDecoration: completed ? 'line-through' : 'none',
+                    color: completed ? 'rgba(158, 158, 158, 0.80)' : 'black',
+                }}>
+                {plan.title}
+            </h1>
         </div>
     );
 };
