@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react';
 import styles from './ui.module.scss';
 import { timeAfter } from '../lib/timeAfter';
 
@@ -10,8 +10,10 @@ export interface INotice {
 
 interface props {
     notifications: INotice[];
+    setShow: Dispatch<SetStateAction<boolean>>;
 }
-export const Notifications: FC<props> = ({ notifications }) => {
+export const Notifications: FC<props> = ({ notifications, setShow }) => {
+    const wrapRef = useRef(null);
     const newNotifications = notifications.map((notice) => {
         const timeAfterNotice = timeAfter(notice.date);
         return {
@@ -19,9 +21,23 @@ export const Notifications: FC<props> = ({ notifications }) => {
             date: timeAfterNotice,
         };
     });
+    useEffect(() => {
+        document.body.addEventListener('click', (event) => {
+            if (event.target !== wrapRef.current) {
+                setShow(false);
+            }
+        });
+        return function cleanup() {
+            document.body.removeEventListener('click', (event) => {
+                if (event.target !== wrapRef.current) {
+                    setShow(false);
+                }
+            });
+        };
+    }, [setShow]);
 
     return (
-        <div className={styles.wrap}>
+        <div className={styles.wrap} ref={wrapRef}>
             <h1 className={styles.title}>Уведомления</h1>
             {newNotifications.map((notice) => {
                 return (

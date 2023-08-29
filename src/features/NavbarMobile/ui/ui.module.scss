@@ -34,9 +34,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 100vh;
+  justify-content: space-between;
   overflow: hidden;
-  bottom: 0;
   z-index: 7;
   display: flex;
   flex-direction: column;
@@ -47,12 +47,11 @@
 .blur {
   overflow: hidden;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.20);;
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
   z-index: 6;
 }
 
@@ -86,11 +85,23 @@
 
   & * {
     color: #757575;
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 19px;
   }
   & a svg * {
     height: 20px;
     width: 20px;
   }
+}
+
+.logoutWrap {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 22vh;
 }
 
 .activeElement {
@@ -100,9 +111,6 @@
   justify-content: start;
   padding: 5px 15px;
   overflow: hidden;
-  font-family: "SF_Medium", Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 14px;
   width: 208px;
   height: 40px;
   background-color: #F3F3F3;
@@ -111,6 +119,9 @@
 
   & * {
     color: black;
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 19px;
   }
   & a svg * {
     height: 20px;
@@ -118,6 +129,34 @@
   }
 }
 
+
+.logout {
+  flex-direction: row;
+  display: flex;
+  padding: 5px 15px;
+  gap: 12px;
+  background-color: transparent;
+  overflow: hidden;
+  width: 250px;
+  height: 40px;
+  justify-content: start;
+  align-items: center;
+  border-radius: 40px;
+  text-wrap: avoid;
+
+  & * {
+    color: #D55F5A;
+    font-family: "SF_Bold", Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 20px;
+  }
+  & svg * {
+    height: 20px;
+    width: 20px;
+  }
+
+}
 
 @media (max-width: 290px) {
   .wrap {

@@ -48,7 +48,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, activeId }
                         animate={{ height: '252px' }}
                         exit={{ height: 0 }}
                         className={styles.popupWrap}>
-                        <Notifications notifications={notifications} />
+                        <Notifications notifications={notifications} setShow={setShowPopup} />
                     </motion.div>
                 )}
             </AnimatePresence>

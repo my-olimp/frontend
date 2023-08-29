@@ -7,6 +7,7 @@ import { HamburgerMenu } from '@/entities/hamburgerMenu/ui/ui';
 import { INotice, Notifications } from '@/features/Notifications';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 interface props {
     notifications: INotice[];
@@ -34,7 +35,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, activeId })
                         <motion.div
                             className={styles.sideBar}
                             initial={{ width: 0 }}
-                            animate={{ width: '60vw' }}
+                            animate={{ width: '70vw' }}
                             exit={{ width: 0 }}>
                             <div className={styles.elements}>
                                 {navBarData.map((navbarEL) => {
@@ -52,6 +53,12 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, activeId })
                                         </Link>
                                     );
                                 })}
+                            </div>
+                            <div className={styles.logoutWrap}>
+                                <span className={styles.logout}>
+                                    <LogoutIcon />
+                                    <p>Выйти из аккаунта</p>
+                                </span>
                             </div>
                         </motion.div>
                         <span className={styles.blur} onClick={() => setShowSideBar(false)}></span>
@@ -82,7 +89,10 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, activeId })
                                 animate={{ height: '252px' }}
                                 exit={{ height: 0 }}
                                 className={styles.popupWrap}>
-                                <Notifications notifications={notifications} />
+                                <Notifications
+                                    notifications={notifications}
+                                    setShow={setShowPopup}
+                                />
                             </motion.div>
                         )}
                     </AnimatePresence>
