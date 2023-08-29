@@ -3,7 +3,7 @@ import { validateEmail } from '@/features/authInputWrap/lib/validate/validateEma
 
 export const blurHandler = (
     text: string,
-    mail: boolean,
+    password: boolean,
     passwordSignInMode: boolean,
     setErrorMessage: Dispatch<SetStateAction<string>>,
     setText: Dispatch<SetStateAction<string>>,
@@ -12,7 +12,7 @@ export const blurHandler = (
 
     if (text === '') {
         setErrorMessage(`Это поле не может быть пустым`);
-    } else if (mail && !validateEmail(text)) {
+    } else if (!password && !validateEmail(text)) {
         setText(text);
         setErrorMessage('Неверный формат почты, пример: test@example.com');
     } else if (!tested && passwordSignInMode && text !== '') {

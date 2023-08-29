@@ -1,48 +1,57 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { WritableDraft } from 'immer/src/types/types-external';
-
-type InitialState = {
-    value: AuthState;
-};
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import $api from '@/axios';
 
 type AuthState = {
-    isAuth: boolean;
-    userId: string;
-    mailOrPhone: string;
-    type: string;
+    mail: string | null;
+    status: string | null;
+    error: string | null;
 };
 
 const initialState = {
-    value: {
-        isAuth: false,
-        userId: '',
-        mailOrPhone: '',
-        type: '',
-    } as AuthState,
-} as InitialState;
+    mail: null,
+    status: null,
+    error: null,
+} as AuthState;
 
-interface mailOrNumberPayload {
-    mailOrPhone: string;
-    type: string;
-}
-
+export const getRedemptionCode = createAsyncThunk(
+    'auth/getRedemptionCode',
+    async (email, { rejectWithValue }) => {
+        try {
+            const response = await $api.post('user/register/email/', {
+                email: email,
+            });
+            return response;
+        } catch (error: any) {
+            console.log(error);
+            return rejectWithValue(error.message);
+        }
+    },
+);
 export const auth = createSlice({
     name: 'auth',
     initialState: initialState,
     reducers: {
-        mailOrNumberData: (
-            state: WritableDraft<InitialState>,
-            action: PayloadAction<mailOrNumberPayload>,
-        ) => {
-            const { mailOrPhone, type } = action.payload;
+        setEmail: (state, action) => {
+            const { mail } = action.payload;
             return {
                 ...state,
-                mailOrPhone: mailOrPhone,
-                type: type,
+                mail: mail,
             };
         },
     },
+    extraReducers: (builder) => {
+        builder.addCase(getRedemptionCode.fulfilled, (state, action) => {
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(getRedemptionCode.pending, (state, action) => {
+            state.error = null;
+            state.status = 'resolved';
+            console.log(action);
+        });
+        builder.addCase(getRedemptionCode.rejected, (state, action) => {});
+    },
 });
 
-export const { mailOrNumberData } = auth.actions;
+export const { setEmail } = auth.actions;
 export default auth.reducer;

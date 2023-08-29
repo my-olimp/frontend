@@ -1,18 +1,17 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
-import { AuthTypeBlock } from '@/features/authTypeBlock';
 import { AuthButton } from '@/entities/buttons/authButton';
 import styles from './ui.module.scss';
 import { RegisterRulesAccept } from '@/entities/registerRulesAccept';
 import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
-import { mailOrNumberData } from '@/store/features/auth-slice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import { useRouter } from 'next/navigation';
 import { AuthInputWrap } from '@/features/authInputWrap';
+import { setEmail } from '@/store/features/auth-slice';
 
 interface props {}
 
@@ -20,8 +19,6 @@ export const RegisterForm: FC<props> = ({}) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const [isButtonDisabled, setButton] = useState<'active' | 'disabled'>('disabled');
-
-    const [type, setType] = useState<'mail' | 'number'>('mail');
 
     const [value, setValue] = useState<string>('');
     const [valueError, setValueError] = useState<string>('');
@@ -50,16 +47,12 @@ export const RegisterForm: FC<props> = ({}) => {
         if (valueError || passwordError || repeatPasswordError) {
             setButton('disabled');
         }
-        if (type === 'number' && value.length !== 18) {
-            setButton('disabled');
-        }
-    }, [password, repeatPassword, value, valueError, passwordError, repeatPasswordError, type]);
+    }, [password, repeatPassword, value, valueError, passwordError, repeatPasswordError]);
 
     const handleSubmit = () => {
         dispatch(
-            mailOrNumberData({
-                mailOrPhone: value,
-                type: type,
+            setEmail({
+                mail: value,
             }),
         );
         router.push('/confirmation');
@@ -84,7 +77,6 @@ export const RegisterForm: FC<props> = ({}) => {
                                 Для создания учетной записи укажите свои данные:
                             </h4>
                         </Gapped>
-                        <AuthTypeBlock type={type} setType={setType} />
                         <form>
                             <Gapped
                                 className={styles.inputWrap}
@@ -93,12 +85,10 @@ export const RegisterForm: FC<props> = ({}) => {
                                 gap="16px"
                                 style={{ display: 'flex', width: '100%' }}>
                                 <AuthInputWrap
-                                    mail={type === 'mail'}
-                                    inputName={type === 'mail' ? 'Почта' : 'Номер телефона'}
+                                    inputName={'Почта'}
                                     text={value}
                                     setText={setValue}
-                                    type={type}
-                                    autoComplete={type === 'mail' ? 'email' : 'tel'}
+                                    autoComplete={'email'}
                                     error={valueError}
                                     setError={setValueError}
                                 />
@@ -109,7 +99,6 @@ export const RegisterForm: FC<props> = ({}) => {
                                     eye={true}
                                     text={password}
                                     setText={setPassword}
-                                    type={type}
                                     autoComplete={'new-password'}
                                     error={passwordError}
                                     setError={setPasswordError}
@@ -120,7 +109,6 @@ export const RegisterForm: FC<props> = ({}) => {
                                     inputName={'Подтверждение пароля'}
                                     eye={true}
                                     text={repeatPassword}
-                                    type={type}
                                     setText={setRepeatPassword}
                                     autoComplete={'new-password'}
                                     error={repeatPasswordError}

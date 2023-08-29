@@ -10,14 +10,12 @@ interface props {
     inputName: string;
     eye?: boolean;
     password?: boolean;
-    mail?: boolean;
     passwordSignInMode?: boolean;
     error: string;
     setError: Dispatch<SetStateAction<string>>;
     autoComplete: string;
     text: string;
     setText: Dispatch<SetStateAction<string>>;
-    type: 'mail' | 'number';
 }
 
 export const AuthInputWrap: FC<props> = ({
@@ -26,12 +24,10 @@ export const AuthInputWrap: FC<props> = ({
     password = false,
     passwordSignInMode = false,
     autoComplete,
-    mail = false,
     error,
     setError,
     text,
     setText,
-    type,
 }) => {
     const [secure, setSecure] = useState<string>('');
     const [color, setColor] = useState<string>('#DA4242');
@@ -51,15 +47,9 @@ export const AuthInputWrap: FC<props> = ({
     const onInput = (event: FormEvent<HTMLInputElement>) =>
         handleInput(event, password, passwordSignInMode, setText, setError, setSecure);
 
-    const onBlur = () => blurHandler(text, mail, passwordSignInMode, setError, setText);
+    const onBlur = () => blurHandler(text, password, passwordSignInMode, setError, setText);
 
     useEffect(chooseColor, [secure, chooseColor]);
-
-    useEffect(() => {
-        setSecure('');
-        setError('');
-        setText('');
-    }, [type, setText, setError]);
 
     return (
         <div className={styles.wrap}>
@@ -70,7 +60,6 @@ export const AuthInputWrap: FC<props> = ({
                 errorMessage={error}
                 password={password}
                 text={text}
-                mask={!password && !mail ? '+7 (999) 999-99-99' : undefined}
                 onFocus={onFocus}
                 onBlur={onBlur}
                 onInput={onInput}

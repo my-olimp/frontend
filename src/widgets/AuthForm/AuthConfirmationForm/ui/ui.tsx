@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from 'react';
+import { FC, FormEvent, useEffect, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
@@ -6,15 +6,18 @@ import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { MaskedInput } from '@/shared/MaskedInput';
+import { useDispatch } from 'react-redux';
+import { getRedemptionCode } from '@/store/features/auth-slice';
+import { ThunkDispatch } from 'redux-thunk';
 
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
     const [value, setValue] = useState<string>('');
 
-    const mailOrNumber: string = useAppSelector((state) => state.auth.value.mailOrPhone);
-    const type: string = useAppSelector((state) => state.auth.value.type);
+    const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
+    const mail: string = useAppSelector((state) => state.auth.mail) as string;
     const handleInput = (event: FormEvent<HTMLInputElement>): void => {
         const input = event.target as HTMLInputElement;
         const text = input.value.replace(/\D+/g, '');
@@ -26,7 +29,11 @@ export const ConfirmationForm: FC<props> = ({}) => {
         }
     };
 
-    const handleSubmit = (text): void => {
+    useEffect(() => {
+        dispatch(getRedemptionCode());
+    }, [dispatch]);
+
+    const handleSubmit = (text: string): void => {
         console.log(text);
     };
 
@@ -56,13 +63,10 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                     alignItems="center"
                                     gap="8px">
                                     <Logo />
-                                    <h4 className={styles.text}>
-                                        Подтверждение{' '}
-                                        {type === 'mail' ? 'почты:' : 'номера телефона'}
-                                    </h4>
+                                    <h4 className={styles.text}>Подтверждение почты</h4>
                                     <h4 className={styles.subTitle}>
-                                        На {type === 'mail' ? 'почту' : 'номер'} {mailOrNumber} был
-                                        отправлен код, введите его для завершения регистрации
+                                        На почту {mail} был отправлен код, введите его для
+                                        завершения регистрации
                                     </h4>
                                 </Gapped>
                                 <Gapped alignItems="center" className={styles.inputWrap}>

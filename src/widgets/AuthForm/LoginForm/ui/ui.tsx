@@ -1,7 +1,6 @@
 'use client';
 import { FC, useEffect, useState } from 'react';
 import styles from './ui.module.scss';
-import { AuthTypeBlock } from '@/features/authTypeBlock';
 import { AuthLoginHelp } from '@/features/authHelp/authLoginHelp';
 import { LoginHelp } from '@/features/authHelp/LoginHelp';
 import { AuthButton } from '@/entities/buttons/authButton';
@@ -21,27 +20,18 @@ export const LoginForm: FC<props> = ({}) => {
     const [password, setPassword] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
 
-    const [type, setType] = useState<'mail' | 'number'>('mail');
-
     const { push } = useRouter();
 
     useEffect(() => {
         if (value.length && password.length) {
-            if (type !== 'mail') {
+            if (validateEmail(value)) {
                 setButton('active');
-            } else {
-                if (validateEmail(value)) {
-                    setButton('active');
-                }
             }
         }
         if (valueError || passwordError) {
             setButton('disabled');
         }
-        if (type === 'number' && value.length !== 18) {
-            setButton('disabled');
-        }
-    }, [value, password, passwordError, valueError, type]);
+    }, [value, password, passwordError, valueError]);
 
     useEffect(() => {
         setButton('disabled');
@@ -70,7 +60,6 @@ export const LoginForm: FC<props> = ({}) => {
                                 <Logo />
                                 <h4 className={styles.text}>Вход в сервис</h4>
                             </Gapped>
-                            <AuthTypeBlock type={type} setType={setType} />
                             <Gapped
                                 vertical
                                 verticalAlign="middle"
@@ -88,12 +77,10 @@ export const LoginForm: FC<props> = ({}) => {
                                         gap="24px"
                                         style={{ display: 'flex', width: '100%' }}>
                                         <AuthInputWrap
-                                            mail={type === 'mail'}
-                                            inputName={type === 'mail' ? 'Почта' : 'Номер телефона'}
+                                            inputName={'Почта'}
                                             text={value}
                                             setText={setValue}
-                                            type={type}
-                                            autoComplete={type === 'mail' ? 'email' : 'tel'}
+                                            autoComplete={'email'}
                                             error={valueError}
                                             setError={setValueError}
                                         />
@@ -104,7 +91,6 @@ export const LoginForm: FC<props> = ({}) => {
                                             eye={true}
                                             text={password}
                                             setText={setPassword}
-                                            type={type}
                                             autoComplete={'current-password'}
                                             error={passwordError}
                                             setError={setPasswordError}
