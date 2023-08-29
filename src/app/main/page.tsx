@@ -5,8 +5,6 @@ import { IMaterial, Materials } from '@/widgets/Materials';
 import { NearestOlimpList } from '@/widgets/NearestOlimpList';
 import { PlansToday } from '@/widgets/PlansToday';
 import materialIcon from '../../../public/materials/materialIcon.svg';
-import { Footer } from '@/widgets/Footer';
-import { Header } from '@/widgets/header';
 
 const materialList: IMaterial[] = [
     {
@@ -56,17 +54,13 @@ const materialList: IMaterial[] = [
 ];
 const Main: NextPage = () => {
     return (
-        <>
-            <Header activeId={0} />
-            <div className={styles.screen}>
-                <div className={styles.wrap}>
-                    <NearestOlimpList />
-                    <PlansToday />
-                </div>
-                <Materials materialList={materialList} title={'С чего начать ?'} libMode={false} />
+        <div className={styles.screen}>
+            <div className={styles.wrap}>
+                <NearestOlimpList />
+                <PlansToday />
             </div>
-            <Footer />
-        </>
+            <Materials materialList={materialList} title={'С чего начать ?'} libMode={false} />
+        </div>
     );
 };
 

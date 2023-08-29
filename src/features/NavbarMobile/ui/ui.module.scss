@@ -1,7 +1,5 @@
 .wrap {
   width: 100vw;
-  position: absolute;
-  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -54,13 +52,20 @@
   right: 0;
   z-index: 6;
 }
-
+.hamburgerWrap {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 12px;
+}
 .elements {
   display: flex;
   overflow: hidden;
   flex-direction: column;
   gap: 10px;
-  margin-top: 56px;
+  margin-top: 58px;
   padding-top: 8px;
   border-top: 1px solid #8D8D8D;
   width: 100%;
@@ -101,7 +106,6 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  margin-bottom: 22vh;
 }
 
 .activeElement {

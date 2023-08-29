@@ -62,7 +62,7 @@ export const Materials: FC<props> = ({ materialList, title, libMode }) => {
                     </span>
                 ) : (
                     <span className={styles.linkWrap}>
-                        <Link href={'/library'} className={styles.link}>
+                        <Link href={'/main/library'} className={styles.link}>
                             <ArrowForwardIosIcon />
                         </Link>
                     </span>

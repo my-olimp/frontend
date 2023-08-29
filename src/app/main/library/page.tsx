@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './index.module.scss';
 import { NextPage } from 'next';
-import { Header } from '@/widgets/header';
-import { Footer } from '@/widgets/Footer';
 import { IMaterial, Materials } from '@/widgets/Materials';
-import materialIcon from '../../../public/materials/materialIcon.svg';
+import materialIcon from '../../../../public/materials/materialIcon.svg';
 
 const materialList: IMaterial[] = [
     {
@@ -56,10 +54,8 @@ const materialList: IMaterial[] = [
 const Library: NextPage = () => {
     return (
         <div className={styles.screen}>
-            <Header activeId={3} />
             <Materials materialList={materialList} title={'Первый шаг'} libMode={true} />
             <Materials materialList={materialList} title={'Может быть интересно'} libMode={true} />
-            <Footer />
         </div>
     );
 };

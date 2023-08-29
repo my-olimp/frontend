@@ -12,12 +12,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 interface props {
     notifications: INotice[];
     navBarData: any;
-    activeId: number;
 }
-export const NavBarMobile: FC<props> = ({ notifications, navBarData, activeId }) => {
+export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const [clicked, setClicked] = useState<boolean>(false);
     const [showSideBar, setShowSideBar] = useState<boolean>(false);
+    const [active, setActive] = useState<number>(0);
 
     useEffect(() => {
         if (showSideBar) {
@@ -43,10 +43,11 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, activeId })
                                         <Link
                                             href={navbarEL.link}
                                             className={
-                                                navbarEL.id === activeId
+                                                navbarEL.id === active
                                                     ? styles.activeElement
                                                     : styles.element
                                             }
+                                            onClick={() => setActive(navbarEL.id)}
                                             key={navbarEL.id}>
                                             {navbarEL.icon}
                                             <h2>{navbarEL.title}</h2>
@@ -65,8 +66,8 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, activeId })
                     </>
                 )}
             </AnimatePresence>
-            <div className={styles.wrap}>
-                <span onClick={() => setShowSideBar(!showSideBar)}>
+            <header className={styles.wrap}>
+                <span onClick={() => setShowSideBar(!showSideBar)} className={styles.hamburgerWrap}>
                     <HamburgerMenu
                         strokeColor={showSideBar ? '#99A2AD' : '#3579F8'}
                         setOpen={setShowSideBar}
@@ -97,7 +98,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, activeId })
                         )}
                     </AnimatePresence>
                 </div>
-            </div>
+            </header>
         </>
     );
 };

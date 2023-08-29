@@ -10,11 +10,11 @@ import { Bell } from '@/entities/Bell';
 interface props {
     navBarData: any;
     notifications: INotice[];
-    activeId: number;
 }
-export const NavBarDesktop: FC<props> = ({ navBarData, notifications, activeId }) => {
+export const NavBarDesktop: FC<props> = ({ navBarData, notifications }) => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const [clicked, setClicked] = useState<boolean>(false);
+    const [active, setActive] = useState<number>(0);
 
     return (
         <header
@@ -27,7 +27,8 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, activeId }
                         className={styles.element}
                         key={data.id}
                         href={data.link}
-                        style={{ color: activeId === data.id ? '#3579f8' : 'black' }}>
+                        onClick={() => setActive(data.id)}
+                        style={{ color: active === data.id ? '#3579f8' : 'black' }}>
                         {data.title}
                     </Link>
                 ))}

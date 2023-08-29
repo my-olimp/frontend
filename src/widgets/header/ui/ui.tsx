@@ -8,9 +8,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
-interface props {
-    activeId: number;
-}
+interface props {}
 
 const navBarData = [
     {
@@ -22,19 +20,19 @@ const navBarData = [
     {
         id: 1,
         title: 'Календарь',
-        link: '',
+        link: '/main/calendar',
         icon: <CalendarTodayIcon />,
     },
     {
         id: 2,
         title: 'Новости',
-        link: '',
+        link: '/main/news',
         icon: <CampaignIcon />,
     },
     {
         id: 3,
         title: 'Библиотека',
-        link: '/library',
+        link: '/main/library',
         icon: <AutoStoriesOutlinedIcon />,
     },
 ];
@@ -44,7 +42,7 @@ const notifications: INotice[] = [
     { id: 1, title: 'Пришли результаты ВСОШ по математике', date: '2023-08-28T11:12:55.395Z' },
 ];
 
-export const Header: FC<props> = ({ activeId }) => {
+export const Header: FC<props> = ({}) => {
     const [mobile, setMobile] = useState(false);
 
     useLayoutEffect(() => {
@@ -56,17 +54,9 @@ export const Header: FC<props> = ({ activeId }) => {
     return (
         <>
             {mobile ? (
-                <NavBarMobile
-                    notifications={notifications}
-                    navBarData={navBarData}
-                    activeId={activeId}
-                />
+                <NavBarMobile notifications={notifications} navBarData={navBarData} />
             ) : (
-                <NavBarDesktop
-                    notifications={notifications}
-                    navBarData={navBarData}
-                    activeId={activeId}
-                />
+                <NavBarDesktop notifications={notifications} navBarData={navBarData} />
             )}
         </>
     );
