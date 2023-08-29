@@ -2,14 +2,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 24px;
   width: auto;
   border-top: 1px solid rgba(0, 0, 0, 0.10);;
+  align-items: center;
+  padding: 24px 10vw;
 
-  & .logo {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
 
     & h3 {
       color: #858585;
@@ -34,78 +31,18 @@
       gap: 24px;
     }
 
-  }
-}
-
-.additionalInfo {
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 60vw;
-
-  & div {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  & h1 {
-    margin: 0 0 14px 0;
-    font-size: 18px;
-    color: #222;
-    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
-    font-weight: 500;
-  }
-  & h3 {
-    color: #858585;
-    font-size: 16px;
-    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
-    font-weight: 400;
-  }
-}
-
-@media (max-width: 800px) {
-  .additionalInfo {
-    width: 70vw;
-  }
 }
 
 @media (max-width: 700px) {
-  .logoWrap img {
-    width: 100px !important;
-    height: 25px !important;
-  }
-  .logo img {
-    width: 32px;
-    height: 32px;
-  }
-
-  .wrap h1 {
-    font-size: 12px !important;
-  }
-  .wrap h3 {
-    font-size: 8px !important;
-  }
   .wrap {
-    height: fit-content;
-  }
-}
-
-@media (max-width: 550px) {
-  .logoWrap img {
-    width: 60px !important;
-    height: 15px !important;
-  }
-  .logo img {
-    width: 16px;
-    height: 16px;
-  }
-
-  .wrap h1 {
-    font-size: 8px !important;
-  }
-  .wrap h3 {
-    font-size: 7px !important;
+    padding: 24px;
+    .socials img {
+      height: 32px;
+      width: 32px;
+    }
+    .logoWrap img {
+      height: 64px;
+      width: 128px;
+    }
   }
 }

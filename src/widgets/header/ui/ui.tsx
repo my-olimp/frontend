@@ -3,6 +3,10 @@ import { FC, useLayoutEffect, useState } from 'react';
 import { INotice } from '@/features/Notifications';
 import { NavBarDesktop } from '@/features/NavbarDesktop/';
 import { NavBarMobile } from '@/features/NavbarMobile';
+import HomeIcon from '@mui/icons-material/Home';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import CampaignIcon from '@mui/icons-material/Campaign';
+import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 
 interface props {
     activeId: number;
@@ -13,21 +17,25 @@ const navBarData = [
         id: 0,
         title: 'Главная',
         link: '/main',
+        icon: <HomeIcon />,
     },
     {
         id: 1,
         title: 'Календарь',
         link: '',
+        icon: <CalendarTodayIcon />,
     },
     {
         id: 2,
         title: 'Новости',
         link: '',
+        icon: <CampaignIcon />,
     },
     {
         id: 3,
         title: 'Библиотека',
         link: '/library',
+        icon: <AutoStoriesOutlinedIcon />,
     },
 ];
 
@@ -48,7 +56,11 @@ export const Header: FC<props> = ({ activeId }) => {
     return (
         <>
             {mobile ? (
-                <NavBarMobile notifications={notifications} navBarData={navBarData} />
+                <NavBarMobile
+                    notifications={notifications}
+                    navBarData={navBarData}
+                    activeId={activeId}
+                />
             ) : (
                 <NavBarDesktop
                     notifications={notifications}

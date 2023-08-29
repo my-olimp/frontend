@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import styles from './ui.module.scss';
 
@@ -13,22 +13,32 @@ const path02Variants = {
     closed: { d: 'M0 14.5L15 14.5' },
 };
 
-export const HamburgerMenu: FC = () => {
-    const [isOpen, setOpen] = useState(false);
+interface props {
+    strokeColor?: string;
+    setOpen: Dispatch<SetStateAction<boolean>>;
+    isOpen: boolean;
+}
+
+export const HamburgerMenu: FC<props> = ({ strokeColor = 'black', setOpen, isOpen }) => {
     const path01Controls = useAnimation();
     const path02Controls = useAnimation();
 
+    useEffect(() => {
+        (async () => {
+            if (isOpen) {
+                await path02Controls.start(path02Variants.moving);
+                path01Controls.start(path01Variants.open);
+                path02Controls.start(path02Variants.open);
+            } else {
+                path01Controls.start(path01Variants.closed);
+                await path02Controls.start(path02Variants.moving);
+                path02Controls.start(path02Variants.closed);
+            }
+        })();
+    }, [isOpen, path01Controls, path02Controls]);
+
     const onClick = async () => {
         setOpen(!isOpen);
-        if (!isOpen) {
-            await path02Controls.start(path02Variants.moving);
-            path01Controls.start(path01Variants.open);
-            path02Controls.start(path02Variants.open);
-        } else {
-            path01Controls.start(path01Variants.closed);
-            await path02Controls.start(path02Variants.moving);
-            path02Controls.start(path02Variants.closed);
-        }
     };
 
     return (
@@ -38,14 +48,14 @@ export const HamburgerMenu: FC = () => {
                     {...path01Variants.closed}
                     animate={path01Controls}
                     transition={{ duration: 0.2 }}
-                    stroke="black"
+                    stroke={strokeColor}
                     strokeWidth="2"
                 />
                 <motion.path
                     {...path02Variants.closed}
                     animate={path02Controls}
                     transition={{ duration: 0.2 }}
-                    stroke="black"
+                    stroke={strokeColor}
                     strokeWidth="2"
                 />
             </svg>

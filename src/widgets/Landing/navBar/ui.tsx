@@ -24,7 +24,7 @@ export const NavBar: FC<props> = () => {
         <>
             {mobile ? (
                 <>
-                    <NavBarMobile handleClickSide={handleClickSide} />
+                    <NavBarMobile handleClickSide={handleClickSide} setShow={setShow} show={show} />
                     <SideNavBar show={show} />
                 </>
             ) : (

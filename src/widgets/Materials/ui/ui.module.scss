@@ -12,7 +12,7 @@
 
 .wrap {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-left: auto;
   margin-right: auto;
   width: min-content;
@@ -79,5 +79,14 @@
     width: 100vw;
     gap: 12px;
     height: 200px;
+  }
+  .titleWrap {
+    & * {
+      font-size: 14px;
+    }
+
+    & h1 {
+      font-size: 16px;
+    }
   }
 }

@@ -31,3 +31,11 @@
     text-align: center;
   }
 }
+
+@media (max-width: 450px) {
+  .text {
+    font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 18px !important;
+  }
+}

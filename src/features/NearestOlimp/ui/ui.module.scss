@@ -8,8 +8,7 @@
   gap: 10px;
   border-radius: 10px;
   transition: all .3s;
-  padding-top: 41px;
-  padding-bottom: 41px;
+  padding: 41px 15px;
 
   &:hover {
     background: #E9E9E9;
@@ -20,11 +19,15 @@
   display: flex;
   flex-direction: row;
   gap: 14px;
-  align-items: center;
+  width: fit-content;
 
   & h1 {
     margin: 0;
     height: fit-content;
+    text-wrap: none;
+  }
+  & div {
+    margin-right: auto;
   }
 }
 
@@ -75,6 +78,15 @@
       & * {
         font-size: 15px;
       }
+    }
+  }
+}
+
+
+@media (max-width: 400px) {
+  .titleWrap {
+    & h1 {
+      font-size: 14px !important;
     }
   }
 }

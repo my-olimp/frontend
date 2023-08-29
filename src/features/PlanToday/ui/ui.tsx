@@ -17,8 +17,14 @@ export const PlanToday: FC<props> = ({ plan }) => {
             <Checkbox
                 className={styles.checkBox}
                 checked={completed}
-                icon={<RadioButtonUncheckedIcon fontSize="large" sx={{ color: 'black' }} />}
-                checkedIcon={<CheckCircleIcon fontSize="large" />}
+                icon={
+                    <RadioButtonUncheckedIcon
+                        fontSize="large"
+                        sx={{ color: 'black' }}
+                        className={styles.unchecked}
+                    />
+                }
+                checkedIcon={<CheckCircleIcon fontSize="large" className={styles.checked} />}
                 onClick={() => {
                     setCompleted(!completed);
                     plan.completed = !plan.completed;

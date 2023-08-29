@@ -49,40 +49,21 @@ const Team = [
 export const Footer: FC<props> = () => {
     return (
         <footer className={styles.wrap}>
-            <div className={styles.logo}>
+            <div>
                 <span className={styles.logoWrap}>
                     <Logo />
                 </span>
-                <div className={styles.socials}>
-                    <Link href={'/'}>
-                        <Image src={VK} alt={'vk'} />
-                    </Link>
-                    <Link href={'/'}>
-                        <Image src={TG} alt={'tg'} />
-                    </Link>
-                </div>
                 <h3>@ MyOlimp 2023</h3>
             </div>
-            <span className={styles.additionalInfo}>
-                <div className={styles.about}>
-                    <h1>О компании</h1>
-                    <h3>Что такое Inverse</h3>
-                    <h3>Контакты</h3>
-                </div>
-                <div className={styles.team}>
-                    <h1>Команда</h1>
-                    {Team.map((member) => (
-                        <Link key={member.id} href={member.link}>
-                            <h3>{member.name}</h3>
-                        </Link>
-                    ))}
-                </div>
-                <div className={styles.hire}>
-                    <h1>Работа у нас</h1>
-                    <h3>Стажировки</h3>
-                    <h3>Вакансии</h3>
-                </div>
-            </span>
+
+            <div className={styles.socials}>
+                <Link href={'/'}>
+                    <Image src={VK} alt={'vk'} />
+                </Link>
+                <Link href={'/'}>
+                    <Image src={TG} alt={'tg'} />
+                </Link>
+            </div>
         </footer>
     );
 };

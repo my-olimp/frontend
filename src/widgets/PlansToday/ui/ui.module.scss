@@ -73,3 +73,34 @@
   }
 }
 
+@media (max-width: 410px) {
+  .titleWrap {
+    & h1 {
+      font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      font-size: 16px !important;
+    }
+  }
+  .link {
+    & * {
+      font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      font-size: 14px !important;
+    }
+  }
+}
+
+@media (max-width: 290px) {
+  .titleWrap {
+    & h1 {
+      font-family: "SF_SemiBold", Arial, Helvetica, sans-serif !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+    }
+  }
+  .link {
+    & * {
+      font-size: 12px !important;
+    }
+  }
+}

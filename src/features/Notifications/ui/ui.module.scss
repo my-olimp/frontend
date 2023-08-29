@@ -15,7 +15,7 @@
   align-items: center;
   height: 48px;
   width: 100%;
-  font-size: 24px;
+  font-size: 22px;
   font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
   font-weight: 500;
   padding: 0 0 0 16px;
@@ -31,6 +31,7 @@
   border-radius: 10px;
   background-color: #E8F0FF;
   overflow: hidden;
+  padding-bottom: 12px;
   display: flex;
   flex-direction: row;
 }
@@ -63,14 +64,14 @@
     gap: 3px;
 
     & h1 {
-      font-size: 14px;
+      font-size: 13px;
       font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
       font-weight: 500;
       margin: 8px 0 0 0;
     }
 
     & p {
-      font-size: 12px;
+      font-size: 11px;
       font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
       font-weight: 400;
       color: #8D8D8D;
@@ -93,5 +94,20 @@
     &:hover {
       background-color: blueviolet;
     }
+  }
+}
+
+@media (max-width: 450px) {
+  .wrap {
+    width: 100vw;
+  }
+  .fullNotice {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 300px) {
+  .fullNotice {
+    height: fit-content;
   }
 }
