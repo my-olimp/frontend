@@ -1,7 +1,7 @@
 import React, { FC, FocusEvent, FormEvent, useState } from 'react';
 import styles from './ui.module.scss';
 import { match } from 'ts-pattern';
-import { MaskedInput } from '@/shared/MaskedInput/ui/ui';
+import { MaskedInput } from '@/shared/MaskedInput/';
 import { eyeStyles } from '@/entities/authInput/lib/eyeStyles';
 
 interface props {
@@ -34,18 +34,6 @@ export const AuthInput: FC<props> = ({
 
     const style = eyeStyles(errorMessage, eye, isEyeOpen);
 
-    const beforeMaskedStateChange = ({ nextState }) => {
-        let { value } = nextState;
-        if (value.endsWith(')', '-', ' ')) {
-            value = value.slice(0, -1);
-        }
-
-        return {
-            ...nextState,
-            value,
-        };
-    };
-
     return (
         <div className={styles.wrap}>
             <label style={style.label} htmlFor={inputName} className={styles.label}>
@@ -58,7 +46,6 @@ export const AuthInput: FC<props> = ({
                             mask={mask ? mask : ''}
                             maskPlaceholder={''}
                             alwaysShowMask={false}
-                            beforeMaskedStateChange={beforeMaskedStateChange}
                             onBlur={(event) => onBlur && onBlur(event)}
                             onFocus={onFocus}
                             value={text}

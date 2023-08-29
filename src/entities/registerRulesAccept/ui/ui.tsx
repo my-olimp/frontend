@@ -6,9 +6,9 @@ export const RegisterRulesAccept = () => {
     return (
         <h4 className={styles.text}>
             {/*TODO: change href*/}
-            Регистрируясь, вы соглашаетесь на
+            Регистрируясь, вы соглашаетесь на{' '}
             <Link className={styles.focus} href={'/'}>
-                обработку персональных данных
+                обработку персональных данных{' '}
             </Link>
             и получение информационных сообщений от группы компании MyOlimp
         </h4>

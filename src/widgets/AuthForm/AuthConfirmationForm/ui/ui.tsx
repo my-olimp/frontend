@@ -1,55 +1,33 @@
-import { FC, FormEvent, RefObject, useRef } from 'react';
+import { FC, FormEvent, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
-import { Input } from '@/entities/input';
-import { useEventListener } from 'usehooks-ts';
 import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { setButtonActive } from '@/widgets/AuthForm/AuthConfirmationForm/lib/setButtonActive';
+import { MaskedInput } from '@/shared/MaskedInput';
 
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
-    const first = useRef<HTMLInputElement>(null);
-    const second = useRef<HTMLInputElement>(null);
-    const third = useRef<HTMLInputElement>(null);
-    const fourth = useRef<HTMLInputElement>(null);
+    const [value, setValue] = useState<string>('');
 
     const mailOrNumber: string = useAppSelector((state) => state.auth.value.mailOrPhone);
     const type: string = useAppSelector((state) => state.auth.value.type);
 
-    const handleKeydown = (event: Event) =>
-        setButtonActive(event, [first, second, third, fourth], handleSubmit);
+    const handleInput = (event: FormEvent<HTMLInputElement>): void => {
+        const input = event.target as HTMLInputElement;
+        const text = input.value.replace(/\D+/g, '');
 
-    useEventListener('keydown', (event: Event) => handleKeydown(event), second);
-
-    useEventListener('keydown', (event: Event) => handleKeydown(event), second);
-
-    useEventListener('keydown', (event: Event) => handleKeydown(event), second);
-
-    useEventListener('keydown', (event: Event) => handleKeydown(event), second);
-
-    const handleInput = (
-        event: FormEvent<HTMLInputElement>,
-        input: RefObject<HTMLInputElement>,
-    ): void => {
-        const numericValue: string = (event.target as HTMLInputElement).value.replace(
-            /[^0-9]/g,
-            '',
-        );
-        if (numericValue.length < 1) {
-            if (input.current !== null) {
-                input.current.value = numericValue;
-            }
+        setValue(text);
+        input.setSelectionRange(text.length, text.length);
+        if (text.length >= 6) {
+            handleSubmit(text);
         }
     };
 
-    const handleSubmit = (): void => {
-        const total: string | undefined =
-            `${first.current?.value}${second.current?.value}${third.current?.value}${fourth.current?.value}`.trim();
-        console.log(total);
+    const handleSubmit = (text): void => {
+        console.log(text);
     };
 
     return (
@@ -87,55 +65,17 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         отправлен код, введите его для завершения регистрации
                                     </h4>
                                 </Gapped>
-
-                                <Gapped
-                                    vertical={false}
-                                    gap="24px"
-                                    style={{
-                                        display: 'flex',
-                                        width: '100%',
-                                        gap: '8px',
-                                        justifyContent: 'center',
-                                    }}>
-                                    <Input
-                                        inputRef={first}
-                                        width={56}
-                                        height={63}
-                                        fontSize={32}
-                                        center={true}
-                                        handleInput={handleInput}
-                                        id="1"
-                                    />
-                                    <Input
-                                        inputRef={second}
-                                        width={56}
-                                        height={63}
-                                        fontSize={32}
-                                        center={true}
-                                        maxLength={1}
-                                        handleInput={handleInput}
-                                        id="2"
-                                    />
-                                    <Input
-                                        inputRef={third}
-                                        width={56}
-                                        height={63}
-                                        fontSize={32}
-                                        center={true}
-                                        maxLength={1}
-                                        handleInput={handleInput}
-                                        id="3"
-                                    />
-                                    <Input
-                                        inputRef={fourth}
-                                        width={56}
-                                        height={63}
-                                        fontSize={32}
-                                        center={true}
-                                        maxLength={1}
-                                        handleInput={handleInput}
-                                        id="4"
-                                    />
+                                <Gapped alignItems="center" className={styles.inputWrap}>
+                                    <MaskedInput
+                                        value={value}
+                                        mask="999 999"
+                                        alwaysShowMask
+                                        onChange={(event) => handleInput(event)}>
+                                        <input
+                                            className={styles.input}
+                                            autoComplete="one-time-code"
+                                        />
+                                    </MaskedInput>
                                 </Gapped>
                             </Gapped>
                             <Gapped

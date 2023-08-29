@@ -1,6 +1,12 @@
-import React, { ReactElement, FC, CSSProperties, KeyboardEvent, MouseEvent } from 'react';
+import React, {
+    CSSProperties,
+    FC,
+    FocusEvent,
+    KeyboardEvent,
+    MouseEvent,
+    ReactElement,
+} from 'react';
 import InputMask from 'react-input-mask';
-import { FocusEvent } from 'react';
 import styles from './ui.module.scss';
 
 /*https://github.com/sanniassin/react-input-mask - Документация для Props*/
@@ -10,7 +16,6 @@ interface MaskProps {
     children: ReactElement;
     maskPlaceholder?: string;
     alwaysShowMask?: boolean;
-    beforeMaskedStateChange?: Function;
     value: any;
     onBlur?: ((event: FocusEvent<HTMLInputElement>) => void) | (() => void);
     onFocus?: ((event: FocusEvent<HTMLInputElement>) => void) | (() => void);
@@ -33,6 +38,18 @@ export const MaskedInput: FC<MaskProps> = ({
     onMouseUp,
     style,
 }) => {
+    const beforeMaskedStateChange = ({ nextState }) => {
+        let { value } = nextState;
+        if (value.endsWith(')', '-', ' ')) {
+            value = value.slice(0, -1);
+        }
+
+        return {
+            ...nextState,
+            value,
+        };
+    };
+
     return (
         <span className={styles.wrap}>
             <InputMask
@@ -46,7 +63,7 @@ export const MaskedInput: FC<MaskProps> = ({
                 style={style}
                 onKeyDown={onKeyDown}
                 onMouseUp={onMouseUp}
-            >
+                beforeMaskedStateChange={beforeMaskedStateChange}>
                 {children}
             </InputMask>
         </span>

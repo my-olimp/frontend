@@ -8,7 +8,7 @@ $bgFormColor: #fff;
     min-width: 460px;
     max-width: 460px;
     height: auto;
-    min-height: 480px;
+    min-height: 400px;
     padding: 40px 40px 16px;
     @media screen and (max-width: 500px) {
         display: flex !important;
@@ -61,4 +61,25 @@ $bgFormColor: #fff;
 .confTime {
     margin-top: auto;
     margin-bottom: 8px;
+}
+.inputWrap {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    width: 100%;
+
+    & input {
+        letter-spacing: 8px;
+        border: 2px solid #8D8D8D;
+        border-radius: 10px;
+        outline: none;
+        width: 300px;
+        height: 60px;
+        text-align: center;
+        font-size: 24px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
