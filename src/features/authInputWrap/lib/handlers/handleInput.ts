@@ -21,7 +21,6 @@ export const handleInput = (
     }
     if (passwordSignInMode) {
         const tested = text.match(/^[!@#$%^\w]+$/);
-        console.log(tested);
         if (!tested) {
             setErrorMessage(
                 'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',

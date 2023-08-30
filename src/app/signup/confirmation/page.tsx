@@ -1,5 +1,3 @@
-'use client';
-
 import styles from './index.module.scss';
 import { ConfirmationForm } from '@/widgets/AuthForm/AuthConfirmationForm/ui/ui';
 

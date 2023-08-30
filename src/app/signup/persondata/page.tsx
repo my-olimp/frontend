@@ -1,10 +1,10 @@
 import styles from './index.module.scss';
-import { RegisterForm } from '@/widgets/AuthForm/RegisterForm';
+import { AdditionalDataForm } from '@/widgets/AuthForm/AdditionalData';
 
 export default function Auth() {
     return (
         <div className={styles.wrap}>
-            <RegisterForm />
+            <AdditionalDataForm />
         </div>
     );
 }

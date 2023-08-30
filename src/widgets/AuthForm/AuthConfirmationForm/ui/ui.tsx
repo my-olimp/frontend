@@ -1,4 +1,5 @@
-import { FC, FormEvent, useEffect, useState } from 'react';
+'use client';
+import { FC, FormEvent, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
@@ -6,16 +7,11 @@ import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { MaskedInput } from '@/shared/MaskedInput';
-import { useDispatch } from 'react-redux';
-import { getRedemptionCode } from '@/store/features/auth-slice';
-import { ThunkDispatch } from 'redux-thunk';
 
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
     const [value, setValue] = useState<string>('');
-
-    const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
     const mail: string = useAppSelector((state) => state.auth.mail) as string;
     const handleInput = (event: FormEvent<HTMLInputElement>): void => {
@@ -28,10 +24,6 @@ export const ConfirmationForm: FC<props> = ({}) => {
             handleSubmit(text);
         }
     };
-
-    useEffect(() => {
-        dispatch(getRedemptionCode());
-    }, [dispatch]);
 
     const handleSubmit = (text: string): void => {
         console.log(text);

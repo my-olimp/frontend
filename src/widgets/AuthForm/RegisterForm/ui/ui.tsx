@@ -8,15 +8,15 @@ import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store/store';
 import { useRouter } from 'next/navigation';
 import { AuthInputWrap } from '@/features/authInputWrap';
-import { setEmail } from '@/store/features/auth-slice';
+import { getRedemptionCode } from '@/store/features/auth-slice';
+import { ThunkDispatch } from 'redux-thunk';
 
 interface props {}
 
 export const RegisterForm: FC<props> = ({}) => {
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
 
     const [isButtonDisabled, setButton] = useState<'active' | 'disabled'>('disabled');
 
@@ -50,12 +50,8 @@ export const RegisterForm: FC<props> = ({}) => {
     }, [password, repeatPassword, value, valueError, passwordError, repeatPasswordError]);
 
     const handleSubmit = () => {
-        dispatch(
-            setEmail({
-                mail: value,
-            }),
-        );
-        router.push('/confirmation');
+        dispatch(getRedemptionCode(value));
+        router.push('signup/confirmation');
     };
 
     return (
