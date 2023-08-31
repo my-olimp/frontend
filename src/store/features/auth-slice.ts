@@ -18,6 +18,9 @@ export const getRedemptionCode = createAsyncThunk(
         try {
             fetch('https://myob.xstl.ru/user/register/email/', {
                 body: JSON.stringify({ email: email }),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 method: 'POST',
                 mode: 'cors',
             })
