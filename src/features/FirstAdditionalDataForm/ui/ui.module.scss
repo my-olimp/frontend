@@ -1,0 +1,164 @@
+.form {
+  & form {
+    height: 472px;
+    width: 502px;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 0;
+    background-color: white;
+    gap: 16px;
+    border-radius: 24px;
+    box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
+    align-items: center;
+  }
+}
+
+.sexWrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 414px;
+
+  & * {
+    margin: 0;
+  }
+
+  & h2 {
+    font-size: 16px;
+    color: rgba(26, 7, 16, 0.65);
+    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+  }
+
+  & .sex {
+    display: flex;
+    flex-direction:row-reverse;
+    align-items: center;
+
+    & h3 {
+      font-size: 16px;
+      color:rgba(26, 7, 16, 0.85);
+      font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+      font-weight: 400;
+    }
+  }
+}
+
+.logoRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 414px;
+
+  & h1 {
+    font-size: 20px;
+    color: rgba(26, 7, 16, 0.85);
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    margin: 0;
+  }
+  & p {
+    color: #6BC62D;
+    font-size: 16px;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+  }
+}
+
+.input {
+  width: 414px;
+  height: 56px;
+  outline-color: #1976D2;
+  border-radius: 12px;
+  border: 1px solid #8D8D8D;
+  padding: 0 12px;
+}
+
+.calendar {
+  width: 414px;
+  height: 56px;
+
+  & div {
+    border-radius: 12px;
+  }
+}
+
+.role {
+  height: 56px;
+  width: 414px;
+  border-radius: 12px;
+}
+
+.button {
+  height: 56px;
+  width: 414px;
+  text-transform: capitalize;
+  border-radius: 12px;
+  font-size: 22px;
+  font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  background-color: #3579F8;
+  box-shadow: none;
+
+
+  &:disabled {
+    background-color: #8CB2FB;
+    cursor: not-allowed;
+    pointer-events: all !important;
+    color: white;
+    &:hover {
+      background-color: #8CB2FB;
+    }
+  }
+  &:hover {
+    background-color: #316ee0;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .screen {
+    display: flex;
+    overflow: hidden;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: #F2F2F2;
+  }
+  .form form {
+    form {
+      height: 472px;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      padding: 32px 0;
+      background-color: white;
+      gap: 16px;
+      border-radius: 24px;
+      box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
+      align-items: center;
+    }
+  }
+
+  .titleRow {
+    width: 90vw;
+  }
+  .sexWrap,
+  .calendar,
+  .role,
+  .input,
+  .button {
+    width: 90vw;
+  }
+}

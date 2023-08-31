@@ -13,6 +13,11 @@ const initialState = {
     error: null,
 } as AuthState;
 
+interface ILoginData {
+    email: string;
+    password: string;
+}
+
 export const getRedemptionCode = createAsyncThunk(
     'auth/getRedemptionCode',
     async (email: string, { rejectWithValue }) => {
@@ -36,12 +41,11 @@ export const auth = createSlice({
         builder.addCase(getRedemptionCode.pending, (state, action) => {
             state.mail = action.meta.arg;
             state.error = null;
-            state.status = 'resolved';
-            console.log(state);
+            state.status = 'loading';
         });
         builder.addCase(getRedemptionCode.fulfilled, (state, action) => {
             state.error = null;
-            state.status = 'loading';
+            state.status = 'resolved';
         });
         builder.addCase(getRedemptionCode.rejected, (state, action) => {});
     },

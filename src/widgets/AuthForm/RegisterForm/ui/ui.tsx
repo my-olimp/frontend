@@ -49,8 +49,8 @@ export const RegisterForm: FC<props> = ({}) => {
         }
     }, [password, repeatPassword, value, valueError, passwordError, repeatPasswordError]);
 
-    const handleSubmit = () => {
-        dispatch(getRedemptionCode(value));
+    const handleSubmit = async () => {
+        await dispatch(getRedemptionCode(value));
         router.push('signup/confirmation');
     };
 
