@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import $api from '@/axios';
 
 type AuthState = {
     mail: string | null;
@@ -16,23 +17,11 @@ export const getRedemptionCode = createAsyncThunk(
     'auth/getRedemptionCode',
     async (email: string, { rejectWithValue }) => {
         try {
-            fetch('https://myob.xstl.ru/user/register/email/', {
-                body: JSON.stringify({ email: email }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST',
-                mode: 'cors',
-            })
-                .then(
-                    (resp) => resp, // this returns a promise
-                )
-                .then((un) => {
-                    console.log(un);
-                })
-                .catch((ex) => {
-                    console.error(ex);
-                });
+            const response = await $api.post('user/register/email/', {
+                email: email,
+            });
+            console.log(response);
+            return response;
         } catch (error: any) {
             console.error(error);
             return rejectWithValue(error.message);
