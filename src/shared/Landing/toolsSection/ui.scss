@@ -89,8 +89,8 @@ $accentColor: #3579f8;
   float: right;
   overflow: hidden;
 
-  margin-top: -100px;
   display: none;
+  background: transparent;
 }
 
 .info__block {
@@ -99,6 +99,7 @@ $accentColor: #3579f8;
 
 .block {
   display: flex;
+  align-items: center;
 }
 
 .activeImage {

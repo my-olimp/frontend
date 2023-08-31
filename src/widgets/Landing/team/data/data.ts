@@ -37,7 +37,7 @@ export const sliderData: sliderDataType[] = [
     {
         id: 3,
         bgLink: Ekaterina.src,
-        title: 'Екатерины Боброва',
+        title: 'Екатерина Боброва',
         text: 'Руководитель отдела менеджмента',
         isActive: true,
     },

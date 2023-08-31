@@ -4,28 +4,27 @@ import { NavBarButton } from '@/entities/Landing/navBarButton/ui';
 import { NavBarLogo } from '@/entities/Landing/navBarLogo/ui';
 import { NavBarText } from '@/entities/Landing/navBarText/ui';
 import './ui.scss';
-import { useRef } from 'react';
 
 export const NavBarDesktop = ({}) => {
-    const navbar = useRef(null);
-    const SCROLLED_STATE_CLASS = 'scrolled';
-
-    const onScroll = () => {
-        const scroll = document.documentElement.scrollTop;
-        if (navbar) {
-            if (scroll > 0) {
-                navbar.current.classList.add(SCROLLED_STATE_CLASS);
-            } else if (scroll <= 0) {
-                navbar.current.classList.remove(SCROLLED_STATE_CLASS);
-            }
-        }
-    };
-    if (typeof window !== 'undefined' && navbar) {
-        window.addEventListener('scroll', onScroll);
-    }
+    // const onScroll = () => {
+    //     const scroll = document.documentElement.scrollTop;
+    //
+    //     if (navbar) {
+    //         if (scroll > 0) {
+    //             console.log(navbar);
+    //             navbar.classList.add('scrolled');
+    //         } else if (scroll <= 0) {
+    //             navbar.classList.remove('scrolled');
+    //         }
+    //     }
+    // };
+    //
+    // if (typeof window !== 'undefined' && navbar) {
+    //     window.addEventListener('scroll', onScroll);
+    // }
     return (
         <div className="layout">
-            <header id="navbar" className="wrap" ref={navbar}>
+            <header id="navbar" className="wrap">
                 <div className="blockLeft">
                     <NavBarLogo />
                     <NavBarText>Преимущества</NavBarText>

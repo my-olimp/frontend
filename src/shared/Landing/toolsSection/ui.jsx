@@ -71,22 +71,16 @@ export const Tools = () => {
                     className={`image ${activeBtn === '3' ? 'activeImage' : ''}`}
                     src={firstImg}
                     alt="Новости"
-                    width={600}
-                    height={600}
                 />
                 <Image
                     className={`image ${activeBtn === '2' ? 'activeImage' : ''}`}
                     src={secondImg}
                     alt="Календарь"
-                    width={600}
-                    height={600}
                 />
                 <Image
                     className={`image ${activeBtn === '1' ? 'activeImage' : ''}`}
                     src={thirdImg}
                     alt="Олимпиады"
-                    width={600}
-                    height={600}
                 />
                 {/** Забавный факт. Из assets почему то не редерит */}
             </div>

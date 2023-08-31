@@ -9,7 +9,7 @@ import dayjs, { Dayjs } from 'dayjs';
 interface props {}
 export const AdditionalDataForm: FC<props> = ({}) => {
     const [progress, setProgress] = useState<number>(1);
-    const [sex, setSex] = useState<'male' | 'female' | 'parquet'>('male');
+    const [sex, setSex] = useState<'male' | 'female'>('male');
     const [date, setDate] = useState<Dayjs>();
     const [role, setRole] = useState<string>('Вид деятельности');
     const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
@@ -50,18 +50,10 @@ export const AdditionalDataForm: FC<props> = ({}) => {
                             <h3>Женский</h3>
                             <Radio checked={sex === 'female'} value="female" name="radio-buttons" />
                         </div>
-                        <div className={styles.sex} onChange={() => setSex('parquet')}>
-                            <h3>Паркет</h3>
-                            <Radio
-                                checked={sex === 'parquet'}
-                                value="parquet"
-                                name="radio-buttons"
-                            />
-                        </div>
                     </div>
 
                     <DatePicker
-                        onChange={(newDate) => setDate(dayjs(newDate as any))}
+                        onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
                         className={styles.calendar}
                         format={'DD/MM/YYYY'}
                         label="Дата рождения"
