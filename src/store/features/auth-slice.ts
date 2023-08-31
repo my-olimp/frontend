@@ -17,7 +17,7 @@ export const getRedemptionCode = createAsyncThunk(
     'auth/getRedemptionCode',
     async (email: string, { rejectWithValue }) => {
         try {
-            const response = await $api.post('user/register/em/', {
+            const response = await $api.post('user/register/email/', {
                 email: email,
             });
             console.log(response);
