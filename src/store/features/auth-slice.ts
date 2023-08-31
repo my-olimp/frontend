@@ -16,7 +16,7 @@ export const getRedemptionCode = createAsyncThunk(
     'auth/getRedemptionCode',
     async (email: string, { rejectWithValue }) => {
         try {
-            fetch('https://myob.xstl.ru/user/register/email', {
+            fetch('user/register/email', {
                 body: JSON.stringify({ email: email }),
                 method: 'POST',
                 mode: 'cors',
