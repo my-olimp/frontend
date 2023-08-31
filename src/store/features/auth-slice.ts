@@ -28,7 +28,7 @@ export const getRedemptionCode = createAsyncThunk(
             console.log(response);
             return response;
         } catch (error: any) {
-            console.error(error);
+            console.log(error);
             return rejectWithValue(error.message);
         }
     },
