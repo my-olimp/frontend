@@ -1,22 +1,16 @@
 $navBarHeight: 96px;
+$accent-color: #3579f8;
 .wrap {
     position: fixed;
-
     width: 100%;
-
     height: $navBarHeight;
-
-    background-color: transparent;
-
+    background-color: $accent-color;
     z-index: 2000;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     box-sizing: border-box;
-
     padding-left: 72px;
     padding-right: 72px;
 }
