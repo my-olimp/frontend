@@ -20,7 +20,6 @@ export const getRedemptionCode = createAsyncThunk(
             const response = await $api.post('user/register/email/', {
                 email: email,
             });
-            console.log(response);
             return response;
         } catch (error: any) {
             console.error(error);
