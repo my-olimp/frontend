@@ -1,13 +1,13 @@
-import React from 'react';
+import Head from 'next/head';
 
-const OfflinePage = () => {
-    return (
-        <div>
-            <h1>Упс!</h1>
-            <p>Соединение потярено</p>
-            <p>Проверьте, есть ли у вас подключение к интернету</p>
-        </div>
-    );
-};
+const Fallback = () => (
+    <>
+        <Head>
+            <title>next-pwa example</title>
+        </Head>
+        <h1>This is offline fallback page</h1>
+        <h2>When offline, any page route will fallback to this page</h2>
+    </>
+);
 
-export default OfflinePage;
+export default Fallback;
