@@ -1,6 +1,7 @@
 $navBarHeight: 96px;
 $scrollColor: rgba(53, 121, 248, 0.6);
 $scrollBlur: 32px;
+$accent-color-blur: rgb(53, 121, 248);
 
 .wrap {
   font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
@@ -15,7 +16,7 @@ $scrollBlur: 32px;
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  background-color: #3579f8;
+  background-color: $accent-color-blur;
 }
 
 .blockLeft {
