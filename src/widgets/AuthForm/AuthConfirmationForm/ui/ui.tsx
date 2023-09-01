@@ -31,7 +31,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
     // TODO: ДЛЯ ДЕБАГА
     useEffect(() => {
         alert(code);
-    }, []);
+    }, [code]);
 
     const handleSubmit = (text: number): void => {
         if (text !== code) {
