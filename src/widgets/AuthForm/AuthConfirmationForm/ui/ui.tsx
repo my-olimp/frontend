@@ -30,10 +30,17 @@ export const ConfirmationForm: FC<props> = ({}) => {
     };
     // TODO: ДЛЯ ДЕБАГА
     useEffect(() => {
-        if (code) {
+        console.log(code);
+        if (code !== null) {
             alert(code);
         }
     }, [code]);
+
+    useEffect(() => {
+        if (!mail) {
+            push('/signup/');
+        }
+    }, [mail, push]);
 
     const handleSubmit = (text: number): void => {
         if (text !== code) {

@@ -3,7 +3,7 @@ import { ILoginData, IRegisterData } from '@/store/features/auth-slice';
 
 export async function getOTC(email: string, { rejectWithValue }) {
     try {
-        return await $api.post('user/register/mail/', {
+        return await $api.post('user/register/email/', {
             email: email,
         });
     } catch (error: any) {
@@ -14,7 +14,7 @@ export async function getOTC(email: string, { rejectWithValue }) {
 
 export async function login(data: ILoginData, { rejectWithValue }) {
     try {
-        return await $api.post('user/login', {
+        return await $api.post('user/login/', {
             ...data,
         });
     } catch (error: any) {
@@ -25,7 +25,7 @@ export async function login(data: ILoginData, { rejectWithValue }) {
 
 export async function register(data: IRegisterData, { rejectWithValue }) {
     try {
-        return await $api.post('user/register', {
+        return await $api.post('user/register/', {
             ...data,
         });
     } catch (error: any) {
