@@ -4,7 +4,6 @@ const $api = axios.create({
     withCredentials: false,
     baseURL: process.env.NEXT_PUBLIC_API_URL,
     headers: {
-        'Un-Origin': location && location.origin,
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
     },
