@@ -7,13 +7,17 @@ import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { MaskedInput } from '@/shared/MaskedInput';
+import { useRouter } from 'next/navigation';
 
 interface props {}
 
 export const ConfirmationForm: FC<props> = ({}) => {
     const [value, setValue] = useState<string>('');
+    const [error, setError] = useState<string>('');
 
-    const mail: string = useAppSelector((state) => state.auth.mail) as string;
+    const { mail, code } = useAppSelector((state) => state.auth);
+
+    const { push } = useRouter();
     const handleInput = (event: FormEvent<HTMLInputElement>): void => {
         const input = event.target as HTMLInputElement;
         const text = input.value.replace(/\D+/g, '');
@@ -21,12 +25,18 @@ export const ConfirmationForm: FC<props> = ({}) => {
         setValue(text);
         input.setSelectionRange(text.length, text.length);
         if (text.length >= 6) {
-            handleSubmit(text);
+            handleSubmit(parseInt(text));
         }
     };
+    // TODO: ДЛЯ ДЕБАГА
+    alert(code);
 
-    const handleSubmit = (text: string): void => {
-        console.log(text);
+    const handleSubmit = (text: number): void => {
+        if (text !== code) {
+            setError('Неверный код, попробуйте еще раз');
+        } else {
+            push('/signup/persondata');
+        }
     };
 
     return (
@@ -61,7 +71,11 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                         завершения регистрации
                                     </h4>
                                 </Gapped>
-                                <Gapped alignItems="center" className={styles.inputWrap}>
+                                <Gapped
+                                    alignItems="center"
+                                    gap="16px"
+                                    vertical={false}
+                                    className={styles.inputWrap}>
                                     <MaskedInput
                                         value={value}
                                         mask="999 999"
@@ -72,6 +86,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                             autoComplete="one-time-code"
                                         />
                                     </MaskedInput>
+                                    {<h1 className={styles.error}>{error}</h1>}
                                 </Gapped>
                             </Gapped>
                             <Gapped

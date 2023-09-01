@@ -10,13 +10,15 @@ import Logo from '@/entities/Logo/ui/ui';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { AuthInputWrap } from '@/features/authInputWrap';
-import { getRedemptionCode } from '@/store/features/auth-slice';
+import { getRedemptionCode, setEmail } from '@/store/features/auth-slice';
 import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '@/store/store';
+import { AnyAction } from 'redux';
 
 interface props {}
 
 export const RegisterForm: FC<props> = ({}) => {
-    const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
     const [isButtonDisabled, setButton] = useState<'active' | 'disabled'>('disabled');
 
@@ -50,6 +52,7 @@ export const RegisterForm: FC<props> = ({}) => {
     }, [password, repeatPassword, value, valueError, passwordError, repeatPasswordError]);
 
     const handleSubmit = async () => {
+        dispatch(setEmail(value));
         await dispatch(getRedemptionCode(value));
         router.push('signup/confirmation');
     };

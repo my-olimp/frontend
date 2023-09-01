@@ -8,6 +8,11 @@ import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
 import { AuthInputWrap, validateEmail } from '@/features/authInputWrap';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { loginByEmail, setEmail } from '@/store/features/auth-slice';
+import { RootState } from '@/store/store';
+import { AnyAction } from 'redux';
 
 interface props {}
 
@@ -19,6 +24,7 @@ export const LoginForm: FC<props> = ({}) => {
 
     const [password, setPassword] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
+    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
     const { push } = useRouter();
 
@@ -38,6 +44,8 @@ export const LoginForm: FC<props> = ({}) => {
     }, []);
 
     const handleSubmit = () => {
+        dispatch(setEmail(value));
+        dispatch(loginByEmail({ email: value, password: password }));
         push('/main');
     };
 

@@ -1,42 +1,62 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import $api from '@/axios';
+import { getOTC, login, register } from '@/services/AuthService';
 
 type AuthState = {
     mail: string | null;
     status: string | null;
     error: string | null;
+    code: number | null;
 };
 
 const initialState = {
     mail: null,
     status: null,
     error: null,
+    code: null,
 } as AuthState;
 
-interface ILoginData {
+export interface ILoginData {
     email: string;
     password: string;
+}
+
+export interface IRegisterData {
+    firstName: string;
+    secondName: string;
+    thirdName: string;
+    email: string;
+    password: string;
+    code: number;
 }
 
 export const getRedemptionCode = createAsyncThunk(
     'auth/getRedemptionCode',
     async (email: string, { rejectWithValue }) => {
-        try {
-            const response = await $api.post('user/register/email/', {
-                email: email,
-            });
-            console.log(response);
-            return response;
-        } catch (error: any) {
-            console.log(error);
-            return rejectWithValue(error.message);
-        }
+        return getOTC(email, { rejectWithValue });
+    },
+);
+
+export const loginByEmail = createAsyncThunk(
+    'auth/loginByEmail',
+    async (data: ILoginData, { rejectWithValue }) => {
+        return login(data, { rejectWithValue });
+    },
+);
+
+export const registerByOTC = createAsyncThunk(
+    'auth/registerByOTC',
+    async (data: IRegisterData, { rejectWithValue }) => {
+        return register(data, { rejectWithValue });
     },
 );
 export const auth = createSlice({
     name: 'auth',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        setEmail: (state, action) => {
+            state.mail = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(getRedemptionCode.pending, (state, action) => {
             state.mail = action.meta.arg;
@@ -47,9 +67,26 @@ export const auth = createSlice({
             state.error = null;
             state.status = 'resolved';
         });
-        builder.addCase(getRedemptionCode.rejected, (state, action) => {});
+        builder.addCase(getRedemptionCode.rejected, (state, action) => {
+            state.error = action.payload as string;
+            state.status = 'rejected';
+        });
+
+        builder.addCase(loginByEmail.pending, (state, action) => {
+            state.mail = action.meta.arg.email;
+            state.error = null;
+            state.status = 'loading';
+        });
+        builder.addCase(loginByEmail.fulfilled, (state, action) => {
+            state.error = null;
+            state.status = 'resolved';
+        });
+        builder.addCase(loginByEmail.rejected, (state, action) => {
+            state.error = action.payload as string;
+            state.status = 'rejected';
+        });
     },
 });
 
-export const {} = auth.actions;
+export const { setEmail } = auth.actions;
 export default auth.reducer;

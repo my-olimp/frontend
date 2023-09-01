@@ -1,8 +1,17 @@
 import styles from './ui.module.scss';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '@/store/store';
+import { AnyAction } from 'redux';
+import { getRedemptionCode } from '@/store/features/auth-slice';
+import { useAppSelector } from '@/hooks/useAppSelector';
 
 export const ConfirmationTime = () => {
     const [seconds, setSeconds] = useState<number>(10);
+    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+
+    const { mail } = useAppSelector((state) => state.auth);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -21,8 +30,7 @@ export const ConfirmationTime = () => {
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
     const handleClick = () => {
-        console.log('Клик');
-        // Потом логику напишем
+        dispatch(getRedemptionCode(mail as string));
     };
     return (
         <>
