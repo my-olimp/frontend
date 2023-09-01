@@ -8,9 +8,6 @@ export const metadata: Metadata = {
     title: 'MyOlimp',
     description:
         'MyOlimp - платформа для для организации соревнований в сфере информационных технологий, олимпиад и проектов с социальной значимостью, ориентированных как на новичков, так и на опытных специалистов.',
-    icons: {
-        icon: ['/icon.ico?v=4'],
-    },
     manifest: '/manifest.json',
 };
 
