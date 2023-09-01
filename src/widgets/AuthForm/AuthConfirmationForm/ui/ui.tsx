@@ -1,5 +1,5 @@
 'use client';
-import { FC, FormEvent, useState } from 'react';
+import { FC, FormEvent, useEffect, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
@@ -29,7 +29,9 @@ export const ConfirmationForm: FC<props> = ({}) => {
         }
     };
     // TODO: ДЛЯ ДЕБАГА
-    alert(code);
+    useEffect(() => {
+        alert(code);
+    }, []);
 
     const handleSubmit = (text: number): void => {
         if (text !== code) {

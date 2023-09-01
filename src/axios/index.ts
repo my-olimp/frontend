@@ -4,10 +4,9 @@ const $api = axios.create({
     withCredentials: false,
     baseURL: process.env.NEXT_PUBLIC_API_URL,
     headers: {
-        Origin: 'https://myolimp.vercel.com',
+        'Un-Origin': ' https://myob.xstl.ru/',
         Accept: 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true,
     },
 });
 
