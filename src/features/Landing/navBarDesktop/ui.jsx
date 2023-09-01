@@ -6,6 +6,7 @@ import { NavBarText } from '@/entities/Landing/navBarText/ui';
 import './ui.scss';
 
 export const NavBarDesktop = ({ }) => {
+
     return (
         <div className="layout">
             <header id="navbar" className="wrap">

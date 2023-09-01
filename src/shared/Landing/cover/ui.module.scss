@@ -1,5 +1,5 @@
 $accent-color: #3579f8;
-$accent-color-blur: rgba(53, 121, 248, 0.9);
+$accent-color-blur: rgb(53, 121, 248);
 $white-text-color: #fff;
 
 .externalLayout {
@@ -11,8 +11,6 @@ $white-text-color: #fff;
     height: 100%;
     min-height: 450px;
     border-radius: 0 0 50px 50px;
-    z-index: -1;
-    backdrop-filter: blur(10px);
     background-color: $accent-color-blur;
 
     .innerLayout {

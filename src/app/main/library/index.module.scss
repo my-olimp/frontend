@@ -1,6 +1,73 @@
+$accent-color: #3579F8;
+
 .screen {
   display: flex;
   flex-direction: column;
   gap: 48px;
+}
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.bar {
+  color: white;
+  width: 100%;
+  padding: 30px 30px 0px 30px;
+  border-radius: 25px;
+  background-color: $accent-color;
+
+  p:first-child {
+    font-size: 44px;
+  }
+  p,
+  .searchbar,
+  .btns {
+    margin-bottom: 35px;
+  }
+}
+
+.searchbar {
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+
+  input {
+    background: none;
+    outline: none;
+    border: none;
+    padding: 3px;
+    font-size: 15px;
+    width: 100%;
+  }
+  img {
+    margin-right: 5px;
+  }
+}
+
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+
+  .btn {
+    margin-top: 5px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.33);
+    padding: 7px 6px;
+    transition: .2s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: white;
+      color: #3579F8;
+    }
+  }
 }

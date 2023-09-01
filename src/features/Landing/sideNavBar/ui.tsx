@@ -9,7 +9,6 @@ interface props {
 }
 
 export const SideNavBar: FC<props> = ({ show }) => {
-    console.log(show)
     return (
         <motion.div
             className={styles.wrap}
