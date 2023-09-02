@@ -32,6 +32,9 @@ export const MaterialCard: FC<Props> = ({ material }) => {
                         </>
                     )}
                 </div>
+                <div className={styles.btndiv}>
+                    <div className={styles.btn}>Посмотреть</div>
+                </div>
             </div>
         </div>
     );

@@ -3,8 +3,8 @@
 $main-bg-color: #fff;
 
 * {
-  padding: 0 ;
-  margin: 0 ;
+  padding: 0;
+  margin: 0;
   border: 0;
   box-sizing: border-box;
   user-select: none;
@@ -63,7 +63,8 @@ select:-webkit-autofill:focus {
 }
 
 
-::-moz-selection { /* Code for Firefox */
+::-moz-selection {
+  /* Code for Firefox */
   color: white;
   background: #5E96FF;
 }
@@ -75,4 +76,20 @@ select:-webkit-autofill:focus {
 
 body {
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #5E96FF;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 5px;
+  }
 }

@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import styles from './ui.module.scss';
 import { TagsButton } from '../tagsButton/ui';
+import MainDecor from '../../../../public/materials/MainDecor.svg';
+import Image from 'next/image';
 
 interface Props {
     title: string;
@@ -33,7 +35,8 @@ export const Cover: FC<Props> = ({ title, description }) => {
     ];
     return (
         <>
-            <div className={styles.externalLayout}>
+            <div className={styles.externalLayout} style={{position: 'relative'}}>
+                <Image src={MainDecor} className={styles.decor} alt='Decorations'/>
                 <div className={styles.cover}>
                     <div className={styles.innerLayout}>
                         <div
