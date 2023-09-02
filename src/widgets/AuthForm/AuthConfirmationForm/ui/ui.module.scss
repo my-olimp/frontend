@@ -3,13 +3,14 @@ $bgFormColor: #fff;
 
 .wrap {
     display: block;
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px;
+    margin-bottom: 12px;
     background-color: $bgFormColor;
     min-width: 460px;
     max-width: 460px;
     height: auto;
     min-height: 400px;
-    padding: 40px 40px 16px;
+    padding: 40px 40px 24px;
     @media screen and (max-width: 500px) {
         display: flex !important;
         min-width: 400px;

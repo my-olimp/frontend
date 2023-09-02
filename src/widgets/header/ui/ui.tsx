@@ -1,5 +1,5 @@
 'use client';
-import { FC, useLayoutEffect, useState } from 'react';
+import { FC, useEffect, useLayoutEffect, useState } from 'react';
 import { INotice } from '@/features/Notifications';
 import { NavBarDesktop } from '@/features/NavbarDesktop/';
 import { NavBarMobile } from '@/features/NavbarMobile';
@@ -7,6 +7,10 @@ import HomeIcon from '@mui/icons-material/Home';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
+import { useDispatch } from 'react-redux';
+import { AnyAction } from 'redux';
+import { RootState } from '@/store/store';
+import { ThunkDispatch } from 'redux-thunk';
 
 interface props {}
 
@@ -44,12 +48,15 @@ const notifications: INotice[] = [
 
 export const Header: FC<props> = ({}) => {
     const [mobile, setMobile] = useState(false);
+    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
     useLayoutEffect(() => {
         if (window.innerWidth < 900) {
             setMobile(true);
         }
     }, []);
+
+    useEffect(() => {}, [dispatch]);
 
     return (
         <>

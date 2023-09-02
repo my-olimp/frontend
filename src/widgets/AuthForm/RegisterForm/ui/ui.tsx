@@ -4,16 +4,16 @@ import { FC, useEffect, useState } from 'react';
 import { AuthButton } from '@/entities/buttons/authButton';
 import styles from './ui.module.scss';
 import { RegisterRulesAccept } from '@/entities/registerRulesAccept';
-import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { AuthInputWrap } from '@/features/authInputWrap';
-import { getRedemptionCode, setEmail } from '@/store/features/auth-slice';
+import { GetOTC } from '@/store/features/auth-slice';
 import { ThunkDispatch } from 'redux-thunk';
 import { RootState } from '@/store/store';
 import { AnyAction } from 'redux';
+import { AuthHelp } from '@/features/authHelp/LoginHelp';
 
 interface props {}
 
@@ -52,8 +52,7 @@ export const RegisterForm: FC<props> = ({}) => {
     }, [password, repeatPassword, value, valueError, passwordError, repeatPasswordError]);
 
     const handleSubmit = async () => {
-        dispatch(setEmail(value));
-        await dispatch(getRedemptionCode(value));
+        await dispatch(GetOTC({ email: value, password: password }));
         router.push('signup/confirmation');
     };
 
@@ -127,7 +126,7 @@ export const RegisterForm: FC<props> = ({}) => {
                         </form>
                     </Gapped>
                 </Gapped>
-                <RegisterHelp />
+                <AuthHelp link={'/signin'} linkText={'Войти'} />
             </Gapped>
         </Gapped>
     );

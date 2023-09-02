@@ -8,10 +8,7 @@ $bgFormColor: #fff;
     min-width: 460px;
     max-width: 460px;
     height: auto;
-    padding-top: 40px;
-    padding-bottom: 16px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 40px 40px 16px;
     @media screen and (max-width: 500px) {
         display: flex !important;
         min-width: 400px;
@@ -24,10 +21,7 @@ $bgFormColor: #fff;
         display: flex !important;
         min-width: auto;
         width: 100%;
-        padding-top: 32px;
-        padding-bottom: 16px;
-        padding-left: 32px;
-        padding-right: 32px;
+        padding: 32px 32px 16px;
     }
 }
 

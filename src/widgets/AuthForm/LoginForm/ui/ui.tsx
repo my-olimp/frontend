@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './ui.module.scss';
 import { AuthLoginHelp } from '@/features/authHelp/authLoginHelp';
-import { LoginHelp } from '@/features/authHelp/LoginHelp';
+import { AuthHelp } from '@/features/authHelp/LoginHelp';
 import { AuthButton } from '@/entities/buttons/authButton';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
@@ -10,7 +10,7 @@ import { AuthInputWrap, validateEmail } from '@/features/authInputWrap';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { loginByEmail, setEmail } from '@/store/features/auth-slice';
+import { Login } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import { AnyAction } from 'redux';
 
@@ -44,8 +44,7 @@ export const LoginForm: FC<props> = ({}) => {
     }, []);
 
     const handleSubmit = () => {
-        dispatch(setEmail(value));
-        dispatch(loginByEmail({ email: value, password: password }));
+        dispatch(Login({ email: value, password: password }));
         push('/main');
     };
 
@@ -119,7 +118,7 @@ export const LoginForm: FC<props> = ({}) => {
                         </Gapped>
                     </Gapped>
                 </Gapped>
-                <LoginHelp />
+                <AuthHelp link={'/signup'} linkText={'Зарегестрироваться'} />
             </Gapped>
         </Gapped>
     );

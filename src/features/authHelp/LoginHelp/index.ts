@@ -1,1 +1,1 @@
-export { LoginHelp } from './ui/ui';
+export { AuthHelp } from './ui/ui';

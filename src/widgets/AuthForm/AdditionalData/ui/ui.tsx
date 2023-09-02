@@ -16,6 +16,11 @@ export const AdditionalDataForm: FC<props> = ({}) => {
                         <FirstAdditionalDataForm progress={progress} setProgress={setProgress} />
                     </>
                 ))
+                .with(2, () => (
+                    <>
+                        <h1>;dw;dw</h1>
+                    </>
+                ))
                 .run()}
         </div>
     );

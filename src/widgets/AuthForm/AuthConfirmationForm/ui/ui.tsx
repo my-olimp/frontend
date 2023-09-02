@@ -3,11 +3,16 @@ import { FC, FormEvent, useEffect, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
 import styles from './ui.module.scss';
 import { Gapped } from '@/shared/Gapped';
-import { RegisterHelp } from '@/features/authHelp/RegisterHelp';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { MaskedInput } from '@/shared/MaskedInput';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '@/store/store';
+import { AnyAction } from 'redux';
+import { Register } from '@/store/features/auth-slice';
+import { AuthHelp } from '@/features/authHelp/LoginHelp';
 
 interface props {}
 
@@ -15,7 +20,8 @@ export const ConfirmationForm: FC<props> = ({}) => {
     const [value, setValue] = useState<string>('');
     const [error, setError] = useState<string>('');
 
-    const { mail, code } = useAppSelector((state) => state.auth);
+    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+    const { email, password, code } = useAppSelector((state) => state.auth);
 
     const { push } = useRouter();
     const handleInput = (event: FormEvent<HTMLInputElement>): void => {
@@ -37,15 +43,23 @@ export const ConfirmationForm: FC<props> = ({}) => {
     }, [code]);
 
     useEffect(() => {
-        if (!mail) {
+        if (!code || !email) {
             push('/signup/');
         }
-    }, [mail, push]);
+    }, [code, push, email]);
 
-    const handleSubmit = (text: number): void => {
+    const handleSubmit = async (text: number): Promise<void> => {
         if (text !== code) {
             setError('Неверный код, попробуйте еще раз');
         } else {
+            console.log('correct');
+            await dispatch(
+                Register({
+                    email: email,
+                    password: password,
+                    code: text,
+                }),
+            );
             push('/signup/persondata');
         }
     };
@@ -78,7 +92,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                                     <Logo />
                                     <h4 className={styles.text}>Подтверждение почты</h4>
                                     <h4 className={styles.subTitle}>
-                                        На почту {mail} был отправлен код, введите его для
+                                        На почту {email} был отправлен код, введите его для
                                         завершения регистрации
                                     </h4>
                                 </Gapped>
@@ -109,7 +123,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
                             </Gapped>
                         </Gapped>
                     </Gapped>
-                    <RegisterHelp />
+                    <AuthHelp link={'/signin'} linkText={'Войти'} />
                 </Gapped>
             </Gapped>
         </>

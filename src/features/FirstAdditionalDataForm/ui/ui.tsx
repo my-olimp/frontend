@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, FC, FormEvent, SetStateAction, useEffect, useState } from 'react';
 import styles from './ui.module.scss';
 import Logo from '@/entities/Logo/ui/ui';
 import { Button, MenuItem, Radio, Select } from '@mui/material';
@@ -10,25 +10,51 @@ interface props {
     setProgress: Dispatch<SetStateAction<number>>;
 }
 export const FirstAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
+    const [namesArray, setNamesArray] = useState<string[]>([]);
+    const [value, setValue] = useState<string>('');
+    const [error, setError] = useState<string>('');
+
     const [sex, setSex] = useState<'male' | 'female'>('male');
     const [date, setDate] = useState<Dayjs>();
     const [role, setRole] = useState<string>('Вид деятельности');
+
     const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
-    const [value, setValue] = useState<string>('');
 
     const handleClick = () => {
-        if (progress !== 4) {
-            setProgress(progress + 1);
+        console.log(namesArray);
+        setProgress(progress + 1);
+    };
+
+    const handleInput = (event: FormEvent) => {
+        const input = event.target as HTMLInputElement;
+        const text: string = input.value;
+        setValue(text);
+
+        setNamesArray(text.split(' '));
+
+        if (namesArray.length - 1 === 1 || namesArray.length - 1 === 2) {
+            setError('');
+            for (const name in namesArray) {
+                if (name.charAt(0) === name.charAt(0).toUpperCase()) {
+                    setError('');
+                } else {
+                    setError(
+                        'ФИО должно содержать в себе как минимум имя и фамилию, с большой буквы',
+                    );
+                }
+            }
+        } else {
+            setError('ФИО должно содержать в себе как минимум имя и фамилию, с большой буквы');
         }
     };
 
     useEffect(() => {
-        if (date !== undefined && role !== 'Вид деятельности' && value !== '') {
+        if (date !== undefined && role !== 'Вид деятельности' && value !== '' && error === '') {
             setButtonDisabled(false);
         } else {
             setButtonDisabled(true);
         }
-    }, [date, role, value, sex]);
+    }, [date, role, value, sex, error]);
 
     return (
         <div className={styles.form}>
@@ -42,10 +68,11 @@ export const FirstAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                 </div>
                 <input
                     value={value}
-                    onChange={(event) => setValue(event.target.value as string)}
+                    onChange={(event) => handleInput(event)}
                     placeholder="ФИО"
                     className={styles.input}
                 />
+                {error && <h3 className={styles.error}>{error}</h3>}
                 <div className={styles.sexWrap}>
                     <h2>Пол: </h2>
                     <div className={styles.sex} onChange={() => setSex('male')}>
