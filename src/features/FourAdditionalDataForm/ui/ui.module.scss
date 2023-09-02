@@ -1,0 +1,112 @@
+.form {
+  & form {
+    height: 472px;
+    width: 502px;
+    display: flex;
+    flex-direction: column;
+    padding: 32px 0;
+    background-color: white;
+    gap: 16px;
+    border-radius: 24px;
+    box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
+    align-items: center;
+  }
+}
+
+.logoRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  .arrowIcon{
+    margin-left: 24px;
+  }
+ .myOlimpIcon{
+   margin-right: auto;
+   margin-left: 150px;
+ }
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 414px;
+
+  & h1 {
+    font-size: 20px;
+    color: rgba(26, 7, 16, 0.85);
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    margin: 0;
+  }
+  & p {
+    color: #6BC62D;
+    font-size: 16px;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+  }
+}
+
+.input {
+  width: 414px;
+  height: 56px;
+  outline-color: #1976D2;
+  border-radius: 12px;
+  border: 1px solid #8D8D8D;
+  padding: 16px 12px;
+}
+
+.button {
+  height: 56px;
+  width: 414px;
+  text-transform: capitalize;
+  border-radius: 12px;
+  font-size: 22px;
+  font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  background-color: #3579F8;
+  box-shadow: none;
+
+
+  &:disabled {
+    background-color: #8CB2FB;
+    cursor: not-allowed;
+    pointer-events: all !important;
+    color: white;
+
+    &:hover {
+      background-color: #8CB2FB;
+    }
+  }
+
+  &:hover {
+    background-color: #316ee0;
+    box-shadow: none;
+  }
+}
+
+
+//.containerForm {
+//  display: flex;
+//  flex-direction: column;
+//}
+//
+//.avatar {
+//  width: 160px;
+//  height: 160px
+//}
+//
+//.finalTouch {
+//  color: var(--text-icons-text-01, rgba(26, 7, 16, 0.85));
+//  font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+//  font-size: 20px;
+//  font-style: normal;
+//  font-weight: 500;
+//  line-height: normal;
+//  letter-spacing: 0.04rem;
+//}
+
+
