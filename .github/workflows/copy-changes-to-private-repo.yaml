@@ -1,0 +1,30 @@
+name: Copy changes to private repo
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  commit_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Repo
+        uses: actions/checkout@v2
+
+      - name: Configure Git
+        run: |
+          git config user.name "${{ secrets.USER_NAME }}"
+          git config user.email "${{ secrets.USER_EMAIL }}"
+          git remote add target https://github.com/${{ secrets.USER_NAME }}/${{ secrets.TARGET_REPO }}.git  # Replace with the target repository URL
+        env:
+          TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
+
+      - name: Commit and Push Changes
+        run: |
+          git add .
+          git commit -m "Update via GitHub Actions"
+          git push target master
+        env:
+          TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
