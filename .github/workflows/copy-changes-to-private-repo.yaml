@@ -15,9 +15,9 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config user.name "${{ secrets.USER_NAME }}"
-          git config user.email "${{ secrets.USER_EMAIL }}"
-          git remote add target https://github.com/${{ secrets.USER_NAME }}/${{ secrets.TARGET_REPO }}.git  
+          git config user.name "falkomerr"
+          git config user.email "falkomeryt@gmail.com"
+          git remote add target https://github.com/falkomerr/myolimp.git  
           git fetch target
         env:
           TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
