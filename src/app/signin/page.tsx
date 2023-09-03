@@ -8,8 +8,12 @@ import $api from '@/axios';
 export default function Auth() {
     useEffect(() => {
         (async () => {
-            const response = await $api.post('user/auth/refresh_token/');
-            console.log(response);
+            try {
+                const response = await $api.post('user/auth/refresh_token/');
+                console.log(response);
+            } catch (error: any) {
+                console.error(error);
+            }
         })();
     }, []);
 
