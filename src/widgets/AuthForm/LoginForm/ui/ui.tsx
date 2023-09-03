@@ -43,8 +43,8 @@ export const LoginForm: FC<props> = ({}) => {
         setButton('disabled');
     }, []);
 
-    const handleSubmit = () => {
-        dispatch(Login({ email: value, password: password }));
+    const handleSubmit = async () => {
+        await dispatch(Login({ email: value, password: password }));
         push('/main');
     };
 
