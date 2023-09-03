@@ -18,6 +18,7 @@ jobs:
           git config user.name "${{ secrets.USER_NAME }}"
           git config user.email "${{ secrets.USER_EMAIL }}"
           git remote add target https://github.com/${{ secrets.USER_NAME }}/${{ secrets.TARGET_REPO }}.git  # Replace with the target repository URL
+          git fetch target  # Получить актуальные данные о ветке target
         env:
           TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
 
