@@ -8,7 +8,7 @@ import { INotice, Notifications } from '@/features/Notifications';
 import { Bell } from '@/entities/Bell';
 
 interface props {
-    navBarData: any;
+    navBarData: any[];
     notifications: INotice[];
 }
 export const NavBarDesktop: FC<props> = ({ navBarData, notifications }) => {
