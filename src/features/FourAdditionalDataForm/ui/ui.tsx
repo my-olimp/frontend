@@ -4,9 +4,6 @@ import { Button } from '@mui/material';
 import styles from './ui.module.scss';
 import avatarLink from '../../../../public/social/empty-avatar.svg';
 import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
-import { ProgressCounter } from '@/entities/progressCounter';
-import { TextField } from '@mui/material';
-import Logo from '@/entities/Logo/ui/ui';
 
 interface props {
     progress: number;
@@ -69,7 +66,9 @@ export const FourAdditionalDataForm: FC<props> = ({ progress, setProgress }) => 
                 />
                 <input
                     value={value}
-                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value as string)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setValue(e.target.value as string)
+                    }
                     placeholder="СНИЛС*"
                     className={styles.input}
                 />
