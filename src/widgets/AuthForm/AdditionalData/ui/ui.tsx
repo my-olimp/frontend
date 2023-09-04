@@ -1,14 +1,16 @@
 'use client';
-import React, { FC, useState } from 'react';
-import styles from './ui.module.scss';
-import { match } from 'ts-pattern';
 import { FirstAdditionalDataForm } from '@/features/FirstAdditionalDataForm';
 import { FourAdditionalDataForm } from '@/features/FourAdditionalDataForm';
+import { FC, useState } from 'react';
+import { match } from 'ts-pattern';
+import styles from './ui.module.scss';
 
 interface props {}
 
 export const AdditionalDataForm: FC<props> = ({}) => {
     const [progress, setProgress] = useState<number>(1);
+
+    console.log('wdkwkdw');
 
     return (
         <div className={styles.screen}>

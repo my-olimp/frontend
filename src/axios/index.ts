@@ -5,7 +5,7 @@ const $api = axios.create({
     baseURL:
         process.env.NODE_ENV === 'production'
             ? 'https://myo.xstl.ru/api/'
-            : 'http://localhost:8000/',
+            : 'http://localhost:8081/api/',
 });
 
 $api.interceptors.request.use((config) => {

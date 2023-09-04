@@ -118,7 +118,7 @@ export const LoginForm: FC<props> = ({}) => {
                         </Gapped>
                     </Gapped>
                 </Gapped>
-                <AuthHelp link={'/signup'} linkText={'Зарегестрироваться'} />
+                <AuthHelp link={'/signup'} linkText={'Зарегистрироваться'} />
             </Gapped>
         </Gapped>
     );
