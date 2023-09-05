@@ -17,7 +17,7 @@ export const RefreshTokenComponent: FC<props> = ({ authMode = false }) => {
     useEffect(() => {
         (async () => {
             try {
-                dispatch(RefreshToken());
+                await dispatch(RefreshToken());
                 if (authMode) {
                     push('/main');
                 }
