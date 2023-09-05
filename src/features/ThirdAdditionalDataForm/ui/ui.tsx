@@ -1,4 +1,4 @@
-import styles from '@/features/FourAdditionalDataForm/ui/ui.module.scss';
+import styles from './ui.module.scss';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
 import avatarLink from '../../../../public/social/empty-avatar.svg';
@@ -134,7 +134,14 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                     <h1>Дисциплины</h1>
                     <p>{progress} из 4</p>
                 </div>
-              
+              <div className={styles.disciplesContainer}>
+                {disciplines.map((disciples: IDiscipline) => (
+                    <div className={styles.disciplineContainer} key={disciples.id}>
+                      <img src={disciples.icon} alt={disciples.name}/>
+                      <h3 className={styles.disciplesName}>{disciples.name}</h3>
+                    </div>
+                ))}
+              </div>
                 <Button
                     variant="contained"
                     disabled={isButtonDisabled}
