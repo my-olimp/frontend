@@ -10,7 +10,7 @@ const $api = axios.create({
 });
 
 let isRefreshing = false;
-let refreshPromise = null;
+let refreshPromise = null; // Initialize refreshPromise as null
 
 $api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
@@ -48,7 +48,7 @@ $api.interceptors.response.use(
           throw refreshError;
         } finally {
           isRefreshing = false;
-          refreshPromise = null;
+          refreshPromise = null; // Reset refreshPromise to null after completion
         }
       } else {
         // If another request is already refreshing the token, wait for it to complete
