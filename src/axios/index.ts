@@ -9,8 +9,8 @@ const $api = axios.create({
             : 'http://localhost:8081/api/',
 });
 
-let isRefreshing = false;
-let refreshPromise = null; // Initialize refreshPromise as null
+let isRefreshing: any = false;
+let refreshPromise: any = null; // Initialize refreshPromise as null
 
 $api.interceptors.request.use((config) => {
     config.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
