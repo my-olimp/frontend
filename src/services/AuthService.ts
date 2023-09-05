@@ -7,7 +7,7 @@ export async function getOTC(email: string, { rejectWithValue }) {
             email: email,
         });
     } catch (error: any) {
-        console.log(error);
+        console.error(error);
         return rejectWithValue(error);
     }
 }
@@ -22,7 +22,7 @@ export async function login(data: ILoginData, { rejectWithValue }) {
 
         return response;
     } catch (error: any) {
-        console.log(error);
+        console.error(error);
         return rejectWithValue(error);
     }
 }
@@ -35,7 +35,7 @@ export async function register(data: IRegisterData, { rejectWithValue }) {
             code: data.code,
         });
     } catch (error: any) {
-        console.log(error);
+        console.error(error);
         return rejectWithValue(error);
     }
 }
@@ -45,7 +45,22 @@ export async function logout({ rejectWithValue }) {
         localStorage.removeItem('accessToken');
         return await $api.get('user/auth/logout');
     } catch (error: any) {
-        console.log(error);
+        console.error(error);
         return rejectWithValue(error);
     }
+}
+
+export async function refreshToken({ rejectWithValue }: any = undefined) {
+  try {
+    const response = await $api.post('user/auth/refresh_token/');
+    localStorage.setItem('accessToken', response.data.accessToken);
+    return response.data.user 
+  } catch (error: any) {
+    console.error(error);
+    if (rejectWithValue) {
+      return rejectWithValue(error)
+    } else {
+      return error
+    }
+  }
 }

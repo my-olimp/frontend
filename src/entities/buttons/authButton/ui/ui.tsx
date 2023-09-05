@@ -1,7 +1,8 @@
+import { useAppSelector } from '@/hooks/useAppSelector';
 import ClipLoader from '@/shared/spinners/btnAuthSpinner/ui';
-import { CSSProperties, FC, MouseEventHandler, useState } from 'react';
-import styles from './ui.module.scss';
+import { CSSProperties, FC, MouseEventHandler, useEffect, useState } from 'react';
 import { match } from 'ts-pattern';
+import styles from './ui.module.scss';
 
 interface props {
     children?: string;
@@ -24,14 +25,24 @@ export const AuthButton: FC<props> = ({
     type,
     btnStyle,
 }) => {
+    const { loading } = useAppSelector((state) => state.auth);
     const [hover, setHover] = useState<boolean>(false);
-    const isDisable = (use: string): boolean => {
-        return use === 'disabled';
-    };
+    const [isDisable, setDisable] = useState<boolean>();
+
+    useEffect(() => {
+        if (loading || use === 'disabled') {
+            setDisable(true);
+        } else if (loading && use === 'active') {
+            setDisable(true);
+        } else {
+            setDisable(false);
+        }
+    }, [use, loading]);
+
     const buttonClassNameVariant: string = `${styles.button} button-${use} ${
         hover && use === 'active' && type !== 'next'
             ? styles.isHover
-            : hover && use && type === 'next' && !isDisable(use)
+            : hover && use && type === 'next' && !isDisable
             ? styles.nextIsHover
             : null
     }`;
@@ -48,9 +59,9 @@ export const AuthButton: FC<props> = ({
         .with('fit-content', () => '100%')
         .otherwise(() => '0px');
     const buttonBackground = match(type)
-        .with('auth', () => (!isDisable(use) ? '#3D3D3D' : '#F2F2F2'))
-        .with('register', () => (!isDisable(use) ? '#3D3D3D' : '#F2F2F2'))
-        .with('next', () => (!isDisable(use) ? '#3579F8' : '#F2F2F2'))
+        .with('auth', () => (!isDisable ? '#3D3D3D' : '#F2F2F2'))
+        .with('register', () => (!isDisable ? '#3D3D3D' : '#F2F2F2'))
+        .with('next', () => (!isDisable ? '#3579F8' : '#F2F2F2'))
         .otherwise(() => 'transparent');
 
     const buttonColor = match(use)
@@ -65,7 +76,7 @@ export const AuthButton: FC<props> = ({
         height: buttonHeight,
         background: buttonBackground,
         color: buttonColor,
-        cursor: isDisable(use) ? 'not-allowed' : 'pointer',
+        cursor: isDisable ? 'not-allowed' : 'pointer',
         ...btnStyle,
     };
 
@@ -75,11 +86,10 @@ export const AuthButton: FC<props> = ({
                 type="button"
                 className={buttonClassNameVariant}
                 onClick={onClick}
-                disabled={isDisable(use)}
+                disabled={isDisable}
                 onMouseOver={() => setHover(true)}
                 onMouseOut={() => setHover(false)}
-                style={style}
-            >
+                style={style}>
                 {isLoading ? <ClipLoader /> : children}
             </button>
         </>

@@ -1,18 +1,19 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
-import styles from './ui.module.scss';
-import { AuthLoginHelp } from '@/features/authHelp/authLoginHelp';
-import { AuthHelp } from '@/features/authHelp/LoginHelp';
-import { AuthButton } from '@/entities/buttons/authButton';
-import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
+import { AuthButton } from '@/entities/buttons/authButton';
+import { AuthHelp } from '@/features/authHelp/LoginHelp';
+import { AuthLoginHelp } from '@/features/authHelp/authLoginHelp';
 import { AuthInputWrap, validateEmail } from '@/features/authInputWrap';
-import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { Gapped } from '@/shared/Gapped/ui/ui';
 import { Login } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import styles from './ui.module.scss';
 
 interface props {}
 

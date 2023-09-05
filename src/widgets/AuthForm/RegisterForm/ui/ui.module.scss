@@ -8,20 +8,23 @@ $bgScreenColor: #f2f2f2;
     max-width: 460px;
     height: auto;
     padding: 40px 40px 24px;
-    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
     @media screen and (max-width: 500px) {
         display: flex !important;
         min-width: 400px;
+        width: 85%;
     }
     @media screen and (max-width: 420px) {
         display: flex !important;
         min-width: 350px;
+        width: 85%;
     }
     @media screen and (max-width: 360px) {
         display: flex !important;
         min-width: auto;
-        width: 100%;
-        padding: 28px 28px 16px;
+        width: 85%;
+        padding: 32px 32px 16px;
     }
 }
 
