@@ -50,7 +50,7 @@ export async function logout({ rejectWithValue }) {
     }
 }
 
-export async function refreshToken({ rejectWithValue }: any = undefined) {
+export async function refreshToken({ rejectWithValue } = {}) {
   try {
     const response = await $api.post('user/auth/refresh_token/');
     localStorage.setItem('accessToken', response.data.accessToken);
