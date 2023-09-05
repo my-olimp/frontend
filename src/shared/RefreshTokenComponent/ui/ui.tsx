@@ -18,11 +18,12 @@ export const RefreshTokenComponent: FC<props> = ({ authMode = false }) => {
         (async () => {
             try {
                 await dispatch(RefreshToken());
+            } catch (error: any) {
+                console.error(error);
+            } finally {
                 if (authMode) {
                     push('/main');
                 }
-            } catch (error: any) {
-                console.error(error);
             }
         })();
     }, [push, dispatch, authMode]);
