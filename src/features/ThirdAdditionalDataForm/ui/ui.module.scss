@@ -81,9 +81,8 @@
       border: 1px solid rgba(53, 121, 248, 0.28);
       background: #3579F8;
       
-      svg {
-        fill: white;
-        color: white;
+      img {
+        filter: brightness(0) invert(1);
       }
     }
     

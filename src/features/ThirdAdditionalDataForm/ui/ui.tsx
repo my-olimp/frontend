@@ -23,6 +23,7 @@ import technology from '../../../../public/discipline-icons/technology.svg';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
+
 interface props {
     progress: number;
     setProgress: Dispatch<SetStateAction<number>>;
@@ -117,21 +118,30 @@ const disciplines: IDiscipline[] = [
     },
 ];
 
+interface ISelectedDisciplines {
+    selectedDisciplines: number[];
+    setSelectedDisciplines: React.Dispatch<React.SetStateAction<number[]>>;
+}
+
 export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
     const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
-  const [selectedDisciplines, setSelectedDisciplines] = useState<number[]>([]);
-  
-  const handleDisciplineClick = (id: number) => {
-    if (selectedDisciplines.includes(id)) {
-      setSelectedDisciplines(selectedDisciplines.filter((selectedId) => selectedId !== id));
-    } else {
-      setSelectedDisciplines([...selectedDisciplines, id]);
-    }
-  };
-  
-  const isDisciplineSelected = (id: number) => selectedDisciplines.includes(id);
-  
-  const handleClick = () => {
+    const [selectedDisciplines, setSelectedDisciplines] = useState<string[]>([]); // Измените тип на string[]
+    const [inputValue, setInputValue] = useState<string>('');
+
+    const handleInputChange = (_, newInputValue: string) => {
+        setInputValue(newInputValue);
+    };
+
+    const handleSelectDiscipline = () => {
+        if (inputValue.trim() !== '') {
+            setSelectedDisciplines((prevSelected) => [...prevSelected, inputValue.trim()]);
+            setInputValue('');
+        }
+    };
+
+    const isDisciplineSelected = (name: string) => selectedDisciplines.includes(name);
+
+    const handleClick = () => {
         if (progress !== 3) {
             setProgress(progress + 1);
         }
@@ -149,31 +159,58 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                     <h1>Дисциплины</h1>
                     <p>{progress} из 4</p>
                 </div>
-              <Stack spacing={2} sx={{ width: 300 }}>
-                <Autocomplete
-                  freeSolo
-                  id="free-solo-2-demo"
-                  disableClearable
-                  options={disciplines.map((option) => option.name)}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Найти..."
-                      InputProps={{
-                        ...params.InputProps,
-                        type: 'search',
-                      }}
+                <Stack spacing={2} sx={{ width: 300 }}>
+                    <Autocomplete
+                        freeSolo
+                        id="free-solo-2-demo"
+                        disableClearable
+                        onChange={(_, selectedOption) => {
+                            if (typeof selectedOption === 'string') {
+                                handleSelectDiscipline();
+                            }
+                        }}
+                        onInputChange={(_, newInputValue) => {
+                            handleInputChange(_, newInputValue);
+                        }}
+                        options={disciplines.map((option) => option.name)}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label="Найти..."
+                                InputProps={{
+                                    ...params.InputProps,
+                                    type: 'search',
+                                }}
+                            />
+                        )}
+                        renderOption={(props, option) => (
+                            <li key={option} {...props}>
+                                {option}
+                            </li>
+                        )}
                     />
-                  )}
-                />
-              </Stack>
+                </Stack>
                 <div className={styles.disciplesContainer}>
                     {disciplines.map((discipline: IDiscipline) => (
-                        <div className={`${styles.disciplineContainer} ${isDisciplineSelected(discipline.id) ? styles.selected : ''}`}
-                             key={discipline.id}
-                             onClick={() => handleDisciplineClick(discipline.id)}>
-                            <img src={discipline.icon} alt={discipline.name} className={`${styles.disciplesIcon} ${isDisciplineSelected(discipline.id) ? styles.selected : ''}`}/>
-                            <h3 className={`${styles.disciplineName} ${isDisciplineSelected(discipline.id) ? styles.selected : ''}`}>{discipline.name}</h3>
+                        <div
+                            className={`${styles.disciplineContainer} ${
+                                isDisciplineSelected(discipline.name) ? styles.selected : ''
+                            }`}
+                            key={discipline.id}
+                            onClick={() => handleSelectDiscipline()}>
+                            <img
+                                src={discipline.icon}
+                                alt={discipline.name}
+                                className={`${styles.disciplesIcon} ${
+                                    isDisciplineSelected(discipline.name) ? styles.selected : ''
+                                }`}
+                            />
+                            <h3
+                                className={`${styles.disciplineName} ${
+                                    isDisciplineSelected(discipline.name) ? styles.selected : ''
+                                }`}>
+                                {discipline.name}
+                            </h3>
                         </div>
                     ))}
                 </div>
