@@ -75,11 +75,20 @@
     border-radius: 12px;
     border: 1px solid rgba(53, 121, 248, 0.28);
     cursor: pointer;
+    
     &.selected {
       border-radius: 12px;
       border: 1px solid rgba(53, 121, 248, 0.28);
       background: #3579F8;
+      
       svg {
+        fill: white;
+        color: white;
+      }
+    }
+    
+    .disciplesIcon {
+      &.selected {
         fill: white;
       }
     }
@@ -93,13 +102,9 @@
       font-weight: 600;
       line-height: normal;
       letter-spacing: 0.26px;
+      
       &.selected {
         color: white;
-      }
-      .disciplesIcon {
-        &.selected {
-          fill: white;
-        }
       }
     }
   }
