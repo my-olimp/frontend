@@ -1,0 +1,38 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    height: 459px;
+    width: 459px;
+}
+
+.h1 {
+    color: #757575;
+    font-size: 30px;
+    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+.button {
+    background-color: #3579f8;
+    border-radius: 50px;
+    text-align: center;
+    width: 260px;
+    padding: 0 16px;
+    height: 45px;
+    font-size: 20px;
+    color: white;
+    transition: all 0.3s;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #7635f8;
+    }
+}
