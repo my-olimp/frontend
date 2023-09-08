@@ -108,7 +108,7 @@ const disciplines: IDiscipline[] = [
     },
     {
         id: 15,
-        name: 'Астраномия',
+        name: 'Астрономия',
         icon: astranomics.src,
     },
     {
