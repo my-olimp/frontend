@@ -15,6 +15,8 @@ import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '@/store/store';
+
 import styles from './ui.module.scss';
 
 interface props {
