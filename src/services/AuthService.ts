@@ -1,5 +1,6 @@
 import $api from '@/axios';
 import { ILoginData, IRegisterData } from '@/store/features/auth-slice';
+import axios from 'axios';
 
 export async function getOTC(email: string, { rejectWithValue }) {
     try {

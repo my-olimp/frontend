@@ -1,4 +1,4 @@
-import { getOTC, login, logout, refreshToken, register } from '@/services/AuthService';
+import { getOTC, getUserAvatar, login, logout, refreshToken, register } from '@/services/AuthService';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
@@ -13,6 +13,7 @@ export interface IUser {
     SNILS: string;
     gender: null | 'm' | 'f';
     account_type: 's' | 't';
+    
 }
 
 type AuthState = {
@@ -141,6 +142,8 @@ export const auth = createSlice({
 
         builder.addCase(RefreshToken.fulfilled, (state, action) => {
           state.user = action.payload
+          console.log(action.payload);
+          
         })
 
         

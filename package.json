@@ -25,6 +25,7 @@
     "eslint": "^8.47.0",
     "eslint-config-next": "^13.4.19",
     "framer-motion": "^10.16.1",
+    "fs": "^0.0.1-security",
     "immer": "^10.0.2",
     "next": "13.4.7",
     "next-pwa": "^5.6.0",

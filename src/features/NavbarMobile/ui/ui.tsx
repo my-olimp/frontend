@@ -1,10 +1,10 @@
 import { Bell } from '@/entities/Bell';
 import Logo from '@/entities/Logo/ui/ui';
+import { NavbarAvatar } from '@/entities/NavbarAvatar';
 import { HamburgerMenu } from '@/entities/hamburgerMenu/ui/ui';
 import { INotice, Notifications } from '@/features/Notifications';
 import { Logout } from '@/store/features/auth-slice';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Avatar } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
@@ -87,7 +87,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
                         setShowPopup={setShowPopup}
                         setClicked={setClicked}
                     />
-                    <Avatar></Avatar>
+                    <NavbarAvatar />
                     <AnimatePresence>
                         {showPopup && (
                             <motion.div

@@ -23,6 +23,15 @@ const nextConfig = {
     reactStrictMode: false,
     images: {
         formats: ['image/avif', 'image/webp'],
+        domains: ['storage.yandexcloud.net'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'storage.yandexcloud.net',
+                port: '',
+                pathname: 'myolimp/user/avatar/**.webp',
+            },
+        ],
     },
     experimental: {
         appDir: true,

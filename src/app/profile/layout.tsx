@@ -6,7 +6,15 @@ export default function Layout({ children }) {
         <>
             <RefreshTokenComponent />
             <Header profile />
-            <main style={{ padding: '48px 0' }}>{children}</main>
+            <main
+                style={{
+                    padding: '20px 0 0 84px',
+                    backgroundColor: '#F3F7FF',
+                    width: '100vw',
+                    minHeight: '100vh',
+                }}>
+                {children}
+            </main>
         </>
     );
 }

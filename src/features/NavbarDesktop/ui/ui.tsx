@@ -1,14 +1,16 @@
 import { Bell } from '@/entities/Bell';
 import Logo from '@/entities/Logo/ui/ui';
+import { NavbarAvatar } from '@/entities/NavbarAvatar';
 import { INotice, Notifications } from '@/features/Notifications';
+import { useAppSelector } from '@/hooks/useAppSelector';
 import { Logout } from '@/store/features/auth-slice';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
-import { Avatar } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
@@ -33,6 +35,8 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
     const [clicked, setClicked] = useState<boolean>(false);
     const [active, setActive] = useState<number>(0);
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+    const { user } = useAppSelector((state) => state.auth);
+    const { push } = useRouter();
 
     useEffect(() => {
         for (const element of sideBarElements) {
@@ -68,7 +72,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                     setShowPopup={setShowPopup}
                     setClicked={setClicked}
                 />
-                <Avatar></Avatar>
+                <NavbarAvatar />
             </div>
             <AnimatePresence>
                 {showPopup && (

@@ -1,0 +1,48 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    width: 251px;
+    height: 297px;
+    border-radius: 30px;
+    gap: 12px;
+    padding: 16px;
+    background-color: #ffffff;
+}
+
+.imageWrap {
+    width: 219px;
+    height: 232px;
+    border-radius: 20px;
+    * {
+        position: static !important;
+        width: 219px !important;
+        height: 232px !important;
+        border-radius: 20px !important;
+    }
+}
+
+.buttonWrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.changeButton {
+    color: white;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    background-color: #3579f8;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    border: 1px solid #3579f8;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.deleteButton {
+    @extend .changeButton;
+    background-color: #ffffff;
+    color: #3579f8;
+}
