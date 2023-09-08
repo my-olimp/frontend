@@ -1,6 +1,10 @@
 {
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "@next/next/no-document-import-in-page": "off"
-  }
+    "extends": ["eslint:recommended", "google"],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 6
+    },
+    "plugins": ["@babel"],
+    "rules": {}
 }
