@@ -174,7 +174,7 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                                 inputValue === discipline.name ? styles.selected : ''
                             }`}
                             key={discipline.id}
-                            onClick={() => setInputValue(discipline.name)}>
+                            onClick={() => setInputValue(inputValue === discipline.name ? '' : discipline.name)}>
                             <img
                                 src={discipline.icon}
                                 alt={discipline.name}
@@ -204,75 +204,3 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
     );
 };
 
-{
-    /*<div className={styles.disciplesContainer}>*/
-}
-{
-    /*    {disciplines.map((discipline: IDiscipline) => (*/
-}
-{
-    /*      <div*/
-}
-{
-    /*        className={`${styles.disciplineContainer} ${*/
-}
-{
-    /*          selectedDiscipline.includes(discipline.id) ? styles.selected : ''*/
-}
-{
-    /*        }`}*/
-}
-{
-    /*        key={discipline.id}*/
-}
-{
-    /*        onClick={() => handleSelectDiscipline()}>*/
-}
-{
-    /*          <img*/
-}
-{
-    /*            src={discipline.icon}*/
-}
-{
-    /*            alt={discipline.name}*/
-}
-{
-    /*            className={`${styles.disciplesIcon} ${*/
-}
-{
-    /*              selectedDisciplines.includes(discipline.id) ? styles.selected : ''*/
-}
-{
-    /*            }`}*/
-}
-{
-    /*          />*/
-}
-{
-    /*          <h3*/
-}
-{
-    /*            className={`${styles.disciplineName} ${*/
-}
-{
-    /*              selectedDisciplines.includes(discipline.id) ? styles.selected : ''*/
-}
-{
-    /*            }`}>*/
-}
-{
-    /*              {discipline.name}*/
-}
-{
-    /*          </h3>*/
-}
-{
-    /*      </div>*/
-}
-{
-    /*    ))}*/
-}
-{
-    /*</div>*/
-}
