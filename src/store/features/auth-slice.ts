@@ -1,4 +1,4 @@
-import { getOTC, getUserAvatar, login, logout, refreshToken, register } from '@/services/AuthService';
+import { getOTC, login, logout, refreshToken, register } from '@/services/AuthService';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 

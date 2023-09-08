@@ -4,6 +4,7 @@ import { NavbarAvatar } from '@/entities/NavbarAvatar';
 import { HamburgerMenu } from '@/entities/hamburgerMenu/ui/ui';
 import { INotice, Notifications } from '@/features/Notifications';
 import { Logout } from '@/store/features/auth-slice';
+import { RootState } from '@/store/store';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
