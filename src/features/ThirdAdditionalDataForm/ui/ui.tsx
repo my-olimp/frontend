@@ -118,28 +118,14 @@ const disciplines: IDiscipline[] = [
     },
 ];
 
-interface ISelectedDisciplines {
-    selectedDisciplines: number[];
-    setSelectedDisciplines: React.Dispatch<React.SetStateAction<number[]>>;
-}
-
 export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
-    const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
-    const [selectedDisciplines, setSelectedDisciplines] = useState<string[]>([]); // Измените тип на string[]
     const [inputValue, setInputValue] = useState<string>('');
 
-    const handleInputChange = (_, newInputValue: string) => {
+    const handleInputChange = (_: React.ChangeEvent<{}>, newInputValue: string) => {
         setInputValue(newInputValue);
+        console.log('SetInputValue', newInputValue)
     };
 
-    const handleSelectDiscipline = () => {
-        if (inputValue.trim() !== '') {
-            setSelectedDisciplines((prevSelected) => [...prevSelected, inputValue.trim()]);
-            setInputValue('');
-        }
-    };
-
-    const isDisciplineSelected = (name: string) => selectedDisciplines.includes(name);
 
     const handleClick = () => {
         if (progress !== 3) {
@@ -164,15 +150,11 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                         freeSolo
                         id="free-solo-2-demo"
                         disableClearable
-                        onChange={(_, selectedOption) => {
-                            if (typeof selectedOption === 'string') {
-                                handleSelectDiscipline();
-                            }
-                        }}
-                        onInputChange={(_, newInputValue) => {
-                            handleInputChange(_, newInputValue);
-                        }}
                         options={disciplines.map((option) => option.name)}
+                        value={inputValue}
+                        onChange={(_, newValue) => setInputValue(newValue)}
+                        inputValue={inputValue}
+                        onInputChange={handleInputChange}
                         renderInput={(params) => (
                             <TextField
                                 {...params}
@@ -183,40 +165,36 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                                 }}
                             />
                         )}
-                        renderOption={(props, option) => (
-                            <li key={option} {...props}>
-                                {option}
-                            </li>
-                        )}
                     />
                 </Stack>
                 <div className={styles.disciplesContainer}>
                     {disciplines.map((discipline: IDiscipline) => (
                         <div
                             className={`${styles.disciplineContainer} ${
-                                isDisciplineSelected(discipline.name) ? styles.selected : ''
+                                inputValue === discipline.name ? styles.selected : ''
                             }`}
                             key={discipline.id}
-                            onClick={() => handleSelectDiscipline()}>
+                            onClick={() => setInputValue(discipline.name)}>
                             <img
                                 src={discipline.icon}
                                 alt={discipline.name}
                                 className={`${styles.disciplesIcon} ${
-                                    isDisciplineSelected(discipline.name) ? styles.selected : ''
+                                    inputValue === discipline.name ? styles.selected : ''
                                 }`}
                             />
                             <h3
                                 className={`${styles.disciplineName} ${
-                                    isDisciplineSelected(discipline.name) ? styles.selected : ''
+                                    inputValue === discipline.name ? styles.selected : ''
                                 }`}>
                                 {discipline.name}
                             </h3>
                         </div>
                     ))}
                 </div>
+
                 <Button
                     variant="contained"
-                    disabled={selectedDisciplines.length === 0}
+                    disabled={!inputValue}
                     className={styles.button}
                     onClick={() => handleClick()}>
                     Дальше
@@ -227,68 +205,74 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
 };
 
 {
-    /*<input*/
+    /*<div className={styles.disciplesContainer}>*/
 }
 {
-    /*    type="file"*/
+    /*    {disciplines.map((discipline: IDiscipline) => (*/
 }
 {
-    /*    accept="image/*"*/
+    /*      <div*/
 }
 {
-    /*    defaultValue={avatarLink.src}*/
+    /*        className={`${styles.disciplineContainer} ${*/
 }
 {
-    /*    style={{ display: 'none' }}*/
+    /*          selectedDiscipline.includes(discipline.id) ? styles.selected : ''*/
 }
 {
-    /*    onChange={handleImageChange}*/
+    /*        }`}*/
 }
 {
-    /*    ref={fileInputRef}*/
+    /*        key={discipline.id}*/
 }
 {
-    /*/>*/
+    /*        onClick={() => handleSelectDiscipline()}>*/
 }
 {
-    /*<img*/
+    /*          <img*/
 }
 {
-    /*    src={selectedImage || avatarLink.src}*/
+    /*            src={discipline.icon}*/
 }
 {
-    /*    alt={'avatarUser'}*/
+    /*            alt={discipline.name}*/
 }
 {
-    /*    className={styles.avatar}*/
+    /*            className={`${styles.disciplesIcon} ${*/
 }
 {
-    /*    onClick={handleImageClick}*/
+    /*              selectedDisciplines.includes(discipline.id) ? styles.selected : ''*/
 }
 {
-    /*/>*/
+    /*            }`}*/
 }
 {
-    /*<input*/
+    /*          />*/
 }
 {
-    /*    value={value}*/
+    /*          <h3*/
 }
 {
-    /*    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>*/
+    /*            className={`${styles.disciplineName} ${*/
 }
 {
-    /*        setValue(e.target.value as string)*/
+    /*              selectedDisciplines.includes(discipline.id) ? styles.selected : ''*/
 }
 {
-    /*    }*/
+    /*            }`}>*/
 }
 {
-    /*    placeholder="СНИЛС*"*/
+    /*              {discipline.name}*/
 }
 {
-    /*    className={styles.input}*/
+    /*          </h3>*/
 }
 {
-    /*/>*/
+    /*      </div>*/
+}
+{
+    /*    ))}*/
+}
+{
+    /*</div>*/
 }
