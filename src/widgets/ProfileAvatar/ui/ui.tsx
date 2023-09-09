@@ -2,6 +2,7 @@
 
 import { useAppSelector } from '@/hooks/useAppSelector';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 import styles from './ui.module.scss';
 
@@ -9,7 +10,7 @@ interface props {}
 
 export const ProfileAvatar: FC<props> = ({}) => {
     const { user } = useAppSelector((state) => state.auth);
-
+    const { push } = useRouter();
     return (
         <div className={styles.wrap}>
             <span className={styles.imageWrap}>

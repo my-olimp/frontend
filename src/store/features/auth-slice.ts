@@ -13,6 +13,7 @@ export interface IUser {
     SNILS: string;
     gender: null | 'm' | 'f';
     account_type: 's' | 't';
+    data_of_birth: string;
     
 }
 
