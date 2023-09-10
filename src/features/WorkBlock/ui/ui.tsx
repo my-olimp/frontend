@@ -1,6 +1,6 @@
 import { useAppSelector } from '@/hooks/useAppSelector';
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
