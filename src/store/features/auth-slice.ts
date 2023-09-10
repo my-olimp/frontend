@@ -14,8 +14,21 @@ export interface IUser {
     gender: null | 'm' | 'f';
     account_type: 's' | 't';
     data_of_birth: string;
-    
-}
+    region: {
+      number: number;
+      name: string;
+    };
+    city: {
+      id: number;
+      name: string;
+      region: number;
+    };
+    school: {
+      id: number;
+      name: string;
+      region: number;
+    }
+} 
 
 type AuthState = {
     email: string | undefined;

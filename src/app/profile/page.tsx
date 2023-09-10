@@ -7,9 +7,7 @@ const Profile: NextPage = () => {
     return (
         <div className={styles.wrap}>
             <ProfileAvatar />
-            <div className={styles.infoWrap}>
-                <PersonalInfo />
-            </div>
+            <PersonalInfo />
         </div>
     );
 };

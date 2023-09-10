@@ -1,0 +1,1 @@
+export { EditPersonalDataModal } from './ui/ui'

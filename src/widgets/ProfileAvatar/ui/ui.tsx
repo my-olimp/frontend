@@ -18,9 +18,11 @@ export const ProfileAvatar: FC<props> = ({}) => {
                     <Image
                         src={`https://storage.yandexcloud.net/myolimp/user/avatar/${user.id}.webp`}
                         alt="avatar"
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        style={{ objectFit: 'cover' }}
+                        sizes="219px"
                         priority
+                        quality={80}
                     />
                 )}
             </span>

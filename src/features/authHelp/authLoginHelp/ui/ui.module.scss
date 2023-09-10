@@ -6,32 +6,13 @@
     width: 100%;
 }
 
-.checkWrap {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    & h1 {
-        font-size: 14px;
-        font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
-        font-weight: 400;
-        transition: all .3s;
-    }
-
-    &:hover h1 {
-        color: #3579F9;
-    }
-
-    & .checkBox {
-        margin-left: -10px;
-    }
-}
 
 .link {
     font-size: 14px;
     font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
     font-weight: 400;
     text-decoration: none;
+    color: black;
 
     &:hover {
         transition: all .3s;
