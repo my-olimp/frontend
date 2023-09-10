@@ -4,13 +4,12 @@ import { FourAdditionalDataForm } from '@/features/FourAdditionalDataForm';
 import { FC, useState } from 'react';
 import { match } from 'ts-pattern';
 import styles from './ui.module.scss';
+import { SecondAdditionalDataForm } from '@/features/SecondAdditionalDataForm';
 
 interface props {}
 
 export const AdditionalDataForm: FC<props> = ({}) => {
     const [progress, setProgress] = useState<number>(1);
-
-    console.log('wdkwkdw');
 
     return (
         <div className={styles.screen}>
@@ -20,7 +19,7 @@ export const AdditionalDataForm: FC<props> = ({}) => {
                 ))
                 .with(2, () => (
                     <>
-                        <h1>;dw;dw</h1>
+                        <SecondAdditionalDataForm progress={progress} setProgress={setProgress} />
                     </>
                 ))
                 .with(3, () => (
