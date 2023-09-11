@@ -32,8 +32,6 @@ export const AuthButton: FC<props> = ({
     useEffect(() => {
         if (loading || use === 'disabled') {
             setDisable(true);
-        } else if (loading && use === 'active') {
-            setDisable(true);
         } else {
             setDisable(false);
         }

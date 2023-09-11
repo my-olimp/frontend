@@ -11,6 +11,22 @@
         "no-undef": "off",
         "object-curly-spacing": "off",
         "no-unused-vars": "off",
-        "indent": "off"
+        "indent": "off",
+        "quotes": "off",
+        "require-jsdoc": "off",
+        "semi": "off",
+        "padded-blocks": "off",
+        "operator-linebreak": "off",
+        "no-empty-pattern": "off",
+        "no-trailing-spaces": "off",
+        "eol-last": "off",
+        "comma-dangle": "off",
+        "new-cap": "off",
+        "spaced-comment": "off",
+        "quote-props": "off",
+        "camelcase": "off",
+        "linebreak-style": "off",
+        "no-multi-spaces": "off",
+        "space-before-function-paren": "off"
     }
 }

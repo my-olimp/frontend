@@ -33,9 +33,6 @@ $api.interceptors.response.use(
           const originalRequest = error.config;
 
           return $api(originalRequest);
-        } catch (refreshError) {
-
-          throw refreshError;
         } finally {
           isRefreshing = false;
           refreshPromise = null;
