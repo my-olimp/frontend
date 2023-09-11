@@ -7,7 +7,7 @@ export default function Auth() {
 
     return (
         <div className={styles.wrap}>
-          <RefreshTokenComponent authMode/>
+            <RefreshTokenComponent authMode />
             <LoginForm />
         </div>
     );
