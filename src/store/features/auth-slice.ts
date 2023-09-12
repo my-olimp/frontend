@@ -147,7 +147,7 @@ export const auth = createSlice({
           state.errorCode = undefined
         }
         const handleReject = (state, action) => {
-          state.error = (action.payload as AxiosError).message;
+          state.error = ((action.payload as AxiosError).response?.data as {detail: string})?.detail;
           state.errorCode = (action.payload as AxiosError).response?.status?.toString();
           state.loading = false
         };

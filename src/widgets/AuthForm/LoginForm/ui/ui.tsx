@@ -26,6 +26,7 @@ export const LoginForm: FC<props> = ({}) => {
     const [password, setPassword] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+    const { error } = useAppSelector((state) => state.auth);
 
     const { push } = useRouter();
 
@@ -46,7 +47,10 @@ export const LoginForm: FC<props> = ({}) => {
 
     const handleSubmit = async () => {
         await dispatch(Login({ email: value, password: password }));
-        push('/main');
+        console.log(error);
+        if (!error) {
+            push('/main');
+        }
     };
 
     return (
