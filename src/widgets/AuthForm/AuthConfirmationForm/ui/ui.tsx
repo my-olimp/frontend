@@ -1,18 +1,18 @@
 'use client';
-import { FC, FormEvent, useEffect, useState } from 'react';
 import Logo from '@/entities/Logo/ui/ui';
-import styles from './ui.module.scss';
-import { Gapped } from '@/shared/Gapped';
 import { ConfirmationTime } from '@/entities/confirmationTime/ui/ui';
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { MaskedInput } from '@/shared/MaskedInput';
-import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { RootState } from '@/store/store';
-import { AnyAction } from 'redux';
-import { Register } from '@/store/features/auth-slice';
 import { AuthHelp } from '@/features/authHelp/LoginHelp';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { Gapped } from '@/shared/Gapped';
+import { MaskedInput } from '@/shared/MaskedInput';
+import { Register } from '@/store/features/auth-slice';
+import { RootState } from '@/store/store';
+import { useRouter } from 'next/navigation';
+import { FC, FormEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import styles from './ui.module.scss';
 
 interface props {}
 
@@ -44,7 +44,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
 
     useEffect(() => {
         if (!code || !email) {
-            push('/signup/');
+            push('/signup');
         }
     }, [code, push, email]);
 
@@ -52,8 +52,7 @@ export const ConfirmationForm: FC<props> = ({}) => {
         if (text !== code) {
             setError('Неверный код, попробуйте еще раз');
         } else {
-            console.log('correct');
-            await dispatch(
+            await dispatch( 
                 Register({
                     email: email,
                     password: password,

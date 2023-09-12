@@ -8,6 +8,7 @@ import { RootState } from '@/store/store';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
@@ -23,7 +24,10 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
     const [clicked, setClicked] = useState<boolean>(false);
     const [showSideBar, setShowSideBar] = useState<boolean>(false);
     const [active, setActive] = useState<number>(0);
+
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+
+    const { push } = useRouter();
 
     useEffect(() => {
         if (showSideBar) {
@@ -49,7 +53,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
                                         <Link
                                             href={navbarEL.link}
                                             className={
-                                                navbarEL.id === active
+                                                location && location.pathname === navbarEL.link
                                                     ? styles.activeElement
                                                     : styles.element
                                             }
@@ -61,7 +65,12 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
                                     );
                                 })}
                             </div>
-                            <div className={styles.logoutWrap} onClick={() => dispatch(Logout())}>
+                            <div
+                                className={styles.logoutWrap}
+                                onClick={() => {
+                                    dispatch(Logout());
+                                    push('/signin');
+                                }}>
                                 <span className={styles.logout}>
                                     <LogoutIcon />
                                     <p>Выйти из аккаунта</p>

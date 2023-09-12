@@ -11,7 +11,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
@@ -34,10 +34,15 @@ const sideBarElements = [
 export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile }) => {
     const [activeId, setActiveId] = useState<number>(0);
     const [showPopup, setShowPopup] = useState<boolean>(false);
+    const pathname = usePathname();
     const [clicked, setClicked] = useState<boolean>(false);
+
     const [active, setActive] = useState<number>(0);
+
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+
     const { user } = useAppSelector((state) => state.auth);
+
     const { push } = useRouter();
 
     useEffect(() => {
@@ -48,6 +53,15 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
             }
         }
     }, [activeId]);
+
+    useEffect(() => {
+        for (const element of navBarData) {
+            if (element.link === pathname) {
+                setActive(element.id);
+                console.log(active);
+            }
+        }
+    }, [pathname]);
 
     return (
         <header
@@ -62,7 +76,9 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                             key={data.id}
                             href={data.link}
                             onClick={() => setActive(data.id)}
-                            style={{ color: active === data.id ? '#3579f8' : 'black' }}>
+                            style={{
+                                color: data.id === active ? '#3579f8' : 'black',
+                            }}>
                             {data.title}
                         </Link>
                     ))}
@@ -113,7 +129,10 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                     <div
                         className={styles.sideBarLogout}
                         title="Выйти"
-                        onClick={() => dispatch(Logout())}>
+                        onClick={() => {
+                            dispatch(Logout());
+                            push('/signin');
+                        }}>
                         <LogoutOutlinedIcon />
                     </div>
                 </span>

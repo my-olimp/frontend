@@ -3,12 +3,20 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
-import { Dispatch, EventHandler, FC, MouseEvent, SetStateAction, useRef, useState } from 'react';
+import {
+    Dispatch,
+    EventHandler,
+    FC,
+    MouseEvent,
+    SetStateAction,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './ui.module.scss';
 
 interface props {
-    editMode: '' | 'personal' | 'work';
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work'>>;
 }
 
@@ -18,10 +26,7 @@ type Inputs = {
     additionalName: string;
 };
 
-export const EditPersonalDataModal: FC<props> = ({ editMode, setMode }) => {
-    const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
-    const { user } = useAppSelector((state) => state.auth);
-
+export const EditPersonalDataModal: FC<props> = ({ setMode }) => {
     const [date, setDate] = useState<Dayjs>();
     const [sex, setSex] = useState<'male' | 'female'>('male');
 
@@ -39,9 +44,18 @@ export const EditPersonalDataModal: FC<props> = ({ editMode, setMode }) => {
         }
     };
 
-    const onFormSubmit: SubmitHandler<Inputs> = () => {
-      
-    };
+    useEffect(() => {
+        document.addEventListener('keydown', (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setMode('');
+            }
+        });
+        return () => {
+            document.removeEventListener('keydown', () => {});
+        };
+    }, []);
+
+    const onFormSubmit: SubmitHandler<Inputs> = () => {};
 
     return (
         <div
@@ -49,7 +63,7 @@ export const EditPersonalDataModal: FC<props> = ({ editMode, setMode }) => {
             ref={modalRef}
             onClick={(event) => handleClickOutSide(event)}>
             <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
-                <h6>{editMode === 'personal' ? 'Личные данные' : 'Работа'}</h6>
+                <h6>Личные данные</h6>
                 <span className={styles.inputs}>
                     <TextField
                         type="text"

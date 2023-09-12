@@ -6,7 +6,7 @@ import { RootState } from '@/store/store';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import CampaignIcon from '@mui/icons-material/Campaign';
-import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
 import { FC, useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
@@ -21,25 +21,29 @@ const navBarData = [
         id: 0,
         title: 'Главная',
         link: '/main',
-        icon: <HomeIcon />,
+        icon: <PersonIcon />,
+        active: false,
     },
     {
         id: 1,
         title: 'Календарь',
         link: '/main/calendar',
         icon: <CalendarTodayIcon />,
+        active: false,
     },
     {
         id: 2,
         title: 'Новости',
         link: '/main/news',
         icon: <CampaignIcon />,
+        active: false,
     },
     {
         id: 3,
         title: 'Библиотека',
         link: '/main/library',
         icon: <AutoStoriesOutlinedIcon />,
+        active: false,
     },
 ];
 

@@ -1,109 +1,52 @@
-import React, { Dispatch, FC, FormEvent, SetStateAction, useEffect, useState } from 'react';
-import styles from './ui.module.scss';
 import Logo from '@/entities/Logo/ui/ui';
-import { Button, MenuItem, Select } from '@mui/material';
-import { GetRegions, GetSubjects, GetSchools } from '@/store/features/second-auth';
-import { useDispatch, useSelector } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { AnyAction } from '@reduxjs/toolkit';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { City, GetRegions, Region, School } from '@/store/features/auth-slice';
+import { RootState } from '@/store/store';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import { Button, MenuItem, Select } from '@mui/material';
+import { AnyAction } from '@reduxjs/toolkit';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import styles from './ui.module.scss';
 
-interface props { // @nics57
+interface props {
     progress: number;
     setProgress: Dispatch<SetStateAction<number>>;
 }
 
-interface regions {
-    number: number;
-    name: string;
-}
-
-interface subjecttype {
-    id: number;
-    name: string;
-}
-
 export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
-    const dispatch = useDispatch<ThunkDispatch<any, any, AnyAction>>();
+    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
-    const [isLoading1, setIsLoading1] = useState(true);
-    const [isLoading2, setIsLoading2] = useState(true);
-    const [isLoading3, setIsLoading3] = useState(true);
-    const [subjects, setSubjects] = useState([]);
-    const [regions, setRegions] = useState([]);
-    const [schools, setSchools] = useState([]);
-    
-    const [subject, setSubject] = useState<string>('Субъект');
-    const [region, setRegion] = useState<string>('Населенный пункт');
-    const [school, setSchool] = useState<string>('Учебное заведение');
+    const [region, setRegion] = useState<string>('Регион');
+    const [city, setCity] = useState<string>('Населенный пункт');
+    const [school, setSchool] = useState<string>('Школа');
     const [grade, setGrade] = useState<string>('Класс');
-    const [grades] = useState([5,6,7,8,9,10,11])
 
     const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
 
-    function checkSelect() {
-        console.log("ПРОВЕРКА")
-        console.log(subject !== 'Субъект')
-        if (subject !== 'Субъект' && region !== 'Населенный пункт' && school !== 'Учебное заведение' && grade !== 'Класс') setButtonDisabled(false)
-    }
+    const { regions, cities, schools } = useAppSelector((state) => state.auth);
 
     useEffect(() => {
-        async function getApi() {
-            try {
-                await dispatch(GetSubjects());
-                setIsLoading1(false);
-                await dispatch(GetRegions());
-                setIsLoading2(false);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-    
-        getApi();
-    }, [dispatch]);
-    
-    const mySubjects = useSelector((state: any) => state.forsubjects.subjects)
-    const myRegions = useSelector((state: any) => state.user.regions);
-    const mySchools = useSelector((state: any) => state.forschools.schools);
-    
-    useEffect(() => {
-        if (mySubjects && mySubjects.length > 0) setSubjects(mySubjects);
-        if (myRegions && myRegions.length > 0) setRegions(myRegions);
-        if (mySchools && mySchools.length > 0) setSchools(mySchools)
-    }, [myRegions, mySubjects, mySchools]);
+        dispatch(GetRegions());
+    }, []);
 
-    const subjectHandler = (event: any) => {
-        setSubject(event.target.value as string)
-        checkSelect();
-    }
+    const handleRegionSelect = (event) => {
+        setRegion((event.target as HTMLSelectElement).value);
+        console.log(event.target);
+    };
 
-    const regionHandler = async (e: any) => {
-        setButtonDisabled(true)
-        setRegion(e.target.value as string)
-        setSchool('Учебное заведение')
-        const object: any = regions.find((city: regions) => city.name === e.target.value);
-        const regionValue = object ? object.number.toString() : "";
-        console.log(object)
-        console.log(regionValue)
-        const sch = await dispatch(GetSchools(regionValue));
-        setSchools(sch.payload.data)
-        setIsLoading3(false);
-        checkSelect();
-    }
+    const handleCitySelect = (event) => {
+        setCity((event.target as HTMLSelectElement).value);
+        console.log(event.target);
+    };
 
-    const schoolHandler = (event: any) => {
-        setSchool(event.target.value as string)
-        checkSelect();
-    }
+    const handleSchoolSelect = (event) => {
+        setSchool((event.target as HTMLSelectElement).value);
+        console.log(event.target);
+    };
 
-    const gradeHandler = (event: any) => {
-        setGrade(event.target.value as string)
-        checkSelect();
-    }
-
-    const handleClick = () => {setProgress(progress + 1)}
-    
     return (
         <div className={styles.form}>
             <form>
@@ -118,79 +61,66 @@ export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) =
                 </div>
                 <Select
                     className={styles.select}
-                    onChange={(event) => subjectHandler(event)}
-                    value={subject}
-                >
+                    onChange={(event) => handleRegionSelect(event)}
+                    value={region}>
                     <MenuItem value={'Субъект'} disabled selected>
                         <span style={{ color: 'gray' }}>Субъект</span>
                     </MenuItem>
-                    {isLoading1 ? (
-                        <MenuItem value={''}></MenuItem>
-                    ) : (
-                        subjects.map((item: subjecttype) => (
-                            <MenuItem key={item.id} value={item.name}>
+                    {regions?.map((item: Region) => {
+                        return (
+                            <MenuItem key={item.number} value={item.number}>
                                 {item.name}
                             </MenuItem>
-                        ))
-                    )}
+                        );
+                    })}
                 </Select>
 
                 <Select
                     className={styles.select}
-                    onChange={(event) => regionHandler(event)}
-                    value={region}
-                >
+                    onChange={(event) => handleCitySelect(event)}
+                    value={city}>
                     <MenuItem value={'Населенный пункт'} disabled selected>
                         <span style={{ color: 'gray' }}>Населенный пункт</span>
                     </MenuItem>
-                    {isLoading2 ? (
-                        <MenuItem value={''}></MenuItem>
-                    ) : (
-                        regions.map((item: regions) => (
-                            <MenuItem key={item.number} value={item.name}>
+                    {cities?.map((item: City) => {
+                        return (
+                            <MenuItem key={item.id} value={item.region}>
                                 {item.name}
                             </MenuItem>
-                        ))
-                    )}
+                        );
+                    })}
                 </Select>
+
                 <Select
                     className={styles.select}
-                    onChange={(event) => schoolHandler(event)}
-                    value={school}
-                >
-                    <MenuItem value={'Учебное заведение'} disabled selected>
-                        <span style={{ color: 'gray' }}>Учебное заведение</span>
+                    onChange={(event) => handleSchoolSelect(event)}
+                    value={school}>
+                    <MenuItem value={'Школа'} disabled selected>
+                        <span style={{ color: 'gray' }}>Школа</span>
                     </MenuItem>
-                    {isLoading3 ? (
-                        <MenuItem value={''}></MenuItem>
-                    ) : (
-                        schools.map((item: any) => (
-                            <MenuItem key={item.id} value={item.name}>
+                    {schools?.map((item: School) => {
+                        return (
+                            <MenuItem key={item.id} value={item.region}>
                                 {item.name}
                             </MenuItem>
-                        ))
-                    )}
+                        );
+                    })}
                 </Select>
+
                 <Select
                     className={styles.select}
-                    onChange={(event) => gradeHandler(event)}
-                    value={grade}
-                >
+                    onChange={(event) => setGrade((event.target as HTMLSelectElement).value)}
+                    value={grade}>
                     <MenuItem value={'Класс'} disabled selected>
                         <span style={{ color: 'gray' }}>Класс</span>
                     </MenuItem>
-                        {grades.map((item: any, index: number) => (
-                            <MenuItem key={index} value={item}>
-                                {item}
-                            </MenuItem>
-                        ))}
+                    {['5', '6', '7', '8', '9', '10', '11'].map((grade: string) => (
+                        <MenuItem key={grade} value={grade}>
+                            {grade}
+                        </MenuItem>
+                    ))}
                 </Select>
-                <Button
-                    variant="contained"
-                    disabled={isButtonDisabled}
-                    className={styles.button}
-                    onClick={() => handleClick()}
-                >
+                <Button variant="contained" disabled={isButtonDisabled} className={styles.button}>
                     Дальше
                 </Button>
             </form>

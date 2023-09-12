@@ -1,6 +1,5 @@
 import $api from '@/axios';
 import { ILoginData, IRegisterData } from '@/store/features/auth-slice';
-import axios from 'axios';
 
 export async function getOTC(email: string, { rejectWithValue }) {
     try {
@@ -55,7 +54,7 @@ export async function refreshToken(props: any = {}) {
   const { rejectWithValue }= props;
   try {
     const response = await $api.post('user/auth/refresh_token/');
-    localStorage.setItem('accessToken', response.data.accessToken);
+    localStorage.setItem('accessToken', response.data.access);
     return response.data.user 
   } catch (error: any) {
     console.error(error);
@@ -65,4 +64,31 @@ export async function refreshToken(props: any = {}) {
       return error
     }
   }
+}
+
+export async function getRegions({ rejectWithValue }) {
+  try {
+      return await $api.get('user/location/regions/');
+  } catch (error: any) {
+      console.error(error);
+      return rejectWithValue(error);
+  }
+}
+
+export async function getCity(region: string, {rejectWithValue}) {
+  try {
+    return await $api.get(`user/location/cities/?region=${region}`)
+  } catch (error: any) {
+    console.error(error);
+    return rejectWithValue(error)
+  }
+}
+
+export async function getSchools(city: string, { rejectWithValue }) {
+    try {
+        return await $api.get(`user/location/schools/?region=${city}`);
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error);
+    }
 }
