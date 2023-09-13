@@ -120,12 +120,19 @@ const disciplines: IDiscipline[] = [
 
 export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
     const [inputValue, setInputValue] = useState<string>('');
-
+    const [disciplineState, setDisciplineState] = useState<{ [key: string]: boolean }>({});
     const handleInputChange = (_: React.ChangeEvent<{}>, newInputValue: string) => {
         setInputValue(newInputValue);
         console.log('SetInputValue', newInputValue)
     };
 
+    const handleDisciplineClick = (name: string) => {
+        setDisciplineState((prevState) => ({
+            ...prevState,
+            [name]: !prevState[name],
+        }));
+        setInputValue('');
+    };
 
     const handleClick = () => {
         if (progress !== 3) {
@@ -169,23 +176,23 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                 </Stack>
                 <div className={styles.disciplesContainer}>
                     {disciplines.map((discipline: IDiscipline) => (
-                        <div
-                            className={`${styles.disciplineContainer} ${
-                                inputValue === discipline.name ? styles.selected : ''
-                            }`}
-                            key={discipline.id}
-                            onClick={() => setInputValue(inputValue === discipline.name ? '' : discipline.name)}>
+                      <div
+                        className={`${styles.disciplineContainer} ${
+                          disciplineState[discipline.name] ? styles.selected : ''
+                        }`}
+                        key={discipline.id}
+                        onClick={() => handleDisciplineClick(discipline.name)}
+                      >
                             <img
                                 src={discipline.icon}
                                 alt={discipline.name}
                                 className={`${styles.disciplesIcon} ${
-                                    inputValue === discipline.name ? styles.selected : ''
+                                  disciplineState[discipline.name] ? styles.selected : ''
                                 }`}
                             />
-                            <h3
-                                className={`${styles.disciplineName} ${
-                                    inputValue === discipline.name ? styles.selected : ''
-                                }`}>
+                          <h3 className={`${styles.disciplineName} ${
+                            disciplineState[discipline.name] ? styles.selected : ''
+                          }`}>
                                 {discipline.name}
                             </h3>
                         </div>
@@ -194,7 +201,7 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
 
                 <Button
                     variant="contained"
-                    disabled={!inputValue}
+                    disabled={Object.values(disciplineState).every((isActive) => !isActive)}
                     className={styles.button}
                     onClick={() => handleClick()}>
                     Дальше
