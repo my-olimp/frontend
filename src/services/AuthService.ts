@@ -43,7 +43,7 @@ export async function register(data: IRegisterData, { rejectWithValue }) {
 export async function logout({ rejectWithValue }) {
     try {
         localStorage.removeItem('accessToken');
-        return await $api.get('user/auth/logout');
+        return await $api.post('user/auth/logout/');
     } catch (error: any) {
         console.error(error);
         return rejectWithValue(error);

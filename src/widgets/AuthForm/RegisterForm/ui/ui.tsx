@@ -5,6 +5,7 @@ import { AuthButton } from '@/entities/buttons/authButton';
 import { RegisterRulesAccept } from '@/entities/registerRulesAccept';
 import { AuthHelp } from '@/features/authHelp/LoginHelp';
 import { AuthInputWrap } from '@/features/authInputWrap';
+import { useAppSelector } from '@/hooks/useAppSelector';
 import { Gapped } from '@/shared/Gapped/ui/ui';
 import { GetOTC } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
@@ -31,7 +32,9 @@ export const RegisterForm: FC<props> = ({}) => {
     const [repeatPassword, setRepeatPassword] = useState<string>('');
     const [repeatPasswordError, setRepeatPasswordError] = useState<string>('');
 
-    const router = useRouter();
+    const { user, error } = useAppSelector((state) => state.auth);
+
+    const { push } = useRouter();
 
     useEffect(() => {
         setButton('disabled');
@@ -51,10 +54,15 @@ export const RegisterForm: FC<props> = ({}) => {
         }
     }, [password, repeatPassword, value, valueError, passwordError, repeatPasswordError]);
 
-    const handleSubmit = async () => {
-        await dispatch(GetOTC({ email: value, password: password }));
-        router.push('signup/confirmation');
+    const handleSubmit = () => {
+        dispatch(GetOTC({ email: value, password: password }));
     };
+
+    useEffect(() => {
+        if (user && !error) {
+            push('/main');
+        }
+    }, [user, error]);
 
     return (
         <Gapped className={styles.screen} vertical verticalAlign="middle">
