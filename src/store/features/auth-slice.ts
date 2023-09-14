@@ -2,33 +2,6 @@ import { getCity, getOTC, getRegions, getSchools, login, logout, refreshToken, r
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-export interface IUser {
-    id: number;
-    subjects: string[];
-    roles: string[];
-    email: string;
-    first_name: string | null;
-    second_name: string | null;
-    third_name: string | null;
-    SNILS: string;
-    gender: null | 'm' | 'f';
-    account_type: 's' | 't';
-    data_of_birth: string;
-    region: {
-      number: number;
-      name: string;
-    };
-    city: {
-      id: number;
-      name: string;
-      region: number;
-    };
-    school: {
-      id: number;
-      name: string;
-      region: number;
-    }
-} 
 
 export type Region = {
   number: number,
@@ -46,6 +19,25 @@ export type School = {
   name: string,
   region: number,
 }
+
+
+export interface IUser {
+  id: number;
+  subjects: string[];
+  roles: string[];
+  email: string;
+  first_name: string | null;
+  second_name: string | null;
+  third_name: string | null;
+  grade: number;
+  SNILS: string;
+  gender: null | 'm' | 'f';
+  account_type: 's' | 't';
+  data_of_birth: string;
+  region: Region;
+  city: City;
+  school: School;
+} 
 
 
 type AuthState = {

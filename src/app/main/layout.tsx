@@ -5,7 +5,6 @@ import { Header } from '@/widgets/header';
 export default function Layout({ children }) {
     return (
         <>
-            <RefreshTokenComponent />
             <Header />
             <main style={{ padding: '48px 0' }}>{children}</main>
             <Footer />

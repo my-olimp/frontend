@@ -11,6 +11,8 @@ interface props {}
 export const ProfileAvatar: FC<props> = ({}) => {
     const { user } = useAppSelector((state) => state.auth);
     const { push } = useRouter();
+
+    
     return (
         <div className={styles.wrap}>
             <span className={styles.imageWrap}>
