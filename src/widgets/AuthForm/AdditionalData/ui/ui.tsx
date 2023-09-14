@@ -1,6 +1,7 @@
 'use client';
 import { FirstAdditionalDataForm } from '@/features/FirstAdditionalDataForm';
 import { FourAdditionalDataForm } from '@/features/FourAdditionalDataForm';
+import { ThirdAdditionalDataForm } from '@/features/ThirdAdditionalDataForm'
 import { FC, useState } from 'react';
 import { match } from 'ts-pattern';
 import styles from './ui.module.scss';
@@ -9,7 +10,7 @@ import { SecondAdditionalDataForm } from '@/features/SecondAdditionalDataForm';
 interface props {}
 
 export const AdditionalDataForm: FC<props> = ({}) => {
-    const [progress, setProgress] = useState<number>(1);
+    const [progress, setProgress] = useState<number>(3);
 
     return (
         <div className={styles.screen}>
@@ -24,7 +25,7 @@ export const AdditionalDataForm: FC<props> = ({}) => {
                 ))
                 .with(3, () => (
                     <>
-                        <h1>;dw;dw</h1>
+                        <ThirdAdditionalDataForm progress={progress} setProgress={setProgress} />
                     </>
                 ))
                 .with(4, () => (
