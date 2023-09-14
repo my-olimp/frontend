@@ -1,8 +1,8 @@
+import { getCity, getOTC, getRegions, getSchools, login, logout, refreshToken, register } from '@/services/AuthService';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getOTC, login, logout, register } from '@/services/AuthService';
 import { AxiosError } from 'axios';
 
-interface IUser {
+export interface IUser {
     id: number;
     subjects: string[];
     roles: string[];
@@ -13,15 +13,52 @@ interface IUser {
     SNILS: string;
     gender: null | 'm' | 'f';
     account_type: 's' | 't';
+    data_of_birth: string;
+    region: {
+      number: number;
+      name: string;
+    };
+    city: {
+      id: number;
+      name: string;
+      region: number;
+    };
+    school: {
+      id: number;
+      name: string;
+      region: number;
+    }
+} 
+
+export type Region = {
+  number: number,
+  name: string,
 }
 
+export type City = {
+  id: number
+  name: string,
+  region: number,
+}
+
+export type School = {
+  id: number
+  name: string,
+  region: number,
+}
+
+
 type AuthState = {
+    regions: Region[] | undefined; 
+    cities: City[] | undefined;
+    schools: School[] | undefined;
     email: string | undefined;
     error: string | undefined;
     errorCode: string | undefined;
     code: number | undefined;
     password: string | undefined;
     user: IUser | undefined;
+    loading: boolean;
 };
 
 const initialState = {
@@ -31,6 +68,7 @@ const initialState = {
     code: undefined,
     password: undefined,
     user: undefined,
+    loading: false,
 } as AuthState;
 
 export interface ILoginData {
@@ -47,65 +85,138 @@ export interface IRegisterData {
 export const GetOTC = createAsyncThunk(
     'auth/getRedemptionCode',
     async (data: ILoginData, { rejectWithValue }) => {
-        return getOTC(data.email, { rejectWithValue });
+        return await getOTC(data.email, { rejectWithValue });
     },
 );
 
 export const Login = createAsyncThunk(
     'auth/loginByEmail',
     async (data: ILoginData, { rejectWithValue }) => {
-        return login(data, { rejectWithValue });
+        return await login(data, { rejectWithValue });
     },
 );
 
 export const Register = createAsyncThunk(
     'auth/registerByOTC',
     async (data: IRegisterData, { rejectWithValue }) => {
-        return register(data, { rejectWithValue });
+        return await register(data, { rejectWithValue });
     },
 );
 export const Logout = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
-    return logout({ rejectWithValue });
+    return await logout({ rejectWithValue });
 });
+
+export const RefreshToken = createAsyncThunk('auth/refreshToken', async (_, {rejectWithValue}) => {
+  return await refreshToken({ rejectWithValue })
+})
+
+export const GetRegions = createAsyncThunk(
+  'auth/GetRegions',
+  async (_, { rejectWithValue }) => {
+      return await getRegions({ rejectWithValue });
+  },
+);
+
+export const GetCity = createAsyncThunk(
+  'auth/GetCity',
+  async (region: string, { rejectWithValue }) => {
+      return await getCity(region, { rejectWithValue });
+  },
+);
+
+export const GetSchools = createAsyncThunk(
+  'auth/GetSchools',
+  async (city: string, { rejectWithValue }) => {
+      return await getSchools(city, { rejectWithValue });
+  },
+);
+
+
 export const auth = createSlice({
     name: 'auth',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+      setUser: (state, action) => {
+        state.user = action.payload
+      }
+    },
     extraReducers: (builder) => {
+        const clear = (state, loading) => {
+          state.loading = loading
+          state.error = undefined
+          state.errorCode = undefined
+        }
         const handleReject = (state, action) => {
-            state.error = (action.payload as AxiosError).message;
-            state.errorCode = (action.payload as AxiosError).response?.status?.toString();
+          state.error = ((action.payload as AxiosError).response?.data as {detail: string})?.detail;
+          state.errorCode = (action.payload as AxiosError).response?.status?.toString();
+          state.loading = false
         };
+        
 
         builder.addCase(GetOTC.pending, (state, action) => {
-            state.email = action.meta.arg.email;
-            state.password = action.meta.arg.password;
-            state.error = undefined;
+          clear(state, true)
+          state.email = action.meta.arg.email;
+          state.password = action.meta.arg.password;
         });
         builder.addCase(Login.pending, (state) => {
-            state.error = undefined;
+          clear(state, true)
         });
         builder.addCase(Register.pending, (state, action) => {
-            state.email = action.meta.arg.email;
-            state.error = undefined;
+          clear(state, true)
+          state.email = action.meta.arg.email;
         });
         builder.addCase(Logout.pending, (state) => {
-            state.email = undefined;
-            state.user = undefined;
-            state.error = undefined;
+          clear(state, true)
+          state.user = undefined;
         });
+        builder.addCase(RefreshToken.pending, (state) => {
+          clear(state, true)
+        })
+        builder.addCase(GetRegions.pending, (state) => {
+          clear(state, true)
+        })
+        builder.addCase(GetCity.pending, (state) => {
+          clear(state, true)
+        })
+        builder.addCase(GetSchools.pending, (state) => {
+          clear(state, true)
+        })
+
 
         builder.addCase(GetOTC.fulfilled, (state, action) => {
-            state.code = action.payload.data;
+          clear(state, false)
+          state.code = action.payload.data;
         });
 
         builder.addCase(Login.fulfilled, (state, action) => {
-            console.log(action.payload);
+          clear(state, false)
+          state.user = action.payload.data.user
         });
 
-        builder.addCase(Register.fulfilled, (state, action) => {});
+        builder.addCase(Register.fulfilled, (state) => {
+          clear(state, false)
+        });
 
-        builder.addCase(Logout.fulfilled, (state, action) => {});
+        builder.addCase(Logout.fulfilled, (state) => {
+          clear(state, false)
+        });
+
+        builder.addCase(RefreshToken.fulfilled, (state, action) => {
+          clear(state, false)
+          state.user = action.payload
+        })
+
+        builder.addCase(GetRegions.fulfilled, (state, action) => {
+          state.regions = action.payload.data;
+        })
+
+        builder.addCase(GetCity.fulfilled, (state, action) => {
+          state.cities = action.payload.data;
+        })
+
+        builder.addCase(GetSchools.fulfilled, (state, action) => {
+          state.schools = action.payload.data;
+        })
 
         builder.addCase(GetOTC.rejected, (state, action) => {
             handleReject(state, action);
@@ -119,8 +230,20 @@ export const auth = createSlice({
         builder.addCase(Logout.rejected, (state, action) => {
             handleReject(state, action);
         });
+        builder.addCase(RefreshToken.rejected, (state, action) => {
+          handleReject(state, action)
+        })
+        builder.addCase(GetRegions.rejected, (state, action) => {
+          handleReject(state, action)
+        })
+        builder.addCase(GetCity.rejected, (state, action) => {
+          handleReject(state, action)
+        })
+        builder.addCase(GetSchools.rejected, (state, action) => {
+          handleReject(state, action)
+        })
     },
 });
 
-export const {} = auth.actions;
+export const { setUser } = auth.actions;
 export default auth.reducer;

@@ -1,5 +1,5 @@
 'use client';
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
 interface props {}
 export const ServiceWorker: FC<props> = ({}) => {
@@ -11,7 +11,7 @@ export const ServiceWorker: FC<props> = ({}) => {
                 navigator.serviceWorker
                     .getRegistrations()
                     .then((registrations) => {
-                        for (let registration of registrations) {
+                        for (const registration of registrations) {
                             registration.unregister();
                         }
                     })

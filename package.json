@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 1932",
-    "build": "next build ",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@babel/eslint-plugin": "^7.22.10",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.3",
@@ -22,9 +23,9 @@
     "@types/react-dom": "18.2.6",
     "axios": "^1.5.0",
     "dayjs": "^1.11.9",
-    "eslint": "^8.47.0",
     "eslint-config-next": "^13.4.19",
     "framer-motion": "^10.16.1",
+    "fs": "^0.0.1-security",
     "immer": "^10.0.2",
     "next": "13.4.7",
     "next-pwa": "^5.6.0",
@@ -33,7 +34,7 @@
     "react": "18.2.0",
     "react-css-modules": "^4.7.11",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.45.4",
+    "react-hook-form": "^7.46.1",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-redux": "^8.1.1",
     "redux": "^4.2.1",
@@ -46,8 +47,12 @@
     "usehooks-ts": "^2.9.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.17",
+    "@babel/eslint-parser": "^7.22.15",
     "@types/react-input-mask": "^3.0.2",
     "@types/redux-logger": "^3.0.9",
+    "eslint": "^8.48.0",
+    "eslint-config-google": "^0.14.0",
     "node-sass": "^9.0.0",
     "sass": "^1.63.6",
     "sass-loader": "^13.3.2"

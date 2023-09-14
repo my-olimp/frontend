@@ -11,7 +11,7 @@ export const ScrollCards: FC = () => {
         clientX: 0,
         scrollX: 0,
     });
-    let ref = useRef<any>(null); // <тип> важно ставить только если стартовое значение = null
+    const ref = useRef<any>(null); // <тип> важно ставить только если стартовое значение = null
 
     // Скролл на колесико
     useEffect(() => {
@@ -41,8 +41,8 @@ export const ScrollCards: FC = () => {
 
         if (isScrolling) {
             ref.current.scrollLeft = scrollX + event.clientX - clientX;
-            let sX = scrollX + event.clientX - clientX;
-            let cX = event.clientX;
+            const sX = scrollX + event.clientX - clientX;
+            const cX = event.clientX;
             setState({
                 ...state,
                 scrollX: sX,

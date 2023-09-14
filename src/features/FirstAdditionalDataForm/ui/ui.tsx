@@ -4,6 +4,7 @@ import Logo from '@/entities/Logo/ui/ui';
 import { Button, MenuItem, Radio, Select } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
+import { SexRadio } from '@/entities/SexRadio';
 
 interface props {
     progress: number;
@@ -73,18 +74,7 @@ export const FirstAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                     className={styles.input}
                 />
                 {error && <h3 className={styles.error}>{error}</h3>}
-                <div className={styles.sexWrap}>
-                    <h2>Пол: </h2>
-                    <div className={styles.sex} onChange={() => setSex('male')}>
-                        <h3>Мужской</h3>
-                        <Radio checked={sex === 'male'} value="male" name="radio-buttons" />
-                    </div>
-                    <div className={styles.sex} onChange={() => setSex('female')}>
-                        <h3>Женский</h3>
-                        <Radio checked={sex === 'female'} value="female" name="radio-buttons" />
-                    </div>
-                </div>
-
+                <SexRadio sex={sex} setSex={setSex}/>
                 <DatePicker
                     onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
                     className={styles.calendar}

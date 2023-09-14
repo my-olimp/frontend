@@ -1,8 +1,9 @@
-import { ReactNode } from 'react';
-import { ReduxProvider } from '@/store/provider';
-import './globals.scss';
+import { ErrorAlert } from '@/features/ErrorAlert';
 import { ServiceWorker } from '@/shared/ServiceWorker';
+import { ReduxProvider } from '@/store/provider';
 import { Metadata } from 'next';
+import { ReactNode } from 'react';
+import './globals.scss';
 
 export const metadata: Metadata = {
     title: 'MyOlimp',
@@ -16,7 +17,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <html lang="ru">
             <body>
                 <ServiceWorker />
-                <ReduxProvider>{children}</ReduxProvider>
+                <ReduxProvider>
+                    <ErrorAlert />
+                    {children}
+                </ReduxProvider>
             </body>
         </html>
     );

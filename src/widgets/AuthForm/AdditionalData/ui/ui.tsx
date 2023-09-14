@@ -1,10 +1,11 @@
 'use client';
-import React, { FC, useState } from 'react';
-import styles from './ui.module.scss';
-import { match } from 'ts-pattern';
 import { FirstAdditionalDataForm } from '@/features/FirstAdditionalDataForm';
 import { FourAdditionalDataForm } from '@/features/FourAdditionalDataForm';
 import { ThirdAdditionalDataForm } from '@/features/ThirdAdditionalDataForm'
+import { FC, useState } from 'react';
+import { match } from 'ts-pattern';
+import styles from './ui.module.scss';
+import { SecondAdditionalDataForm } from '@/features/SecondAdditionalDataForm';
 
 interface props {}
 
@@ -19,7 +20,7 @@ export const AdditionalDataForm: FC<props> = ({}) => {
                 ))
                 .with(2, () => (
                     <>
-                        <h1>;dw;dw</h1>
+                        <SecondAdditionalDataForm progress={progress} setProgress={setProgress} />
                     </>
                 ))
                 .with(3, () => (

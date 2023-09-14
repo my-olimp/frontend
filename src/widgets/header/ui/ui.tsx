@@ -1,43 +1,49 @@
 'use client';
-import { FC, useEffect, useLayoutEffect, useState } from 'react';
-import { INotice } from '@/features/Notifications';
 import { NavBarDesktop } from '@/features/NavbarDesktop/';
 import { NavBarMobile } from '@/features/NavbarMobile';
-import HomeIcon from '@mui/icons-material/Home';
+import { INotice } from '@/features/Notifications';
+import { RootState } from '@/store/store';
+import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import CampaignIcon from '@mui/icons-material/Campaign';
-import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
+import PersonIcon from '@mui/icons-material/Person';
+import { FC, useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
-import { RootState } from '@/store/store';
 import { ThunkDispatch } from 'redux-thunk';
 
-interface props {}
+interface props {
+    profile?: boolean;
+}
 
 const navBarData = [
     {
         id: 0,
         title: 'Главная',
         link: '/main',
-        icon: <HomeIcon />,
+        icon: <PersonIcon />,
+        active: false,
     },
     {
         id: 1,
         title: 'Календарь',
         link: '/main/calendar',
         icon: <CalendarTodayIcon />,
+        active: false,
     },
     {
         id: 2,
         title: 'Новости',
         link: '/main/news',
         icon: <CampaignIcon />,
+        active: false,
     },
     {
         id: 3,
         title: 'Библиотека',
         link: '/main/library',
         icon: <AutoStoriesOutlinedIcon />,
+        active: false,
     },
 ];
 
@@ -46,7 +52,7 @@ const notifications: INotice[] = [
     { id: 1, title: 'Пришли результаты ВСОШ по математике', date: '2023-08-28T11:12:55.395Z' },
 ];
 
-export const Header: FC<props> = ({}) => {
+export const Header: FC<props> = ({ profile = false }) => {
     const [mobile, setMobile] = useState(false);
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
@@ -63,7 +69,11 @@ export const Header: FC<props> = ({}) => {
             {mobile ? (
                 <NavBarMobile notifications={notifications} navBarData={navBarData} />
             ) : (
-                <NavBarDesktop notifications={notifications} navBarData={navBarData} />
+                <NavBarDesktop
+                    notifications={notifications}
+                    navBarData={navBarData}
+                    profile={profile}
+                />
             )}
         </>
     );

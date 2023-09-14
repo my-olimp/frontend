@@ -44,7 +44,6 @@ export const FourAdditionalDataForm: FC<props> = ({ progress, setProgress }) => 
                 <div className={styles.logoRow}>
                     <ArrowBackOutlinedIcon className={styles.arrowIcon} />
                     <img src={myOlimpIcon.src} alt={'myOlimpIcon'} className={styles.myOlimpIcon} />
-                    {/*<Logo />*/}
                 </div>
                 <div className={styles.titleRow}>
                     <h1>Последний штрих</h1>

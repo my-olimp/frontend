@@ -1,13 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
-import styles from './ui.module.scss';
-import Logo from '@/entities/Logo/ui/ui';
 import { Bell } from '@/entities/Bell';
-import { Avatar } from '@mui/material';
+import Logo from '@/entities/Logo/ui/ui';
+import { NavbarAvatar } from '@/entities/NavbarAvatar';
 import { HamburgerMenu } from '@/entities/hamburgerMenu/ui/ui';
 import { INotice, Notifications } from '@/features/Notifications';
+import { Logout } from '@/store/features/auth-slice';
+import { RootState } from '@/store/store';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import styles from './ui.module.scss';
 
 interface props {
     notifications: INotice[];
@@ -18,6 +24,10 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
     const [clicked, setClicked] = useState<boolean>(false);
     const [showSideBar, setShowSideBar] = useState<boolean>(false);
     const [active, setActive] = useState<number>(0);
+
+    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+
+    const { push } = useRouter();
 
     useEffect(() => {
         if (showSideBar) {
@@ -43,7 +53,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
                                         <Link
                                             href={navbarEL.link}
                                             className={
-                                                navbarEL.id === active
+                                                location && location.pathname === navbarEL.link
                                                     ? styles.activeElement
                                                     : styles.element
                                             }
@@ -55,7 +65,12 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
                                     );
                                 })}
                             </div>
-                            <div className={styles.logoutWrap}>
+                            <div
+                                className={styles.logoutWrap}
+                                onClick={() => {
+                                    dispatch(Logout());
+                                    push('/signin');
+                                }}>
                                 <span className={styles.logout}>
                                     <LogoutIcon />
                                     <p>Выйти из аккаунта</p>
@@ -82,7 +97,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
                         setShowPopup={setShowPopup}
                         setClicked={setClicked}
                     />
-                    <Avatar></Avatar>
+                    <NavbarAvatar />
                     <AnimatePresence>
                         {showPopup && (
                             <motion.div

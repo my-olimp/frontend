@@ -1,5 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
 import authReducer from '@/store/features/auth-slice';
+import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
 export const store = configureStore({

@@ -1,0 +1,96 @@
+.form {
+    & form {
+        height: 472px;
+        width: 502px;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 0;
+        background-color: white;
+        gap: 12px;
+        border-radius: 24px;
+        box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
+        align-items: center;
+    }
+
+    .button {
+        height: 56px;
+        width: 414px;
+        text-transform: capitalize;
+        border-radius: 12px;
+        font-size: 22px;
+        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        background-color: #3579F8;
+        box-shadow: none;
+
+
+        &:disabled {
+            background-color: #8CB2FB;
+            cursor: not-allowed;
+            pointer-events: all !important;
+            color: white;
+
+            &:hover {
+                background-color: #8CB2FB;
+            }
+        }
+
+        &:hover {
+            background-color: #316ee0;
+            box-shadow: none;
+        }
+    }
+}
+
+.select {
+    height: 56px;
+    width: 414px;
+    border-radius: 12px;
+}
+
+.logoRow {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    .arrowIcon {
+        margin-left: 24px;
+    }
+
+    svg {
+        cursor: pointer;
+    }
+
+    svg:last-child {
+        margin-right: 24px;
+    }
+
+    .myOlimpIcon {
+        margin-right: auto;
+        margin-left: 150px;
+        cursor: pointer;
+    }
+
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: 414px;
+
+    & h1 {
+        font-size: 20px;
+        color: rgba(26, 7, 16, 0.85);
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        margin: 0;
+    }
+
+    & p {
+        color: #6BC62D;
+        font-size: 16px;
+        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-weight: 500;
+    }
+}

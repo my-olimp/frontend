@@ -1,18 +1,19 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
-import styles from './ui.module.scss';
-import { AuthLoginHelp } from '@/features/authHelp/authLoginHelp';
-import { AuthHelp } from '@/features/authHelp/LoginHelp';
-import { AuthButton } from '@/entities/buttons/authButton';
-import { Gapped } from '@/shared/Gapped/ui/ui';
 import Logo from '@/entities/Logo/ui/ui';
+import { AuthButton } from '@/entities/buttons/authButton';
+import { AuthHelp } from '@/features/authHelp/LoginHelp';
+import { AuthLoginHelp } from '@/features/authHelp/authLoginHelp';
 import { AuthInputWrap, validateEmail } from '@/features/authInputWrap';
-import { useRouter } from 'next/navigation';
-import { useDispatch } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
+import { useAppSelector } from '@/hooks/useAppSelector';
+import { Gapped } from '@/shared/Gapped/ui/ui';
 import { Login } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import styles from './ui.module.scss';
 
 interface props {}
 
@@ -25,6 +26,7 @@ export const LoginForm: FC<props> = ({}) => {
     const [password, setPassword] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+    const { user, error } = useAppSelector((state) => state.auth);
 
     const { push } = useRouter();
 
@@ -43,10 +45,15 @@ export const LoginForm: FC<props> = ({}) => {
         setButton('disabled');
     }, []);
 
-    const handleSubmit = async () => {
-        await dispatch(Login({ email: value, password: password }));
-        push('/main');
+    const handleSubmit = () => {
+        dispatch(Login({ email: value, password: password }));
     };
+
+    useEffect(() => {
+        if (user && !error) {
+            push('/main');
+        }
+    }, [user, error]);
 
     return (
         <Gapped className={styles.screen} vertical verticalAlign="middle">
@@ -118,7 +125,7 @@ export const LoginForm: FC<props> = ({}) => {
                         </Gapped>
                     </Gapped>
                 </Gapped>
-                <AuthHelp link={'/signup'} linkText={'Зарегестрироваться'} />
+                <AuthHelp link={'/signup'} linkText={'Зарегистрироваться'} />
             </Gapped>
         </Gapped>
     );
