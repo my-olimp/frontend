@@ -1,4 +1,14 @@
-import { getCity, getOTC, getRegions, getSchools, login, logout, refreshToken, register } from '@/services/AuthService';
+import {
+    getCity,
+    getDisciplines,
+    getOTC,
+    getRegions,
+    getSchools,
+    login,
+    logout,
+    refreshToken,
+    register,
+} from '@/services/AuthService';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
@@ -15,41 +25,46 @@ export interface IUser {
     account_type: 's' | 't';
     data_of_birth: string;
     region: {
-      number: number;
-      name: string;
+        number: number;
+        name: string;
     };
     city: {
-      id: number;
-      name: string;
-      region: number;
+        id: number;
+        name: string;
+        region: number;
     };
     school: {
-      id: number;
-      name: string;
-      region: number;
-    }
-} 
+        id: number;
+        name: string;
+        region: number;
+    };
+}
 
 export type Region = {
-  number: number,
-  name: string,
-}
+    number: number;
+    name: string;
+};
 
 export type City = {
-  id: number
-  name: string,
-  region: number,
-}
+    id: number;
+    name: string;
+    region: number;
+};
 
 export type School = {
-  id: number
-  name: string,
-  region: number,
-}
-
+    id: number;
+    name: string;
+    region: number;
+};
+// TOD0: @habdevs add icon
+export type Discipline = {
+    id: number;
+    name: string;
+};
 
 type AuthState = {
-    regions: Region[] | undefined; 
+    disciplines: Discipline[] | undefined;
+    regions: Region[] | undefined;
     cities: City[] | undefined;
     schools: School[] | undefined;
     email: string | undefined;
@@ -106,117 +121,128 @@ export const Logout = createAsyncThunk('auth/logout', async (_, { rejectWithValu
     return await logout({ rejectWithValue });
 });
 
-export const RefreshToken = createAsyncThunk('auth/refreshToken', async (_, {rejectWithValue}) => {
-  return await refreshToken({ rejectWithValue })
-})
-
-export const GetRegions = createAsyncThunk(
-  'auth/GetRegions',
-  async (_, { rejectWithValue }) => {
-      return await getRegions({ rejectWithValue });
-  },
+export const RefreshToken = createAsyncThunk(
+    'auth/refreshToken',
+    async (_, { rejectWithValue }) => {
+        return await refreshToken({ rejectWithValue });
+    },
 );
 
+export const GetRegions = createAsyncThunk('auth/GetRegions', async (_, { rejectWithValue }) => {
+    return await getRegions({ rejectWithValue });
+});
+
 export const GetCity = createAsyncThunk(
-  'auth/GetCity',
-  async (region: string, { rejectWithValue }) => {
-      return await getCity(region, { rejectWithValue });
-  },
+    'auth/GetCity',
+    async (region: string, { rejectWithValue }) => {
+        return await getCity(region, { rejectWithValue });
+    },
 );
 
 export const GetSchools = createAsyncThunk(
-  'auth/GetSchools',
-  async (city: string, { rejectWithValue }) => {
-      return await getSchools(city, { rejectWithValue });
-  },
+    'auth/GetSchools',
+    async (city: string, { rejectWithValue }) => {
+        return await getSchools(city, { rejectWithValue });
+    },
 );
-
+export const GetDisciplines = createAsyncThunk(
+    'auth/GetDisciplines',
+    async (_, { rejectWithValue }) => {
+        return await getDisciplines({ rejectWithValue });
+    },
+);
 
 export const auth = createSlice({
     name: 'auth',
     initialState: initialState,
     reducers: {
-      setUser: (state, action) => {
-        state.user = action.payload
-      }
+        setUser: (state, action) => {
+            state.user = action.payload;
+        },
     },
     extraReducers: (builder) => {
         const clear = (state, loading) => {
-          state.loading = loading
-          state.error = undefined
-          state.errorCode = undefined
-        }
-        const handleReject = (state, action) => {
-          state.error = ((action.payload as AxiosError).response?.data as {detail: string})?.detail;
-          state.errorCode = (action.payload as AxiosError).response?.status?.toString();
-          state.loading = false
+            state.loading = loading;
+            state.error = undefined;
+            state.errorCode = undefined;
         };
-        
+        const handleReject = (state, action) => {
+            state.error = (
+                (action.payload as AxiosError).response?.data as { detail: string }
+            )?.detail;
+            state.errorCode = (action.payload as AxiosError).response?.status?.toString();
+            state.loading = false;
+        };
 
         builder.addCase(GetOTC.pending, (state, action) => {
-          clear(state, true)
-          state.email = action.meta.arg.email;
-          state.password = action.meta.arg.password;
+            clear(state, true);
+            state.email = action.meta.arg.email;
+            state.password = action.meta.arg.password;
         });
         builder.addCase(Login.pending, (state) => {
-          clear(state, true)
+            clear(state, true);
         });
         builder.addCase(Register.pending, (state, action) => {
-          clear(state, true)
-          state.email = action.meta.arg.email;
+            clear(state, true);
+            state.email = action.meta.arg.email;
         });
         builder.addCase(Logout.pending, (state) => {
-          clear(state, true)
-          state.user = undefined;
+            clear(state, true);
+            state.user = undefined;
         });
         builder.addCase(RefreshToken.pending, (state) => {
-          clear(state, true)
-        })
+            clear(state, true);
+        });
         builder.addCase(GetRegions.pending, (state) => {
-          clear(state, true)
-        })
+            clear(state, true);
+        });
         builder.addCase(GetCity.pending, (state) => {
-          clear(state, true)
-        })
+            clear(state, true);
+        });
         builder.addCase(GetSchools.pending, (state) => {
-          clear(state, true)
-        })
-
+            clear(state, true);
+        });
+        builder.addCase(GetDisciplines.pending, (state, action) => {
+            clear(state, true);
+        });
 
         builder.addCase(GetOTC.fulfilled, (state, action) => {
-          clear(state, false)
-          state.code = action.payload.data;
+            clear(state, false);
+            state.code = action.payload.data;
         });
 
         builder.addCase(Login.fulfilled, (state, action) => {
-          clear(state, false)
-          state.user = action.payload.data.user
+            clear(state, false);
+            state.user = action.payload.data.user;
         });
 
         builder.addCase(Register.fulfilled, (state) => {
-          clear(state, false)
+            clear(state, false);
         });
 
         builder.addCase(Logout.fulfilled, (state) => {
-          clear(state, false)
+            clear(state, false);
         });
 
         builder.addCase(RefreshToken.fulfilled, (state, action) => {
-          clear(state, false)
-          state.user = action.payload
-        })
+            clear(state, false);
+            state.user = action.payload;
+        });
 
         builder.addCase(GetRegions.fulfilled, (state, action) => {
-          state.regions = action.payload.data;
-        })
+            state.regions = action.payload.data;
+        });
 
         builder.addCase(GetCity.fulfilled, (state, action) => {
-          state.cities = action.payload.data;
-        })
+            state.cities = action.payload.data;
+        });
 
         builder.addCase(GetSchools.fulfilled, (state, action) => {
-          state.schools = action.payload.data;
-        })
+            state.schools = action.payload.data;
+        });
+        builder.addCase(GetDisciplines.fulfilled, (state, action) => {
+            state.regions = action.payload.data;
+        });
 
         builder.addCase(GetOTC.rejected, (state, action) => {
             handleReject(state, action);
@@ -231,17 +257,21 @@ export const auth = createSlice({
             handleReject(state, action);
         });
         builder.addCase(RefreshToken.rejected, (state, action) => {
-          handleReject(state, action)
-        })
+            handleReject(state, action);
+        });
         builder.addCase(GetRegions.rejected, (state, action) => {
-          handleReject(state, action)
-        })
+            handleReject(state, action);
+        });
         builder.addCase(GetCity.rejected, (state, action) => {
-          handleReject(state, action)
-        })
+            handleReject(state, action);
+        });
         builder.addCase(GetSchools.rejected, (state, action) => {
-          handleReject(state, action)
-        })
+            handleReject(state, action);
+        });
+        builder.addCase(GetDisciplines.rejected, (state, action) => {
+            handleReject(state, action);
+        });
+
     },
 });
 
