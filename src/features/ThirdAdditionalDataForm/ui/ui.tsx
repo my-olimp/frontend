@@ -1,35 +1,14 @@
-import styles from './ui.module.scss';
-import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
-import avatarLink from '../../../../public/social/empty-avatar.svg';
-import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import { Button } from '@mui/material';
-import math from '../../../../public/discipline-icons/math.svg';
-import physics from '../../../../public/discipline-icons/physics.svg';
-import informatics from '../../../../public/discipline-icons/informatics.svg';
-import history from '../../../../public/discipline-icons/history.svg';
-import literature from '../../../../public/discipline-icons/literature.svg';
-import russian from '../../../../public/discipline-icons/russian.svg';
-import english from '../../../../public/discipline-icons/english.svg';
-import mxk from '../../../../public/discipline-icons/mxk.svg';
-import socialStudies from '../../../../public/discipline-icons/socialStudies.svg';
-import law from '../../../../public/discipline-icons/law.svg';
-import economics from '../../../../public/discipline-icons/economics.svg';
-import chemistry from '../../../../public/discipline-icons/chemistry.svg';
-import biology from '../../../../public/discipline-icons/biology.svg';
-import ecology from '../../../../public/discipline-icons/ecology.svg';
-import astranomics from '../../../../public/discipline-icons/astranomics.svg';
-import technology from '../../../../public/discipline-icons/technology.svg';
-import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
-import Autocomplete from '@mui/material/Autocomplete';
-import { getDisciplines } from '@/services/AuthService';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import {Discipline, GetDisciplines} from '@/store/features/auth-slice';
-import {useDispatch} from "react-redux";
-import {ThunkDispatch} from "redux-thunk";
-import {RootState} from "@/store/store";
-import {AnyAction} from "@reduxjs/toolkit";
+import { Discipline, GetDisciplines } from '@/store/features/auth-slice';
+import { RootState } from '@/store/store';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import { Button } from '@mui/material';
+import { AnyAction } from '@reduxjs/toolkit';
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
+import styles from './ui.module.scss';
 
 interface props {
     progress: number;
@@ -132,7 +111,7 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
     const { disciplines } = useAppSelector((state) => state.auth);
     useEffect(() => {
         dispatch(GetDisciplines());
-        console.log('GETDISCIPLINE', GetDisciplines)
+        console.log('GETDISCIPLINE', disciplines);
     }, []);
     const handleInputChange = (_: React.ChangeEvent<{}>, newInputValue: string) => {
         setInputValue(newInputValue);
@@ -169,7 +148,7 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                     <h2 className={styles.descriptionTitle}>
                         Выберите предметы, к которым готовитесь
                     </h2>
-                    <h2 className={styles.descriptionDiscipline}>Популярные дисциплины</h2>
+                    {/* <h2 className={styles.descriptionDiscipline}>Популярные дисциплины</h2> */}
                 </div>
                 {/*<Stack spacing={2} sx={{ width: 300 }}>*/}
                 {/*    <Autocomplete*/}
@@ -201,13 +180,13 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                             }`}
                             key={discipline.id}
                             onClick={() => handleDisciplineClick(discipline.name)}>
-                            <img
+                            {/* <img
                                 // src={discipline.icon}
                                 alt={discipline.name}
                                 className={`${styles.disciplesIcon} ${
                                     disciplineState[discipline.name] ? styles.selected : ''
                                 }`}
-                            />
+                            /> */}
                             <h3
                                 className={`${styles.disciplineName} ${
                                     disciplineState[discipline.name] ? styles.selected : ''

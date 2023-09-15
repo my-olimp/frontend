@@ -95,7 +95,7 @@ export async function getSchools(city: string, { rejectWithValue }) {
 
 export async function getDisciplines({ rejectWithValue }) {
     try {
-        return await $api.get(`/user/subjects`);
+        return await $api.get(`user/subjects/`);
     } catch (error: any) {
         console.error(error);
         return rejectWithValue(error);
