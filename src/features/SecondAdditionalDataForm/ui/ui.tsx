@@ -3,7 +3,6 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { City, GetRegions, Region, School } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import CloseIcon from '@mui/icons-material/Close';
 import { Button, MenuItem, Select } from '@mui/material';
 import { AnyAction } from '@reduxjs/toolkit';
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
@@ -53,7 +52,6 @@ export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) =
                 <div className={styles.logoRow}>
                     <ArrowBackOutlinedIcon className={styles.arrowIcon} />
                     <Logo />
-                    <CloseIcon />
                 </div>
                 <div className={styles.titleRow}>
                     <h1>Образование</h1>

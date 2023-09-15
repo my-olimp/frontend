@@ -17,14 +17,6 @@ const Profile: NextPage = () => {
     const { push } = useRouter();
 
     useEffect(() => {
-        setTimeout(() => {
-            if (!user) {
-                push('/signin');
-            }
-        }, 0);
-    }, []);
-
-    useEffect(() => {
         if (editMode === 'personal' || editMode === 'work') {
             document.body.style.overflow = 'hidden';
         } else if (editMode === '') {
