@@ -5,6 +5,7 @@ import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { Button } from '@mui/material';
 import { AnyAction } from '@reduxjs/toolkit';
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import Image from 'next/image'
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
@@ -71,13 +72,15 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                             key={discipline.id}
                             onClick={() => handleDisciplineClick(discipline.name)}>
                             {/*// TODO: @habdevs add alt, width, height*/}
-                            {/* <img
-                                // src={discipline.subject.name}
-                                alt={discipline.subject.name}
+                           <Image
+                                src={`https://storage.yandexcloud.net/myolimp/subject/${discipline.name}.svg`}
+                                alt={discipline.name}
+                                width={16}
+                                height={16}
                                 className={`${styles.disciplesIcon} ${
                                     disciplineState[discipline.name] ? styles.selected : ''
                                 }`}
-                            /> */}
+                            />
                             <h3
                                 className={`${styles.disciplineName} ${
                                     disciplineState[discipline.name] ? styles.selected : ''
