@@ -16,7 +16,7 @@ interface props {
     setProgress: Dispatch<SetStateAction<number>>;
 }
 
-export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
+export const ё: FC<props> = ({ progress, setProgress }) => {
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
     const [inputValue, setInputValue] = useState<string>('');
     const [disciplineState, setDisciplineState] = useState<{ [key: string]: boolean }>({});
@@ -50,8 +50,7 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
             <form>
                 <div className={styles.logoRow}>
                     <ArrowBackOutlinedIcon className={styles.arrowIcon} />
-                    <img src={myOlimpIcon.src} alt={'myOlimpIcon'} className={styles.myOlimpIcon} />
-                    {/*<Logo />*/}
+                    <Logo />
                 </div>
                 <div className={styles.titleRow}>
                     <h1>Дисциплины</h1>

@@ -10,7 +10,7 @@ import styles from './ui.module.scss';
 interface props {}
 
 export const AdditionalDataForm: FC<props> = ({}) => {
-    const [progress, setProgress] = useState<number>(1);
+    const [progress, setProgress] = useState<number>(3);
 
     return (
         <div className={styles.screen}>
