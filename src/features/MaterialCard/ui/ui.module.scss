@@ -7,11 +7,11 @@
   gap: 100px;
   justify-content: space-around;
   transition: all .3s ease;
-  width: 317px;
+  max-width: 317px;
+  min-width: 317px;
   font-size: 2em;
   height: 362px;
   position: relative;
-  float: left;
   background-image: linear-gradient(180deg, #5E96FF, #1F68F0);
   background-color: #CCCCCCFF;
   z-index: 1;
@@ -108,7 +108,7 @@
 
 @media (max-width: 800px) {
   .wrap {
-    width: 180px;
+    min-width: 200px;
     gap: 50px;
     height: 260px;
     .bottomWrap {

@@ -22,15 +22,18 @@ export const WorkBlock: FC<props> = ({ setMode }) => {
             <ul className={styles.infoWrap}>
                 <li>
                     <h1>Регион</h1>
-                    <h2>{user && `${user.region.name}`}</h2>
+                    <h2>Регионкакойто</h2>
+                    {/* {user && `${user.region.name}`} */}
                 </li>
                 <li>
                     <h1>Город</h1>
-                    <h2>{user && `${user.city.name}`}</h2>
+                    <h2>Алматы</h2>
+                    {/* {user && `${user.city.name}`} */}
                 </li>
                 <li>
                     <h1>Учебное заведение</h1>
-                    <h2>{user && `${user.school.name}`}</h2>
+                    <h2>МБОУ СОШ АХВАХ</h2>
+                    {/* {user && `${user.school.name}`} */}
                 </li>
             </ul>
         </div>
