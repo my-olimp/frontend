@@ -58,7 +58,6 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
         for (const element of navBarData) {
             if (element.link === pathname) {
                 setActive(element.id);
-                console.log(active);
             }
         }
     }, [pathname]);

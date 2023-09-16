@@ -43,7 +43,7 @@ export async function register(data: IRegisterData, { rejectWithValue }) {
 export async function logout({ rejectWithValue }) {
     try {
         localStorage.removeItem('accessToken');
-        return await $api.get('user/auth/logout');
+        return await $api.post('user/auth/logout/');
     } catch (error: any) {
         console.error(error);
         return rejectWithValue(error);
@@ -51,42 +51,51 @@ export async function logout({ rejectWithValue }) {
 }
 
 export async function refreshToken(props: any = {}) {
-  const { rejectWithValue }= props;
-  try {
-    const response = await $api.post('user/auth/refresh_token/');
-    localStorage.setItem('accessToken', response.data.access);
-    return response.data.user 
-  } catch (error: any) {
-    console.error(error);
-    if (rejectWithValue) {
-      return rejectWithValue(error)
-    } else {
-      return error
+    const { rejectWithValue } = props;
+    try {
+        const response = await $api.post('user/auth/refresh_token/');
+        localStorage.setItem('accessToken', response.data.access);
+        return response.data.user;
+    } catch (error: any) {
+        console.error(error);
+        if (rejectWithValue) {
+            return rejectWithValue(error);
+        } else {
+            return error;
+        }
     }
-  }
 }
 
 export async function getRegions({ rejectWithValue }) {
-  try {
-      return await $api.get('user/location/regions/');
-  } catch (error: any) {
-      console.error(error);
-      return rejectWithValue(error);
-  }
+    try {
+        return await $api.get('user/location/regions/');
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error);
+    }
 }
 
-export async function getCity(region: string, {rejectWithValue}) {
-  try {
-    return await $api.get(`user/location/cities/?region=${region}`)
-  } catch (error: any) {
-    console.error(error);
-    return rejectWithValue(error)
-  }
+export async function getCity(region: string, { rejectWithValue }) {
+    try {
+        return await $api.get(`user/location/cities/?region=${region}`);
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error);
+    }
 }
 
 export async function getSchools(city: string, { rejectWithValue }) {
     try {
         return await $api.get(`user/location/schools/?region=${city}`);
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error);
+    }
+}
+
+export async function getDisciplines({ rejectWithValue }) {
+    try {
+        return await $api.get(`user/subjects/`);
     } catch (error: any) {
         console.error(error);
         return rejectWithValue(error);

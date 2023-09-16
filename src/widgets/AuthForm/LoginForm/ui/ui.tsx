@@ -26,7 +26,7 @@ export const LoginForm: FC<props> = ({}) => {
     const [password, setPassword] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
-    const { error } = useAppSelector((state) => state.auth);
+    const { user, error } = useAppSelector((state) => state.auth);
 
     const { push } = useRouter();
 
@@ -45,13 +45,15 @@ export const LoginForm: FC<props> = ({}) => {
         setButton('disabled');
     }, []);
 
-    const handleSubmit = async () => {
-        await dispatch(Login({ email: value, password: password }));
-        console.log(error);
-        if (!error) {
+    const handleSubmit = () => {
+        dispatch(Login({ email: value, password: password }));
+    };
+
+    useEffect(() => {
+        if (user && !error) {
             push('/main');
         }
-    };
+    }, [user, error]);
 
     return (
         <Gapped className={styles.screen} vertical verticalAlign="middle">

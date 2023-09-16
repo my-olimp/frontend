@@ -15,6 +15,9 @@ export const ErrorAlert: FC<props> = ({}) => {
             setIsError(false);
         } else {
             setIsError(true);
+            setTimeout(() => {
+                setIsError(false);
+            }, 7500);
         }
     }, [error, errorCode]);
 
@@ -25,9 +28,12 @@ export const ErrorAlert: FC<props> = ({}) => {
                     initial={{ x: 300 }}
                     animate={{ x: 0 }}
                     exit={{ x: 300 }}
+                    transition={{
+                        ease: 'linear',
+                    }}
                     className={styles.wrap}>
-                    <h1>{errorCode}</h1>
-                    <h2>{error}</h2>
+                    <h1>{errorCode}: </h1>
+                    <h2>{error ? error : 'Непредвиденная ошибка'}</h2>
                 </motion.div>
             )}
         </AnimatePresence>

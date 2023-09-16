@@ -10,6 +10,10 @@ interface props {
 export const WorkBlock: FC<props> = ({ setMode }) => {
     const { user } = useAppSelector((state) => state.auth);
 
+    const getValue = (value) => {
+        return value ? `${value}` : 'Не указано';
+    };
+
     return (
         <div className={styles.wrap}>
             <div className={styles.titleWrap}>
@@ -22,18 +26,27 @@ export const WorkBlock: FC<props> = ({ setMode }) => {
             <ul className={styles.infoWrap}>
                 <li>
                     <h1>Регион</h1>
-                    <h2>Регионкакойто</h2>
-                    {/* {user && `${user.region.name}`} */}
+                    {user && `${user?.region?.name}`} 
                 </li>
                 <li>
                     <h1>Город</h1>
-                    <h2>Алматы</h2>
-                    {/* {user && `${user.city.name}`} */}
+                    {user && `${user?.city?.name}`}
                 </li>
                 <li>
                     <h1>Учебное заведение</h1>
-                    <h2>МБОУ СОШ АХВАХ</h2>
-                    {/* {user && `${user.school.name}`} */}
+                    <h2>{getValue(user?.school?.name)}</h2>
+                </li>
+                <li>
+                    <h1>Город</h1>
+                    <h2>{getValue(user?.city?.name)}</h2>
+                </li>
+                <li>
+                    <h1>Учебное заведение</h1>
+                    <h2>{getValue(user?.school?.name)}</h2>
+                </li>
+                <li>
+                    <h1>Класс</h1>
+                    <h2>{getValue(user?.grade)}</h2>
                 </li>
             </ul>
         </div>
