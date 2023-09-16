@@ -26,7 +26,8 @@ export interface ITag {
 }
 
 export const Materials: FC<props> = ({ materialList, title, libMode }) => {
-    const [isMobile, setMobile] = useState<boolean>(false);
+    const [isMobile, setMobile] = useState(false);
+    const [url, setUrl] = useState('');
     const scrollContainerRef = useRef(null);
 
     const scrollRight = () => {
@@ -35,14 +36,15 @@ export const Materials: FC<props> = ({ materialList, title, libMode }) => {
             container.scrollBy({ left: 150, behavior: 'smooth' });
         }
     };
-
+    
     useLayoutEffect(() => {
         if (window.innerWidth < 900) {
             setMobile(true);
         }
+        setUrl(window.location.href)
     }, []);
     return (
-        <div className={styles.wrap} style={{ flexDirection: isMobile ? 'column' : 'row' }}>
+        <div className={url.includes('library') ? styles.libraryWrap : styles.wrap} style={{ flexDirection: isMobile ? 'column' : 'row' }}>
             {isMobile && (
                 <div className={styles.titleWrap}>
                     {!libMode && (
@@ -57,7 +59,12 @@ export const Materials: FC<props> = ({ materialList, title, libMode }) => {
                 </div>
             )}
 
-            <div className={styles.wrapMaterials} ref={scrollContainerRef}>
+            <div
+                className={url.includes('library')
+                ? styles.libraryWrapMaterials
+                : styles.wrapMaterials}
+                ref={scrollContainerRef}
+            >
                 {materialList.map((material) => {
                     return <MaterialCard key={material.id} material={material} />;
                 })}
@@ -65,11 +72,15 @@ export const Materials: FC<props> = ({ materialList, title, libMode }) => {
             {!isMobile &&
                 (libMode ? (
                     <span className={styles.linkWrap} style={{ marginLeft: '10px' }}>
-                        <ArrowForwardIosIcon onClick={scrollRight} />
+                        <Link href={url.includes('library') ? '' : '/main/library'} className={styles.link}>
+                            <ArrowForwardIosIcon onClick={scrollRight} />
+                        </Link>
                     </span>
                 ) : (
                     <span className={styles.linkWrap} style={{ marginLeft: '10px' }}>
-                        <ArrowForwardIosIcon onClick={scrollRight} />
+                        <Link href={url.includes('library') ? '' : '/main/library'} className={styles.link}>
+                            <ArrowForwardIosIcon onClick={scrollRight} />
+                        </Link>
                     </span>
                 ))}
         </div>
