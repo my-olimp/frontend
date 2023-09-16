@@ -26,27 +26,19 @@ export const FirstAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
         setProgress(progress + 1);
     };
 
-    const handleInput = (event: FormEvent) => {
-        const input = event.target as HTMLInputElement;
-        const text: string = input.value;
+    const handleInput = (event: any) => {
+        const text: string = event.target.value;
+        if (text === '') {
+            setError('')
+            setValue('')
+            return;
+        }
         setValue(text);
 
-        setNamesArray(text.split(' '));
-
-        if (namesArray.length - 1 === 1 || namesArray.length - 1 === 2) {
-            setError('');
-            for (const name in namesArray) {
-                if (name.charAt(0) === name.charAt(0).toUpperCase()) {
-                    setError('');
-                } else {
-                    setError(
-                        'ФИО должно содержать в себе как минимум имя и фамилию, с большой буквы',
-                    );
-                }
-            }
-        } else {
-            setError('ФИО должно содержать в себе как минимум имя и фамилию, с большой буквы');
-        }
+        // валидация
+        /^(?=.*[A-ZА-Я][a-zа-я]{2,}\s[A-ZА-Я][a-zа-я]{1,}(\s[A-ZА-Я][a-zа-я]{2,})?\s*$)(?=.*[a-zA-Zа-яА-Я]).*$/.test(text)
+        ? setError("")
+        : setError("ФИО должно содержать в себе как минимум имя и фамилию с заглавной буквы")
     };
 
     useEffect(() => {
@@ -74,7 +66,7 @@ export const FirstAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                     className={styles.input}
                 />
                 {error && <h3 className={styles.error}>{error}</h3>}
-                <SexRadio sex={sex} setSex={setSex}/>
+                <SexRadio sex={sex} setSex={setSex} />
                 <DatePicker
                     onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
                     className={styles.calendar}

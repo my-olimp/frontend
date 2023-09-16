@@ -1,11 +1,43 @@
 .wrapMaterials {
   display: flex;
-  flex-direction: row;
-  gap: 24px;
-  overflow: hidden;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
   width: 90vw;
+}
+
+.libraryWrapMaterials {
+  display: flex;
+  gap: 24px;
+  width: 90vw;
+  align-items: center;
+
+  overflow: hidden;
+  overflow-x: scroll;
+  padding-bottom: 7px;
+
+  &::-webkit-scrollbar {
+    width: 0.8em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #3579F8;
+    border: 3px solid white;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    cursor: pointer !important;
+  }
+}
+
+.libraryWrap {
+  display: flex;
+  flex-direction: row;
+  max-width: 1341px;
+  margin-left: auto;
+  margin-right: auto;
   align-items: center;
 }
 
@@ -14,7 +46,6 @@
   flex-direction: row;
   margin-left: auto;
   margin-right: auto;
-  width: min-content;
   align-items: center;
 }
 
@@ -25,6 +56,7 @@
   align-items: center;
   width: fit-content;
   height: fit-content;
+  color: black;
 
   & h1 {
     font-size: 20px;
@@ -47,13 +79,13 @@
   margin-bottom: 12px;
   padding: 0 32px;
 
-
   & * {
     user-select: auto;
     font-size: 17px;
     font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
     font-weight: 500;
   }
+
   & h1 {
     font-size: 25px;
     margin: 0;
@@ -74,10 +106,11 @@
 }
 
 @media (max-width: 800px) {
-  .wrapMaterials {
-    width: 100vw;
-    gap: 12px;
-  }
+
+  // .wrapMaterials {
+  //   width: 100vw;
+  //   gap: 12px;
+  // }
   .titleWrap {
     & * {
       font-size: 14px;
