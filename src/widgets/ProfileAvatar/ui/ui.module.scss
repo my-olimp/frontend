@@ -46,3 +46,10 @@
     background-color: #ffffff;
     color: #3579f8;
 }
+
+@media (max-width: 1000px) {
+    .wrap {
+        width: auto;
+        margin-bottom: 20px;
+    }
+}

@@ -1,9 +1,8 @@
 import Logo from '@/entities/Logo/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { City, GetRegions, Region, School } from '@/store/features/auth-slice';
+import { City, GetCity, GetRegions, GetSchools, Region, School } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
-import CloseIcon from '@mui/icons-material/Close';
 import { Button, MenuItem, Select } from '@mui/material';
 import { AnyAction } from '@reduxjs/toolkit';
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
@@ -11,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import styles from './ui.module.scss';
 
-interface props {
+interface props { // nics57 :D
     progress: number;
     setProgress: Dispatch<SetStateAction<number>>;
 }
@@ -19,32 +18,44 @@ interface props {
 export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
-    const [region, setRegion] = useState<string>('Регион');
+    const [region, setRegion] = useState<string>('Субъект');
     const [city, setCity] = useState<string>('Населенный пункт');
     const [school, setSchool] = useState<string>('Школа');
     const [grade, setGrade] = useState<string>('Класс');
 
+    // apidata
+    const [regions, setRegions] = useState([]);
+    const [cities, setCities] = useState([]);
+    const [schools, setSchools] = useState([]);
+
     const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
 
-    const { regions, cities, schools } = useAppSelector((state) => state.auth);
+    useEffect(() => {
+        async function getData() {
+            const regionsdata = await dispatch(GetRegions())
+            setRegions(regionsdata.payload.data)
+        }
+        getData()
+    }, [setRegion]);
 
     useEffect(() => {
-        dispatch(GetRegions());
-    }, []);
+        region !== 'Субъект' && city !== 'Населенный пункт' && school !== 'Школа' && grade !== 'Класс' ?
+        setButtonDisabled(false) :
+        setButtonDisabled(true)
+    }, [region, city, school, grade]);
 
-    const handleRegionSelect = (event) => {
+    const handleRegionSelect = (event: any) => {
         setRegion((event.target as HTMLSelectElement).value);
-        console.log(event.target);
+        dispatch(GetCity(''+event.target.value)).then(res => setCities(res.payload.data))
     };
 
-    const handleCitySelect = (event) => {
+    const handleCitySelect = (event: any) => {
         setCity((event.target as HTMLSelectElement).value);
-        console.log(event.target);
+        dispatch(GetSchools(''+event.target.value)).then(res => setSchools(res.payload.data))
     };
 
-    const handleSchoolSelect = (event) => {
+    const handleSchoolSelect = (event: any) => {
         setSchool((event.target as HTMLSelectElement).value);
-        console.log(event.target);
     };
 
     return (
@@ -53,7 +64,6 @@ export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) =
                 <div className={styles.logoRow}>
                     <ArrowBackOutlinedIcon className={styles.arrowIcon} />
                     <Logo />
-                    <CloseIcon />
                 </div>
                 <div className={styles.titleRow}>
                     <h1>Образование</h1>
@@ -66,13 +76,15 @@ export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) =
                     <MenuItem value={'Субъект'} disabled selected>
                         <span style={{ color: 'gray' }}>Субъект</span>
                     </MenuItem>
-                    {regions?.map((item: Region) => {
-                        return (
+                    {regions.length > 0 ? (
+                        regions.map((item: Region) => (
                             <MenuItem key={item.number} value={item.number}>
                                 {item.name}
                             </MenuItem>
-                        );
-                    })}
+                        ))
+                    ) : (
+                        <MenuItem disabled>Loading...</MenuItem>
+                    )}
                 </Select>
 
                 <Select
@@ -82,13 +94,17 @@ export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) =
                     <MenuItem value={'Населенный пункт'} disabled selected>
                         <span style={{ color: 'gray' }}>Населенный пункт</span>
                     </MenuItem>
-                    {cities?.map((item: City) => {
-                        return (
-                            <MenuItem key={item.id} value={item.region}>
-                                {item.name}
-                            </MenuItem>
-                        );
-                    })}
+                    {cities.length > 0 ? (
+                        cities.map((item: City) => {
+                            return (
+                                <MenuItem key={item.id} value={item.region}>
+                                    {item.name}
+                                </MenuItem>
+                            );
+                        })
+                    ) : (
+                        <MenuItem disabled>Loading...</MenuItem>
+                    )}
                 </Select>
 
                 <Select
@@ -98,13 +114,17 @@ export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) =
                     <MenuItem value={'Школа'} disabled selected>
                         <span style={{ color: 'gray' }}>Школа</span>
                     </MenuItem>
-                    {schools?.map((item: School) => {
-                        return (
-                            <MenuItem key={item.id} value={item.region}>
-                                {item.name}
-                            </MenuItem>
-                        );
-                    })}
+                    {schools.length > 0 ? (
+                        schools.map((item: School) => {
+                            return (
+                                <MenuItem key={item.id} value={item.region}>
+                                    {item.name}
+                                </MenuItem>
+                            );
+                        })
+                    ) : (
+                        <MenuItem disabled>Loading...</MenuItem>
+                    )}
                 </Select>
 
                 <Select
@@ -120,7 +140,12 @@ export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) =
                         </MenuItem>
                     ))}
                 </Select>
-                <Button variant="contained" disabled={isButtonDisabled} className={styles.button}>
+                <Button
+                    variant="contained"
+                    disabled={isButtonDisabled}
+                    className={styles.button}
+                    onClick={() => setProgress(progress+1)}
+                >
                     Дальше
                 </Button>
             </form>
