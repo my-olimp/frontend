@@ -57,13 +57,13 @@ export type School = {
     region: number;
 };
 // TOD0: @habdevs add icon
-export type Discipline = {
+export type TDiscipline = {
     id: number;
     name: string;
 };
 
 type AuthState = {
-    disciplines: Discipline[] | undefined;
+    disciplines: TDiscipline[] | undefined;
     regions: Region[] | undefined;
     cities: City[] | undefined;
     schools: School[] | undefined;
