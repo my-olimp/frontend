@@ -12,8 +12,26 @@
     gap: 16px;
 }
 
+.main {
+    padding: 20px 0 0 84px;
+
+    @media (max-width: 900px) {
+        padding: 20px 10px;
+    }
+}
+
 .personalData {
     display: flex;
     flex-direction: column;
     gap: 24px;
+}
+
+@media (max-width: 1000px) {
+    .wrap {
+        display: block;
+    }
+
+    .personalData {
+        display: block;
+    }
 }

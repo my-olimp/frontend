@@ -1,6 +1,5 @@
 .form {
   & form {
-    height: 472px;
     width: 502px;
     display: flex;
     flex-direction: column;
@@ -10,6 +9,11 @@
     border-radius: 24px;
     box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
     align-items: center;
+  }
+
+  .error {
+    width: 414px;
+    font-size: 15px;
   }
 }
 
@@ -47,11 +51,10 @@
 
 .input {
   width: 414px;
-  height: 56px;
   outline-color: #1976D2;
   border-radius: 12px;
   border: 1px solid #8D8D8D;
-  padding: 0 12px;
+  padding: 15px 12px;
 }
 
 .calendar {

@@ -2,7 +2,7 @@
 import { Button } from '@/entities/buttons/button';
 import { ProgressCounter } from '@/entities/progressCounter';
 import styles from './ui.module.scss';
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { IMaterial } from '@/widgets/Materials';
 import { MaterialChip } from '@/entities/Chips/MaterialChip';
 
@@ -10,9 +10,15 @@ interface Props {
     material: IMaterial;
 }
 export const MaterialCard: FC<Props> = ({ material }) => {
+    const [url, setUrl] = useState('');
+
+    useEffect(() => {
+        setUrl(window.location.href)
+    }, []);
     const mobile = true;
+
     return (
-        <div className={styles.wrap}>
+        <div className={url.includes('library') ? styles.libraryWrap : styles.wrap}>
             <div className={styles.tagWrap}>
                 {material.tags.map((tag) => {
                     return <MaterialChip key={tag.id} text={tag.text} />;
