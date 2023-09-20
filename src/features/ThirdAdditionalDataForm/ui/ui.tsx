@@ -153,28 +153,6 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                     <h2 className={styles.descriptionTitle}>Выберите предметы, к которым готовитесь</h2>
                     <h2 className={styles.descriptionDiscipline}>Популярные дисциплины</h2>
                 </div>
-                {/*<Stack spacing={2} sx={{ width: 300 }}>*/}
-                {/*    <Autocomplete*/}
-                {/*        freeSolo*/}
-                {/*        id="free-solo-2-demo"*/}
-                {/*        disableClearable*/}
-                {/*        options={disciplines.map((option) => option.name)}*/}
-                {/*        value={inputValue}*/}
-                {/*        onChange={(_, newValue) => setInputValue(newValue)}*/}
-                {/*        inputValue={inputValue}*/}
-                {/*        onInputChange={handleInputChange}*/}
-                {/*        renderInput={(params) => (*/}
-                {/*            <TextField*/}
-                {/*                {...params}*/}
-                {/*                label="Найти..."*/}
-                {/*                InputProps={{*/}
-                {/*                    ...params.InputProps,*/}
-                {/*                    type: 'search',*/}
-                {/*                }}*/}
-                {/*            />*/}
-                {/*        )}*/}
-                {/*    />*/}
-                {/*</Stack>*/}
                 <div className={styles.disciplesContainer}>
                     {disciplines.map((discipline: IDiscipline) => (
                         <div
