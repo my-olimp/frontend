@@ -15,6 +15,21 @@ export type City = {
 }
 
 export type School = {
+<<<<<<< HEAD
+    id: number;
+    name: string;
+    region: number;
+};
+// TOD0: @habdevs add icon
+export type TDiscipline = {
+    id: number;
+    name: string;
+};
+
+type AuthState = {
+    disciplines: TDiscipline[] | undefined;
+    regions: Region[] | undefined;
+=======
   id: number
   name: string,
   region: number,
@@ -42,6 +57,7 @@ export interface IUser {
 
 type AuthState = {
     regions: Region[] | undefined; 
+>>>>>>> a6dab158edc23539a14083bf1490a5a6d76369d6
     cities: City[] | undefined;
     schools: School[] | undefined;
     email: string | undefined;

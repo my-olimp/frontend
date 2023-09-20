@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { Discipline, GetDisciplines } from '@/store/features/auth-slice';
+import { TDiscipline, GetDisciplines } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { Button } from '@mui/material';
@@ -63,7 +63,7 @@ export const ё: FC<props> = ({ progress, setProgress }) => {
                     {/* <h2 className={styles.descriptionDiscipline}>Популярные дисциплины</h2> */}
                 </div>
                 <div className={styles.disciplesContainer}>
-                    {disciplines?.map((discipline: Discipline) => (
+                    {disciplines?.map((discipline: TDiscipline) => (
                         <div
                             className={`${styles.disciplineContainer} ${
                                 disciplineState[discipline.name] ? styles.selected : ''
