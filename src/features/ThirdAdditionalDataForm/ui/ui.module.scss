@@ -1,160 +1,160 @@
 .form {
-
-  & form {
-    height: 472px;
-    width: 502px;
-    display: flex;
-    flex-direction: column;
-    padding: 32px 0;
-    background-color: white;
-    gap: 16px;
-    border-radius: 24px;
-    box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
-    align-items: center;
-  }
+    & form {
+        height: 472px;
+        width: 502px;
+        display: flex;
+        flex-direction: column;
+        padding: 32px 0;
+        background-color: white;
+        gap: 16px;
+        border-radius: 24px;
+        box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
+        align-items: center;
+    }
 }
 
 .logoRow {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-
-  .arrowIcon {
-    margin-left: 24px;
-    cursor: pointer;
-  }
-
-  .myOlimpIcon {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
     margin-right: auto;
-    margin-left: 150px;
-    cursor: pointer;
-  }
+    margin-left: 16px;
+    align-items: center;
+    justify-content: space-between;
 
+    .arrowIcon {
+        margin-left: 24px;
+        cursor: pointer;
+    }
+
+    .myOlimpIcon {
+        margin-right: auto;
+        margin-left: 150px;
+        cursor: pointer;
+    }
 }
 
 .titleRow {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  width: 414px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    justify-content: space-between;
+    width: 400px;
 
-  & h1 {
-    font-size: 20px;
-    color: rgba(26, 7, 16, 0.85);
-    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    margin: 0;
-  }
+    & h1 {
+        font-size: 20px;
+        color: rgba(26, 7, 16, 0.85);
+        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        margin: 0;
+    }
 
-  & p {
-    color: #6BC62D;
-    font-size: 16px;
-    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-    font-weight: 500;
-  }
+    & p {
+        color: #6bc62d;
+        font-size: 16px;
+        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-weight: 500;
+    }
 }
 
 .description {
-  display: flex;
-  flex-direction: column;
-  line-height: 16px;
-  letter-spacing: 0.02em;
-  text-align: left;
-  width: 414px;
-  .descriptionTitle {
-    font-size: 13px;
-    font-weight: 400;
-    color: #1A0710A6;
-    margin-bottom: 8px;
-  }
-  .descriptionDiscipline{
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 24px;
-    color: #1A0710D9;
-  }
+    display: flex;
+    flex-direction: column;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    width: 414px;
+    .descriptionTitle {
+        font-size: 13px;
+        font-weight: 400;
+        color: #1a0710a6;
+        margin-bottom: 8px;
+    }
+    .descriptionDiscipline {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #1a0710d9;
+    }
 }
 
 .disciplesContainer {
-  display: flex;
-  width: 420px;
-  height: 154px;
-  align-items: center;
-  gap: 4px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-
-  .disciplineContainer {
     display: flex;
-    gap: 2px;
-    height: 32px;
-    padding: 0px 8px;
-    justify-content: center;
+    width: 420px;
+    height: 154px;
     align-items: center;
-    border-radius: 12px;
-    border: 1px solid rgba(53, 121, 248, 0.28);
-    cursor: pointer;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
 
-    &.selected {
-      border-radius: 12px;
-      border: 1px solid rgba(53, 121, 248, 0.28);
-      background: #3579F8;
+    .disciplineContainer {
+        display: flex;
+        gap: 2px;
+        height: 32px;
+        padding: 0px 8px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        border: 1px solid rgba(53, 121, 248, 0.28);
+        cursor: pointer;
 
-      img {
-        filter: brightness(0) invert(1);
-      }
+        &.selected {
+            border-radius: 12px;
+            border: 1px solid rgba(53, 121, 248, 0.28);
+            background: #3579f8;
+
+            img {
+                filter: brightness(0) invert(1);
+            }
+        }
+
+        .disciplesIcon {
+            &.selected {
+                fill: white;
+            }
+        }
+
+        .disciplineName {
+            color: #3579f8;
+            text-align: center;
+            font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 0.26px;
+
+            &.selected {
+                color: white;
+            }
+        }
     }
-
-    .disciplesIcon {
-      &.selected {
-        fill: white;
-      }
-    }
-
-    .disciplineName {
-      color: #3579F8;
-      text-align: center;
-      font-family: "SF_Regular", Arial, Helvetica, sans-serif;;
-      font-size: 13px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: normal;
-      letter-spacing: 0.26px;
-
-      &.selected {
-        color: white;
-      }
-    }
-  }
 }
 
 .button {
-  height: 56px;
-  width: 414px;
-  text-transform: capitalize;
-  border-radius: 12px;
-  font-size: 22px;
-  font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  background-color: #3579F8;
-  box-shadow: none;
+    height: 56px;
+    width: 414px;
+    text-transform: capitalize;
+    border-radius: 12px;
+    font-size: 22px;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    background-color: #3579f8;
+    box-shadow: none;
 
+    &:disabled {
+        background-color: #8cb2fb;
+        cursor: not-allowed;
+        pointer-events: all !important;
+        color: white;
 
-  &:disabled {
-    background-color: #8CB2FB;
-    cursor: not-allowed;
-    pointer-events: all !important;
-    color: white;
+        &:hover {
+            background-color: #8cb2fb;
+        }
+    }
 
     &:hover {
-      background-color: #8CB2FB;
+        background-color: #316ee0;
+        box-shadow: none;
     }
-  }
-
-  &:hover {
-    background-color: #316ee0;
-    box-shadow: none;
-  }
 }

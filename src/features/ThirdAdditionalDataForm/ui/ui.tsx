@@ -1,14 +1,14 @@
+import Logo from '@/entities/Logo/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { TDiscipline, GetDisciplines } from '@/store/features/auth-slice';
+import { GetDisciplines, TDiscipline } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { Button } from '@mui/material';
 import { AnyAction } from '@reduxjs/toolkit';
+import Image from 'next/image';
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import Image from 'next/image'
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
 import styles from './ui.module.scss';
 
 interface props {
@@ -16,7 +16,7 @@ interface props {
     setProgress: Dispatch<SetStateAction<number>>;
 }
 
-export const ё: FC<props> = ({ progress, setProgress }) => {
+export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
     const [inputValue, setInputValue] = useState<string>('');
     const [disciplineState, setDisciplineState] = useState<{ [key: string]: boolean }>({});
@@ -71,7 +71,7 @@ export const ё: FC<props> = ({ progress, setProgress }) => {
                             key={discipline.id}
                             onClick={() => handleDisciplineClick(discipline.name)}>
                             {/*// TODO: @habdevs add alt, width, height*/}
-                           <Image
+                            <Image
                                 src={`https://storage.yandexcloud.net/myolimp/subject/${discipline.name}.svg`}
                                 alt={discipline.name}
                                 width={16}

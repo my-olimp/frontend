@@ -1,4 +1,4 @@
-import { getCity, getOTC, getRegions, getSchools, login, logout, refreshToken, register } from '@/services/AuthService';
+import { getCity, getDisciplines, getOTC, getRegions, getSchools, login, logout, refreshToken, register } from '@/services/AuthService';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
@@ -15,26 +15,14 @@ export type City = {
 }
 
 export type School = {
-<<<<<<< HEAD
     id: number;
     name: string;
     region: number;
 };
-// TOD0: @habdevs add icon
 export type TDiscipline = {
     id: number;
     name: string;
 };
-
-type AuthState = {
-    disciplines: TDiscipline[] | undefined;
-    regions: Region[] | undefined;
-=======
-  id: number
-  name: string,
-  region: number,
-}
-
 
 export interface IUser {
   id: number;
@@ -56,8 +44,8 @@ export interface IUser {
 
 
 type AuthState = {
-    regions: Region[] | undefined; 
->>>>>>> a6dab158edc23539a14083bf1490a5a6d76369d6
+    disciplines: TDiscipline[] | undefined;
+    regions: Region[] | undefined;
     cities: City[] | undefined;
     schools: School[] | undefined;
     email: string | undefined;
@@ -125,6 +113,13 @@ export const GetRegions = createAsyncThunk(
   },
 );
 
+export const GetDisciplines = createAsyncThunk(
+  'auth/GetDisciplines',
+  async (_, { rejectWithValue }) => {
+      return await getDisciplines({ rejectWithValue });
+  },
+);
+
 export const GetCity = createAsyncThunk(
   'auth/GetCity',
   async (region: string, { rejectWithValue }) => {
@@ -189,6 +184,9 @@ export const auth = createSlice({
         builder.addCase(GetSchools.pending, (state) => {
           clear(state, true)
         })
+        builder.addCase(GetDisciplines.pending, (state) => {
+          clear(state, true);
+        });
 
 
         builder.addCase(GetOTC.fulfilled, (state, action) => {
@@ -213,6 +211,7 @@ export const auth = createSlice({
           clear(state, false)
           state.user = action.payload
         })
+       
 
         builder.addCase(GetRegions.fulfilled, (state, action) => {
           state.regions = action.payload.data;
@@ -224,6 +223,11 @@ export const auth = createSlice({
 
         builder.addCase(GetSchools.fulfilled, (state, action) => {
           state.schools = action.payload.data;
+        })
+
+        builder.addCase(GetDisciplines.fulfilled, (state, action) => {
+          clear(state, false)
+          state.disciplines = action.payload.data
         })
 
         builder.addCase(GetOTC.rejected, (state, action) => {
@@ -250,6 +254,10 @@ export const auth = createSlice({
         builder.addCase(GetSchools.rejected, (state, action) => {
           handleReject(state, action)
         })
+        
+        builder.addCase(GetDisciplines.rejected, (state, action) => {
+          handleReject(state, action)
+        });
     },
 });
 
