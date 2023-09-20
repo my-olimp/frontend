@@ -30,5 +30,6 @@
         "space-before-function-paren": "off",
         "comma-spacing": "off",
         "brace-style": "off"
+        "arrow-parens": "off"
     }
 }
