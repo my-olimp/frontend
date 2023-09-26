@@ -1,5 +1,4 @@
 import Logo from '@/entities/Logo/ui/ui';
-import { useAppSelector } from '@/hooks/useAppSelector';
 import { City, GetCity, GetRegions, GetSchools, Region, School } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';

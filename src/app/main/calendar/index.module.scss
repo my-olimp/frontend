@@ -1,0 +1,240 @@
+.calendar {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 45px 0px;
+    background: #F0F4FA;
+}
+
+.container {
+    width: 95vw;
+    position: relative;
+}
+
+.eventscontainer {
+    width: 50%;
+    height: 750px;
+    padding-top: 60px;
+    .events {
+        border-radius: 15px;
+        height: 100%;
+        width: 100%;
+        background-color: white;
+    
+        .circle {
+            margin-top: 5px;
+            padding: 7px;
+            background: #F0F4FA;
+            border-radius: 5px;
+        }
+    
+        .title {
+            height: 10%;
+            padding: 15px 20px;
+            font-size: 20px;
+            font-weight: 600;
+            align-items: center;
+    
+            .icon {
+                background: #F0F4FA;
+            }
+    
+            svg {
+                font-size: 25px;
+                cursor: pointer;
+            }
+        }
+    
+        .eventlist {
+            overflow-y: scroll;
+            height: 90%;
+    
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
+    
+            &::-webkit-scrollbar-thumb {
+                background-color: #5E96FF;
+                border-radius: 10px;
+                border: 2px solid rgb(255, 255, 255);
+            }
+    
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+                border-radius: 10px;
+                padding: 5px;
+    
+            }
+    
+            .eventtoday {
+                padding: 20px 20px;
+                border-top: 1px solid rgba(34, 34, 34, 0.20);
+    
+                .eventtodayleft {
+                    div {
+                        margin-right: 20px;
+                    }
+                }
+            }
+    
+            .eventtoday:last-child {
+                border-bottom: 1px solid rgba(34, 34, 34, 0.20);
+            }
+        }
+    }
+}
+
+.popupmain {
+    align-items: center;
+    height: 120vh;
+    position: absolute;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 20;
+
+    .popup {
+        width: 30vw;
+        background-color: white;
+        border-radius: 15px;
+        padding: 15px 35px;
+
+        .popuptitle {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 0.56px;
+        }
+
+        .popupinput {
+            margin: 20px 0px;
+            font-size: 19px;
+            border: none;
+            width: 70%;
+            outline: none;
+            padding: 3px 0px;
+            border-bottom: 1px solid rgba(34, 34, 34, 0.20);
+        }
+    }
+}
+
+.mid {
+    margin-bottom: 20px;
+
+    .midleft {
+        .tag {
+            margin-right: 10px;
+            border-radius: 15px;
+            font-size: 19px;
+            padding: 5px 10px;
+            transition: .1s ease;
+            cursor: pointer;
+
+            &:hover {
+                background: #EFF6FF;
+                color: rgba(53, 121, 248, 0.90);
+            }
+        }
+    }
+}
+
+.btns {
+    div {
+        padding: 10px 25px;
+        border-radius: 10px;
+        transition: .15s ease;
+    }
+
+    .createbtn {
+        background: #3579F8;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: .15s ease;
+
+        &:hover {
+            background: #3579f8a6;
+        }
+    }
+
+    .closebtn {
+        border: 1px solid #3579F8;
+        color: #3579F8;
+
+        &:hover {
+            background: #3579f81c;
+        }
+    }
+}
+
+.settings {
+    margin-bottom: 35px;
+
+    .time,
+    .selectdiv,
+    .files {
+        margin-bottom: 8px;
+        font-size: 17.5px;
+    }
+
+    .time {
+        .timeleft {
+            svg {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .files,
+    .selectdiv {
+        svg {
+            margin-right: 5px;
+        }
+    }
+}
+
+.mobileadd {
+    position: absolute;
+    bottom: 13%;
+    right: 5%;
+    z-index: 19;
+    width: 50px;
+    height: 50px;
+    border-radius: 18px;
+    background-color: #B2CDFF;
+    
+    img {
+        transform: scale(1.5);
+    }
+}
+
+@media (max-width: 900px) {
+    .calendar {
+        padding: 0px;
+        .container {
+            padding-top: 20px;
+            width: 100%;
+            display: block;
+        }
+    }
+    .eventscontainer {
+        display: none;
+    }
+
+    .popupmain {
+        display: flex;
+        align-items: end;
+        background-color: rgba(255, 255, 255, 0);
+        height: 110vh;
+        .popup {
+            padding: 0 20px;
+            width: 100%;
+            height: 87.5%;
+            border-radius: 0px;
+
+            .popupinput {
+                width: 100%;
+            }
+        }
+    }
+}

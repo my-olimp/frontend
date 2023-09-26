@@ -4,6 +4,7 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { RefreshTokenComponent } from '@/shared/RefreshTokenComponent';
 import { Footer } from '@/widgets/Footer';
 import { Header } from '@/widgets/header';
+import styles from '@/app/main/calendar/index.module.scss';
 
 export default function Layout({ children }) {
     const { user } = useAppSelector((state) => state.auth);
@@ -12,10 +13,7 @@ export default function Layout({ children }) {
         <>
             <Header />
             <RefreshTokenComponent />
-            <main style={{ padding: '48px 0' }}>
-                {!user && <UnathorizedPopup />}
                 {children}
-            </main>
             <Footer />
         </>
     );

@@ -1,0 +1,217 @@
+.article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container {
+        width: 70vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.title {
+    .titletext {
+        width: 60%;
+        font-size: 54px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .date {
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 19px;
+        letter-spacing: 2.88px;
+    }
+}
+
+.tags {
+    margin-top: 20px;
+
+    .tagsbtn {
+        border-radius: 36px;
+        border: 1px solid rgba(0, 0, 0, 0.40);
+        font-size: 18px;
+        padding: 4.5px 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+    }
+}
+
+.subtitle {
+    border-top: 1px solid rgba(0, 0, 0, 0.40);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.40);
+    padding: 13px 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    * {
+        color: rgba(0, 0, 0, 0.40);
+    }
+
+    .subtitlecomments,
+    .bookmark,
+    .upload {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .bookmark,
+    .upload {
+        font-size: 30px;
+        transition: .2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    .subtitlecomments {
+        svg {
+            font-size: 30px;
+            transition: .2s ease;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+.image {
+    margin-bottom: 20px;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.bottom {
+    .commentscount {
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .commentdiv {
+        margin-top: 7.5px;
+        border-radius: 12px;
+        border: 2px solid rgba(34, 34, 34, 0.40);
+        padding: 12.5px;
+
+        .commenttop {
+            .user {
+                .useravatar {
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
+                    background-color: #62A1FF;
+                    margin-right: 6px;
+                }
+
+                .username {
+                    color: #797979;
+                    font-size: 16px;
+                }
+            }
+
+            input {
+                margin-top: 10px;
+                font-size: 17px;
+                width: 100%;
+                padding-bottom: 25px;
+                box-sizing: border-box;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        .commentbottom {
+            .btn {
+                border-radius: 13.335px;
+                padding: 12px 25px;
+                font-size: 17px;
+                color: white;
+                background-color: #62A1FF;
+                transition: .2s ease;
+
+                &:not([disabled]):hover {
+                    transform: scale(1.05);
+                    cursor: pointer;
+                }
+
+                &:disabled {
+                    background: var(--20, #A8C6FC);
+                }
+            }
+        }
+    }
+
+    .textblockskeleton {
+        span {
+            border-radius: 5px;
+            height: 12.5px;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .article {
+        .container {
+            width: 90vw;
+        }
+    }
+
+    .title {
+        .titletext {
+            font-size: 40px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .title {
+        .titletext {
+            font-size: 28px;
+        }
+
+        .date {
+            font-size: 18px;
+        }
+    }
+
+    .subtitle {
+
+        .bookmark,
+        .upload {
+            font-size: 23.5px;
+        }
+
+        .subtitlecomments {
+            svg {
+                font-size: 23.5px;
+            }
+        }
+    }
+
+    .bottom {
+        .commentscount {
+            font-size: 18px;
+        }
+
+        .commentdiv {
+            .commentbottom {
+                .btn {
+                    padding: 8px 18px;
+                    font-size: 15px;
+                    border-radius: 8px;
+                }
+            }
+        }
+    }
+}
