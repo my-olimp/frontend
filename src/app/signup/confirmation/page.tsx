@@ -1,10 +1,11 @@
+'use client';
+import { useSearchParams } from 'next/navigation';
 import styles from './index.module.scss';
-import { ConfirmationForm } from '@/widgets/AuthForm/AuthConfirmationForm/ui/ui';
 
 export default function Auth() {
-    return (
-        <div className={styles.wrap}>
-            <ConfirmationForm />
-        </div>
-    );
+    const searchParams = useSearchParams();
+    const token = searchParams.get('token');
+    console.log(token);
+
+    return <div className={styles.wrap}></div>;
 }
