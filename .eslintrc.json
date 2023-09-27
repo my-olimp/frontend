@@ -29,6 +29,7 @@
         "no-multi-spaces": "off",
         "space-before-function-paren": "off",
         "comma-spacing": "off",
-        "brace-style": "off"
+        "brace-style": "off",
+        "arrow-parens": "off",
     }
 }
