@@ -37,8 +37,11 @@ const MyCalendar: NextPage = () => {
     ]);
 
     useEffect(() => {
-        const obj: any = localStorage.getItem("events")
-        if (obj) setCalendarEvents(JSON.parse(obj))
+        // Проверка на наличие поддержки localStorage
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const obj = localStorage.getItem("events");
+            if (obj) setCalendarEvents(JSON.parse(obj));
+        }
     }, []);
 
     const subjectHandler = (event: any) => {
@@ -55,25 +58,28 @@ const MyCalendar: NextPage = () => {
     }
 
     const createEvent = () => {
-        setCreate(false)
-        const eventsString: any = localStorage.getItem('events');
-        const events: any = eventsString ? JSON.parse(eventsString) : [];
+        setCreate(false);
+        // Проверка на наличие поддержки localStorage
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const eventsString = localStorage.getItem('events');
+            const events = eventsString ? JSON.parse(eventsString) : [];
 
-        const obj: any = {
-            title: eventname,
-            start: new Date(),
-            end: new Date(),
-            color: getColor(color),
+            const obj = {
+                title: eventname,
+                start: new Date(),
+                end: new Date(),
+                color: getColor(color),
+            }
+
+            events.push(obj);
+            setCalendarEvents(events);
+            localStorage.setItem('events', JSON.stringify(events));
         }
-
-        events.push(obj)
-        setCalendarEvents(events)
-        localStorage.setItem('events', JSON.stringify(events));
     }
 
     const inputHandler = (e: string) => {
-        if (e.length > 3) setIsDisabled(false)
-        setEventname(e)
+        if (e.length > 3) setIsDisabled(false);
+        setEventname(e);
     }
 
     return (

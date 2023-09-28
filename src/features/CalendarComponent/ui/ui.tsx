@@ -1,12 +1,11 @@
-"use client"
-import React, { FC } from 'react'
-import styles from './ui.module.scss'
-
+"use client";
+import React, { FC } from 'react';
+import styles from './ui.module.scss';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import moment from 'moment'
+import moment from 'moment';
 import 'moment/locale/ru';
 
 moment.locale('ru');
@@ -45,24 +44,26 @@ export const CalendarComponent = ({ array }) => {
 
     const CustomToolbar = ({ label, onNavigate }) => {
         return (
-            <div className="rbc-toolbar" style={{height: '50px'}}>
-                <div className='rbc-btn-div' style={{display: 'flex', alignItems: 'center'}}>
-                    <ChevronLeftIcon style={{fontSize: '28px'}} onClick={() => onNavigate('PREV')}/>
+            <div className="rbc-toolbar" style={{ height: '50px' }}>
+                <div className='rbc-btn-div' style={{ display: 'flex', alignItems: 'center' }}>
+                    <ChevronLeftIcon style={{ fontSize: '28px' }} onClick={() => onNavigate('PREV')} />
                     <span
                         className="rbc-toolbar-label"
                         onClick={() => onNavigate('TODAY')}
-                        style={{fontSize: '18px', fontWeight: '600'}}
+                        style={{ fontSize: '18px', fontWeight: '600' }}
                     >
                         {label}
                     </span>
-                    <ChevronRightIcon style={{fontSize: '28px'}} onClick={() => onNavigate('NEXT')}/>
+                    <ChevronRightIcon style={{ fontSize: '28px' }} onClick={() => onNavigate('NEXT')} />
                 </div>
             </div>
         );
     };
 
-    const x = getTodayEvents()
-    localStorage.setItem('eventstoday', JSON.stringify(x))
+    if (typeof window !== 'undefined' && window.localStorage) {
+        const x = getTodayEvents();
+        localStorage.setItem('eventstoday', JSON.stringify(x));
+    }
 
     return (
         <div className={styles.calendar}>
