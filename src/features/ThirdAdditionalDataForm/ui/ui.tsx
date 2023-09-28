@@ -10,13 +10,14 @@ import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
 import styles from './ui.module.scss';
+import Logo from '@/entities/Logo/ui/ui';
 
 interface props {
     progress: number;
     setProgress: Dispatch<SetStateAction<number>>;
 }
 
-export const ё: FC<props> = ({ progress, setProgress }) => {
+export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
     const [inputValue, setInputValue] = useState<string>('');
     const [disciplineState, setDisciplineState] = useState<{ [key: string]: boolean }>({});

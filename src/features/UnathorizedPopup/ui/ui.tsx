@@ -10,7 +10,7 @@ interface props {
     setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const UnathorizedPopup: FC<props> = ({ isOpen, setOpen }) => {
+export const UnathorizedPopup: any = ({ isOpen, setOpen }) => {
     const { push } = useRouter();
     // const spanRef = useRef(null);
 

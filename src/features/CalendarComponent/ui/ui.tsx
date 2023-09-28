@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './ui.module.scss';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -22,6 +22,11 @@ export const CalendarComponent = ({ array }) => {
             return eventStart.isSameOrAfter(today) || eventEnd.isSameOrAfter(today);
         });
     };
+
+    useEffect(() => {
+        const x = getTodayEvents();
+        localStorage.setItem('eventstoday', JSON.stringify(x));
+    }, [])
 
     const eventStyleGetter = (event: any, start: any, end: any, isSelected: any) => {
         const style: any = {
@@ -59,11 +64,6 @@ export const CalendarComponent = ({ array }) => {
             </div>
         );
     };
-
-    if (typeof window !== 'undefined' && window.localStorage) {
-        const x = getTodayEvents();
-        localStorage.setItem('eventstoday', JSON.stringify(x));
-    }
 
     return (
         <div className={styles.calendar}>

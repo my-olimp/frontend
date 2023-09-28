@@ -1,5 +1,4 @@
 'use client';
-<<<<<<< HEAD
 import styles from './index.module.scss'
 import { useState, useEffect } from 'react';
 import { NextPage } from 'next';
@@ -37,10 +36,8 @@ const MyCalendar: NextPage = () => {
     ]);
 
     useEffect(() => {
-        if (typeof window !== 'undefined' && window.localStorage) {
-            const obj = localStorage.getItem("events");
-            if (obj) setCalendarEvents(JSON.parse(obj));
-        }
+        const obj = localStorage.getItem("events");
+        if (obj) setCalendarEvents(JSON.parse(obj));
     }, []);
 
     const subjectHandler = (event: any) => {
@@ -58,21 +55,19 @@ const MyCalendar: NextPage = () => {
 
     const createEvent = () => {
         setCreate(false);
-        if (typeof window !== 'undefined' && window.localStorage) {
-            const eventsString = localStorage.getItem('events');
-            const events = eventsString ? JSON.parse(eventsString) : [];
+        const eventsString = localStorage.getItem('events');
+        const events = eventsString ? JSON.parse(eventsString) : [];
 
-            const obj = {
-                title: eventname,
-                start: new Date(),
-                end: new Date(),
-                color: getColor(color),
-            }
-
-            events.push(obj);
-            setCalendarEvents(events);
-            localStorage.setItem('events', JSON.stringify(events));
+        const obj = {
+            title: eventname,
+            start: new Date(),
+            end: new Date(),
+            color: getColor(color),
         }
+
+        events.push(obj);
+        setCalendarEvents(events);
+        localStorage.setItem('events', JSON.stringify(events));
     }
 
     const inputHandler = (e: string) => {
@@ -236,16 +231,3 @@ const MyCalendar: NextPage = () => {
 };
 
 export default MyCalendar;
-=======
-import { NextPage } from 'next';
-
-const Calendar: NextPage = () => {
-    
-
-    return (
-        <></>
-    );
-};
-
-export default Calendar;
->>>>>>> 35631a3 (added query(for confirmation))

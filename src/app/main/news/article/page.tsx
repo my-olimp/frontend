@@ -26,17 +26,13 @@ const Article: NextPage = () => {
     const [article, setArticle]: any[] = useState([]);
     const [isDisabled, setIsDisabled] = useState(true);
     const [comment, setComment] = useState('');
-    const selecteditem = useSelector((state: any) => state.auth.selectedItem) || JSON.parse(localStorage.getItem('selectedItem') || '');
+    const selecteditem = useSelector((state: any) => state.auth.selectedItem);
 
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
     const comments = 12;
     useEffect(() => {
-        // Проверяем доступность localStorage
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('selectedItem', JSON.stringify(selecteditem));
-        }
-
+        localStorage.setItem('selectedItem', JSON.stringify(selecteditem));
         async function getData() {
             const newsdata: any = await dispatch(GetArticle(selecteditem.id));
             setArticle(newsdata.payload.data);
