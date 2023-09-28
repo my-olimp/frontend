@@ -46,7 +46,7 @@ const News: NextPage = () => {
             'Информатика', 'Советы', 'Физика', 'Литература',
             'Обществознание']
 
-    const randomImage = () => Math.ceil(Math.random() * 2) === 1 ? Image1.src : Image2.src
+    const randomImage = () => Math.ceil(Math.random() * 2) === 1 ? TestImg.src : Image2.src
 
     useEffect(() => {
         localStorage.setItem('accessToken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2NvdW50X3R5cGUiOiJzIiwicm9sZXMiOltdLCJleHAiOjE2OTYzMjg3OTQsImlhdCI6MTY5NTcyMzA5NCwidHlwIjoiYWNjZXNzIiwianRpIjoiODhkNzE2ZGItN2Y3MC00NmIzLTgyOGUtNjAwMTg3NzNmZDMyIn0.JnX0S2g1j54iiF6xMyAgavWNGOTuA2J_ToHdIucV9-M')

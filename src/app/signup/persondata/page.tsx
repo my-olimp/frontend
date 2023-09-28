@@ -8,6 +8,7 @@ import styles from './index.module.scss';
 export default function Auth() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const { user } = useAppSelector((state) => state.auth);
+    
     useEffect(() => {
         if (!user) {
             setIsOpen(true);
@@ -15,12 +16,6 @@ export default function Auth() {
             setIsOpen(false);
         }
     }, [user]);
-
-    if (!user) {
-        setIsOpen(true);
-    } else {
-        setIsOpen(false);
-    }
 
     return (
         <div className={styles.wrap}>

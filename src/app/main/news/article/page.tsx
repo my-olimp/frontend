@@ -26,15 +26,18 @@ const Article: NextPage = () => {
     const [article, setArticle]: any[] = useState([]);
     const [isDisabled, setIsDisabled] = useState(true);
     const [comment, setComment] = useState('');
-    const selecteditem = useSelector((state: any) => state.auth.selectedItem);
+    const [selecteditem, setSelecteditem]: any[] = useState([]);
 
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
     const comments = 12;
     useEffect(() => {
-        localStorage.setItem('selectedItem', JSON.stringify(selecteditem));
+        const selected: any = localStorage.getItem("selectedItem") || null;
+        setSelecteditem(JSON.parse(selected))
+        console.log(selected)
         async function getData() {
-            const newsdata: any = await dispatch(GetArticle(selecteditem.id));
+            const newsdata: any = await dispatch(GetArticle(selecteditem.id || 1));
+            console.log(newsdata.payload.data)
             setArticle(newsdata.payload.data);
             setLoading(false);
         }
@@ -59,8 +62,6 @@ const Article: NextPage = () => {
         setComment(e);
     }
 
-    const getRandomWidth = () => Math.ceil(Math.random() * 100)
-
     return (
         <div className={styles.article}>
             <div className={styles.container}>
@@ -70,11 +71,11 @@ const Article: NextPage = () => {
                     </Link>
                 </div>
                 <div className={styles.title}>
-                    <p className={styles.titletext}>{selecteditem.title}</p>
-                    <span className={styles.date}>{formatDate(selecteditem.created_at)}</span>
+                    <p className={styles.titletext}>{selecteditem?.title}</p>
+                    <span className={styles.date}>{formatDate(selecteditem?.created_at)}</span>
                 </div>
                 <div className={`${styles.tags} df aic fww`}>
-                    {selecteditem.tags.map((item: string, index: number) =>
+                    {selecteditem?.tags?.map((item: string, index: number) =>
                         <div className={`${styles.tagsbtn} df jcc aic cp`} key={index}>
                             {item}
                         </div>)
@@ -82,7 +83,7 @@ const Article: NextPage = () => {
                 </div>
                 <div className={`${styles.subtitle} df jcsb aic`}>
                     <div className={`${styles.subtitleleft} df aic jcc`}>
-                        <span>{`Автор: ${selecteditem.author.first_name} ${selecteditem.author.second_name}`}</span>
+                        <span>{`Автор: ${selecteditem?.author?.first_name} ${selecteditem?.author?.second_name}`}</span>
                     </div>
                     <div className={`${styles.subtitleright} df aic jcc`}>
                         <div className={`${styles.subtitlecomments} df aic`}>
@@ -102,7 +103,7 @@ const Article: NextPage = () => {
                             {Array(3).fill('').map((_, i) => (
                                 <div className={styles.textblockskeleton} key={i} style={{marginBottom: '30px'}}>
                                     {Array(4).fill('').map((_, i) => <Skeleton style={{ width: '100%' }} key={i} />)}
-                                    <Skeleton style={{ width: `${getRandomWidth()}%` }} />
+                                    <Skeleton style={{ width: `30%` }} />
                                 </div>
                             ))}
                         </>
@@ -122,7 +123,7 @@ const Article: NextPage = () => {
                         <UploadIcon className={styles.upload} />
                     </div>
                     <div className={`${styles.subtitleright} df aic jcc`}>
-                        {loading ? <Skeleton count={1} style={{ height: '100%', width: '140px', borderRadius: '10px' }} /> : <span>{`${article.views} просмотров`}</span>}
+                        {loading ? <Skeleton count={1} style={{ height: '100%', width: '140px', borderRadius: '10px' }} /> : <span>{`${article?.views} просмотров`}</span>}
                     </div>
                 </div>
                 <div className={styles.bottom}>
