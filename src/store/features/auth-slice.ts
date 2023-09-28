@@ -112,7 +112,7 @@ export const GetRegions = createAsyncThunk(
 );
 
 export const GetDisciplines = createAsyncThunk(
-  'user/subjects/',
+  'auth/GetDisciplines',
   async (_, { rejectWithValue }) => {
       return await getDisciplines({ rejectWithValue });
   },
@@ -232,6 +232,7 @@ export const auth = createSlice({
           clear(state, false)
           state.user = action.payload
         })
+       
 
         builder.addCase(GetRegions.fulfilled, (state, action) => {
           state.regions = action.payload.data;

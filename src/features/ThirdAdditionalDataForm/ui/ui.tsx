@@ -1,16 +1,15 @@
+import Logo from '@/entities/Logo/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { GetDisciplines } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { Button } from '@mui/material';
 import { AnyAction } from '@reduxjs/toolkit';
+import Image from 'next/image';
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import Image from 'next/image'
 import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
-import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
 import styles from './ui.module.scss';
-import Logo from '@/entities/Logo/ui/ui';
 
 interface props {
     progress: number;
