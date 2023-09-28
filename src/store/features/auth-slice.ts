@@ -1,4 +1,4 @@
-import { getCity, getOTC, getRegions, getSchools, getNews, login, logout, refreshToken, register, getArticle } from '@/services/AuthService';
+import { getCity, getOTC, getRegions, getSchools, getNews, login, logout, refreshToken, register, getArticle, getDisciplines } from '@/services/AuthService';
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
@@ -111,6 +111,13 @@ export const GetRegions = createAsyncThunk(
   },
 );
 
+export const GetDisciplines = createAsyncThunk(
+  'user/subjects/',
+  async (_, { rejectWithValue }) => {
+      return await getDisciplines({ rejectWithValue });
+  },
+);
+
 export const GetCity = createAsyncThunk(
   'auth/GetCity',
   async (region: string, { rejectWithValue }) => {
@@ -186,6 +193,9 @@ export const auth = createSlice({
         builder.addCase(GetRegions.pending, (state) => {
           clear(state, true)
         })
+        builder.addCase(GetDisciplines.pending, (state) => {
+          clear(state, true)
+        })
         builder.addCase(GetCity.pending, (state) => {
           clear(state, true)
         })
@@ -227,6 +237,10 @@ export const auth = createSlice({
           state.regions = action.payload.data;
         })
 
+        builder.addCase(GetDisciplines.fulfilled, (state, action) => {
+          state.regions = action.payload.data;
+        })
+
         builder.addCase(GetCity.fulfilled, (state, action) => {
           state.cities = action.payload.data;
         })
@@ -259,6 +273,9 @@ export const auth = createSlice({
           handleReject(state, action)
         })
         builder.addCase(GetRegions.rejected, (state, action) => {
+          handleReject(state, action)
+        })
+        builder.addCase(GetDisciplines.rejected, (state, action) => {
           handleReject(state, action)
         })
         builder.addCase(GetCity.rejected, (state, action) => {

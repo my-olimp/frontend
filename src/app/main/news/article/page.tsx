@@ -26,7 +26,7 @@ const Article: NextPage = () => {
     const [article, setArticle]: any[] = useState([]);
     const [isDisabled, setIsDisabled] = useState(true);
     const [comment, setComment] = useState('');
-    const selecteditem = useSelector((state: any) => state.auth.selectedItem) || JSON.parse(localStorage.getItem('selectedItem'));
+    const selecteditem = useSelector((state: any) => state.auth.selectedItem) || JSON.parse(localStorage.getItem('selectedItem') || '');
 
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
