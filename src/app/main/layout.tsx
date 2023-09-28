@@ -7,7 +7,16 @@ import { Header } from '@/widgets/header';
 import styles from '@/app/main/calendar/index.module.scss';
 
 export default function Layout({ children }) {
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const { user } = useAppSelector((state) => state.auth);
+
+    useEffect(() => {
+        if (!user) {
+            setIsOpen(true);
+        } else {
+            setIsOpen(false);
+        }
+    }, [user]);
 
     return (
         <>

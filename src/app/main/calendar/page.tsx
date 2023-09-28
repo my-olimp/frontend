@@ -1,4 +1,5 @@
 'use client';
+<<<<<<< HEAD
 import styles from './index.module.scss'
 import { useState, useEffect } from 'react';
 import { NextPage } from 'next';
@@ -235,3 +236,16 @@ const MyCalendar: NextPage = () => {
 };
 
 export default MyCalendar;
+=======
+import { NextPage } from 'next';
+
+const Calendar: NextPage = () => {
+    
+
+    return (
+        <></>
+    );
+};
+
+export default Calendar;
+>>>>>>> 35631a3 (added query(for confirmation))
