@@ -41,11 +41,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.1",
     "react-input-mask": "^3.0.0-alpha.2",
-<<<<<<< HEAD
     "react-loading-skeleton": "^3.3.1",
-=======
-    "react-mui-scheduler": "^2.0.4",
->>>>>>> 50864cfe0902d828f34e754098e74bac913d8b51
     "react-redux": "^8.1.1",
     "redux": "^4.2.1",
     "redux-persist": "^6.0.0",
