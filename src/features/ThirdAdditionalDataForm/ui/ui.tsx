@@ -1,6 +1,6 @@
 import Logo from '@/entities/Logo/ui/ui';
 import { useAppSelector } from '@/hooks/useAppSelector';
-import { GetDisciplines, TDiscipline } from '@/store/features/auth-slice';
+import { GetDisciplines } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { Button } from '@mui/material';
@@ -20,7 +20,7 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
     const [inputValue, setInputValue] = useState<string>('');
     const [disciplineState, setDisciplineState] = useState<{ [key: string]: boolean }>({});
-    const { disciplines } = useAppSelector((state) => state.auth);
+    const disciplines: any = useAppSelector((state) => state.auth);
 
     useEffect(() => {
         dispatch(GetDisciplines());
@@ -63,11 +63,10 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                     {/* <h2 className={styles.descriptionDiscipline}>Популярные дисциплины</h2> */}
                 </div>
                 <div className={styles.disciplesContainer}>
-                    {disciplines?.map((discipline: TDiscipline) => (
+                    {disciplines?.map((discipline: any) => (
                         <div
-                            className={`${styles.disciplineContainer} ${
-                                disciplineState[discipline.name] ? styles.selected : ''
-                            }`}
+                            className={`${styles.disciplineContainer} ${disciplineState[discipline.name] ? styles.selected : ''
+                                }`}
                             key={discipline.id}
                             onClick={() => handleDisciplineClick(discipline.name)}>
                             {/*// TODO: @habdevs add alt, width, height*/}
@@ -76,14 +75,12 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                                 alt={discipline.name}
                                 width={16}
                                 height={16}
-                                className={`${styles.disciplesIcon} ${
-                                    disciplineState[discipline.name] ? styles.selected : ''
-                                }`}
+                                className={`${styles.disciplesIcon} ${disciplineState[discipline.name] ? styles.selected : ''
+                                    }`}
                             />
                             <h3
-                                className={`${styles.disciplineName} ${
-                                    disciplineState[discipline.name] ? styles.selected : ''
-                                }`}>
+                                className={`${styles.disciplineName} ${disciplineState[discipline.name] ? styles.selected : ''
+                                    }`}>
                                 {discipline.name}
                             </h3>
                         </div>

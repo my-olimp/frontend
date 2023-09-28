@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { getCity, getOTC, getRegions, getSchools, getNews, login, logout, refreshToken, register, getArticle } from '@/services/AuthService';
+import { getCity, getOTC, getRegions, getSchools, getNews, login, logout, refreshToken, register, getArticle, getDisciplines } from '@/services/AuthService';
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-=======
-import { getCity, getDisciplines, getOTC, getRegions, getSchools, login, logout, refreshToken, register } from '@/services/AuthService';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
->>>>>>> 50864cfe0902d828f34e754098e74bac913d8b51
 import { AxiosError } from 'axios';
 
 
@@ -20,21 +15,15 @@ export type City = {
 }
 
 export type School = {
-<<<<<<< HEAD
   id: number
   name: string,
   region: number,
 }
-=======
-    id: number;
-    name: string;
-    region: number;
-};
+
 export type TDiscipline = {
     id: number;
     name: string;
 };
->>>>>>> 50864cfe0902d828f34e754098e74bac913d8b51
 
 export interface IUser {
   id: number;
@@ -56,12 +45,8 @@ export interface IUser {
 
 
 type AuthState = {
-<<<<<<< HEAD
     regions: Region[] | undefined; 
-=======
-    disciplines: TDiscipline[] | undefined;
-    regions: Region[] | undefined;
->>>>>>> 50864cfe0902d828f34e754098e74bac913d8b51
+    disciplines: any[] | undefined;
     cities: City[] | undefined;
     schools: School[] | undefined;
     news: any[] | undefined;
@@ -214,25 +199,24 @@ export const auth = createSlice({
         builder.addCase(GetRegions.pending, (state) => {
           clear(state, true)
         })
+        builder.addCase(GetDisciplines.pending, (state) => {
+          clear(state, true)
+        })
         builder.addCase(GetCity.pending, (state) => {
           clear(state, true)
         })
         builder.addCase(GetSchools.pending, (state) => {
           clear(state, true)
         })
-<<<<<<< HEAD
         builder.addCase(GetNews.pending, (state) => {
           clear(state, true)
         })
         builder.addCase(GetArticle.pending, (state) => {
           clear(state, true)
         })
-=======
         builder.addCase(GetDisciplines.pending, (state) => {
           clear(state, true);
         });
->>>>>>> 50864cfe0902d828f34e754098e74bac913d8b51
-
 
         builder.addCase(GetOTC.fulfilled, (state, action) => {
           clear(state, false)
@@ -256,7 +240,6 @@ export const auth = createSlice({
           clear(state, false)
           state.user = action.payload
         })
-       
 
         builder.addCase(GetRegions.fulfilled, (state, action) => {
           state.regions = action.payload.data;
@@ -270,18 +253,17 @@ export const auth = createSlice({
           state.schools = action.payload.data;
         })
 
-<<<<<<< HEAD
         builder.addCase(GetNews.fulfilled, (state, action) => {
           state.news = action.payload.data;
         })
 
         builder.addCase(GetArticle.fulfilled, (state, action) => {
           state.news = action.payload.data;
-=======
+        })
+
         builder.addCase(GetDisciplines.fulfilled, (state, action) => {
           clear(state, false)
           state.disciplines = action.payload.data
->>>>>>> 50864cfe0902d828f34e754098e74bac913d8b51
         })
 
         builder.addCase(GetOTC.rejected, (state, action) => {
@@ -302,25 +284,21 @@ export const auth = createSlice({
         builder.addCase(GetRegions.rejected, (state, action) => {
           handleReject(state, action)
         })
+        builder.addCase(GetDisciplines.rejected, (state, action) => {
+          handleReject(state, action)
+        })
         builder.addCase(GetCity.rejected, (state, action) => {
           handleReject(state, action)
         })
         builder.addCase(GetSchools.rejected, (state, action) => {
           handleReject(state, action)
         })
-<<<<<<< HEAD
         builder.addCase(GetNews.rejected, (state, action) => {
           handleReject(state, action)
         })
         builder.addCase(GetArticle.rejected, (state, action) => {
           handleReject(state, action)
         })
-=======
-        
-        builder.addCase(GetDisciplines.rejected, (state, action) => {
-          handleReject(state, action)
-        });
->>>>>>> 50864cfe0902d828f34e754098e74bac913d8b51
     },
 });
 
