@@ -11,7 +11,6 @@ import { CalendarComponent } from '@/features/CalendarComponent';
 import './calendar.scss'
 
 // ICONS
-import AddIcon from '@mui/icons-material/AddBox';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
@@ -37,7 +36,6 @@ const MyCalendar: NextPage = () => {
     ]);
 
     useEffect(() => {
-        // Проверка на наличие поддержки localStorage
         if (typeof window !== 'undefined' && window.localStorage) {
             const obj = localStorage.getItem("events");
             if (obj) setCalendarEvents(JSON.parse(obj));
@@ -59,7 +57,6 @@ const MyCalendar: NextPage = () => {
 
     const createEvent = () => {
         setCreate(false);
-        // Проверка на наличие поддержки localStorage
         if (typeof window !== 'undefined' && window.localStorage) {
             const eventsString = localStorage.getItem('events');
             const events = eventsString ? JSON.parse(eventsString) : [];
