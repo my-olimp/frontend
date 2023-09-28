@@ -32,13 +32,17 @@ const Article: NextPage = () => {
 
     const comments = 12;
     useEffect(() => {
-        localStorage.setItem('selectedItem', JSON.stringify(selecteditem));
-        async function getData() {
-            const newsdata: any = await dispatch(GetArticle(selecteditem.id))
-            setArticle(newsdata.payload.data)
-            setLoading(false)
+        // Проверяем доступность localStorage
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('selectedItem', JSON.stringify(selecteditem));
         }
-        getData()
+
+        async function getData() {
+            const newsdata: any = await dispatch(GetArticle(selecteditem.id));
+            setArticle(newsdata.payload.data);
+            setLoading(false);
+        }
+        getData();
     }, []);
 
     const formatDate = (inputDate: string) => {
