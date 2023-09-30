@@ -15,7 +15,6 @@ import { store } from '@/store/store';
 export default function Home() {
     return (
         <>
-<<<<<<< HEAD
             <NavBar />
             <Cover
                 title="Путеводитель  по миру олимпиад"
@@ -30,24 +29,6 @@ export default function Home() {
             </Layout>
             <ScrollCards />
             <Footer/>
-=======
-                <NavBar />
-                <Cover
-                    title="Путеводитель  по миру олимпиад"
-                    description="Победа в олимпиадах дает возможность получить льготы при поступления в ВУЗ"
-                />
-                <Layout>
-                    <GroupAudItems />
-                    <Tools />
-                    <Content />
-                    <Team />
-                    <TitleScroll />
-                </Layout>
-                <ScrollCards />
-                <Layout>
-                    <LandingFooter />
-                </Layout>
->>>>>>> 68d3933dda60f6520ddc02435025d146e72e6357
         </>
     );
 }
