@@ -94,3 +94,46 @@ body {
 
   }
 }
+
+.df {
+  display: flex;
+
+  // JUSTIFY-CONTENT
+  &.jcc {justify-content: center;}
+  &.jcfe {justify-content: flex-end;}
+  &.jcfs {justify-content: flex-start;}
+  &.jcsa {justify-content: space-around;}
+  &.jcsb {justify-content: space-between;}
+  &.jcse {justify-content: space-evenly;}
+
+  // ALIGN-ITEMS
+  &.aic {align-items: center;}
+  &.aife {align-items: flex-end;}
+  &.aifs {align-items: flex-start;}
+
+  // FLEX-WRAP
+  &.fww {flex-wrap: wrap;}
+  &.fwwr {flex-wrap: wrap-reverse;}
+
+  // FLEX-DIREACTION
+  &.fdc {flex-direction: column;}
+  &.fdcr {flex-direction: column-reverse;}
+  &.fdr {flex-direction: row;}
+  &.fdrr {flex-direction: column-reverse;}
+}
+.tac {text-align: center;}
+.tdn {text-decoration: none;}
+.lsn {list-style: none;}
+.w100 {width: 100%;}
+.w50 {width: 50%;}
+.h100 {height: 100%;}
+.h100vh {min-height: 100vh;}
+.h50 {height: 50%;};
+.cw {color: white;}
+.cp {cursor: pointer;}
+.br1w {border-right: 1px solid white;}
+.dib {display: inline-block;}
+.oh {overflow: hidden;}
+.toe {text-overflow: ellipsis;}
+.wsnw {white-space: nowrap;}
+.posa {position: absolute;}

@@ -1,0 +1,10 @@
+.calendar {
+    width: 50%;
+    margin-right: 40px;
+}
+
+@media (max-width: 900px) {
+    .calendar {
+        width: 100%;
+    }
+}

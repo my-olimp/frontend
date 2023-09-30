@@ -1,5 +1,4 @@
 'use client';
-import { UnathorizedPopup } from '@/features/UnathorizedPopup';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { RefreshTokenComponent } from '@/shared/RefreshTokenComponent';
 import { Footer } from '@/widgets/Footer';
@@ -25,7 +24,6 @@ export default function Layout({ children }) {
             <main style={{ padding: '48px 0' }}>
                 {/* {isOpen && <UnathorizedPopup isOpen={isOpen}/>} */}
                 {children}
-            </main>
             <Footer />
         </>
     );

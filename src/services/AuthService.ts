@@ -101,3 +101,21 @@ export async function getDisciplines({ rejectWithValue }) {
         return rejectWithValue(error);
     }
 }
+
+export async function getNews(id: number, { rejectWithValue }) {
+    try {
+        return await $api.get(`library/article/search/${id}/`);
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error);
+    }
+}
+
+export async function getArticle(id: number, { rejectWithValue }) {
+    try {
+        return await $api.get(`library/article/${id}/`);
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error);
+    }
+}
