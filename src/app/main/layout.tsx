@@ -1,5 +1,4 @@
 'use client';
-import { UnathorizedPopup } from '@/features/UnathorizedPopup';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { RefreshTokenComponent } from '@/shared/RefreshTokenComponent';
 import { Footer } from '@/widgets/Footer';

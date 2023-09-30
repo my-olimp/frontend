@@ -1,5 +1,5 @@
-import { getCity, getDisciplines, getOTC, getRegions, getSchools, login, logout, refreshToken, register } from '@/services/AuthService';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getCity, getOTC, getRegions, getSchools, getNews, login, logout, refreshToken, register, getArticle, getDisciplines } from '@/services/AuthService';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 
@@ -15,14 +15,10 @@ export type City = {
 }
 
 export type School = {
-    id: number;
-    name: string;
-    region: number;
-};
-export type TDiscipline = {
-    id: number;
-    name: string;
-};
+  id: number
+  name: string,
+  region: number,
+}
 
 export interface IUser {
   id: number;
@@ -44,10 +40,10 @@ export interface IUser {
 
 
 type AuthState = {
-    disciplines: TDiscipline[] | undefined;
-    regions: Region[] | undefined;
+    regions: Region[] | undefined; 
     cities: City[] | undefined;
     schools: School[] | undefined;
+    news: any[] | undefined;
     email: string | undefined;
     error: string | undefined;
     errorCode: string | undefined;
@@ -77,6 +73,8 @@ export interface IRegisterData {
     password: string | undefined;
     code: number | undefined;
 }
+
+export const setSelectedItem = createAction('auth/setSelectedItem');
 
 export const GetOTC = createAsyncThunk(
     'auth/getRedemptionCode',
@@ -134,6 +132,20 @@ export const GetSchools = createAsyncThunk(
   },
 );
 
+export const GetNews = createAsyncThunk(
+  'auth/GetNews',
+  async (id: number, { rejectWithValue }) => {
+      return await getNews(id, { rejectWithValue });
+  },
+);
+
+export const GetArticle = createAsyncThunk(
+  'auth/GetArticle',
+  async (id: number, { rejectWithValue }) => {
+      return await getArticle(id, { rejectWithValue });
+  },
+);
+
 
 export const auth = createSlice({
     name: 'auth',
@@ -141,7 +153,10 @@ export const auth = createSlice({
     reducers: {
       setUser: (state, action) => {
         state.user = action.payload
-      }
+      },
+      setSelectedItem: (state: any, action: any) => {
+        state.selectedItem = action.payload;
+      },
     },
     extraReducers: (builder) => {
         const clear = (state, loading) => {
@@ -178,15 +193,21 @@ export const auth = createSlice({
         builder.addCase(GetRegions.pending, (state) => {
           clear(state, true)
         })
+        builder.addCase(GetDisciplines.pending, (state) => {
+          clear(state, true)
+        })
         builder.addCase(GetCity.pending, (state) => {
           clear(state, true)
         })
         builder.addCase(GetSchools.pending, (state) => {
           clear(state, true)
         })
-        builder.addCase(GetDisciplines.pending, (state) => {
-          clear(state, true);
-        });
+        builder.addCase(GetNews.pending, (state) => {
+          clear(state, true)
+        })
+        builder.addCase(GetArticle.pending, (state) => {
+          clear(state, true)
+        })
 
 
         builder.addCase(GetOTC.fulfilled, (state, action) => {
@@ -217,6 +238,10 @@ export const auth = createSlice({
           state.regions = action.payload.data;
         })
 
+        builder.addCase(GetDisciplines.fulfilled, (state, action) => {
+          state.regions = action.payload.data;
+        })
+
         builder.addCase(GetCity.fulfilled, (state, action) => {
           state.cities = action.payload.data;
         })
@@ -225,9 +250,12 @@ export const auth = createSlice({
           state.schools = action.payload.data;
         })
 
-        builder.addCase(GetDisciplines.fulfilled, (state, action) => {
-          clear(state, false)
-          state.disciplines = action.payload.data
+        builder.addCase(GetNews.fulfilled, (state, action) => {
+          state.news = action.payload.data;
+        })
+
+        builder.addCase(GetArticle.fulfilled, (state, action) => {
+          state.news = action.payload.data;
         })
 
         builder.addCase(GetOTC.rejected, (state, action) => {
@@ -248,16 +276,21 @@ export const auth = createSlice({
         builder.addCase(GetRegions.rejected, (state, action) => {
           handleReject(state, action)
         })
+        builder.addCase(GetDisciplines.rejected, (state, action) => {
+          handleReject(state, action)
+        })
         builder.addCase(GetCity.rejected, (state, action) => {
           handleReject(state, action)
         })
         builder.addCase(GetSchools.rejected, (state, action) => {
           handleReject(state, action)
         })
-        
-        builder.addCase(GetDisciplines.rejected, (state, action) => {
+        builder.addCase(GetNews.rejected, (state, action) => {
           handleReject(state, action)
-        });
+        })
+        builder.addCase(GetArticle.rejected, (state, action) => {
+          handleReject(state, action)
+        })
     },
 });
 
