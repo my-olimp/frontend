@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
-import './ui.scss';
 import Image from 'next/image';
+import { useState } from 'react';
 import firstImg from './../../../../public/landing/firstImage.svg';
 import secondImg from './../../../../public/landing/secondImage.svg';
 import thirdImg from './../../../../public/landing/thirdImage.svg';
+import './ui.scss';
 
 // Ужасный код, его надо переделать
 
@@ -22,7 +22,7 @@ export const Tools = () => {
 
     return (
         <>
-            <div className="block">
+            <div className="block" id="landing__advantages">
                 <div className="block__info">
                     <div className="main__title">
                         Всё для максимальной
