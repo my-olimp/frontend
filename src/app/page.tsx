@@ -27,9 +27,7 @@ export default function Home() {
                 <TitleScroll />
             </Layout>
             <ScrollCards />
-            <Layout>
-                <LandingFooter />
-            </Layout>
+            <Footer/>
         </>
     );
 }
