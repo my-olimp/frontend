@@ -223,6 +223,9 @@ const MyCalendar: NextPage = () => {
                     </div>
                 </div>
             ) : <></>}
+            <div className={`${styles.mobileadd} df jcc aic`} onClick={() => setCreate(true)}>
+                <Image src={PlusIcon} alt='icon' />
+            </div>
         </div>
     );
 };
