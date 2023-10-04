@@ -1,0 +1,45 @@
+.task {
+    padding-left: 27px;
+    position: relative;
+    margin-bottom: 46px;
+    &::before {
+        content: '';
+        top: 0;
+        left: 0;
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 4px;
+        background-color: #3579F8;
+        
+    }
+    &__name {
+        font-family: 'SF_Medium';
+        font-size: 24px;
+        letter-spacing: 0.48px;
+        padding-bottom: 16px;
+        span {
+            font-family: 'SF_Medium';
+            font-size: 24px;
+            font-style: italic;
+            letter-spacing: 0.48px;
+        }
+    }
+    &__solutionName {
+        font-family: 'SF_Medium';
+        font-size: 24px;
+        letter-spacing: 0.48px;
+        padding-bottom: 10px;
+    }
+    &__solution {
+        font-family: 'SF_Regular';
+        font-size: 24px;
+        letter-spacing: 0.48px;
+        padding-bottom: 10px;
+    }
+    &__answer {
+        font-family: 'SF_Medium';
+        font-size: 24px;
+        letter-spacing: 0.48px;
+    }
+}

@@ -1,0 +1,122 @@
+
+.wrapper {
+
+}
+
+.header {
+    background: #649AFF;
+    
+    &__container{
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 21px 23px;
+    }
+    
+    &__groups {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    &__group {
+        display: flex;
+        align-items: center;
+        &_2{
+            gap: 6px;
+        }
+        &_3{
+            gap: 16px;
+        }
+    }
+    
+    &__imageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 5px;
+        
+        &_question {
+            background: #9CBFFF;
+            padding: 6px;
+        }
+
+        &_star {
+            background: #9CBFFF;
+            padding: 6px;
+        }
+        
+        &_book {
+            background: #286CEA;
+            padding: 6px;
+        }
+    }
+    
+    &__image {
+        cursor: pointer;
+        
+    }
+
+    &__avatarContainer {
+        cursor: pointer;
+    }
+}
+
+.mainImageContainer {
+    width: 100%;
+    
+    .mainImage {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 10px 0 10px;
+}
+
+.title {
+    font-family: 'SF_Medium';
+    font-size: 48px;
+    letter-spacing: 0.96px;
+    padding-bottom: 16px;
+}
+
+.autor {
+    padding-bottom: 16px;
+    font-family: "SF_Regular";
+    font-size: 24px;
+    letter-spacing: 0.48px;
+}
+
+.blockTags {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 36px;
+}
+
+.description {
+    font-family: 'SF_Regular';
+    font-size: 24px;
+    letter-spacing: 0.48px;
+    padding-bottom: 10px;
+}
+
+.example {
+
+    &__title {
+        font-family: 'SF_Bold';
+        font-size: 26px;
+        letter-spacing: 0.52px;
+        padding-bottom: 15px;
+    }
+
+    &__description {
+        color: #000;
+        font-family: "SF_Regular";
+        font-size: 24px;
+        letter-spacing: 0.48px;
+        padding-bottom: 13px;
+    }
+}
