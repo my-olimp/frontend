@@ -1,0 +1,60 @@
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+
+
+    &_question {
+        background: #9CBFFF;
+        padding: 6px;
+        @media (max-width: 540px) {
+            padding: 3px;
+        }
+        @media (max-width: 420px) {
+            padding: 2px;
+        }
+    }
+
+    &_star {
+        background: #9CBFFF;
+        padding: 6px;
+        @media (max-width: 540px) {
+            padding: 3px;
+        }
+        @media (max-width: 420px) {
+            padding: 2px;
+        }
+    }
+
+    &_book {
+        background: #286CEA;
+        padding: 6px;
+        @media (max-width: 540px) {
+            padding: 3px;
+        }
+        @media (max-width: 420px) {
+            padding: 2px;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    
+
+    .image {
+        @media (max-width: 900px) {
+            width: 20px;
+            height: 20px;
+        }
+        @media (max-width: 540px) {
+            width: 18px;
+            height: 18px;
+        }
+        @media (max-width: 420px) {
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
