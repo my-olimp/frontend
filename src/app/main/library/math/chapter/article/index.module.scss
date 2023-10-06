@@ -169,13 +169,13 @@
     position: absolute;
     cursor: pointer;
     top: 50%;
-    left: 10vw;
+    left: calc((100vw - 980px) / 4 - 15px);
     transform: rotate(180deg);
     transition: all 0.3s ease 0s;
     &:hover {
         transform: rotate(180deg) scale(1.1);
     }
-    @media (max-width: 1300px){
+    @media (max-width: 1100px){
         display: none;
     }
 }
@@ -184,12 +184,12 @@
     position: absolute;
     cursor: pointer;
     top: 50%;
-    right: 10vw;
+    right: calc((100vw - 980px) / 4 - 15px);
     transition: all 0.3s ease 0s;
     &:hover {
         transform: scale(1.1);
     }
-    @media (max-width: 1300px){
+    @media (max-width: 1100px){
         display: none;
     }
 }
