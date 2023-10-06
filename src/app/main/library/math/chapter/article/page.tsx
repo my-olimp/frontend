@@ -24,7 +24,7 @@ const headerIconsArray = ['book1', 'question1', 'question2', 'book2', 'question3
 
 const MathArticle: FC<PropsMathArticle> = ({ }) => {
     const [openedPage, setOpenedPage] = useState<string>('book1')
-    const [isCorrectAll, setIsCorrectAll] = useState<Array<Boolean>>([])
+
     const handleOnClickArrow = (position: string) => {
         if(position === 'left') {
             setOpenedPage(prev => headerIconsArray[(headerIconsArray.findIndex((item) => item === prev) - 1) == -1 ? (headerIconsArray.length - 1) : (headerIconsArray.findIndex((item) => item === prev) - 1)])
@@ -45,16 +45,16 @@ const MathArticle: FC<PropsMathArticle> = ({ }) => {
                             </Link>
                         </div>
                         <div className={`${styles.header__group} ${styles.header__group_2}`}>
-                            <HeaderIcon name='book' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book1'} isCorrectAll={isCorrectAll} />
-                            <HeaderIcon name='question' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question1'}  isCorrectAll={isCorrectAll}/>
-                            <HeaderIcon name='question' numberPage={2} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question2'} isCorrectAll={isCorrectAll}/>
-                            <HeaderIcon name='book' numberPage={2} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book2' } isCorrectAll={isCorrectAll}/>
-                            <HeaderIcon name='question' numberPage={3} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question3' } isCorrectAll={isCorrectAll}/>
-                            <HeaderIcon name='question' numberPage={4} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question4'} isCorrectAll={isCorrectAll}/>
-                            <HeaderIcon name='book' numberPage={3} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book3'} isCorrectAll={isCorrectAll}/>
-                            <HeaderIcon name='question' numberPage={5} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question5' } isCorrectAll={isCorrectAll}/>
-                            <HeaderIcon name='question' numberPage={6} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question6' } isCorrectAll={isCorrectAll}/>
-                            <HeaderIcon name='star' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'star1' } isCorrectAll={isCorrectAll}/>
+                            <HeaderIcon name='book' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book1'}  />
+                            <HeaderIcon name='question' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question1'}  />
+                            <HeaderIcon name='question' numberPage={2} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question2'} />
+                            <HeaderIcon name='book' numberPage={2} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book2' } />
+                            <HeaderIcon name='question' numberPage={3} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question3' }/>
+                            <HeaderIcon name='question' numberPage={4} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question4'} />
+                            <HeaderIcon name='book' numberPage={3} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book3'}/>
+                            <HeaderIcon name='question' numberPage={5} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question5' } />
+                            <HeaderIcon name='question' numberPage={6} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question6' }/>
+                            <HeaderIcon name='star' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'star1' }/>
                         </div>
                         <div className={`${styles.header__group} ${styles.header__group_3}`}>
                             <div className={styles.header__imageContainer}>
@@ -123,8 +123,8 @@ const MathArticle: FC<PropsMathArticle> = ({ }) => {
                         <div className={styles.container}>
                             <div className={styles.test}>
                                 <p className={styles.test__title}>Уравнения высших порядков</p>
-                                <TaskNoExample number={1} name={'Решите уравнение: x3 + 3x2 − 5x − 15 = 0;'} subName={'В ответ введите меньший корень'} solution={'Какое-то решение'} answer={'-5'} placeholder={'Число или дробь'} setIsCorrectAll={setIsCorrectAll} />
-                                <TaskNoExample number={2} name={'Решите уравнение: x3 + 3x2 − 5x − 15 = 0;'} subName={'В ответ введите меньший корень'} solution={'Какое-то решение'} answer={'-5'} placeholder={'Число или дробь'} setIsCorrectAll={setIsCorrectAll}/>
+                                <TaskNoExample number={1} name={'Решите уравнение: x3 + 3x2 − 5x − 15 = 0;'} subName={'В ответ введите меньший корень'} solution={'Какое-то решение'} answer={'-5'} placeholder={'Число или дробь'}/>
+                                <TaskNoExample number={2} name={'Решите уравнение: x3 + 3x2 − 5x − 15 = 0;'} subName={'В ответ введите меньший корень'} solution={'Какое-то решение'} answer={'-5'} placeholder={'Число или дробь'}/>
                             </div>
                         </div>
                     </QuestionPage>}
