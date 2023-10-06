@@ -8,9 +8,10 @@ interface PropsTaskNoExample {
     answer: string;
     solution: string;
     placeholder: string;
+    setIsCorrectAll: Function;
 }
 
-export const TaskNoExample: FC<PropsTaskNoExample> = ({ number, name, subName, answer, solution, placeholder }) => {
+export const TaskNoExample: FC<PropsTaskNoExample> = ({ number, name, subName, answer, solution, placeholder, setIsCorrectAll }) => {
     const [input, setInput] = useState<string>('')
     const [isError, setIsError] = useState<boolean>(false)
     const [isCorrect, setIsCorrect] = useState<boolean>(false)
@@ -19,11 +20,13 @@ export const TaskNoExample: FC<PropsTaskNoExample> = ({ number, name, subName, a
     const checkForAnswer = () => {
         if(input == answer) {
             setIsCorrect(true)
+            setIsCorrectAll(prev => {prev[number - 1] = true; return prev})
             setIsError(false)
             return
         } 
         setIsError(true)
         setIsCorrect(false)
+        setIsCorrectAll(prev => {prev[number - 1] = false; return prev})
     }
 
     return (
