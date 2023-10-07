@@ -24,7 +24,8 @@ const headerIconsArray = ['book1', 'question1', 'question2', 'book2', 'question3
 
 const MathArticle: FC<PropsMathArticle> = ({ }) => {
     const [openedPage, setOpenedPage] = useState<string>('book1')
-
+    const [isCorrectAll, setIsCorrectAll] = useState<Array<Array<Boolean>>>([[false, false], [false, false], [false, false], [false, false], [false, false], [false, false]]) // Надо создать сколько массивов, сколько элементов HeaderIcon на странице и в эти массивы надо ввести false столько раз, сколько элементов TaskExample
+    const [updatePage, setUpdatePage] = useState<Boolean>(true) // просто состояние чтобы при его изменении перередеривать компонент HeaderIcon
     const handleOnClickArrow = (position: string) => {
         if(position === 'left') {
             setOpenedPage(prev => headerIconsArray[(headerIconsArray.findIndex((item) => item === prev) - 1) == -1 ? (headerIconsArray.length - 1) : (headerIconsArray.findIndex((item) => item === prev) - 1)])
@@ -45,16 +46,16 @@ const MathArticle: FC<PropsMathArticle> = ({ }) => {
                             </Link>
                         </div>
                         <div className={`${styles.header__group} ${styles.header__group_2}`}>
-                            <HeaderIcon name='book' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book1'}  />
-                            <HeaderIcon name='question' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question1'}  />
-                            <HeaderIcon name='question' numberPage={2} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question2'} />
-                            <HeaderIcon name='book' numberPage={2} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book2' } />
-                            <HeaderIcon name='question' numberPage={3} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question3' }/>
-                            <HeaderIcon name='question' numberPage={4} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question4'} />
-                            <HeaderIcon name='book' numberPage={3} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book3'}/>
-                            <HeaderIcon name='question' numberPage={5} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question5' } />
-                            <HeaderIcon name='question' numberPage={6} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question6' }/>
-                            <HeaderIcon name='star' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'star1' }/>
+                            <HeaderIcon name='book' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book1'} isCorrectAll={isCorrectAll}  updatePage={updatePage}/>
+                            <HeaderIcon name='question' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question1'}  isCorrectAll={isCorrectAll} updatePage={updatePage}/>
+                            <HeaderIcon name='question' numberPage={2} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question2'} isCorrectAll={isCorrectAll} updatePage={updatePage}/>
+                            <HeaderIcon name='book' numberPage={2} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book2' } isCorrectAll={isCorrectAll} updatePage={updatePage}/>
+                            <HeaderIcon name='question' numberPage={3} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question3' } isCorrectAll={isCorrectAll} updatePage={updatePage}/>
+                            <HeaderIcon name='question' numberPage={4} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question4'} isCorrectAll={isCorrectAll} updatePage={updatePage}/>
+                            <HeaderIcon name='book' numberPage={3} setOpenedPage={setOpenedPage} isOpen={openedPage == 'book3'} isCorrectAll={isCorrectAll} updatePage={updatePage}/>
+                            <HeaderIcon name='question' numberPage={5} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question5' } isCorrectAll={isCorrectAll} updatePage={updatePage}/>
+                            <HeaderIcon name='question' numberPage={6} setOpenedPage={setOpenedPage} isOpen={openedPage == 'question6' } isCorrectAll={isCorrectAll} updatePage={updatePage}/>
+                            <HeaderIcon name='star' numberPage={1} setOpenedPage={setOpenedPage} isOpen={openedPage == 'star1' } isCorrectAll={isCorrectAll} updatePage={updatePage}/>
                         </div>
                         <div className={`${styles.header__group} ${styles.header__group_3}`}>
                             <div className={styles.header__imageContainer}>
@@ -123,8 +124,8 @@ const MathArticle: FC<PropsMathArticle> = ({ }) => {
                         <div className={styles.container}>
                             <div className={styles.test}>
                                 <p className={styles.test__title}>Уравнения высших порядков</p>
-                                <TaskNoExample number={1} name={'Решите уравнение: x3 + 3x2 − 5x − 15 = 0;'} subName={'В ответ введите меньший корень'} solution={'Какое-то решение'} answer={'-5'} placeholder={'Число или дробь'}/>
-                                <TaskNoExample number={2} name={'Решите уравнение: x3 + 3x2 − 5x − 15 = 0;'} subName={'В ответ введите меньший корень'} solution={'Какое-то решение'} answer={'-5'} placeholder={'Число или дробь'}/>
+                                <TaskNoExample numberPage={1} number={1} name={'Решите уравнение: x3 + 3x2 − 5x − 15 = 0;'} subName={'В ответ введите меньший корень'} solution={'Какое-то решение'} answer={'-5'} placeholder={'Число или дробь'} setIsCorrectAll={setIsCorrectAll} setUpdatePage={setUpdatePage}/>
+                                <TaskNoExample numberPage={1} number={2} name={'Решите уравнение: x3 + 3x2 − 5x − 15 = 0;'} subName={'В ответ введите меньший корень'} solution={'Какое-то решение'} answer={'-5'} placeholder={'Число или дробь'} setIsCorrectAll={setIsCorrectAll} setUpdatePage={setUpdatePage}/>
                             </div>
                         </div>
                     </QuestionPage>}

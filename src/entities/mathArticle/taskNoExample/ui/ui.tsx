@@ -2,15 +2,18 @@ import { FC, useState } from 'react';
 import styles from './ui.module.scss';
 
 interface PropsTaskNoExample {
+    numberPage: number;
     number: number;
     name: string;
     subName: string;
     answer: string;
     solution: string;
     placeholder: string;
+    setIsCorrectAll: Function;
+    setUpdatePage: Function;
 }
 
-export const TaskNoExample: FC<PropsTaskNoExample> = ({ number, name, subName, answer, solution, placeholder }) => {
+export const TaskNoExample: FC<PropsTaskNoExample> = ({ numberPage, number, name, subName, answer, solution, placeholder, setIsCorrectAll, setUpdatePage }) => {
     const [input, setInput] = useState<string>('')
     const [isError, setIsError] = useState<boolean>(false)
     const [isCorrect, setIsCorrect] = useState<boolean>(false)
@@ -19,11 +22,15 @@ export const TaskNoExample: FC<PropsTaskNoExample> = ({ number, name, subName, a
     const checkForAnswer = () => {
         if(input == answer) {
             setIsCorrect(true)
+            setIsCorrectAll(prev => {prev[numberPage - 1][number - 1] = true; return prev})
+            setUpdatePage(prev => !prev)
             setIsError(false)
             return
         } 
         setIsError(true)
         setIsCorrect(false)
+        setIsCorrectAll(prev => {prev[numberPage - 1][number - 1] = false; return prev})
+        setUpdatePage(prev => !prev)
     }
 
     return (
