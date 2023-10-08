@@ -7,6 +7,7 @@
     },
     "plugins": ["@babel"],
     "rules": {
+        "block-spacing": "off",
         "max-len": "off",
         "no-undef": "off",
         "object-curly-spacing": "off",

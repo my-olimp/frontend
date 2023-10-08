@@ -193,21 +193,6 @@
     }
 }
 
-.mobileadd {
-    position: absolute;
-    bottom: 13%;
-    right: 5%;
-    z-index: 19;
-    width: 50px;
-    height: 50px;
-    border-radius: 18px;
-    background-color: #B2CDFF;
-    
-    img {
-        transform: scale(1.5);
-    }
-}
-
 @media (max-width: 900px) {
     .calendar {
         padding: 0px;

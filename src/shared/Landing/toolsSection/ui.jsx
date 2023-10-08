@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import firstImg from './../../../../public/landing/firstImage.svg';
+import firstImg from './../../../../public/landing/firstImage.webp';
 import secondImg from './../../../../public/landing/secondImage.svg';
 import thirdImg from './../../../../public/landing/thirdImage.svg';
 import './ui.scss';
@@ -68,7 +68,7 @@ export const Tools = () => {
                     </div>
                 </div>
                 <Image
-                    className={`image ${activeBtn === '3' ? 'activeImage' : ''}`}
+                    className={`image ${activeBtn === '3' ? 'activeImage' : ''} imageWebp`}
                     src={firstImg}
                     alt="Новости"
                 />
