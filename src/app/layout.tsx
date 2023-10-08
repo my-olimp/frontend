@@ -2,8 +2,8 @@
 import { ErrorAlert } from '@/features/ErrorAlert';
 import { ServiceWorker } from '@/shared/ServiceWorker';
 import { ReduxProvider } from '@/store/provider';
-import { Metadata } from 'next';
 import { ReactNode } from 'react';
+import { Metadata } from 'next';
 import './globals.scss';
 import Providers from './providers';
 
@@ -20,8 +20,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <body>
                 <ServiceWorker />
                 <ReduxProvider>
-                    <ErrorAlert />
-                    <Providers>{children}</Providers>
+                    <Providers>{children}
+                        <ErrorAlert />
+                    </Providers>
                 </ReduxProvider>
             </body>
         </html>

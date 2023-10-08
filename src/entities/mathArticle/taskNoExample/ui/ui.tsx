@@ -20,16 +20,16 @@ export const TaskNoExample: FC<PropsTaskNoExample> = ({ numberPage, number, name
     const [isSolution, setIsSolution] = useState<boolean>(false)
 
     const checkForAnswer = () => {
-        if(input == answer) {
+        if (input == answer) {
             setIsCorrect(true)
-            setIsCorrectAll(prev => {prev[numberPage - 1][number - 1] = true; return prev})
+            setIsCorrectAll(prev => { prev[numberPage - 1][number - 1] = true; return prev })
             setUpdatePage(prev => !prev)
             setIsError(false)
             return
-        } 
+        }
         setIsError(true)
         setIsCorrect(false)
-        setIsCorrectAll(prev => {prev[numberPage - 1][number - 1] = false; return prev})
+        setIsCorrectAll(prev => { prev[numberPage - 1][number - 1] = false; return prev })
         setUpdatePage(prev => !prev)
     }
 
@@ -38,7 +38,7 @@ export const TaskNoExample: FC<PropsTaskNoExample> = ({ numberPage, number, name
             <h3 className={styles.task__header}>Задание {number}</h3>
             <p className={styles.task__name}>{name}</p>
             <p className={styles.task__subName}>{subName}</p>
-            <input style={{marginBottom: `${!isError ? '28px': 0 }`, background: `${isCorrect ? '#EEFFEE': '#FFF'}` }} placeholder={placeholder} className={styles.task__input} value={input} type="text" onChange={(e) => setInput(e.target.value)} />
+            <input style={{ marginBottom: `${!isError ? '28px' : 0}`, background: `${isCorrect ? '#EEFFEE' : '#FFF'}` }} placeholder={placeholder} className={styles.task__input} value={input} type="text" onChange={(e) => setInput(e.target.value)} />
             {isError && <p className={styles.task__error}>Неверно, попробуйте снова</p>}
             <div className={styles.task__buttons}>
                 <button onClick={() => checkForAnswer()} disabled={!input} className={`${styles.task__button} ${styles.task__button_1}`}>Ответить</button>

@@ -10,6 +10,8 @@ import { ScrollCards } from '@/widgets/Landing/scrollCards/ui';
 import { Team } from '@/widgets/Landing/team/ui';
 import './fonts.scss';
 
+
+
 export default function Home() {
     return (
         <>
