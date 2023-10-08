@@ -5,10 +5,6 @@ const isDev = process.env.NODE_ENV !== 'production';
 const withPWA = withPWAInit({
     dest: 'public',
     disable: isDev,
-    fallbacks: {
-        image: '/public/materials/offlinePage.svg',
-        document: '/src/app/_offline.tsx',  // if you want to fallback to a custom    page other than /_offline
-    },
     runtimeCaching: [
         {
             urlPattern: /\.(?:png|jpg|jpeg|gif|svg|webp)$/,
