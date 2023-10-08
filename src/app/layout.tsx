@@ -1,4 +1,3 @@
-'use client'
 import { ErrorAlert } from '@/features/ErrorAlert';
 import { ServiceWorker } from '@/shared/ServiceWorker';
 import { ReduxProvider } from '@/store/provider';
@@ -20,8 +19,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <body>
                 <ServiceWorker />
                 <ReduxProvider>
-                    <Providers>{children}
+                    <Providers>
                         <ErrorAlert />
+                        {children}
                     </Providers>
                 </ReduxProvider>
             </body>

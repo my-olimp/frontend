@@ -2,7 +2,7 @@ import { OfflinePage } from '@/widgets/OfflinePage';
 import { Header } from '@/widgets/header';
 import './fonts.scss';
 
-export default function Home() {
+const Fallback = () => {
     return (
         <>
             <Header />
@@ -10,3 +10,5 @@ export default function Home() {
         </>
     );
 }
+
+export default Fallback;
