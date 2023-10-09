@@ -8,7 +8,7 @@ import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { EditAvatar } from '@/widgets/EditAvatar';
-import { ProfileAchievements } from '@/widgets/ProfileAvatar copy';
+import { ProfileAchievements } from '@/widgets/ProfileAchievements';
 
 const Profile: NextPage = () => {
     const [editMode, setMode] = useState<'' | 'personal' | 'work' | 'avatar'>('');
