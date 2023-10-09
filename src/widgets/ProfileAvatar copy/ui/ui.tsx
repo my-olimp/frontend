@@ -35,7 +35,7 @@ export const ProfileAchievements: FC<props> = ({ }) => {
             </h4>
             <ul className={styles.achievements}>
                 {arrayAchievements && arrayAchievements.map((el) => 
-                    <Achievement image={el.image} title={el.title} text={el.text}/>
+                    <Achievement image={el.image} title={el.title} text={el.text} key={Math.random()}/>
                 )}
             </ul>
         </div>

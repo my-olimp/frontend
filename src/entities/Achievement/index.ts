@@ -1,1 +1,1 @@
-export { Bell } from './ui/ui';
+export { Achievement } from './ui/ui';
