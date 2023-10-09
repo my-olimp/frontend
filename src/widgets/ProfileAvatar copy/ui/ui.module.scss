@@ -1,0 +1,30 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    width: 251px;
+    border-radius: 30px;
+    gap: 12px;
+    padding: 16px;
+    background-color: #ffffff;
+}
+
+.title {
+    color: #222;
+    font-family: "SF_Regular";
+    font-size: 28px;
+    letter-spacing: 0.56px;
+    padding-left: 5px;
+}
+
+@media (max-width: 1000px) {
+    .wrap {
+        width: auto;
+        margin-bottom: 20px;
+    }
+}
+
+.achievements {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

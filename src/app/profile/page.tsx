@@ -8,6 +8,7 @@ import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { EditAvatar } from '@/widgets/EditAvatar';
+import { ProfileAchievements } from '@/widgets/ProfileAvatar copy';
 
 const Profile: NextPage = () => {
     const [editMode, setMode] = useState<'' | 'personal' | 'work' | 'avatar'>('');
@@ -21,7 +22,10 @@ const Profile: NextPage = () => {
 
     return (
         <div className={styles.wrap}>
-            <ProfileAvatar setMode={setMode} />
+            <div className={styles.avatarAndAchievements}>
+                <ProfileAvatar setMode={setMode} />
+                <ProfileAchievements />
+            </div>
             <div className={styles.personalData}>
                 <PersonalInfoBlock setMode={setMode} />
                 <WorkBlock setMode={setMode} />

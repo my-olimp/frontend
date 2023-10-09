@@ -6,6 +6,12 @@
     gap: 36px;
 }
 
+.avatarAndAchievements {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .infoWrap {
     display: flex;
     flex-direction: column;
