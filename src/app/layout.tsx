@@ -18,12 +18,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <html lang="ru">
             <body>
                 <ServiceWorker />
-                <ReduxProvider>
-                    <Providers>
+                <Providers>
+                    <ReduxProvider>
                         <ErrorAlert />
                         {children}
-                    </Providers>
-                </ReduxProvider>
+                    </ReduxProvider>
+                </Providers>
             </body>
         </html>
     );
