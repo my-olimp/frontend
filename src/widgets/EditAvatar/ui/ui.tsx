@@ -38,8 +38,6 @@ export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
        
     };
 
-
-
     const {
         handleSubmit,
     } = useForm<Inputs>();
