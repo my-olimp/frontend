@@ -57,9 +57,9 @@ export const AuthButton: FC<props> = ({
         .with('fit-content', () => '100%')
         .otherwise(() => '0px');
     const buttonBackground = match(type)
-        .with('auth', () => (!isDisable ? '#3D3D3D' : '#F2F2F2'))
-        .with('register', () => (!isDisable ? '#3D3D3D' : '#F2F2F2'))
-        .with('next', () => (!isDisable ? '#3579F8' : '#F2F2F2'))
+        .with('auth', () => (!isDisable ? '#222222' : '#F2F2F2'))
+        .with('register', () => (!isDisable ? '#222222' : '#F2F2F2'))
+        .with('next', () => (!isDisable ? '#222222' : '#F2F2F2'))
         .otherwise(() => 'transparent');
 
     const buttonColor = match(use)
