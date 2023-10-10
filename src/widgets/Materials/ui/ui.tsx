@@ -9,6 +9,7 @@ interface props {
     materialList: IMaterial[];
     title: string;
     libMode: boolean;
+    urlprop?: string;
 }
 
 export interface IMaterial {
@@ -25,7 +26,7 @@ export interface ITag {
     text: string;
 }
 
-export const Materials: FC<props> = ({ materialList, title, libMode }) => {
+export const Materials: FC<props> = ({ materialList, title, libMode, urlprop }) => {
     const [isMobile, setMobile] = useState(false);
     const [url, setUrl] = useState('');
     const scrollContainerRef = useRef(null);
@@ -66,7 +67,7 @@ export const Materials: FC<props> = ({ materialList, title, libMode }) => {
                 ref={scrollContainerRef}
             >
                 {materialList.map((material) => {
-                    return <MaterialCard key={material.id} material={material} />;
+                    return <MaterialCard key={material.id} material={material} urlprop={urlprop} />;
                 })}
             </div>
             {!isMobile &&

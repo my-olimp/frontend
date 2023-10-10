@@ -27,10 +27,9 @@ const Article: NextPage = () => {
     const [isDisabled, setIsDisabled] = useState(true);
     const [comment, setComment] = useState('');
     const [selecteditem, setSelecteditem]: any[] = useState([]);
-
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
-
     const comments = 12;
+
     useEffect(() => {
         const selected: any = localStorage.getItem("selectedItem") || null;
         setSelecteditem(JSON.parse(selected))
@@ -101,7 +100,7 @@ const Article: NextPage = () => {
                     {loading ? (
                         <>
                             {Array(3).fill('').map((_, i) => (
-                                <div className={styles.textblockskeleton} key={i} style={{marginBottom: '30px'}}>
+                                <div className={styles.textblockskeleton} key={i} style={{ marginBottom: '30px' }}>
                                     {Array(4).fill('').map((_, i) => <Skeleton style={{ width: '100%' }} key={i} />)}
                                     <Skeleton style={{ width: `30%` }} />
                                 </div>
@@ -111,7 +110,8 @@ const Article: NextPage = () => {
                         <>
                             {article?.blocks?.map((item: any) => (
                                 <div className={styles.text} key={nanoid(6)}>
-                                    <p>{`${item.text} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, molestiae sit. Sed, quae. Sunt ipsam doloribus sapiente rerum laboriosam aspernatur maxime nihil enim ipsa iste temporibus qui, vitae quos vero.`}</p>
+                                    {/* <p>{`${item.text} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi, molestiae sit. Sed, quae. Sunt ipsam doloribus sapiente rerum laboriosam aspernatur maxime nihil enim ipsa iste temporibus qui, vitae quos vero.`}</p> */}
+                                    $$F = ma$$
                                 </div>
                             ))}
                         </>

@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { NextPage } from 'next';
 import styles from './index.module.scss'
@@ -5,7 +6,7 @@ import { IMaterial, Materials } from '@/widgets/Materials';
 import Link from 'next/link';
 import materialIcon from '../../../../../public/materials/materialIcon.svg';
 
-const MyMath: NextPage = () => {
+const MyItems: NextPage = () => {
     const materialList: IMaterial[] = [
         {
             id: 1,
@@ -89,7 +90,12 @@ const MyMath: NextPage = () => {
                     <span>Разделы</span>
                     <div className={styles.items}>
                         {sectionsArray.map((subject, index) => (
-                            <Link href={subject.url} key={index} className={styles.item}>
+                            <Link
+                                href={'/main/library/items/chapter'}
+                                key={index}
+                                className={styles.item}
+                                onClick={() => localStorage.setItem("selecteditem2", subject.text)}
+                            >
                                 {subject.text}
                             </Link>
                         ))}
@@ -100,4 +106,4 @@ const MyMath: NextPage = () => {
     )
 }
 
-export default MyMath;
+export default MyItems;
