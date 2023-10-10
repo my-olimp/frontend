@@ -20,7 +20,7 @@ export default function Auth() {
     return (
         <div className={styles.wrap}>
             <AdditionalDataForm />
-            <UnathorizedPopup isOpen={isOpen} setOpen={setIsOpen} />
+            {/* <UnathorizedPopup isOpen={isOpen} setOpen={setIsOpen} /> */}
         </div>
     );
 }

@@ -1,100 +1,159 @@
 .form {
-  
-  & form {
-    height: 472px;
-    width: 502px;
-    display: flex;
-    flex-direction: column;
-    padding: 32px 0;
-    background-color: white;
-    gap: 16px;
+    padding: 32px 44px;
+    margin: 0 16px;
+    background-color: #fff;
     border-radius: 24px;
+    max-width: 502px;
+    min-width: 502px;
     box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
-    align-items: center;
-  }
+    & form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+        @media screen and (max-width: 420px) {
+            gap: 10px;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        min-width: 400px;
+        padding: 28px 38px;
+    }
+    @media screen and (max-width: 420px) {
+        min-width: 350px;
+        padding: 24px 30px;
+    }
+    @media screen and (max-width: 360px) {
+        min-width: auto;
+        padding: 20px 20px;
+        width: 100%;
+        padding: 32px 32px 16px;
+    }
 }
 
 .logoRow {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 
-  .arrowIcon{
-    margin-left: 24px;
-    cursor: pointer;
-  }
- .myOlimpIcon{
-   margin-right: auto;
-   margin-left: 150px;
-   cursor: pointer;
- }
- 
+    .arrowIcon {
+        cursor: pointer;
+        position: relative;
+        right: 22px;
+        @media (max-width: 420px) {
+            right: 12px;
+        }
+    }
+    
+    .myOlimpIcon {
+        cursor: pointer;
+        position: relative;
+        right: 16px;
+    }
 }
+
+
 
 .titleRow {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  width: 414px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
 
-  & h1 {
-    font-size: 20px;
-    color: rgba(26, 7, 16, 0.85);
-    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    margin: 0;
-  }
-  & p {
-    color: #6BC62D;
-    font-size: 16px;
-    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-    font-weight: 500;
-  }
+    & h1 {
+        font-size: 20px;
+        color: rgba(26, 7, 16, 0.85);
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        margin: 0;
+        @media (max-width: 400px) {
+            font-size: 18px;
+        }
+        @media (max-width: 350px) {
+            font-size: 16px;
+        }
+    }
+    & p {
+        color: #6bc62d;
+        font-size: 16px;
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        @media (max-width: 400px) {
+            font-size: 15px;
+        }
+        @media (max-width: 350px) {
+            font-size: 13px;
+        }
+    }
 }
-.avatar{
-  cursor: pointer;
+
+.avatarContainer {
+    width: 160px;
+    height: 160px;
+    position: relative;
+}
+
+.avatar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    object-fit: cover;
+    border-radius: 1000px;
 }
 
 .input {
-  width: 414px;
-  height: 56px;
-  outline-color: #1976D2;
-  border-radius: 12px;
-  border: 1px solid #8D8D8D;
-  padding: 16px 12px;
+    width: 100%;
+    outline-color: #1976d2;
+    border-radius: 12px;
+    border: 1px solid #8d8d8d;
+    padding: 16px 12px;
+
+    @media (max-width: 500px) {
+        padding: 13px 12px;       
+    }
+    @media (max-width: 420px) {
+        padding: 10px 12px;        
+    }
 }
 
 .button {
-  height: 56px;
-  width: 414px;
-  text-transform: capitalize;
-  border-radius: 12px;
-  font-size: 22px;
-  font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  background-color: #3579F8;
-  box-shadow: none;
-
-
-  &:disabled {
-    background-color: #8CB2FB;
-    cursor: not-allowed;
-    pointer-events: all !important;
-    color: white;
-
-    &:hover {
-      background-color: #8CB2FB;
-    }
-  }
-
-  &:hover {
-    background-color: #316ee0;
+    height: 56px;
+    width: 100%;
+    text-transform: capitalize;
+    border-radius: 12px;
+    font-size: 22px;
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    background-color: #3579f8;
     box-shadow: none;
-  }
-}
 
+    &:disabled {
+        background-color: #8cb2fb;
+        cursor: not-allowed;
+        pointer-events: all !important;
+        color: white;
+        &:hover {
+            background-color: #8cb2fb;
+        }
+    }
+    &:hover {
+        background-color: #316ee0;
+        box-shadow: none;
+    }
+
+    @media (max-width: 500px) {
+        height: 50px;        
+        font-size: 20px;
+    }
+    @media (max-width: 420px) {
+        height: 44px;        
+        font-size: 18px;
+    }
+}
 
 //.containerForm {
 //  display: flex;
@@ -115,5 +174,3 @@
 //  line-height: normal;
 //  letter-spacing: 0.04rem;
 //}
-
-
