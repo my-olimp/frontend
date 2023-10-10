@@ -1,9 +1,10 @@
 import { ErrorAlert } from '@/features/ErrorAlert';
 import { ServiceWorker } from '@/shared/ServiceWorker';
 import { ReduxProvider } from '@/store/provider';
-import { Metadata } from 'next';
 import { ReactNode } from 'react';
+import { Metadata } from 'next';
 import './globals.scss';
+import Providers from './providers';
 
 export const metadata: Metadata = {
     title: 'MyOlimp',
@@ -18,8 +19,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <body>
                 <ServiceWorker />
                 <ReduxProvider>
-                    <ErrorAlert />
-                    {children}
+                    <Providers>
+                        <ErrorAlert />
+                        {children}
+                    </Providers>
                 </ReduxProvider>
             </body>
         </html>

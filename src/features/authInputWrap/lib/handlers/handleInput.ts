@@ -20,10 +20,10 @@ export const handleInput = (
         setSecure(validatePassword(text));
     }
     if (passwordSignInMode) {
-        const tested = text.match(/^[!@#$%^\w]+$/);
+        const tested = text.match(/^[!._@#$%^\w]+$/);
         if (!tested) {
             setErrorMessage(
-                'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
+                'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, точки, нижнего подчёркивания и специальных символов(!@#$%^)',
             );
         } else {
             setErrorMessage('');
