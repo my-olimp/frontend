@@ -19,7 +19,7 @@ import moment from 'moment';
 
 const MyCalendar: NextPage = () => {
     const [calendarEvents, setCalendarEvents] = useState([]);
-    const [eventstoday, setEventstoday] = useState([]);
+    const [eventsToday, setEventsToday] = useState([]);
     const [isDisabled, setIsDisabled] = useState(true);
     const [create, setCreate] = useState(false);
     const [eventname, setEventname] = useState('');
@@ -37,8 +37,17 @@ const MyCalendar: NextPage = () => {
 
     useEffect(() => {
         const obj = localStorage.getItem("events");
-        if (obj) setCalendarEvents(JSON.parse(obj));
+        const arr = JSON.parse(obj ? obj : '')
+        if (obj) { setCalendarEvents(arr)};
+        setTodayEvents(arr)
     }, []);
+
+    const setTodayEvents = (arr: any) => {
+        const eventsToday2 = arr.filter((item: any ) => {
+            return moment(Date.now()).format('DD') === moment(item.start).format('DD')
+        }) 
+        setEventsToday(eventsToday2)
+    }
 
     const subjectHandler = (event: any) => {
         setSubject((event.target as HTMLSelectElement).value)
@@ -59,6 +68,7 @@ const MyCalendar: NextPage = () => {
         const events = eventsString ? JSON.parse(eventsString) : [];
 
         const obj = {
+            id: Math.random(),
             title: eventname,
             start: new Date(),
             end: new Date(),
@@ -67,7 +77,21 @@ const MyCalendar: NextPage = () => {
 
         events.push(obj);
         setCalendarEvents(events);
+        setTodayEvents(events)
         localStorage.setItem('events', JSON.stringify(events));
+    }
+
+    const deleteEvent = (eventFrom: any) => {
+        const eventsString = localStorage.getItem('events');
+        const events = eventsString ? JSON.parse(eventsString) : [];
+        const newEvents = events.filter((item: any) => {
+            return (item.id !== eventFrom.id)
+        })
+        
+        setCalendarEvents(newEvents);
+        setTodayEvents(newEvents)
+        localStorage.removeItem('events');
+        localStorage.setItem('events', JSON.stringify(newEvents));
     }
 
     const inputHandler = (e: string) => {
@@ -91,8 +115,8 @@ const MyCalendar: NextPage = () => {
                             </div>
                         </div>
                         <div className={styles.eventlist}>
-                            {calendarEvents.map((item: any, index: number) => (
-                                <div className={`${styles.eventtoday} df jcsb aic`} key={index}>
+                            {eventsToday.map((item: any) => (
+                                <div className={`${styles.eventtoday} df jcsb aic`} key={Math.random()}>
                                     <div className={`${styles.eventtodayleft} df aic w50`}>
                                         <div
                                             style={{
@@ -105,6 +129,7 @@ const MyCalendar: NextPage = () => {
                                         <p>{item.title}</p>
                                     </div>
                                     <div className={`${styles.eventtodayright} df aic`}>
+                                        <div onClick={() => deleteEvent(item)} className={styles.deleteEvent}>Удалить</div>
                                         <span>{moment(item.start).format('HH:mm')} - {moment(item.end).format('HH:mm')}</span>
                                     </div>
                                 </div>
