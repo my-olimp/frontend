@@ -18,6 +18,8 @@ import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 
 import styles from './ui.module.scss';
+import { PopupPages } from '@/features/PopupPages';
+import { ArrowHeader } from '@/entities/ArrowHeader';
 
 interface props {
     navBarData: any[];
@@ -33,7 +35,8 @@ const sideBarElements = [
 
 export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile }) => {
     const [activeId, setActiveId] = useState<number>(0);
-    const [showPopup, setShowPopup] = useState<boolean>(false);
+    const [showPopupNotifications, setShowPopupNotifications] = useState<boolean>(false);
+    const [showPopupPages, setShowPopupPages] = useState<boolean>(false);
     const pathname = usePathname();
     const [clicked, setClicked] = useState<boolean>(false);
 
@@ -84,13 +87,19 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
             </div>
             <div className={styles.infoWrap}>
                 <Bell
-                    showPopup={showPopup}
+                    showPopup={showPopupNotifications}
                     clicked={clicked}
-                    setShowPopup={setShowPopup}
+                    setShowPopup={setShowPopupNotifications}
                     setClicked={setClicked}
                 />
                 {user ? (
-                    <NavbarAvatar />
+                    <>
+                        <NavbarAvatar />
+                        <ArrowHeader
+                            showPopup={showPopupPages}
+                            setShowPopup={setShowPopupPages}
+                        />
+                    </>
                 ) : (
                     <button className={styles.login} onClick={() => push('/signin')}>
                         Войти
@@ -98,13 +107,24 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                 )}
             </div>
             <AnimatePresence>
-                {showPopup && (
+                {showPopupNotifications && (
                     <motion.div
                         initial={{ height: 0 }}
                         animate={{ height: '252px' }}
                         exit={{ height: 0 }}
-                        className={styles.popupWrap}>
-                        <Notifications notifications={notifications} setShow={setShowPopup} />
+                        className={styles.popupWrapNotivications}>
+                        <Notifications notifications={notifications} setShow={setShowPopupNotifications} />
+                    </motion.div>
+                )}
+            </AnimatePresence>
+            <AnimatePresence>
+                {showPopupPages && (
+                    <motion.div
+                        initial={{ height: 0 }}
+                        animate={{ height: '250px' }}
+                        exit={{ height: 0 }}
+                        className={styles.popupWrapPages}>
+                        <PopupPages setShow={setShowPopupPages} />
                     </motion.div>
                 )}
             </AnimatePresence>

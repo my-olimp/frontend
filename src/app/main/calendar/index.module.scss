@@ -226,3 +226,16 @@
         }
     }
 }
+
+.deleteEvent {
+    color: rgb(255, 8, 8);
+    padding-right: 10px;
+    font-size: 13px;
+    font-family: "SF_Regular";
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+        transform: scale(1.05)
+    }
+}

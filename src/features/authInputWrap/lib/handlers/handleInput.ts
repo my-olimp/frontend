@@ -13,7 +13,7 @@ export const handleInput = (
     const text = input.value;
     const textLength = text.length;
 
-    input?.setSelectionRange(textLength + 2, textLength + 2);
+    // input?.setSelectionRange(textLength + 2, textLength + 2);
     setText(text);
 
     if (password && setSecure) {

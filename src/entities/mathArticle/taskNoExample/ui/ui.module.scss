@@ -7,6 +7,10 @@
         font-size: 26px;
         letter-spacing: 0.52px;
         padding-bottom: 20px;
+        @media (max-width: 550px) {
+            font-size: 20px;
+            padding-bottom: 10px;
+        }
     }
 
     &__name {
@@ -14,6 +18,10 @@
         font-size: 24px;
         letter-spacing: 0.48px;
         padding-bottom: 20px;
+        @media (max-width: 550px) {
+            font-size: 18px;
+            padding-bottom: 10px;
+        }
     }
 
     &__subName {
@@ -22,65 +30,98 @@
         font-style: italic;
         letter-spacing: 0.48px;
         padding-bottom: 28px;
+        @media (max-width: 550px) {
+            font-size: 18px;
+            padding-bottom: 16px;
+        }
     }
 
     &__input {
-        font-feature-settings: 'clig' off, 'liga' off;
+        font-feature-settings:
+            "clig" off,
+            "liga" off;
         font-family: "SF_Regular";
         font-size: 22px;
         line-height: 20px;
         letter-spacing: 0.44px;
-        border: 1px #818C99 solid;
+        border: 1px #818c99 solid;
         border-radius: 7px;
         width: 100%;
         padding: 20px 12px;
+        @media (max-width: 550px) {
+            font-size: 18px;
+            padding: 10px 7px;
+        }
         &::placeholder {
-            color: #818C99;
-            font-feature-settings: 'clig' off, 'liga' off;
+            color: #818c99;
+            font-feature-settings:
+                "clig" off,
+                "liga" off;
             font-family: "SF_Regular";
             font-size: 22px;
             line-height: 20px;
             letter-spacing: 0.1px;
+            @media (max-width: 550px) {
+                font-size: 17px;
+            }
         }
     }
 
     &__error {
-        color: #E64646;
-        font-feature-settings: 'clig' off, 'liga' off;
+        color: #e64646;
+        font-feature-settings:
+            "clig" off,
+            "liga" off;
         font-family: "SF_Regular";
         font-size: 16px;
         padding: 6px 0;
+        @media (max-width: 550px) {
+            font-size: 14px;
+            padding: 4px 0;
+        }
     }
 
     &__buttons {
         display: flex;
         gap: 12px;
         margin-bottom: 12px;
+        @media (max-width: 550px) {
+            gap: 7px;
+        }
     }
 
     &__button {
-        font-feature-settings: 'clig' off, 'liga' off;
+        font-feature-settings:
+            "clig" off,
+            "liga" off;
         text-align: center;
         font-size: 20px;
         letter-spacing: 0.4px;
         transition: all 0.3s ease 0s;
         cursor: pointer;
         &:hover {
-            transform: scale(1.05)
+            transform: scale(1.05);
+        }
+        @media (max-width: 550px) {
+            font-size: 16px;
         }
 
         &_1 {
             font-family: "SF_Medium";
             border-radius: 20px;
-            background: #3579F8;
+            background: #3579f8;
             padding: 10px 27px 10px 26px;
-            color: #FFF;
+            color: #fff;
             &[disabled] {
-                background: #8CB2FB;
+                background: #8cb2fb;
                 cursor: not-allowed;
                 &:hover {
-                    transform: scale(1)
+                    transform: scale(1);
                 }
+            }
+            @media (max-width: 550px) {
+                border-radius: 13px;
+                padding: 7px 16px 7px 16px;
             }
         }
         &_2 {
@@ -93,10 +134,13 @@
     &__solutionBlock {
         position: relative;
         padding-top: 16px;
+        @media (max-width: 550px) {
+            padding-top: 10px;
+        }
 
         &::before {
-            content: '';
-            background: #D4D4D4;
+            content: "";
+            background: #d4d4d4;
             position: absolute;
             top: 0;
             left: 0;
@@ -105,8 +149,8 @@
         }
 
         &::after {
-            content: '';
-            background: #D4D4D4;
+            content: "";
+            background: #d4d4d4;
             position: absolute;
             top: 100%;
             left: 0;
@@ -120,14 +164,22 @@
         font-size: 26px;
         letter-spacing: 0.52px;
         padding-bottom: 16px;
+        @media (max-width: 550px) {
+            font-size: 20px;
+            padding-bottom: 10px;
+        }
     }
 
     &__solution {
-        padding-bottom: 12px;   
+        padding-bottom: 12px;
         color: #000;
         font-family: "SF_Regular";
         font-size: 24px;
         letter-spacing: 0.48px;
+        @media (max-width: 550px) {
+            font-size: 18px;
+            padding-bottom: 10px;
+        }
     }
 
     &__answer {
@@ -135,5 +187,9 @@
         font-size: 26px;
         letter-spacing: 0.52px;
         padding-bottom: 12px;
+        @media (max-width: 550px) {
+            font-size: 20px;
+            padding-bottom: 7px;
+        }
     }
 }

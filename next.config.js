@@ -5,7 +5,6 @@ const isDev = process.env.NODE_ENV !== 'production';
 const withPWA = withPWAInit({
     dest: 'public',
     disable: isDev,
-
     runtimeCaching: [
         {
             urlPattern: /\.(?:png|jpg|jpeg|gif|svg|webp)$/,
