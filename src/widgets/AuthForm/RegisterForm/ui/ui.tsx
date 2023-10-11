@@ -81,7 +81,9 @@ export const RegisterForm: FC<props> = ({}) => {
                             style={{ display: 'flex', width: '100%' }}>
                             <Gapped vertical verticalAlign="middle" alignItems="center" gap="8px">
                                 <Logo />
-                                <h4 className={styles.text}>Для создания  учетной записи укажите свои данные:</h4>
+                                <h4 className={styles.text}>
+                                    Для создания учётной записи укажите данные:
+                                </h4>
                             </Gapped>
                             <Gapped
                                 vertical
