@@ -9,9 +9,11 @@ import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { EditAvatar } from '@/widgets/EditAvatar';
 import { ProfileAchievements } from '@/widgets/ProfileAchievements';
+import { EditContacts } from '@/widgets/EditContacts';
+import { ProfileContacts } from '@/widgets/ProfileContacts';
 
 const Profile: NextPage = () => {
-    const [editMode, setMode] = useState<'' | 'personal' | 'work' | 'avatar'>('');
+    const [editMode, setMode] = useState<'' | 'personal' | 'work' | 'avatar' | 'contacts'>('');
     useEffect(() => {
         if (editMode === 'personal' || editMode === 'work') {
             document.body.style.overflow = 'hidden';
@@ -29,6 +31,7 @@ const Profile: NextPage = () => {
             <div className={styles.personalData}>
                 <PersonalInfoBlock setMode={setMode} />
                 <WorkBlock setMode={setMode} />
+                <ProfileContacts setMode={setMode} />
                 {editMode !== '' &&
                     (editMode === 'personal') ? 
                     <EditPersonalDataModal setMode={setMode} />
@@ -36,6 +39,8 @@ const Profile: NextPage = () => {
                     <EditWorkDataModal setMode={setMode} />
                 : (editMode === 'avatar') ?
                     <EditAvatar setMode={setMode} />
+                : (editMode === 'contacts') ?
+                    <EditContacts setMode={setMode} /> 
                 : '' 
                 }
             </div>

@@ -1,0 +1,100 @@
+.screen {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    left: 0;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    background-color: #ffffff;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 40px;
+    width: 610px;
+
+    h6 {
+        font-size: 36px;
+        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        color: black;
+        padding-bottom: 27px;
+    }
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding-bottom: 27px;
+
+    div {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cancel {
+    width: 160px;
+    height: 48px;
+    color: #3579f8;
+    background-color: transparent;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    border: 1px solid #3579f8;
+    transition: all 0.3s;
+    font-size: 20px;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: #5935f8;
+        color: white;
+    }
+}
+
+.submit {
+    @extend .cancel;
+    color: white;
+    background-color: #3579f8;
+}
+
+.input {
+    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+
+    div {
+        border-radius: 10px;
+        height: 52px;
+        width: 420px;
+    }
+}
+
+.calendar {
+    width: 420px;
+    height: 52px;
+
+    & div {
+        border-radius: 12px;
+    }
+    & input {
+        width: 355px !important;
+    }
+}
+
+.buttons button {
+    cursor: pointer;
+}

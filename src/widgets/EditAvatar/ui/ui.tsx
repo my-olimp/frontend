@@ -1,4 +1,4 @@
-import React, { Dispatch, EventHandler, FC, MouseEvent, SetStateAction, useRef, useState } from 'react';
+import React, { Dispatch, EventHandler, FC, MouseEvent, SetStateAction, useRef, useState, useEffect } from 'react';
 import styles from './ui.module.scss';
 import avatarLink from '../../../../public/social/empty-avatar.svg';
 import onHoverAvatar from '../../../../public/social/onHoverAvatar.svg';
@@ -10,7 +10,7 @@ type Inputs = {
 };
 
 interface PropsEditAvatar {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar'>>;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
 }
 
 export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
@@ -34,9 +34,16 @@ export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
         }
     };
 
-    const handleClick = () => {
-       
-    };
+    useEffect(() => {
+        document.addEventListener('keydown', (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setMode('');
+            }
+        });
+        return () => {
+            document.removeEventListener('keydown', () => {});
+        };
+    }, []);
 
     const {
         handleSubmit,
@@ -82,7 +89,7 @@ export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
                     <button className={styles.cancel} onClick={() => setMode('')}>
                         Отменить
                     </button>
-                    <button onClick={handleClick} className={styles.submit}>Сохранить</button>
+                    <button className={styles.submit}>Сохранить</button>
                 </span>
             </form>
         </div>

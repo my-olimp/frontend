@@ -1,18 +1,6 @@
-import { SexRadio } from '@/entities/SexRadio';
 import { useAppSelector } from '@/hooks/useAppSelector';
 import { TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers';
-import dayjs, { Dayjs } from 'dayjs';
-import {
-    Dispatch,
-    EventHandler,
-    FC,
-    MouseEvent,
-    SetStateAction,
-    useEffect,
-    useRef,
-    useState,
-} from 'react';
+import { Dispatch, EventHandler, FC, MouseEvent, SetStateAction, useRef, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './ui.module.scss';
 
@@ -21,18 +9,11 @@ interface props {
 }
 
 type Inputs = {
-    firstName: string;
-    familyName: string;
-    additionalName: string;
+    email: string;
+    phoneNumber: string;
 };
 
-export const EditPersonalDataModal: FC<props> = ({ setMode }) => {
-    const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
-    const { user } = useAppSelector((state) => state.auth);
-    
-    const [date, setDate] = useState<Dayjs>();
-    const [sex, setSex] = useState<'male' | 'female'>('male');
-
+export const EditContacts: FC<props> = ({ setMode }) => {
     const modalRef = useRef<HTMLDivElement>(null);
 
     const {
@@ -66,42 +47,27 @@ export const EditPersonalDataModal: FC<props> = ({ setMode }) => {
             ref={modalRef}
             onClick={(event) => handleClickOutSide(event)}>
             <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
-                <h6>Личные данные</h6>
+                <h6>Контакты</h6>
                 <span className={styles.inputs}>
                     <TextField
                         type="text"
                         variant="outlined"
-                        label="Имя"
+                        label="Почта"
                         className={styles.input}
-                        autoComplete="given-name"
+                        autoComplete="email"
                         autoCapitalize="word"
-                        {...register('firstName')}
+                        {...register('email')}
                     />
                     <TextField
                         type="text"
                         variant="outlined"
-                        label="Фамилия"
+                        label="Телефон"
                         className={styles.input}
-                        autoComplete="family-name"
+                        autoComplete="phoneNumber"
                         autoCapitalize="word"
-                        {...register('familyName')}
+                        {...register('phoneNumber')}
                     />
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Отчество"
-                        autoComplete="additional-name"
-                        autoCapitalize="word"
-                        className={styles.input}
-                        {...register('additionalName')}
-                    />
-                    <DatePicker
-                        onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
-                        className={styles.calendar}
-                        format={'DD/MM/YYYY'}
-                        label="Дата рождения"
-                    />
-                    <SexRadio sex={sex} setSex={setSex} />
+
                 </span>
                 <span className={styles.buttons}>
                     <button className={styles.cancel} onClick={() => setMode('')}>

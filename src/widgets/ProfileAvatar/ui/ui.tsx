@@ -7,7 +7,7 @@ import { FC, Dispatch, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar'>>;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
 }
 
 export const ProfileAvatar: FC<props> = ({ setMode }) => {
