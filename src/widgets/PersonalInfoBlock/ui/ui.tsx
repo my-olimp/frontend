@@ -48,6 +48,10 @@ export const PersonalInfoBlock: FC<props> = ({ setMode }) => {
                             }`}
                     </h2>
                 </li>
+                <li>
+                    <h1>СНИЛС</h1>
+                    <h2>{getValue(user?.SNILS)}</h2>
+                </li>
             </ul>
         </div>
     );

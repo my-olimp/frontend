@@ -26,15 +26,7 @@ export const WorkBlock: FC<props> = ({ setMode }) => {
             <ul className={styles.infoWrap}>
                 <li>
                     <h1>Регион</h1>
-                    {user && `${user?.region?.name}`} 
-                </li>
-                <li>
-                    <h1>Город</h1>
-                    {user && `${user?.city?.name}`}
-                </li>
-                <li>
-                    <h1>Учебное заведение</h1>
-                    <h2>{getValue(user?.school?.name)}</h2>
+                    <h2>{getValue(user?.region?.name)}</h2>
                 </li>
                 <li>
                     <h1>Город</h1>
