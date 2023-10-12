@@ -4,7 +4,7 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work'>>;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact'>>;
 }
 
 export const PersonalInfoBlock: FC<props> = ({ setMode }) => {

@@ -4,12 +4,14 @@ import styles from './ui.module.scss';
 import { MaterialCard } from '@/features/MaterialCard';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Link from 'next/link';
+import { nanoid } from 'nanoid';
 
 interface props {
     materialList: IMaterial[];
     title: string;
     libMode: boolean;
     urlprop?: string;
+    overflow: boolean;
 }
 
 export interface IMaterial {
@@ -26,7 +28,7 @@ export interface ITag {
     text: string;
 }
 
-export const Materials: FC<props> = ({ materialList, title, libMode, urlprop }) => {
+export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, overflow }) => {
     const [isMobile, setMobile] = useState(false);
     const [url, setUrl] = useState('');
     const scrollContainerRef = useRef(null);
@@ -37,7 +39,7 @@ export const Materials: FC<props> = ({ materialList, title, libMode, urlprop }) 
             container.scrollBy({ left: 150, behavior: 'smooth' });
         }
     };
-    
+
     useLayoutEffect(() => {
         if (window.innerWidth < 900) {
             setMobile(true);
@@ -45,7 +47,15 @@ export const Materials: FC<props> = ({ materialList, title, libMode, urlprop }) 
         setUrl(window.location.href)
     }, []);
     return (
-        <div className={url.includes('library') ? styles.libraryWrap : styles.wrap} style={{ flexDirection: isMobile ? 'column' : 'row' }}>
+        <div
+            className={title === 'student'
+                ? styles.studentWrap
+                : overflow
+                ? styles.libraryWrap
+                : styles.wrap
+            }
+            style={{ flexDirection: isMobile ? 'column' : 'row' }}
+        >
             {isMobile && (
                 <div className={styles.titleWrap}>
                     {!libMode && (
@@ -61,13 +71,16 @@ export const Materials: FC<props> = ({ materialList, title, libMode, urlprop }) 
             )}
 
             <div
-                className={url.includes('library')
-                ? styles.libraryWrapMaterials
-                : styles.wrapMaterials}
+                className={title === 'student'
+                    ? styles.studentMaterials
+                    : overflow
+                    ? styles.libraryWrapMaterials
+                    : styles.wrapMaterials
+                }
                 ref={scrollContainerRef}
             >
                 {materialList.map((material) => {
-                    return <MaterialCard key={material.id} material={material} urlprop={urlprop} />;
+                    return <MaterialCard key={nanoid(6)} material={material} urlprop={urlprop} overflow={overflow} />;
                 })}
             </div>
             {!isMobile &&

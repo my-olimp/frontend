@@ -1,0 +1,44 @@
+.wrap {
+    padding-right: 50px;
+}
+
+.title {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.materials {
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 20px;
+
+    .left {
+        padding: 30px 25px;
+        border-radius: 30px;
+        background: linear-gradient(180deg, #3579F8 0.06%, #538FFF 67.3%);
+    }
+
+    .right {
+        margin-left: 15px;
+
+        span {
+            color: #767575;
+            font-size: 26px;
+        }
+        p {
+            font-size: 32px;
+            font-weight: 600;
+        }
+        
+        .righttags {
+            margin-top: 10px;
+            .rightitem {
+                background-color: #3579F8;
+                padding: 5px 15px;
+                margin: 5px 10px 0 0;
+                border-radius: 30px;
+            }
+        }
+    }
+}

@@ -4,15 +4,13 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work'>>;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact'>>;
 }
 
 export const WorkBlock: FC<props> = ({ setMode }) => {
     const { user } = useAppSelector((state) => state.auth);
 
-    const getValue = (value) => {
-        return value ? `${value}` : 'Не указано';
-    };
+    const getValue = (value: any) => value ? `${value}` : 'Не указано';
 
     return (
         <div className={styles.wrap}>

@@ -76,8 +76,8 @@ const Library: NextPage = () => {
                     </div>
                 </div>
             </div>
-            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} />
-            <Materials materialList={materialList} title={'Может быть интересно'} libMode={true} />
+            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} overflow={true} />
+            <Materials materialList={materialList} title={'Может быть интересно'} libMode={true} overflow={true} />
         </div>
     );
 };

@@ -1,9 +1,14 @@
-import { SexRadio } from '@/entities/SexRadio';
-import { useAppSelector } from '@/hooks/useAppSelector';
 import { TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers';
-import dayjs, { Dayjs } from 'dayjs';
-import { Dispatch, EventHandler, FC, MouseEvent, SetStateAction, useRef, useState } from 'react';
+import {
+    Dispatch,
+    EventHandler,
+    FC,
+    MouseEvent,
+    SetStateAction,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './ui.module.scss';
 
@@ -17,12 +22,7 @@ type Inputs = {
     additionalName: string;
 };
 
-export const EditWorkDataModal: FC<props> = ({ setMode }) => {
-    const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
-    const { user } = useAppSelector((state) => state.auth);
-
-    const [date, setDate] = useState<Dayjs>();
-    const [sex, setSex] = useState<'male' | 'female'>('male');
+export const EditContactModal: FC<props> = ({ setMode }) => {
 
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +38,17 @@ export const EditWorkDataModal: FC<props> = ({ setMode }) => {
         }
     };
 
+    useEffect(() => {
+        document.addEventListener('keydown', (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setMode('');
+            }
+        });
+        return () => {
+            document.removeEventListener('keydown', () => {});
+        };
+    }, []);
+
     const onFormSubmit: SubmitHandler<Inputs> = () => {};
 
     return (
@@ -46,42 +57,26 @@ export const EditWorkDataModal: FC<props> = ({ setMode }) => {
             ref={modalRef}
             onClick={(event) => handleClickOutSide(event)}>
             <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
-                <h6>Образование</h6>
+                <h6>Контакты</h6>
                 <span className={styles.inputs}>
                     <TextField
                         type="text"
                         variant="outlined"
-                        label="Имя"
+                        label="Почта"
                         className={styles.input}
                         autoComplete="given-name"
-                        autoCapitalize="word"
+                        autoCapitalize="email"
                         {...register('firstName')}
                     />
                     <TextField
                         type="text"
                         variant="outlined"
-                        label="Фамилия"
+                        label="Телефон"
                         className={styles.input}
                         autoComplete="family-name"
-                        autoCapitalize="word"
+                        autoCapitalize="number"
                         {...register('familyName')}
                     />
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Отчество"
-                        autoComplete="additional-name"
-                        autoCapitalize="word"
-                        className={styles.input}
-                        {...register('additionalName')}
-                    />
-                    <DatePicker
-                        onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
-                        className={styles.calendar}
-                        format={'DD/MM/YYYY'}
-                        label="Дата рождения"
-                    />
-                    <SexRadio sex={sex} setSex={setSex} />
                 </span>
                 <span className={styles.buttons}>
                     <button className={styles.cancel} onClick={() => setMode('')}>
@@ -91,5 +86,5 @@ export const EditWorkDataModal: FC<props> = ({ setMode }) => {
                 </span>
             </form>
         </div>
-    );
-};
+    )
+}

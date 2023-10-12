@@ -10,8 +10,9 @@ import Link from 'next/link';
 interface Props {
     material: IMaterial;
     urlprop?: string;
+    overflow: boolean;
 }
-export const MaterialCard: FC<Props> = ({ material, urlprop }) => {
+export const MaterialCard: FC<Props> = ({ material, urlprop, overflow }) => {
     const [url, setUrl] = useState('');
 
     useEffect(() => {
@@ -20,7 +21,7 @@ export const MaterialCard: FC<Props> = ({ material, urlprop }) => {
     const mobile = true;
 
     return (
-        <div className={url.includes('library') ? styles.libraryWrap : styles.wrap}>
+        <div className={overflow ? styles.libraryWrap : styles.wrap}>
             <div className={styles.tagWrap}>
                 {material.tags.map((tag) => {
                     return <MaterialChip key={tag.id} text={tag.text} />;
