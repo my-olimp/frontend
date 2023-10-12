@@ -78,7 +78,7 @@
 }
 
 .rbc-show-more {
-    display: none;
+    width: 100%;
 }
 
 .rbc-row-bg {
@@ -93,6 +93,11 @@
 
 .rbc-event-content {
     font-size: 13px;
+}
+.rbc-row-segment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 900px) {
