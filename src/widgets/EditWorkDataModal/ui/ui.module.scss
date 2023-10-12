@@ -8,6 +8,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1101;
+}
+
+.select {
+    height: 56px;
+    width: 414px;
+    border-radius: 12px;
 }
 
 .form {

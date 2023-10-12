@@ -3,17 +3,31 @@ import styles from './ui.module.scss'
 
 import Image from 'next/image';
 import AchievIcon from '../../../../public/materials/AchivIcon.svg';
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+interface props {
+    setMode?: any;
+    tag?: string;
+}
 
-export const Achievments: FC = () => {
+export const Achievments: FC<props> = ({ setMode, tag }) => {
     return (
         <div className={`${styles.main} df fdc`}>
             <div className={styles.title}>
-                <span>Достижения</span>
+                {tag === 'teacher' ? (
+                    <>
+                        <span>Мои группы</span>
+                        <div onClick={() => setMode('teacher')}>
+                            <DriveFileRenameOutlineOutlinedIcon className='cp'/>
+                        </div>
+                    </>
+                ) : (
+                    <span>Достижения</span>
+                )}
             </div>
             <div className={`${styles.item} df aic`}>
                 <div className={styles.left}>
                     <div className={`${styles.avatar} df jcc aic`}>
-                        <Image src={AchievIcon} alt='AchievIcon'/>
+                        <Image src={AchievIcon} alt='AchievIcon' />
                     </div>
                 </div>
                 <div className={styles.right}>
@@ -24,7 +38,7 @@ export const Achievments: FC = () => {
             <div className={`${styles.item} df aic`}>
                 <div className={styles.left}>
                     <div className={`${styles.avatar} df jcc aic`}>
-                        <Image src={AchievIcon} alt='AchievIcon'/>
+                        <Image src={AchievIcon} alt='AchievIcon' />
                     </div>
                 </div>
                 <div className={styles.right}>
@@ -35,7 +49,7 @@ export const Achievments: FC = () => {
             <div className={`${styles.item} df aic`}>
                 <div className={styles.left}>
                     <div className={`${styles.avatar} df jcc aic`}>
-                        <Image src={AchievIcon} alt='AchievIcon'/>
+                        <Image src={AchievIcon} alt='AchievIcon' />
                     </div>
                 </div>
                 <div className={styles.right}>

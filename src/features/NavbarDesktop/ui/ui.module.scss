@@ -62,6 +62,12 @@
     }
 }
 
+.element {
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
 .element:hover {
     transition: all 0.3s;
     color: #3579f8;

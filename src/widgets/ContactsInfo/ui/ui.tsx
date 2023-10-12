@@ -11,7 +11,7 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact'>>;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
 }
 
 export const ContactsInfo: FC<props> = ({ setMode }) => {

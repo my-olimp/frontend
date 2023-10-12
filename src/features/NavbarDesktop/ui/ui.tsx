@@ -64,8 +64,15 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
             style={{ display: 'flex', justifyContent: 'space-between' }}
             className={styles.header}>
             <div className={styles.linksWrap}>
-                <div className={styles.burgerMenu}>
-                    <div className={`${styles.burgerIcon} ${isOpen ? styles.open : ''}`} onClick={() => setIsOpen(!isOpen)}>
+                <div
+                    className={styles.burgerMenu}
+                    style={window.location.href.includes('main') ? {opacity: '0'} : {}}
+                >
+                    <div
+                        className={`${styles.burgerIcon} ${isOpen ? styles.open : ''}`}
+                        onClick={() => setIsOpen(!isOpen)}
+                        style={window.location.href.includes('main') ? {cursor: 'default'} : {}}
+                    >
                         <div className={styles.bar}></div>
                         <div className={styles.bar}></div>
                         <div className={styles.bar}></div>
