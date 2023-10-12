@@ -1,6 +1,6 @@
 'use client';
 import styles from './index.module.scss'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, MouseEvent, EventHandler } from 'react';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import PlusIcon from '../../../../public/materials/Vector.svg';
@@ -9,19 +9,24 @@ import { MenuItem, Select, ListItemIcon, FormControl } from '@mui/material';
 // CALENDAR
 import { CalendarComponent } from '@/features/CalendarComponent';
 import './calendar.scss'
+import { EventToday } from '@/entities/EventToday';
 
 // ICONS
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListIcon from '@mui/icons-material/List';
 import moment from 'moment';
 
 const MyCalendar: NextPage = () => {
+    const modalRef = useRef<HTMLDivElement>(null);
     const [calendarEvents, setCalendarEvents] = useState([]);
-    const [eventsToday, setEventsToday] = useState([]);
+    const [countDay, setCountDay] = useState<number>(0);
+    const [eventsInList, setEventsInList] = useState([]);
     const [isDisabled, setIsDisabled] = useState(true);
-    const [create, setCreate] = useState(false);
+    const [mode, setMode] = useState<string>('');
     const [eventname, setEventname] = useState('');
     const [subject, setSubject] = useState('Математика');
     const [subjects, setSubjects] = useState(['Математика', 'Биология', 'Химия', 'Физика', 'Английский', 'Астрология']);
@@ -38,16 +43,17 @@ const MyCalendar: NextPage = () => {
     useEffect(() => {
         const obj = localStorage.getItem("events");
         const arr = JSON.parse(obj ? obj : '')
-        if (obj) { setCalendarEvents(arr)};
-        setTodayEvents(arr)
+        if (obj) { setCalendarEvents(arr) };
+        setEventsInListFunction(arr)
     }, []);
 
-    const setTodayEvents = (arr: any) => {
-        const eventsToday2 = arr.filter((item: any ) => {
-            return moment(Date.now()).format('DD') === moment(item.start).format('DD')
-        }) 
-        setEventsToday(eventsToday2)
+    const setEventsInListFunction = (arr: any, count: number = countDay) => {
+        const eventsToday2 = arr.filter((item: any) => {
+            return (+moment(item.start).format('DD') - +moment(Date.now()).format('DD')) === count
+        })
+        setEventsInList(eventsToday2)
     }
+
 
     const subjectHandler = (event: any) => {
         setSubject((event.target as HTMLSelectElement).value)
@@ -62,8 +68,20 @@ const MyCalendar: NextPage = () => {
         return matchingColor ? matchingColor.color : ''
     }
 
+    const getAntiColor = (color: string) => {
+        const matchingColor: any = colors.find((item: any) => item.color === color)
+        return matchingColor ? matchingColor.text : ''
+    }
+
+    const clearAll = () => {
+        setMode('')
+        setEventname('')
+        setSubject('Математика')
+        setColor('Математика')
+    }
+
     const createEvent = () => {
-        setCreate(false);
+        setMode('');
         const eventsString = localStorage.getItem('events');
         const events = eventsString ? JSON.parse(eventsString) : [];
 
@@ -73,12 +91,38 @@ const MyCalendar: NextPage = () => {
             start: new Date(),
             end: new Date(),
             color: getColor(color),
+            subject: subject,
+        }
+        events.push(obj)
+        setCalendarEvents(events);
+        setEventsInListFunction(events)
+        localStorage.setItem('events', JSON.stringify(events));
+        setEventname('');
+    }
+
+    const editEvent = (id, title, color, subject, start, end) => {
+        setMode('');
+        const eventsString = localStorage.getItem('events');
+        const events = eventsString ? JSON.parse(eventsString) : [];
+
+        const newEvent = {
+            id: Math.random(),
+            title: title,
+            start: start,
+            end: end,
+            color: getColor(color),
+            subject: subject,
         }
 
-        events.push(obj);
+        const neededIndex = events.findIndex((item: any) => {
+            return (item.id === id)
+        })
+        events.splice(neededIndex, 1, newEvent)
+
         setCalendarEvents(events);
-        setTodayEvents(events)
+        setEventsInListFunction(events)
         localStorage.setItem('events', JSON.stringify(events));
+        setEventname('');
     }
 
     const deleteEvent = (eventFrom: any) => {
@@ -87,16 +131,47 @@ const MyCalendar: NextPage = () => {
         const newEvents = events.filter((item: any) => {
             return (item.id !== eventFrom.id)
         })
-        
+
         setCalendarEvents(newEvents);
-        setTodayEvents(newEvents)
+        setEventsInListFunction(newEvents)
         localStorage.removeItem('events');
         localStorage.setItem('events', JSON.stringify(newEvents));
     }
 
+
     const inputHandler = (e: string) => {
-        if (e.length > 3) setIsDisabled(false);
+        if (e.length > 3) { setIsDisabled(false) } else { setIsDisabled(true) };
         setEventname(e);
+    }
+
+    const handleClickOutSide: EventHandler<MouseEvent<HTMLDivElement>> = (event) => {
+        if (event.target === modalRef.current) {
+            clearAll()
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('keydown', (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                clearAll()
+            }
+        });
+        return () => {
+            document.removeEventListener('keydown', () => { });
+        };
+    }, []);
+
+    const navigate = (option : 'today' | 'prev' | 'next') => {
+        if (option === 'next') {
+            setCountDay(prev => prev + 1)
+            setEventsInListFunction(calendarEvents, countDay + 1)
+        } else if (option === 'prev') {
+            setCountDay(prev => prev - 1)
+            setEventsInListFunction(calendarEvents, countDay - 1)
+        } else {
+            setCountDay(0)
+            setEventsInListFunction(calendarEvents, 0)
+        }
     }
 
     return (
@@ -106,44 +181,39 @@ const MyCalendar: NextPage = () => {
                 <div className={`${styles.eventscontainer} df fdc jcfe`}>
                     <div className={styles.events}>
                         <div className={`${styles.title} df jcsb aic`}>
-                            <span>События сегодня</span>
+                            <div className={styles.toolbar}>
+                                <ChevronLeftIcon style={{ fontSize: '28px' }} onClick={() => navigate('prev')} />
+                                <div
+                                    onClick={() => navigate('today')}
+                                    className={styles.titleName}
+                                >
+                                    {countDay !== 0 ? `${moment(Date.now()).add('days', countDay).format('DD/MM')}` : 'События сегодня'}
+                                </div>
+                                <ChevronRightIcon style={{ fontSize: '28px' }} onClick={() => navigate('next')} />
+                            </div>
                             <div
                                 className={`${styles.circle} df aic jcc cp`}
-                                onClick={() => setCreate(true)}
+                                onClick={() => setMode('create')}
                             >
                                 <Image src={PlusIcon} alt='icon' />
                             </div>
                         </div>
                         <div className={styles.eventlist}>
-                            {eventsToday.map((item: any) => (
-                                <div className={`${styles.eventtoday} df jcsb aic`} key={Math.random()}>
-                                    <div className={`${styles.eventtodayleft} df aic w50`}>
-                                        <div
-                                            style={{
-                                                height: '15px',
-                                                width: '15px',
-                                                backgroundColor: item.color,
-                                                borderRadius: '50%',
-                                            }}
-                                        ></div>
-                                        <p>{item.title}</p>
-                                    </div>
-                                    <div className={`${styles.eventtodayright} df aic`}>
-                                        <div onClick={() => deleteEvent(item)} className={styles.deleteEvent}>Удалить</div>
-                                        <span>{moment(item.start).format('HH:mm')} - {moment(item.end).format('HH:mm')}</span>
-                                    </div>
-                                </div>
+                            {eventsInList.map((item: any) => (
+                                <EventToday key={Math.random()} event={item} mode={mode} setMode={setMode} deleteEvent={deleteEvent} editEvent={editEvent} colors={colors} subjects={subjects} getAntiColor={getAntiColor} />
                             ))}
                         </div>
                     </div>
                 </div>
             </div>
-            {create ? (
-                <div className={`${styles.popupmain} df jcc`}>
+            {(mode === 'create') ? (
+                <div
+                    className={styles.screen}
+                    ref={modalRef}
+                    onClick={(event) => handleClickOutSide(event)}
+                >
                     <div className={styles.popup}>
-                        <div className={styles.popuptitle}>
-                            <span>Новое событие</span>
-                        </div>
+                        <h4 className={styles.popuptitle}>Новое событие</h4>
                         <input
                             className={styles.popupinput}
                             type="text"
@@ -243,11 +313,11 @@ const MyCalendar: NextPage = () => {
                             >
                                 Создать
                             </button>
-                            <div className={`${styles.closebtn} df jcc aic cp`} onClick={() => setCreate(false)}>Отменить</div>
+                            <div className={`${styles.closebtn} df jcc aic cp`} onClick={() => clearAll()}>Отменить</div>
                         </div>
                     </div>
                 </div>
-            ) : <></>}
+            ) : ''}
         </div>
     );
 };
