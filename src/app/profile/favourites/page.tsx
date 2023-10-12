@@ -7,6 +7,9 @@ import ProgrammerIcon from '../../../../public/materials/Programmer.svg';
 import Image from 'next/image';
 
 const Favourites: NextPage = () => {
+
+    const tag = 'teacher'
+
     const [firstData, setFirstData]: any[] = useState([]);
     const [secondData, setSecondData]: any[] = useState([]);
     const [items, setItems] = useState([{ text: 'Математика', color: 'rgb(53, 121, 248)' }, { text: 'Литература', color: 'rgb(250, 105, 0)' }]);
@@ -49,12 +52,16 @@ const Favourites: NextPage = () => {
                 <div className={`${styles.lefttop} df fdc`}>
                     <div className={styles.lefttoptext}>
                         <span>Здравствуйте, Иван!</span>
-                        <p>Самое время брать и всерос с перечнем и поступать в вуз мечты на бюджет!</p>
+                        {tag!=='teacher'
+                        ?   <p>Самое время брать и всерос с перечнем и поступать в вуз мечты на бюджет!</p>
+                        :   <p>Самое время помочь ученикам брать всерос и перечневые олимпиады.
+                        Ознакомьтесь со статистикой.</p>
+                        }
                     </div>
                     <Image src={ProgrammerIcon} className={styles.icon} alt='Programmer' />
                 </div>
                 <div className={`${styles.leftbottom} df fdc`}>
-                    <span>Успеваемость</span>
+                    {tag!=='teacher'?<span>Успеваемость</span>:<span>Мои ученики</span>}
                     <ChartComponent title={items[0].text} graphData={firstData} />
                     <ChartComponent title={items[1].text} graphData={secondData} />
                 </div>

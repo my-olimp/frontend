@@ -21,7 +21,7 @@ const Profile: NextPage = () => {
         }
     }, [editMode]);
 
-    const tag: any = 'asd';
+    const tag: any = 'teacher';
 
     return (
         <div className={styles.wrap}>

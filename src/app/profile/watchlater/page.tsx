@@ -4,10 +4,14 @@ import styles from './index.module.scss'
 import { IMaterial, Materials } from '@/widgets/Materials';
 import material from '../../../../public/materials/Materials.svg'
 import materialIcon from '../../../../public/materials/materialIcon.svg';
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 import Image from 'next/image';
 import { nanoid } from 'nanoid';
 
 const WatchLater: NextPage = () => {
+
+    const tag = 'teacher'
+
     const materialList: IMaterial[] = [
         {
             id: 1,
@@ -89,10 +93,17 @@ const WatchLater: NextPage = () => {
                     <Image src={material} alt='materials' />
                 </div>
                 <div className={styles.right}>
-                    <span>Статья</span>
+                    {tag == 'teacher' ? (
+                        <div className='df aic'>
+                            <span>Статья</span>
+                            <div className='cp' style={{marginTop: '7px', marginLeft: '5px'}}>
+                                <DriveFileRenameOutlineOutlinedIcon style={{color: 'gray'}}/>
+                            </div>
+                        </div>
+                    ) : <span>Статья</span>}
                     <p>Замечательные точки и прямые треугольника</p>
                     <div className={`${styles.righttags} df aic fww`}>
-                        {tags.map((item: string) => 
+                        {tags.map((item: string) =>
                             <div className={`${styles.rightitem} dib cw`} key={nanoid(6)}>
                                 {item}
                             </div>
@@ -108,7 +119,7 @@ const WatchLater: NextPage = () => {
                     <span>Статья</span>
                     <p>Замечательные точки и прямые треугольника</p>
                     <div className={`${styles.righttags} df aic fww`}>
-                        {tags.map((item: string) => 
+                        {tags.map((item: string) =>
                             <div className={`${styles.rightitem} dib cw`} key={nanoid(6)}>
                                 {item}
                             </div>
