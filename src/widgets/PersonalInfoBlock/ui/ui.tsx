@@ -4,7 +4,7 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
 }
 
 export const PersonalInfoBlock: FC<props> = ({ setMode }) => {
@@ -49,8 +49,8 @@ export const PersonalInfoBlock: FC<props> = ({ setMode }) => {
                     </h2>
                 </li>
                 <li>
-                    <h1>Почта</h1>
-                    <h2>{getValue(user?.email)}</h2>
+                    <h1>СНИЛС</h1>
+                    <h2>{getValue(user?.SNILS)}</h2>
                 </li>
             </ul>
         </div>

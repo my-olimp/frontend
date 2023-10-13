@@ -17,7 +17,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './ui.module.scss';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
 }
 
 type Inputs = {
@@ -27,6 +27,9 @@ type Inputs = {
 };
 
 export const EditPersonalDataModal: FC<props> = ({ setMode }) => {
+    const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
+    const { user } = useAppSelector((state) => state.auth);
+    
     const [date, setDate] = useState<Dayjs>();
     const [sex, setSex] = useState<'male' | 'female'>('male');
 

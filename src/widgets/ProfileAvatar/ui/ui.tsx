@@ -3,12 +3,14 @@
 import { useAppSelector } from '@/hooks/useAppSelector';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { FC } from 'react';
+import { FC, Dispatch, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
-interface props {}
+interface props {
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
+}
 
-export const ProfileAvatar: FC<props> = ({}) => {
+export const ProfileAvatar: FC<props> = ({ setMode }) => {
     const { user } = useAppSelector((state) => state.auth);
     const { push } = useRouter();
 
@@ -28,7 +30,7 @@ export const ProfileAvatar: FC<props> = ({}) => {
                 )}
             </span>
             <span className={styles.buttonWrap}>
-                <button className={styles.changeButton}>Изменить</button>
+                <button onClick={() => setMode('avatar')} className={styles.changeButton}>Изменить</button>
                 <button className={styles.deleteButton}>Удалить</button>
             </span>
         </div>

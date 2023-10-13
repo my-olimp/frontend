@@ -63,6 +63,7 @@ export const SecondAdditionalDataForm: FC<props> = ({ progress, setProgress }) =
                 <div className={styles.logoRow}>
                     <ArrowBackOutlinedIcon className={styles.arrowIcon} />
                     <Logo />
+                    <div></div>
                 </div>
                 <div className={styles.titleRow}>
                     <h1>Образование</h1>

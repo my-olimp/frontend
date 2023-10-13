@@ -60,7 +60,7 @@ const Library: NextPage = () => {
             <div className={styles.container}>
                 <div className={styles.bar}>
                     <p>Библиотека</p>
-                    <p>Онлайн-архив полезных материалов от MyOlimp, собранный победителями прошлых лет и опытными преподавателями. Библиотека будет полезна при подготовке к олимпиадам и экзаменам.</p>
+                    <p className={styles.barText}>Онлайн-архив полезных материалов от MyOlimp, собранный победителями прошлых лет и опытными преподавателями. Библиотека будет полезна при подготовке к олимпиадам и экзаменам.</p>
                     <div className={styles.searchbar}>
                         <Image src={Search} alt="search" width={18} height={18}/>
                         <input

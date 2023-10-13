@@ -1,0 +1,49 @@
+.eventtoday {
+    padding: 20px 20px;
+    border-top: 1px solid rgba(34, 34, 34, 0.2);
+
+    .eventtodayleft {
+        div {
+            margin-right: 20px;
+        }
+    }
+    .eventtodayright {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.eventtoday:last-child {
+    border-bottom: 1px solid rgba(34, 34, 34, 0.2);
+}
+
+.deleteButton {
+    transition: all 0.3s ease 0s;
+    margin-left: 5px;
+    color: red;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.editButton {
+    margin-left: 8px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
+    .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+    }
+}

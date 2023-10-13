@@ -21,7 +21,8 @@ export default function Layout({ children }) {
         <>
             <Header />
             <RefreshTokenComponent />
-                {children}
+            {/* {isOpen && <UnathorizedPopup isOpen={isOpen}/>} */}
+            {children}
             <Footer />
         </>
     );

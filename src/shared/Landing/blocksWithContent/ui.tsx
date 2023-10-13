@@ -1,12 +1,12 @@
-import styles from './ui.module.scss';
 import Image from 'next/image';
+import bigImg from './../../../../public/landing/bigImage.svg';
 import Phone from './../../../../public/landing/phone.svg';
 import Star from './../../../../public/landing/star.svg';
-import bigImg from './../../../../public/landing/bigImage.svg';
+import styles from './ui.module.scss';
 export function Content() {
     return (
         <>
-            <div className={styles.wrapper}>
+            <div className={styles.wrapper} id="landing__about">
                 <div className={styles.twoBlockLayout}>
                     <div className={styles.block__first}>
                         <Image

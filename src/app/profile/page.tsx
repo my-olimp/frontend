@@ -10,9 +10,13 @@ import { useEffect, useState } from 'react';
 import { ContactsInfo } from '@/widgets/ContactsInfo';
 import { Achievments } from '@/widgets/Achievments/ui/ui';
 import styles from './index.module.scss';
+import { EditAvatar } from '@/widgets/EditAvatar';
+import { ProfileAchievements } from '@/widgets/ProfileAchievements';
+import { EditContacts } from '@/widgets/EditContacts';
+import { ProfileContacts } from '@/widgets/ProfileContacts';
 
 const Profile: NextPage = () => {
-    const [editMode, setMode] = useState<'' | 'personal' | 'work' | 'contact' | 'teacher'>('');
+    const [editMode, setMode] = useState<'' | 'personal' | 'work' | 'avatar' | 'contacts'>('');
     useEffect(() => {
         if (editMode === 'personal' || editMode === 'work' || editMode === 'contact') {
             document.body.style.overflow = 'hidden';
@@ -25,45 +29,26 @@ const Profile: NextPage = () => {
 
     return (
         <div className={styles.wrap}>
-            {tag === 'teacher' ? (
-                <>
-                    <div className={`${styles.left} df fdc`}>
-                        <ProfileAvatar />
-                        <Achievments setMode={setMode} tag={'teacher'}/>
-                    </div>
-                    <div className={styles.personalData}>
-                        <PersonalInfoBlock setMode={setMode} />
-                        <WorkBlock setMode={setMode} tag={'teacher'}/>
-                        <ContactsInfo setMode={setMode} />
-                        {editMode !== '' &&
-                            <>
-                                {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} /> : null}
-                                {editMode === 'work' ? <EditWorkDataModal setMode={setMode} tag={'teacher'} /> : null}
-                                {editMode === 'contact' ? <EditContactModal setMode={setMode} /> : null}
-                            </>
-                        }
-                    </div>
-                </>
-            ) : (
-                <>
-                    <div className={`${styles.left} df fdc`}>
-                        <ProfileAvatar />
-                        <Achievments />
-                    </div>
-                    <div className={styles.personalData}>
-                        <PersonalInfoBlock setMode={setMode} />
-                        <WorkBlock setMode={setMode} />
-                        <ContactsInfo setMode={setMode} />
-                        {editMode !== '' &&
-                            <>
-                                {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} /> : null}
-                                {editMode === 'work' ? <EditWorkDataModal setMode={setMode} /> : null}
-                                {editMode === 'contact' ? <EditContactModal setMode={setMode} /> : null}
-                            </>
-                        }
-                    </div>
-                </>
-            )}
+            <div className={styles.avatarAndAchievements}>
+                <ProfileAvatar setMode={setMode} />
+                <ProfileAchievements />
+            </div>
+            <div className={styles.personalData}>
+                <PersonalInfoBlock setMode={setMode} />
+                <WorkBlock setMode={setMode} />
+                <ProfileContacts setMode={setMode} />
+                {editMode !== '' &&
+                    (editMode === 'personal') ? 
+                    <EditPersonalDataModal setMode={setMode} />
+                : (editMode === 'work') ?
+                    <EditWorkDataModal setMode={setMode} />
+                : (editMode === 'avatar') ?
+                    <EditAvatar setMode={setMode} />
+                : (editMode === 'contacts') ?
+                    <EditContacts setMode={setMode} /> 
+                : '' 
+                }
+            </div>
         </div>
     );
 };

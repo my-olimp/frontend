@@ -8,8 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './ui.module.scss';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
-    tag?: string;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
 }
 
 type Inputs = {

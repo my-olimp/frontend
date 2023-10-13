@@ -1,0 +1,92 @@
+.screen {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    left: 0;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    & form {
+        height: 472px;
+        width: 502px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        gap: 16px;
+        border-radius: 24px;
+        box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
+        align-items: center;
+        padding: 24px 40px;
+    }
+
+    h6 {
+        font-size: 36px;
+        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        color: black;
+    }
+}
+
+.avatarContainer {
+    width: 290px;
+    height: 290px;
+    position: relative;
+}
+
+.avatar {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    object-fit: cover;
+    border-radius: 1000px;
+}
+
+.input {
+    width: 414px;
+    height: 56px;
+    outline-color: #1976d2;
+    border-radius: 12px;
+    border: 1px solid #8d8d8d;
+    padding: 16px 12px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cancel {
+    width: 160px;
+    height: 48px;
+    color: #3579f8;
+    background-color: transparent;
+    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    border: 1px solid #3579f8;
+    transition: all 0.3s;
+    font-size: 20px;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: #5935f8;
+        color: white;
+    }
+}
+
+.submit {
+    @extend .cancel;
+    color: white;
+    background-color: #3579f8;
+}
+
+.buttons button {
+    cursor: pointer;
+}

@@ -6,6 +6,12 @@
     gap: 36px;
 }
 
+.avatarAndAchievements {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .infoWrap {
     display: flex;
     flex-direction: column;
@@ -23,7 +29,7 @@
 .personalData {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
 }
 
 @media (max-width: 1000px) {

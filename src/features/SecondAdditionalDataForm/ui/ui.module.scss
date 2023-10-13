@@ -1,51 +1,48 @@
 .form {
+    padding: 32px 44px;
+    margin: 0 16px;
+    background-color: #fff;
+    border-radius: 24px;
+    max-width: 502px;
+    min-width: 502px;
+    box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
     & form {
-        height: 472px;
-        width: 502px;
         display: flex;
         flex-direction: column;
-        padding: 32px 0;
-        background-color: white;
         gap: 12px;
-        border-radius: 24px;
-        box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
         align-items: center;
+        @media screen and (max-width: 420px) {
+            gap: 10px;
+        }
     }
 
-    .button {
-        height: 56px;
-        width: 414px;
-        text-transform: capitalize;
-        border-radius: 12px;
-        font-size: 22px;
-        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-        font-weight: 500;
-        background-color: #3579F8;
-        box-shadow: none;
-
-
-        &:disabled {
-            background-color: #8CB2FB;
-            cursor: not-allowed;
-            pointer-events: all !important;
-            color: white;
-
-            &:hover {
-                background-color: #8CB2FB;
-            }
-        }
-
-        &:hover {
-            background-color: #316ee0;
-            box-shadow: none;
-        }
+    @media screen and (max-width: 500px) {
+        min-width: 400px;
+        padding: 28px 38px;
+    }
+    @media screen and (max-width: 420px) {
+        min-width: 350px;
+        padding: 24px 30px;
+    }
+    @media screen and (max-width: 360px) {
+        min-width: auto;
+        padding: 20px 20px;
+        width: 100%;
+        padding: 32px 32px 16px;
     }
 }
 
 .select {
     height: 56px;
-    width: 414px;
+    width: 100%;
     border-radius: 12px;
+
+    @media (max-width: 500px) {
+        height: 50px;         
+    }
+    @media (max-width: 420px) {
+        height: 46px;        
+    }
 }
 
 .logoRow {
@@ -54,7 +51,12 @@
     justify-content: space-between;
 
     .arrowIcon {
-        margin-left: 24px;
+        cursor: pointer;
+        position: relative;
+        right: 22px;
+        @media (max-width: 420px) {
+            right: 12px;
+        }
     }
 
     svg {
@@ -66,8 +68,8 @@
     }
 
     .myOlimpIcon {
-        margin-right: auto;
-        margin-left: 150px;
+        position: relative;
+        right: 16px;
         cursor: pointer;
     }
 
@@ -77,7 +79,7 @@
     display: flex;
     align-items: center;
     gap: 24px;
-    width: 414px;
+    width: 100%;
 
     & h1 {
         font-size: 20px;
@@ -85,12 +87,58 @@
         font-family: "SF_Medium", Arial, Helvetica, sans-serif;
         font-weight: 500;
         margin: 0;
+        @media (max-width: 400px) {
+            font-size: 18px;
+        }
+        @media (max-width: 350px) {
+            font-size: 16px;
+        }
+    }
+    & p {
+        color: #6bc62d;
+        font-size: 16px;
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        @media (max-width: 400px) {
+            font-size: 15px;
+        }
+        @media (max-width: 350px) {
+            font-size: 13px;
+        }
+    }
+}
+
+.button {
+    height: 56px;
+    width: 100%;
+    text-transform: capitalize;
+    border-radius: 12px;
+    font-size: 22px;
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    background-color: #3579f8;
+    box-shadow: none;
+
+    &:disabled {
+        background-color: #8cb2fb;
+        cursor: not-allowed;
+        pointer-events: all !important;
+        color: white;
+        &:hover {
+            background-color: #8cb2fb;
+        }
+    }
+    &:hover {
+        background-color: #316ee0;
+        box-shadow: none;
     }
 
-    & p {
-        color: #6BC62D;
-        font-size: 16px;
-        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-        font-weight: 500;
+    @media (max-width: 500px) {
+        height: 50px;        
+        font-size: 20px;
+    }
+    @media (max-width: 420px) {
+        height: 44px;        
+        font-size: 18px;
     }
 }

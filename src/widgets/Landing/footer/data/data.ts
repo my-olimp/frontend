@@ -89,7 +89,7 @@ export const FooterItemsFourth: FooterItemsType[] = [
     },
     {
         id: 1,
-        text: 'Стажироки',
+        text: 'Стажировки',
         link: '/',
     },
 ];
