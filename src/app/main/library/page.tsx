@@ -70,14 +70,14 @@ const Library: NextPage = () => {
                         />
                     </div>
                     <div className={styles.btns}>
-                        <Link href='/main/library/math' className={styles.btn}>Математика</Link>
+                        <Link href='/main/library/items' className={styles.btn}>Математика</Link>
                         <div className={styles.btn}>Информатика</div>
                         <div className={styles.btn}>Физика</div>
                     </div>
                 </div>
             </div>
-            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} />
-            <Materials materialList={materialList} title={'Может быть интересно'} libMode={true} />
+            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} overflow={true} />
+            <Materials materialList={materialList} title={'Может быть интересно'} libMode={true} overflow={true} />
         </div>
     );
 };

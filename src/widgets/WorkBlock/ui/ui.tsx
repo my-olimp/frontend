@@ -7,21 +7,21 @@ interface props {
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
 }
 
-export const WorkBlock: FC<props> = ({ setMode }) => {
+export const WorkBlock: FC<props> = ({ setMode, tag }) => {
     const { user } = useAppSelector((state) => state.auth);
 
-    const getValue = (value) => {
-        return value ? `${value}` : 'Не указано';
-    };
+    const getValue = (value: any) => value ? `${value}` : 'Не указано';
 
     return (
         <div className={styles.wrap}>
-            <div className={styles.titleWrap}>
-                <h1>Образование</h1>
-                <div onClick={() => setMode('work')}>
-                    <DriveFileRenameOutlineOutlinedIcon />
-                </div>
-            </div>
+            {tag === 'teacher' ? (
+                <>
+                    <div className={styles.titleWrap}>
+                        <h1>Работа</h1>
+                        <div onClick={() => setMode('work')}>
+                            <DriveFileRenameOutlineOutlinedIcon />
+                        </div>
+                    </div>
 
             <ul className={styles.infoWrap}>
                 <li>

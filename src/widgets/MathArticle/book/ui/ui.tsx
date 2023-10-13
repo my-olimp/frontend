@@ -13,4 +13,3 @@ export const BookPage: FC<PropsWithChildren<PropsBookPage>> = ( { children } ) =
         </div>
     )
 }
-

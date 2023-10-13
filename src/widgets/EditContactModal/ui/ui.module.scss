@@ -16,10 +16,10 @@
     border-radius: 30px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
     justify-content: space-between;
     padding: 24px 40px;
     width: 610px;
-    height: 500px;
 
     h6 {
         font-size: 36px;
@@ -84,20 +84,4 @@
         height: 52px;
         width: 420px;
     }
-}
-
-.calendar {
-    width: 420px;
-    height: 52px;
-
-    & div {
-        border-radius: 12px;
-    }
-    & input {
-        width: 355px !important;
-    }
-}
-
-.buttons button {
-    cursor: pointer;
 }

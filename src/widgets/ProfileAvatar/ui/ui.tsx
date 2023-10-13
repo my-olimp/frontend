@@ -14,10 +14,9 @@ export const ProfileAvatar: FC<props> = ({ setMode }) => {
     const { user } = useAppSelector((state) => state.auth);
     const { push } = useRouter();
 
-    
     return (
         <div className={styles.wrap}>
-            <span className={styles.imageWrap}>
+            <span className={styles.imageWrap} style={user?.id ? {} : {background: '#C4C4C4'}}>
                 {user?.id && (
                     <Image
                         src={`https://storage.yandexcloud.net/myolimp/user/avatar/${user.id}.webp`}

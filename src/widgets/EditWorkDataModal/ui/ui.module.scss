@@ -8,6 +8,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1101;
+}
+
+.select {
+    height: 56px;
+    width: 414px;
+    border-radius: 12px;
 }
 
 .form {
@@ -44,6 +51,9 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    button {
+        cursor: pointer;
+    }
 }
 
 .cancel {

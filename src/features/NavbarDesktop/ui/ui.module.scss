@@ -4,14 +4,50 @@
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
-    padding: 0 4vw;
+    padding: 0 4vw 0 0;
 }
 
 .linksWrap {
     display: flex;
     flex-direction: row;
-    gap: 48px;
     align-items: center;
+}
+
+.burgerMenu {
+    margin: 10px 20px 0 20px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    .burgerIcon {
+        width: 25px;
+        height: 30px;
+        cursor: pointer;
+        z-index: 10000;
+
+        .bar {
+            margin-top: 3.5px;
+            width: 100%;
+            height: 2px;
+            background-color: #464646;
+            transition: transform 0.3s ease-in-out;
+        }
+        &.open {
+            .bar {
+                &:first-child {
+                    transform: rotate(45deg) translate(3.8px, 5px);
+                }
+
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+
+                &:last-child {
+                    transform: rotate(-45deg) translate(2px, -5px);
+                }
+            }
+        }
+    }
 }
 
 .infoWrap {
@@ -24,6 +60,12 @@
     & * {
         cursor: pointer;
     }
+}
+
+.element {
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .element:hover {
@@ -56,6 +98,7 @@
 }
 
 .sideBar {
+    z-index: 1100;
     position: absolute;
     left: 0;
     top: 64px;
@@ -64,7 +107,6 @@
     width: 4rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
     bottom: 0;
     padding-top: 32px;
@@ -72,6 +114,32 @@
     background-color: #ffffff;
 
     & span {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 80px;
+        gap: 16px;
+    }
+}
+
+.sideBarOpen {
+    z-index: 1100;
+    position: absolute;
+    left: 0;
+    top: 64px;
+    height: 100%;
+    border-right: 2px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    bottom: 0;
+    padding-top: 32px;
+    padding-bottom: 24px;
+    background-color: #ffffff;
+
+    & span {
+        margin-left: 10px;
         display: flex;
         flex-direction: column;
         position: fixed;
@@ -98,11 +166,20 @@
 }
 
 .sideBarElement {
+    transition: .2s ease-in-out;
     cursor: pointer;
     display: flex;
     border-radius: 50px;
     flex-direction: row;
     padding: 8px;
+    overflow: hidden;
+
+    .baritemtext {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 2px 5px 0 8px;
+    }
+
     &:hover {
         & * {
             color: black;
@@ -118,6 +195,7 @@
     @extend .sideBarElement;
     position: fixed;
     bottom: 2rem;
+    margin-left: 10px;
 
     &:hover {
         & * {

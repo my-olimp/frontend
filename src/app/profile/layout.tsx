@@ -12,13 +12,13 @@ export default function Layout({ children }) {
     const { user } = useAppSelector((state) => state.auth);
     const [unathorized, setUnathorized] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (!user) {
-            setUnathorized(true);
-        } else {
-            setUnathorized(false);
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if (!user) {
+    //         setUnathorized(true);
+    //     } else {
+    //         setUnathorized(false);
+    //     }
+    // }, [user]);
 
     return (
         <>
