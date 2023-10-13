@@ -38,6 +38,7 @@ const AchievmentsRout: NextPage = () => {
     ]
 
     useEffect(() => {
+        console.log(tag)
         tag == 'teacher' ? setItemTeacherData(teacherItem) : setItemData(item)
     }, [])
 
@@ -71,6 +72,7 @@ const AchievmentsRout: NextPage = () => {
             });
             if (filteredTeacherData.length < 1) setNone(true)
             setItemTeacherData(filteredTeacherData)
+            setLoading(false)
         } else {
             const filteredData = itemData.filter((item: any) => {
                 for (const key in item) {
@@ -82,11 +84,11 @@ const AchievmentsRout: NextPage = () => {
             });
             if (filteredData.length < 1) setNone(true)
             setItemData(filteredData)
+            setLoading(false)            
         }
-        setLoading(false)
     }
 
-    const tag = 'teacher'
+    const tag = 'teasd'
 
     return (
         <div className={styles.wrap}>

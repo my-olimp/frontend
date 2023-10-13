@@ -6,7 +6,8 @@ import { useAppSelector } from '@/hooks/useAppSelector';
 import { Logout } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
@@ -27,10 +28,11 @@ interface props {
 }
 
 const sideBarElements = [
-    { id: 0, name: 'Главная', icon: <HomeOutlinedIcon />, rout: 'main', active: true },
-    { id: 1, name: 'Избранное', icon: <FavoriteBorderOutlinedIcon />, rout: '/favourites', active: false },
-    { id: 2, name: 'Хочу посмотреть', icon: <VisibilityOutlinedIcon />, rout: '/watchlater', active: false },
-    { id: 3, name: 'Достижения', icon: <WorkspacePremiumOutlinedIcon />, rout: '/achievments', active: false },
+    { id: 0, name: 'Главная', icon: <AccountCircleOutlinedIcon />, rout: 'main', active: true },
+    { id: 1, name: 'Успеваемость', icon: <InsertChartOutlinedRoundedIcon />, rout: '/grade', active: false },
+    { id: 2, name: 'Избранное', icon: <FavoriteBorderOutlinedIcon />, rout: '/favourites', active: false },
+    { id: 3, name: 'Хочу посмотреть', icon: <VisibilityOutlinedIcon />, rout: '/watchlater', active: false },
+    { id: 4, name: 'Достижения', icon: <WorkspacePremiumOutlinedIcon />, rout: '/achievments', active: false },
 ];
 
 export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile }) => {

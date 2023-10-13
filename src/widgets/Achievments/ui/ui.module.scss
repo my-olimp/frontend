@@ -9,6 +9,11 @@
 .title {
     font-weight: 600;
     font-size: 28px;
+    display: flex;
+    svg {
+        margin-top: 6px;
+        margin-left: 5px;
+    }
 }
 
 .item {

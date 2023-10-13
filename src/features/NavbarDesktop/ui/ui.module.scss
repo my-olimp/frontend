@@ -183,6 +183,7 @@
     @extend .sideBarElement;
     position: fixed;
     bottom: 2rem;
+    margin-left: 10px;
 
     &:hover {
         & * {

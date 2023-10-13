@@ -1,117 +1,130 @@
-"use client"
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NextPage } from 'next';
 import styles from './index.module.scss'
-import { ChartComponent } from '@/features/Graph';
-import ProgrammerIcon from '../../../../public/materials/Programmer.svg';
+import { IMaterial, Materials } from '@/widgets/Materials';
+import material from '../../../../public/materials/Materials.svg'
+import materialIcon from '../../../../public/materials/materialIcon.svg';
+import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 import Image from 'next/image';
+import { nanoid } from 'nanoid';
 
 const Favourites: NextPage = () => {
 
     const tag = 'teacher'
 
-    const [firstData, setFirstData]: any[] = useState([]);
-    const [secondData, setSecondData]: any[] = useState([]);
-    const [items, setItems] = useState([{ text: 'Математика', color: 'rgb(53, 121, 248)' }, { text: 'Литература', color: 'rgb(250, 105, 0)' }]);
+    const materialList: IMaterial[] = [
+        {
+            id: 1,
+            title: 'Персонализированный вариант',
+            currentProgress: 0,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Олимпиада' },
+                { id: 2, text: 'ВСОШ по математике' },
+            ],
+            icon: materialIcon.src,
+        },
+        {
+            id: 2,
+            title: 'Теория приближений',
+            currentProgress: 2,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Олимпиада' },
+                { id: 2, text: 'Высшая проба по физике' },
+            ],
+            icon: materialIcon.src,
+        },
+        {
+            id: 3,
+            title: 'Подсчёты в графах',
+            currentProgress: 6,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Олимпиада' },
+                { id: 2, text: 'Покори горы, Джейсон стэтхэм (c)' },
+            ],
+            icon: materialIcon.src,
+        },
+        {
+            id: 4,
+            title: 'Полуинвариант',
+            currentProgress: 8,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Олимпиада' },
+                { id: 2, text: 'ВСОШ по математике' },
+            ],
+            icon: materialIcon.src,
+        },
+        {
+            id: 2,
+            title: 'Теория приближений',
+            currentProgress: 2,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Олимпиада' },
+                { id: 2, text: 'Высшая проба по физике' },
+            ],
+            icon: materialIcon.src,
+        },
+        {
+            id: 3,
+            title: 'Подсчёты в графах',
+            currentProgress: 6,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Олимпиада' },
+                { id: 2, text: 'Покори горы, Джейсон стэтхэм (c)' },
+            ],
+            icon: materialIcon.src,
+        },
+    ];
 
-    function convertToRGBA(rgb: string) {
-        const values = rgb.match(/\d+/g);
-        if (values && values.length === 3) {
-            const [r, g, b] = values;
-            return `rgba(${r}, ${g}, ${b}, 0.3`;
-        } else {
-            return rgb;
-        }
-    }
-
-    useEffect(() => {
-        function generateData() {
-            const data: any[] = [];
-            const currentDate = new Date();
-            const endDate = new Date(currentDate.getFullYear(), 9, 12);
-            for (let i = 0; i < 12; i++) {
-                const date = new Date(endDate);
-                date.setDate(endDate.getDate() - i);
-                const day = date.getDate();
-                const month = date.getMonth() + 1;
-                const formattedDate = `${day < 10 ? '0' : ''}${day}.${month < 10 ? '0' : ''}${month}`;
-                const value = Math.floor(Math.random() * 101);
-                data.push([formattedDate, value]);
-            }
-            return data.reverse()
-        }
-        setFirstData(generateData())
-        setSecondData(generateData())
-    }, [])
-
-    const lastData: any[] = [...firstData]?.pop()
+    const tags = ['Математика', 'Планиметрия', 'Школьная программа']
 
     return (
-        <div className={`${styles.wrap} df jcsb`}>
-            <div className={`${styles.left} df fdc`}>
-                <div className={`${styles.lefttop} df fdc`}>
-                    <div className={styles.lefttoptext}>
-                        <span>Здравствуйте, Иван!</span>
-                        {tag!=='teacher'
-                        ?   <p>Самое время брать и всерос с перечнем и поступать в вуз мечты на бюджет!</p>
-                        :   <p>Самое время помочь ученикам брать всерос и перечневые олимпиады.
-                        Ознакомьтесь со статистикой.</p>
-                        }
-                    </div>
-                    <Image src={ProgrammerIcon} className={styles.icon} alt='Programmer' />
+        <div className={styles.wrap}>
+            <span className={styles.title}>Избранное</span>
+            <Materials materialList={materialList} title={'student'} libMode={true} overflow={true} />
+            <span className={styles.title}>Материалы</span>
+            <div className={`${styles.materials} df aic`}>
+                <div className={`${styles.left} df jcc aic`}>
+                    <Image src={material} alt='materials' />
                 </div>
-                <div className={`${styles.leftbottom} df fdc`}>
-                    {tag!=='teacher'?<span>Успеваемость</span>:<span>Мои ученики</span>}
-                    <ChartComponent title={items[0].text} graphData={firstData} />
-                    <ChartComponent title={items[1].text} graphData={secondData} />
-                </div>
-            </div>
-            <div className={styles.right}>
-                <div className={`${styles.rightitem} df fdc`}>
-                    <span className={styles.rightitemtitle}>Пройденный материал</span>
-                    <span className={styles.rightitemsubtitle}>{items[0].text}</span>
-                    {items.map((item: any, index: number) => {
-                        return (
-                            <div key={index} className={styles.item}>
-                                <div className={`${styles.itemtop} df jcsb aic`}>
-                                    <span>{item.text}</span>
-                                    <span style={{ color: item.color }}>{`${lastData ? lastData[1] : ''}%`}</span>
-                                </div>
-                                <div
-                                    className={`${styles.progressbar} w100`}
-                                    style={{ backgroundColor: `${convertToRGBA(item.color)}` }}
-                                >
-                                    <div
-                                        className={`${styles.progressview} h100`}
-                                        style={{ backgroundColor: item.color, width: `${lastData ? lastData[1] : '0'}%` }}
-                                    >
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-                <div className={`${styles.rightitem} df fdc`}>
-                    <span className={styles.rightitemtitle}>Пройденный материал</span>
-                    <span className={styles.rightitemsubtitle}>{items[1].text}</span>
-                    {items.map((item: any, index: number) => (
-                        <div key={index} className={styles.item}>
-                            <div className={`${styles.itemtop} df jcsb aic`}>
-                                <span>{item.text}</span>
-                                <span style={{ color: item.color }}>{`${lastData ? lastData[1] : ''}%`}</span>
-                            </div>
-                            <div
-                                className={`${styles.progressbar} w100`}
-                                style={{ backgroundColor: `${convertToRGBA(item.color)}` }}
-                            >
-                                <div
-                                    className={`${styles.progressview} h100`}
-                                    style={{ backgroundColor: item.color, width: `${lastData ? lastData[1] : '0'}%` }}
-                                >
-                                </div>
+                <div className={styles.right}>
+                    {tag == 'teacher' ? (
+                        <div className='df aic'>
+                            <span>Статья</span>
+                            <div className='cp' style={{marginTop: '7px', marginLeft: '5px'}}>
+                                <DriveFileRenameOutlineOutlinedIcon style={{color: 'gray'}}/>
                             </div>
                         </div>
-                    ))}
+                    ) : <span>Статья</span>}
+                    <p>Замечательные точки и прямые треугольника</p>
+                    <div className={`${styles.righttags} df aic fww`}>
+                        {tags.map((item: string) =>
+                            <div className={`${styles.rightitem} dib cw`} key={nanoid(6)}>
+                                {item}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+            <div className={`${styles.materials} df aic`}>
+                <div className={`${styles.left} df jcc aic`}>
+                    <Image src={material} alt='materials' />
+                </div>
+                <div className={styles.right}>
+                    <span>Статья</span>
+                    <p>Замечательные точки и прямые треугольника</p>
+                    <div className={`${styles.righttags} df aic fww`}>
+                        {tags.map((item: string) =>
+                            <div className={`${styles.rightitem} dib cw`} key={nanoid(6)}>
+                                {item}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
