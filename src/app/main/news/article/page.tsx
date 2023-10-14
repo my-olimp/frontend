@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import { NextPage } from 'next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
@@ -33,7 +33,6 @@ const Article: NextPage = () => {
     useEffect(() => {
         const selected: any = localStorage.getItem("selectedItem") || null;
         setSelecteditem(JSON.parse(selected))
-        console.log(selected)
         async function getData() {
             const newsdata: any = await dispatch(GetArticle(selecteditem.id || 1));
             console.log(newsdata.payload.data)

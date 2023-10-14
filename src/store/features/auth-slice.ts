@@ -1,4 +1,4 @@
-import { getCity, getOTC, getRegions, getSchools, getNews, login, logout, refreshToken, register, getArticle, getDisciplines } from '@/services/AuthService';
+import { getCity, getOTC, getRegions, putUserdata, getSchools, getNews, login, logout, refreshToken, register, getArticle, getDisciplines, getUser } from '@/services/AuthService';
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
@@ -51,6 +51,8 @@ type AuthState = {
     password: string | undefined;
     user: IUser | undefined;
     loading: boolean;
+    userdata: any[] | undefined;
+    putuserdata: any[] | undefined;
 };
 
 const initialState = {
@@ -104,6 +106,13 @@ export const RefreshToken = createAsyncThunk('auth/refreshToken', async (_, {rej
   return await refreshToken({ rejectWithValue })
 })
 
+export const GetUser = createAsyncThunk(
+  'auth/GetUser',
+  async (_, { rejectWithValue }) => {
+      return await getUser({ rejectWithValue });
+  },
+);
+
 export const GetRegions = createAsyncThunk(
   'auth/GetRegions',
   async (_, { rejectWithValue }) => {
@@ -115,6 +124,13 @@ export const GetDisciplines = createAsyncThunk(
   'auth/GetDisciplines',
   async (_, { rejectWithValue }) => {
       return await getDisciplines({ rejectWithValue });
+  },
+);
+
+export const PutUserdata = createAsyncThunk(
+  'auth/PutUserdata',
+  async (data: any, { rejectWithValue }) => {
+      return await putUserdata(data, { rejectWithValue });
   },
 );
 
@@ -208,7 +224,12 @@ export const auth = createSlice({
         builder.addCase(GetArticle.pending, (state) => {
           clear(state, true)
         })
-
+        builder.addCase(GetUser.pending, (state) => {
+          clear(state, true)
+        })
+        builder.addCase(PutUserdata.pending, (state) => {
+          clear(state, true)
+        })
 
         builder.addCase(GetOTC.fulfilled, (state, action) => {
           clear(state, false)
@@ -230,9 +251,8 @@ export const auth = createSlice({
 
         builder.addCase(RefreshToken.fulfilled, (state, action) => {
           clear(state, false)
-          state.user = action.payload
+          state.userdata = action.payload
         })
-       
 
         builder.addCase(GetRegions.fulfilled, (state, action) => {
           state.regions = action.payload.data;
@@ -256,6 +276,14 @@ export const auth = createSlice({
 
         builder.addCase(GetArticle.fulfilled, (state, action) => {
           state.news = action.payload.data;
+        })
+
+        builder.addCase(GetUser.fulfilled, (state, action) => {
+          state.userdata = action.payload.data;
+        })
+
+        builder.addCase(PutUserdata.fulfilled, (state, action) => {
+          state.putuserdata = action.payload.data;
         })
 
         builder.addCase(GetOTC.rejected, (state, action) => {
@@ -289,6 +317,12 @@ export const auth = createSlice({
           handleReject(state, action)
         })
         builder.addCase(GetArticle.rejected, (state, action) => {
+          handleReject(state, action)
+        })
+        builder.addCase(GetUser.rejected, (state, action) => {
+          handleReject(state, action)
+        })
+        builder.addCase(PutUserdata.rejected, (state, action) => {
           handleReject(state, action)
         })
     },

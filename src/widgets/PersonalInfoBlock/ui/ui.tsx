@@ -5,14 +5,19 @@ import styles from './ui.module.scss';
 
 interface props {
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
+    userdata?: any;
 }
 
-export const PersonalInfoBlock: FC<props> = ({ setMode }) => {
-    const { user } = useAppSelector((state) => state.auth);
+export const PersonalInfoBlock: FC<props> = ({ setMode, userdata }) => {
+    const getValue = (value: any) => {
+        if (value == 'undefined' || value == null) return 'Не указано'
+        return value
+    }
 
-    const getValue = (value) => {
-        return value ? `${value}` : 'Не указано';
-    };
+    const getName = (value: any) => {
+        if (value.first_name == null && value.second_name == null) return 'Не указано'
+        return `${value.first_name} ${value.second_name} ${value.third_name == null ? '-' : value.third_name}`
+    }
 
     return (
         <div className={styles.wrap}>
@@ -25,32 +30,32 @@ export const PersonalInfoBlock: FC<props> = ({ setMode }) => {
             <ul className={styles.infoWrap}>
                 <li>
                     <h1>ID</h1>
-                    <h2>{getValue(user?.id)}</h2>
+                    <h2>{getValue(userdata?.id)}</h2>
                 </li>
                 <li>
                     <h1>ФИО</h1>
-                    <h2>{user && `${user.first_name} ${user.second_name} ${user.third_name}`}</h2>
+                    <h2>{userdata && getName(userdata)}</h2>
                 </li>
                 <li>
                     <h1>Дата рождения</h1>
-                    <h2>{getValue(user?.data_of_birth)}</h2>
+                    <h2>{getValue(userdata?.data_of_birth)}</h2>
                 </li>
                 <li>
                     <h1>Пол</h1>
                     <h2>
-                        {user &&
+                        {userdata &&
                             `${
-                                user.gender === 'm'
+                                userdata.gender === 'm'
                                     ? 'Мужской'
-                                    : user.gender === 'f'
+                                    : userdata.gender === 'f'
                                     ? 'Женский'
                                     : 'Не указано'
                             }`}
                     </h2>
                 </li>
                 <li>
-                    <h1>Почта</h1>
-                    <h2>{getValue(user?.email)}</h2>
+                    <h1>СНИЛС</h1>
+                    <h2>{userdata && getValue(userdata?.SNILS)}</h2>
                 </li>
             </ul>
         </div>
