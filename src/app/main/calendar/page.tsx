@@ -43,7 +43,9 @@ const MyCalendar: NextPage = () => {
     useEffect(() => {
         const obj = localStorage.getItem("events");
         const arr = JSON.parse(obj ? obj : '')
-        if (obj) { setCalendarEvents(arr) };
+        if (obj) {
+            setCalendarEvents(arr)
+        }
         setEventsInListFunction(arr)
     }, []);
 
@@ -140,7 +142,11 @@ const MyCalendar: NextPage = () => {
 
 
     const inputHandler = (e: string) => {
-        if (e.length > 3) { setIsDisabled(false) } else { setIsDisabled(true) };
+        if (e.length > 3) {
+            setIsDisabled(false)
+        } else {
+            setIsDisabled(true)
+        }
         setEventname(e);
     }
 
@@ -161,7 +167,7 @@ const MyCalendar: NextPage = () => {
         };
     }, []);
 
-    const navigate = (option : 'today' | 'prev' | 'next') => {
+    const navigate = (option: 'today' | 'prev' | 'next') => {
         if (option === 'next') {
             setCountDay(prev => prev + 1)
             setEventsInListFunction(calendarEvents, countDay + 1)

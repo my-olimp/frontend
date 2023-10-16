@@ -48,7 +48,6 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
     const [activeId, setActiveId] = useState<number>(0);
 
 
-
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
     const { push } = useRouter();
