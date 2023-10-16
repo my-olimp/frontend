@@ -10,8 +10,10 @@ import Image from 'next/image';
 import useDebounce from '@/hooks/useDebounce';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import useIsMobile from '@/hooks/UseIsMobile';
 
 const AchievmentsRout: NextPage = () => {
+    const isMobile = useIsMobile(900)
     const [none, setNone] = useState(false);
     const [itemTeacherData, setItemTeacherData] = useState([]);
     const [itemData, setItemData] = useState([]);
@@ -92,7 +94,7 @@ const AchievmentsRout: NextPage = () => {
 
     return (
         <div className={styles.wrap}>
-            {window.innerWidth > 900 ?
+            {!isMobile ?
                 (<>
                     <div className={`${styles.top} df jcsb aic`}>
                         <span className={styles.title}>{`Результаты${tag == 'teacher' ? ' учеников' : ''}`}</span>

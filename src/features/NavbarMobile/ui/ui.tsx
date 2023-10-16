@@ -22,6 +22,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
 import { PopupPages } from '@/features/PopupPages';
 import { ArrowHeader } from '@/entities/ArrowHeader';
+import useIsMobile from '@/hooks/UseIsMobile';
 
 const sideBarElements = [
     { id: 0, name: 'Главная', icon: <AccountCircleOutlinedIcon />, rout: 'main', active: true },
@@ -37,6 +38,7 @@ interface props {
     profile: Boolean;
 }
 export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) => {
+    const isMobile = useIsMobile(420)
     const [showPopupNotifications, setShowPopupNotifications] = useState<boolean>(false);
     const [showPopupPages, setShowPopupPages] = useState<boolean>(false);
     const [clicked, setClicked] = useState<boolean>(false);
@@ -167,7 +169,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
                                 <div className={styles.bar}></div>
                             </div>
                         </div>
-                        {window.innerWidth > 420 ? <Logo/> : <Logo small={true}/>}
+                        {!isMobile ? <Logo/> : <Logo small={true}/>}
                     </div>
                 ) :
                     (<>

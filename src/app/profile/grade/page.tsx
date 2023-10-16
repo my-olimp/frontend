@@ -11,8 +11,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dayjs, { Dayjs } from 'dayjs';
 import { MobileDatePicker } from '@mui/x-date-pickers';
+import useIsMobile from '@/hooks/UseIsMobile';
+
 
 const Grade: NextPage = () => {
+    const isSmallDesktop = useIsMobile(1400)
+    const isMobile = useIsMobile(700)
+    const isTablet = useIsMobile(900)
 
     const tag = 'teacher'
 
@@ -110,7 +115,7 @@ const Grade: NextPage = () => {
                     </div>
                     <Image src={ProgrammerIcon} className={styles.icon} alt='Programmer' />
                 </div>
-                {document.documentElement.clientWidth <= 1400 ?
+                {isSmallDesktop ?
                     (<div className={`${styles.groups} df fdc`}>
                         <div className={`${styles.groupstop} df jcsb aic`}>
                             <span>Группы</span>
@@ -122,7 +127,7 @@ const Grade: NextPage = () => {
                                 </div>
                             </Link>
                         </div>
-                        {document.documentElement.clientWidth <= 700 ?
+                        {isMobile ?
                             (
                                 <div className={styles.groupsMobile}>
                                     <div>
@@ -187,7 +192,7 @@ const Grade: NextPage = () => {
                     </div>)
                     : ""}
                 <div className={`${styles.leftbottom} df fdc`}>
-                    {document.documentElement.clientWidth <= 900 ? (
+                    {isTablet ? (
                         <>
                             <div className={styles.title}>Успеваемость</div>
                             <div className={styles.charts}>
@@ -238,7 +243,7 @@ const Grade: NextPage = () => {
                         </>
                     )}
                 </div>
-                {document.documentElement.clientWidth <= 1400 ?
+                {isSmallDesktop ?
                     (<div className={styles.rightitems}>
                         <div className={`${styles.rightitem} df fdc`}>
                             <span className={styles.rightitemtitle}>Пройденный материал</span>
@@ -287,7 +292,7 @@ const Grade: NextPage = () => {
                     </div>)
                     : ""}
             </div>
-            {document.documentElement.clientWidth > 1400 ?
+            {!isSmallDesktop ?
                 (
                     <div className={`${styles.right} df fdc`} style={{ gap: '20px' }}>
                         <div className={`${styles.groups} df fdc`}>

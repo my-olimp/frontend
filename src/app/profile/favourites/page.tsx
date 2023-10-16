@@ -11,8 +11,11 @@ import Image from 'next/image';
 import { nanoid } from 'nanoid';
 import Link from 'next/link'
 import { MaterialCardMobile } from '@/features/MaterialCardMobile';
+import useIsMobile from '@/hooks/UseIsMobile';
+
 
 const Favourites: NextPage = () => {
+    const isMobile = useIsMobile(800)
 
     const tag = 'teacher'
 
@@ -98,7 +101,7 @@ const Favourites: NextPage = () => {
                     </div>
                 </Link>
             </div>
-            {document.documentElement.clientWidth > 800 ?
+            {!isMobile ?
                 (
                     <Materials materialList={materialList} title={'student'} profile={true} libMode={true} overflow={true} />
                 )
