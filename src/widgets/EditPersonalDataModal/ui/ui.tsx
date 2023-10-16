@@ -24,6 +24,7 @@ import { RootState } from '@/store/store';
 interface props {
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
     userdata?: any;
+    tag?: any;
 }
 
 type Inputs = {
@@ -75,9 +76,9 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
 
     const onFormSubmit: SubmitHandler<Inputs> = () => { };
 
-    const firstnameHandler = (e: string) => !/^[а-яА-Я]*$/.test(e) ? null : setFirstname(e)
-    const secondnameHandler = (e: string) => !/^[а-яА-Я]*$/.test(e) ? null : setSecondname(e)
-    const thirdnameHandler = (e: string) => !/^[а-яА-Я]*$/.test(e) ? null : setThirdname(e)
+    const firstnameHandler = (e: string) => !/^[a-zA-Zа-яА-Я]*$/.test(e) ? null : setFirstname(e)
+    const secondnameHandler = (e: string) => !/^[a-zA-Zа-яА-Я]*$/.test(e) ? null : setSecondname(e)
+    const thirdnameHandler = (e: string) => !/^[a-zA-Zа-яА-Я]*$/.test(e) ? null : setThirdname(e)
     const snilsHandler = (e: string) => !/^[0-9-]*$/.test(e) ? null : setSnils(e)
 
     const genderSelect = (event: any) => {
@@ -108,68 +109,6 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
     }
 
     return (
-        <div
-            className={styles.screen}
-            ref={modalRef}
-            onClick={(event) => handleClickOutSide(event)}>
-            <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
-                <h6>Личные данные</h6>
-                <span className={styles.inputs}>
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Имя"
-                        onChange={(e) => firstnameHandler(e.target.value)}
-                        value={firstname ? firstname : ''}
-                        className={styles.input}
-                    />
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Фамилия"
-                        onChange={(e) => secondnameHandler(e.target.value)}
-                        value={secondname ? secondname : ''}
-                        className={styles.input}
-                    />
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Отчество"
-                        onChange={(e) => thirdnameHandler(e.target.value)}
-                        value={thirdname ? thirdname : ''}
-                        className={styles.input}
-                    />
-                    <DatePicker
-                        onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
-                        className={styles.calendar}
-                        format={'DD/MM/YYYY'}
-                        label="Дата рождения"
-                    />
-                    <Select
-                        className={styles.select}
-                        onChange={(event) => genderSelect(event)}
-                        value={gender}
-                    >
-                        <MenuItem value={gender} disabled>{gender}</MenuItem>
-                        <MenuItem value={'Мужчина'}>Мужчина</MenuItem>
-                        <MenuItem value={'Женщина'}>Женщина</MenuItem>
-                    </Select>
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="СНИЛС"
-                        onChange={(e) => snilsHandler(e.target.value)}
-                        value={snils ? snils : ''}
-                        className={styles.input}
-                    />
-                </span>
-                <span className={styles.buttons}>
-                    <button className={styles.cancel} onClick={() => setMode('')}>
-                        Отменить
-                    </button>
-                    <button className={styles.submit} onClick={() => sendData()}>Сохранить</button>
-                </span>
-            </form>
-        </div>
+        {}
     );
 };

@@ -1,0 +1,1 @@
+export { ProfileCabinet } from './ui/ui'

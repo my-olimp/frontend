@@ -9,7 +9,7 @@ interface props {
     userdata?: any;
 }
 
-export const WorkBlock: FC<props> = ({ setMode, tag, userdata }) => {
+export const WorkBlock: FC<props> = ({ setMode, userdata, tag }) => {
     const getValue = (value: any) => {
         if (value == 'undefined' || value == null) return 'Не указано'
         return value
@@ -17,7 +17,7 @@ export const WorkBlock: FC<props> = ({ setMode, tag, userdata }) => {
 
     return (
         <div className={styles.wrap}>
-            {tag === 'teacher' ? (
+            {tag == 't' && (
                 <>
                     <div className={styles.titleWrap}>
                         <h1>Работа</h1>
@@ -49,7 +49,8 @@ export const WorkBlock: FC<props> = ({ setMode, tag, userdata }) => {
                         </li>
                     </ul>
                 </>
-            ) : (
+            )}
+            {tag == 's' && (
                 <>
                     <div className={styles.titleWrap}>
                         <h1>Образование</h1>
@@ -74,6 +75,35 @@ export const WorkBlock: FC<props> = ({ setMode, tag, userdata }) => {
                         <li>
                             <h1>Класс</h1>
                             <h2>{getValue(userdata?.grade)}</h2>
+                        </li>
+                    </ul>
+                </>
+            )}
+            {tag == 'c' && (
+                <>
+                    <div className={styles.titleWrap}>
+                        <h1>Работа</h1>
+                        <div onClick={() => setMode('work')}>
+                            <DriveFileRenameOutlineOutlinedIcon />
+                        </div>
+                    </div>
+
+                    <ul className={styles.infoWrap}>
+                        <li>
+                            <h1>Регион</h1>
+                            <h2>{userdata && `${getValue(userdata?.region?.name)}`}</h2>
+                        </li>
+                        <li>
+                            <h1>Город</h1>
+                            <h2>{userdata && `${getValue(userdata?.city?.name)}`}</h2>
+                        </li>
+                        <li>
+                            <h1>Организация</h1>
+                            <h2>{getValue(userdata?.organization?.name)}</h2>
+                        </li>
+                        <li>
+                            <h1>Должность</h1>
+                            <h2>{getValue(userdata?.work)}</h2>
                         </li>
                     </ul>
                 </>

@@ -14,6 +14,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 interface props {
     profile?: boolean;
+    userdata?: any;
 }
 
 const navBarData = [
