@@ -2,11 +2,20 @@
     display: flex;
     flex-direction: column;
     width: 251px;
-    height: 297px;
     border-radius: 30px;
-    gap: 12px;
+    gap: 15px;
     padding: 16px;
     background-color: #ffffff;
+
+    @media (max-width: 1000px){
+        width: auto; 
+    }
+    @media (max-width: 900px) {
+        background-color: transparent;
+        justify-content: center;
+        align-items: center;
+        padding: 0 16px;
+    }
 }
 
 .imageWrap {
@@ -18,6 +27,14 @@
         width: 219px !important;
         height: 219px !important;
         border-radius: 20px !important;
+        @media (max-width: 900px) {
+            width: 100px !important; 
+            height: 100px !important;
+        }
+    }
+    @media (max-width: 900px) {
+        width: 100px;
+        height: 100px;
     }
 }
 
@@ -26,6 +43,10 @@
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    @media (max-width: 900px){
+        justify-content: center;
+        gap: 15px;
+    }
 }
 
 .changeButton {
@@ -34,13 +55,13 @@
     width: 100px;
     height: 30px;
     background-color: #3579f8;
-    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
     font-weight: 500;
     border: 1px solid #3579f8;
     transition: all 0.3s;
     cursor: pointer;
     &:hover {
-        background: #0851D9;
+        background: #0851d9;
     }
 }
 
@@ -54,9 +75,13 @@
     }
 }
 
-@media (max-width: 1000px) {
-    .wrap {
-        width: auto;
-        margin-bottom: 20px;
+.name {
+    color: #222;
+    font-family: "SF_Medium";
+    font-size: 20px;
+    letter-spacing: 0.4px;
+
+    @media (min-width: 900px) {
+        display: none;
     }
 }

@@ -1,3 +1,4 @@
+'use client';
 import { Bell } from '@/entities/Bell';
 import Logo from '@/entities/Logo/ui/ui';
 import { NavbarAvatar } from '@/entities/NavbarAvatar';
@@ -71,12 +72,12 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
             <div className={styles.linksWrap}>
                 <div
                     className={styles.burgerMenu}
-                    style={window.location.href.includes('main') ? {opacity: '0'} : {}}
+                    style={window.location.href.includes('main') ? { opacity: '0' } : {}}
                 >
                     <div
                         className={`${styles.burgerIcon} ${isOpen ? styles.open : ''}`}
                         onClick={() => setIsOpen(!isOpen)}
-                        style={window.location.href.includes('main') ? {cursor: 'default'} : {}}
+                        style={window.location.href.includes('main') ? { cursor: 'default' } : {}}
                     >
                         <div className={styles.bar}></div>
                         <div className={styles.bar}></div>
@@ -144,9 +145,9 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
             {profile && (
                 <span
                     className={isOpen ? styles.sideBarOpen : styles.sideBar}
-                    style={isOpen ? {transition: 'all .2s ease-in-out', width: '15rem'} : {transition: 'all .2s ease-in-out'}}
+                    style={isOpen ? { transition: 'all .2s ease-in-out', width: '15rem' } : { transition: 'all .2s ease-in-out' }}
                 >
-                    <span style={{display: 'flex'}}>
+                    <span style={{ display: 'flex' }}>
                         {sideBarElements.map((element: any) => (
                             <Link
                                 href={element.rout === 'main' ? '/profile' : `/profile${element.rout}`}
@@ -164,7 +165,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                                 {element.icon}
                                 <p
                                     className={styles.baritemtext}
-                                    style={isOpen ? {} : {opacity: '0'}}
+                                    style={isOpen ? {} : { opacity: '0' }}
                                 >
                                     {element.name}
                                 </p>
@@ -179,6 +180,12 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                             push('/signin');
                         }}>
                         <LogoutOutlinedIcon />
+                        <p
+                            className={styles.baritemtext}
+                            style={isOpen ? { color: '#D55F5A' } : { opacity: '0' }}
+                        >
+                            Выйти из аккаунта
+                        </p>
                     </div>
                 </span>
             )}

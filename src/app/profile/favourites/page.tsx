@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+'use client'
+import React from 'react';
 import { NextPage } from 'next';
 import styles from './index.module.scss'
 import { IMaterial, Materials } from '@/widgets/Materials';
 import material from '../../../../public/materials/Materials.svg'
 import materialIcon from '../../../../public/materials/materialIcon.svg';
+import ArrowIcon from '../../../../public/arrows/arrow-right.svg';
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
 import Image from 'next/image';
 import { nanoid } from 'nanoid';
+import Link from 'next/link'
+import { MaterialCardMobile } from '@/features/MaterialCardMobile';
 
 const Favourites: NextPage = () => {
 
@@ -85,19 +89,47 @@ const Favourites: NextPage = () => {
 
     return (
         <div className={styles.wrap}>
-            <span className={styles.title}>Избранное</span>
-            <Materials materialList={materialList} title={'student'} libMode={true} overflow={true} />
-            <span className={styles.title}>Материалы</span>
+            <div className={styles.blockText}>
+                <span className={styles.title}>Избранное</span>
+                <Link href='/main'>
+                    <div className={styles.all}>
+                        <div className={styles.all__text}>Все</div>
+                        <Image src={ArrowIcon.src} alt='arrow' width={20} height={20} />
+                    </div>
+                </Link>
+            </div>
+            {document.documentElement.clientWidth > 800 ?
+                (
+                    <Materials materialList={materialList} title={'student'} profile={true} libMode={true} overflow={true} />
+                )
+                :
+                (
+                    <div className={styles.materialMobile}>
+                        {materialList.slice(0, 4).map((item) =>
+                            <MaterialCardMobile key={nanoid(6)} material={item} />
+                        )}
+                    </div>
+                )
+            }
+            <div className={styles.blockText}>
+                <span className={styles.title}>Материалы</span>
+                <Link href='/main'>
+                    <div className={styles.all}>
+                        <div className={styles.all__text}>Все</div>
+                        <Image src={ArrowIcon.src} alt='arrow' width={20} height={20} />
+                    </div>
+                </Link>
+            </div>
             <div className={`${styles.materials} df aic`}>
                 <div className={`${styles.left} df jcc aic`}>
-                    <Image src={material} alt='materials' />
+                    <Image className={styles.image} src={material} alt='materials' />
                 </div>
                 <div className={styles.right}>
                     {tag == 'teacher' ? (
                         <div className='df aic'>
                             <span>Статья</span>
-                            <div className='cp' style={{marginTop: '7px', marginLeft: '5px'}}>
-                                <DriveFileRenameOutlineOutlinedIcon style={{color: 'gray'}}/>
+                            <div className='cp' style={{ marginTop: '7px', marginLeft: '5px' }}>
+                                <DriveFileRenameOutlineOutlinedIcon style={{ color: 'gray' }} />
                             </div>
                         </div>
                     ) : <span>Статья</span>}
@@ -113,10 +145,17 @@ const Favourites: NextPage = () => {
             </div>
             <div className={`${styles.materials} df aic`}>
                 <div className={`${styles.left} df jcc aic`}>
-                    <Image src={material} alt='materials' />
+                    <Image src={material} className={styles.image} alt='materials' />
                 </div>
                 <div className={styles.right}>
-                    <span>Статья</span>
+                    {tag == 'teacher' ? (
+                        <div className='df aic'>
+                            <span>Статья</span>
+                            <div className='cp' style={{ marginTop: '7px', marginLeft: '5px' }}>
+                                <DriveFileRenameOutlineOutlinedIcon style={{ color: 'gray' }} />
+                            </div>
+                        </div>
+                    ) : <span>Статья</span>}
                     <p>Замечательные точки и прямые треугольника</p>
                     <div className={`${styles.righttags} df aic fww`}>
                         {tags.map((item: string) =>

@@ -13,7 +13,7 @@ interface PropsEditAvatar {
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
 }
 
-export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
+export const EditAvatar: FC<PropsEditAvatar> = ({ setMode }) => {
     const { user } = useAppSelector((state) => state.auth);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [hover, setHover] = useState<Boolean>(false);
@@ -41,7 +41,7 @@ export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
             }
         });
         return () => {
-            document.removeEventListener('keydown', () => {});
+            document.removeEventListener('keydown', () => { });
         };
     }, []);
 
@@ -55,7 +55,7 @@ export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
         }
     };
 
-    const onFormSubmit: SubmitHandler<Inputs> = () => {};
+    const onFormSubmit: SubmitHandler<Inputs> = () => { };
 
     //TODO add api method axios to save the avatar to the database #2 @habdevs
     //TODO add future entities @habdevs #8 CHECK COUNTER @habdevs #8*
@@ -65,7 +65,6 @@ export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
             ref={modalRef}
             onClick={(event) => handleClickOutSide(event)}
         >
-        <div className={styles.form}>
             <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
                 <h6>Аватарка</h6>
                 <input
@@ -92,7 +91,6 @@ export const EditAvatar: FC<PropsEditAvatar> = ( { setMode } ) => {
                     <button className={styles.submit}>Сохранить</button>
                 </span>
             </form>
-        </div>
         </div>
     );
 };

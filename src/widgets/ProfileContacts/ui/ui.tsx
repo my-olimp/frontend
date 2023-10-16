@@ -25,12 +25,12 @@ export const ProfileContacts: FC<props> = ({ setMode }) => {
 
             <ul className={styles.infoWrap}>
                 <li>
-                    <h1>Почта</h1>
-                    <h2>{getValue(user?.email)}</h2>
+                    <h4>Почта</h4>
+                    <h5>{getValue(user?.email)}</h5>
                 </li>
                 <li>
-                    <h1>Номер телефона</h1>
-                    <h2>{getValue(user?.phoneNumber)}</h2>
+                    <h4>Номер телефона</h4>
+                    <h5>{getValue(user?.phoneNumber)}</h5>
                 </li>
             </ul>
         </div>

@@ -18,7 +18,7 @@ import { ProfileContacts } from '@/widgets/ProfileContacts';
 const Profile: NextPage = () => {
     const [editMode, setMode] = useState<'' | 'personal' | 'work' | 'avatar' | 'contacts'>('');
     useEffect(() => {
-        if (editMode === 'personal' || editMode === 'work' || editMode === 'contact') {
+        if (editMode === 'personal' || editMode === 'work' || editMode === 'contacts') {
             document.body.style.overflow = 'hidden';
         } else if (editMode === '') {
             document.body.style.removeProperty('overflow');
@@ -41,7 +41,7 @@ const Profile: NextPage = () => {
                     (editMode === 'personal') ? 
                     <EditPersonalDataModal setMode={setMode} />
                 : (editMode === 'work') ?
-                    <EditWorkDataModal setMode={setMode} />
+                    <EditWorkDataModal setMode={setMode} tag={tag}/>
                 : (editMode === 'avatar') ?
                     <EditAvatar setMode={setMode} />
                 : (editMode === 'contacts') ?

@@ -4,6 +4,9 @@
     display: flex;
     flex-direction: row;
     gap: 36px;
+    @media (max-width: 1000px){
+        gap: 10px;    
+    }
 }
 
 .avatarAndAchievements {
@@ -20,6 +23,7 @@
 
 .main {
     padding: 20px 0 0 84px;
+    min-height: calc(100vh - 64px);
 
     @media (max-width: 900px) {
         padding: 20px 10px;
@@ -32,12 +36,11 @@
     gap: 16px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
     .wrap {
         display: block;
     }
-
     .personalData {
-        display: block;
+        padding: 0 8px;
     }
 }
