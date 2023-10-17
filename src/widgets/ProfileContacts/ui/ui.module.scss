@@ -1,0 +1,112 @@
+.wrap {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 30px;
+    padding: 16px 24px;
+    gap: 12px;
+    width: 60vw;
+}
+
+.infoWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: max-content;
+
+    li {
+        display: flex;
+        flex-direction: row;
+        height: max-content;
+        align-items: center;
+        @media (max-width: 600px){
+            padding: 0px 11px 0px 8px;
+            &:nth-child(even) {
+                background: #F3F3F3;
+                border-radius: 6px;
+            }
+        }
+        @media (max-width: 420px){
+            flex-direction: column;
+        }
+        
+        * {
+            font-size: 19px;
+            font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            user-select: text;
+            min-width: 40%;
+            white-space: normal;
+            height: max-content;
+            @media (max-width: 420px){
+                font-size: 15px;
+            }
+        }
+        
+        h4 {
+            color: #757575;
+        }
+        h5 {
+            color: #222222;
+            @media (max-width: 600px){
+                text-align: right;
+            }
+            @media (max-width: 420px){
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px){
+            justify-content: space-between;
+        }
+        @media (max-width: 420px){
+            text-align: center;
+        }
+    }
+}
+.titleWrap {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    position: relative;
+    &:after {
+        content: '';
+        @media (max-width: 420px){
+            position: absolute;
+            top: 110%;
+            left: 0;
+            width: 100%;
+            background: #A1A1AF;
+            height: 1px;
+        }
+    }
+    @media (max-width: 420px){
+        justify-content: space-between;
+    }
+
+    h1 {
+        font-size: 24px;
+        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        @media (max-width: 900px){
+            font-size: 22px;
+        }
+        @media (max-width: 420px){
+            font-size: 20px;
+        }
+    }
+    * {
+        color: #222222;
+        user-select: text;
+    }
+    svg {
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 900px) {
+    .wrap {
+        width: auto;
+    }
+}

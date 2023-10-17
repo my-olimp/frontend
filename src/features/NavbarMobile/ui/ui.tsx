@@ -14,16 +14,39 @@ import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import styles from './ui.module.scss';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
+import { PopupPages } from '@/features/PopupPages';
+import { ArrowHeader } from '@/entities/ArrowHeader';
+import useIsMobile from '@/hooks/UseIsMobile';
+
+const sideBarElements = [
+    { id: 0, name: 'Главная', icon: <AccountCircleOutlinedIcon />, rout: 'main', active: true },
+    { id: 1, name: 'Успеваемость', icon: <InsertChartOutlinedRoundedIcon />, rout: '/grade', active: false },
+    { id: 2, name: 'Избранное', icon: <FavoriteBorderOutlinedIcon />, rout: '/favourites', active: false },
+    { id: 3, name: 'Хочу посмотреть', icon: <VisibilityOutlinedIcon />, rout: '/watchlater', active: false },
+    { id: 4, name: 'Достижения', icon: <WorkspacePremiumOutlinedIcon />, rout: '/achievments', active: false },
+];
 
 interface props {
     notifications: INotice[];
     navBarData: any;
+    profile: Boolean;
 }
-export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
-    const [showPopup, setShowPopup] = useState<boolean>(false);
+export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) => {
+    const isMobile = useIsMobile(420)
+    const [showPopupNotifications, setShowPopupNotifications] = useState<boolean>(false);
+    const [showPopupPages, setShowPopupPages] = useState<boolean>(false);
     const [clicked, setClicked] = useState<boolean>(false);
     const [showSideBar, setShowSideBar] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [active, setActive] = useState<number>(0);
+    const [activeId, setActiveId] = useState<number>(0);
+
 
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
@@ -37,10 +60,14 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
         }
     }, [showSideBar]);
 
+    const linksHandler = (id: number) => {
+        setActiveId(id)
+    }
+
     return (
         <>
             <AnimatePresence>
-                {showSideBar && (
+                {!profile ? (showSideBar && (
                     <>
                         <motion.div
                             className={styles.sideBar}
@@ -79,40 +106,119 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData }) => {
                         </motion.div>
                         <span className={styles.blur} onClick={() => setShowSideBar(false)}></span>
                     </>
-                )}
+                )) : (
+                    <span
+                        className={isOpen ? styles.sideBarProfileOpen : styles.sideBarProfile}
+                        style={isOpen ? { transition: 'all .2s ease-in-out', width: '15rem' } : { transition: 'all .2s ease-in-out' }}
+                    >
+                        <span style={{ display: 'flex' }}>
+                            {sideBarElements.map((element: any) => (
+                                <Link
+                                    href={element.rout === 'main' ? '/profile' : `/profile${element.rout}`}
+                                    key={element.id}
+                                    className={styles.sideBarElement}
+                                    title={element.name}
+                                    style={{
+                                        backgroundColor:
+                                            activeId === element.id ? '#F3F3F3' : 'transparent',
+                                        width:
+                                            isOpen ? '175px' : '40px'
+                                    }}
+                                    onClick={() => linksHandler(element.id)}
+                                >
+                                    {element.icon}
+                                    <p
+                                        className={styles.baritemtext}
+                                        style={isOpen ? {} : { opacity: '0' }}
+                                    >
+                                        {element.name}
+                                    </p>
+                                </Link>
+                            ))}
+                        </span>
+                        <div
+                            className={styles.sideBarLogout}
+                            title="Выйти"
+                            onClick={() => {
+                                dispatch(Logout());
+                                push('/signin');
+                            }}>
+                            <LogoutOutlinedIcon />
+                            <p
+                                className={styles.baritemtext}
+                                style={isOpen ? { color: '#D55F5A' } : { opacity: '0' }}
+                            >
+                                Выйти из аккаунта
+                            </p>
+                        </div>
+                    </span>)}
             </AnimatePresence>
             <header className={styles.wrap}>
-                <span onClick={() => setShowSideBar(!showSideBar)} className={styles.hamburgerWrap}>
-                    <HamburgerMenu
-                        strokeColor={showSideBar ? '#99A2AD' : '#3579F8'}
-                        setOpen={setShowSideBar}
-                        isOpen={showSideBar}
-                    />
-                </span>
-                <Logo />
-                <div className={styles.profileWrap}>
+                {profile ? (
+                    <div className={styles.logoWrap}>
+                        <div
+                            className={styles.burgerMenu}
+                        >
+                            <div
+                                className={`${styles.burgerIcon} ${isOpen ? styles.open : ''}`}
+                                onClick={() => setIsOpen(!isOpen)}
+                            >
+                                <div className={styles.bar}></div>
+                                <div className={styles.bar}></div>
+                                <div className={styles.bar}></div>
+                            </div>
+                        </div>
+                        {!isMobile ? <Logo/> : <Logo small={true}/>}
+                    </div>
+                ) :
+                    (<>
+                        <span onClick={() => setShowSideBar(!showSideBar)} className={styles.hamburgerWrap}>
+                            <HamburgerMenu
+                                strokeColor={showSideBar ? '#99A2AD' : '#3579F8'}
+                                setOpen={setShowSideBar}
+                                isOpen={showSideBar}
+                            />
+                        </span>
+                        <Logo />
+                    </>)
+                }
+                <div className={styles.infoWrap}>
                     <Bell
-                        showPopup={showPopup}
+                        showPopup={showPopupNotifications}
                         clicked={clicked}
-                        setShowPopup={setShowPopup}
+                        setShowPopup={setShowPopupNotifications}
                         setClicked={setClicked}
                     />
+
                     <NavbarAvatar />
-                    <AnimatePresence>
-                        {showPopup && (
-                            <motion.div
-                                initial={{ height: 0 }}
-                                animate={{ height: '252px' }}
-                                exit={{ height: 0 }}
-                                className={styles.popupWrap}>
-                                <Notifications
-                                    notifications={notifications}
-                                    setShow={setShowPopup}
-                                />
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                    <ArrowHeader
+                        showPopup={showPopupPages}
+                        setShowPopup={setShowPopupPages}
+                    />
+
                 </div>
+                <AnimatePresence>
+                    {showPopupNotifications && (
+                        <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: '252px' }}
+                            exit={{ height: 0 }}
+                            className={styles.popupWrapNotivications}>
+                            <Notifications notifications={notifications} setShow={setShowPopupNotifications} />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+                <AnimatePresence>
+                    {showPopupPages && (
+                        <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: '250px' }}
+                            exit={{ height: 0 }}
+                            className={styles.popupWrapPages}>
+                            <PopupPages setShow={setShowPopupPages} />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </header>
         </>
     );

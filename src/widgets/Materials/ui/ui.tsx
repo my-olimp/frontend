@@ -11,7 +11,12 @@ interface props {
     title: string;
     libMode: boolean;
     urlprop?: string;
+<<<<<<< HEAD
     overflow?: boolean;
+=======
+    overflow: boolean;
+    profile?: boolean;
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 }
 
 export interface IMaterial {
@@ -28,7 +33,7 @@ export interface ITag {
     text: string;
 }
 
-export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, overflow }) => {
+export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, overflow, profile = false }) => {
     const [isMobile, setMobile] = useState(false);
     const [url, setUrl] = useState('');
     const scrollContainerRef = useRef(null);
@@ -41,7 +46,7 @@ export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, ov
     };
 
     useLayoutEffect(() => {
-        if (window.innerWidth < 900) {
+        if ((window.innerWidth < 900) && !profile) {
             setMobile(true);
         }
         setUrl(window.location.href)
@@ -61,7 +66,7 @@ export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, ov
                     {!libMode && (
                         <>
                             <h1 className={styles.title}>{title}</h1>
-                            <Link href={'/library'} className={styles.link}>
+                            <Link href={'main/library'} className={styles.link}>
                                 <h2>Материалы</h2>
                                 <ArrowForwardIosIcon />
                             </Link>
@@ -83,7 +88,7 @@ export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, ov
                     return <MaterialCard key={nanoid(6)} material={material} urlprop={urlprop} overflow={overflow} />;
                 })}
             </div>
-            {!isMobile &&
+            {!isMobile && !profile &&
                 (libMode ? (
                     <span className={styles.linkWrap} style={{ marginLeft: '10px' }}>
                         <Link href={url.includes('library') ? '' : '/main/library'} className={styles.link}>

@@ -52,7 +52,6 @@ export default function Layout({ children }) {
                     style={{
                         backgroundColor: '#F3F7FF',
                         width: '100vw',
-                        minHeight: '100vh',
                     }}>
                     {children}
                 </main>

@@ -45,7 +45,6 @@ const News: NextPage = () => {
         ['ВСОШ', 'Перечневые олимпиады', 'История', 'Русский',
             'Информатика', 'Советы', 'Физика', 'Литература',
             'Обществознание']
-
     const randomImage = () => Math.ceil(Math.random() * 2) === 1 ? TestImg.src : Image2.src
 
     useEffect(() => {

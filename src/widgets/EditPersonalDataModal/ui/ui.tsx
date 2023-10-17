@@ -23,9 +23,13 @@ import { RootState } from '@/store/store';
 import { SexRadio } from '@/entities/SexRadio';
 
 interface props {
+<<<<<<< HEAD
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
     userdata?: any;
     tag?: any;
+=======
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 }
 
 type Inputs = {
@@ -34,12 +38,19 @@ type Inputs = {
     additionalName: string;
 };
 
+<<<<<<< HEAD
 export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
     const [firstname, setFirstname] = useState('');
     const [secondname, setSecondname] = useState('');
     const [thirdname, setThirdname] = useState('');
     const [snils, setSnils] = useState('');
     const [gender, setGender] = useState('Не указано');
+=======
+export const EditPersonalDataModal: FC<props> = ({ setMode }) => {
+    const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
+    const { user } = useAppSelector((state) => state.auth);
+    
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
     const [date, setDate] = useState<Dayjs>();
     const modalRef = useRef<HTMLDivElement>(null);
 

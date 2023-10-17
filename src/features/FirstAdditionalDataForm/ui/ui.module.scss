@@ -1,137 +1,171 @@
 .form {
-  & form {
-    width: 502px;
-    display: flex;
-    flex-direction: column;
-    padding: 32px 0;
-    background-color: white;
-    gap: 16px;
+    padding: 32px 44px;
+    margin: 0 16px;
+    background-color: #fff;
     border-radius: 24px;
+    max-width: 502px;
+    min-width: 502px;
     box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
-    align-items: center;
-  }
+    & form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        @media screen and (max-width: 420px) {
+            gap: 12px;
+        }
+    }
 
-  .error {
-    width: 414px;
-    font-size: 15px;
-  }
+    @media screen and (max-width: 500px) {
+        min-width: 400px;
+        padding: 28px 38px;
+    }
+    @media screen and (max-width: 420px) {
+        min-width: 350px;
+        padding: 24px 30px;
+    }
+    @media screen and (max-width: 360px) {
+        min-width: auto;
+        padding: 20px 20px;
+        width: 100%;
+        padding: 32px 32px 16px;
+    }
 }
 
+.error {
+    width: 100%;
+    font-size: 15px;
+    color: rgba(26, 7, 16, 0.96);
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+}
 
 .logoRow {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-
-
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .titleRow {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  width: 414px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
 
-  & h1 {
-    font-size: 20px;
-    color: rgba(26, 7, 16, 0.85);
-    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
-    font-weight: 500;
-    margin: 0;
-  }
-  & p {
-    color: #6BC62D;
-    font-size: 16px;
-    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-    font-weight: 500;
-  }
+    & h1 {
+        font-size: 20px;
+        color: rgba(26, 7, 16, 0.85);
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        margin: 0;
+        @media (max-width: 400px) {
+            font-size: 18px;
+        }
+        @media (max-width: 350px) {
+            font-size: 16px;
+        }
+    }
+    & p {
+        color: #6bc62d;
+        font-size: 16px;
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        @media (max-width: 400px) {
+            font-size: 15px;
+        }
+        @media (max-width: 350px) {
+            font-size: 13px;
+        }
+    }
 }
 
 .input {
-  width: 414px;
-  outline-color: #1976D2;
-  border-radius: 12px;
-  border: 1px solid #8D8D8D;
-  padding: 15px 12px;
+    width: 100%;
+    outline-color: #1976d2;
+    border-radius: 12px;
+    border: 1px solid #8d8d8d;
+    padding: 15px 12px;
+    @media (max-width: 500px) {
+        padding: 13px 12px;       
+        
+    }
+    @media (max-width: 420px) {
+        padding: 10px 12px;        
+    }
+    @media (max-width: 360px) {
+        padding: 7px 12px;       
+    }
 }
 
 .calendar {
-  width: 414px; 
-  height: 56px;
+    width: 100%;
 
-  & div {
-    border-radius: 12px;
-  }
+    & div {
+        border-radius: 12px;
+    }
+    input {
+        @media (max-width: 500px) {
+            padding: 14px 14px;        
+        }
+        @media (max-width: 420px) {
+            padding: 12px 14px;   
+        }
+        @media (max-width: 360px) {
+            padding: 10px 14px;  
+        }
+
+    }
+    label {
+        line-height: 100%;
+    }
 }
 
 .role {
-  height: 56px;
-  width: 414px;
-  border-radius: 12px;
+    height: 56px;
+    width: 100%;
+    border-radius: 12px;
+    @media (max-width: 500px) {
+        height: 50px;        
+        
+    }
+    @media (max-width: 420px) {
+        height: 44px;        
+    }
 }
 
 .button {
-  height: 56px;
-  width: 414px;
-  text-transform: capitalize;
-  border-radius: 12px;
-  font-size: 22px;
-  font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-  font-weight: 500;
-  background-color: #3579F8;
-  box-shadow: none;
-
-
-  &:disabled {
-    background-color: #8CB2FB;
-    cursor: not-allowed;
-    pointer-events: all !important;
-    color: white;
-    &:hover {
-      background-color: #8CB2FB;
-    }
-  }
-  &:hover {
-    background-color: #316ee0;
+    height: 56px;
+    width: 100%;
+    text-transform: capitalize;
+    border-radius: 12px;
+    font-size: 22px;
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    background-color: #3579f8;
     box-shadow: none;
-  }
-}
 
-@media (max-width: 700px) {
-  .screen {
-    display: flex;
-    overflow: hidden;
-
-    justify-content: center;
-    align-items: center;
-
-    background-color: #F2F2F2;
-  }
-  .form form {
-    form {
-      height: 472px;
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      padding: 32px 0;
-      background-color: white;
-      gap: 16px;
-      border-radius: 24px;
-      box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
-      align-items: center;
+    &:disabled {
+        background-color: #8cb2fb;
+        cursor: not-allowed;
+        pointer-events: all !important;
+        color: white;
+        &:hover {
+            background-color: #8cb2fb;
+        }
     }
-  }
+    &:hover {
+        background-color: #316ee0;
+        box-shadow: none;
+    }
 
-  .titleRow {
-    width: 90vw;
-  }
-  .sexWrap,
-  .calendar,
-  .role,
-  .input,
-  .button {
-    width: 90vw;
-  }
+    @media (max-width: 500px) {
+        height: 50px;        
+        font-size: 20px;
+    }
+    @media (max-width: 420px) {
+        height: 44px;        
+        font-size: 18px;
+    }
 }

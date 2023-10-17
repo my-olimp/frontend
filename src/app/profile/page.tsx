@@ -2,6 +2,7 @@
 import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
+<<<<<<< HEAD
 import { ProfileCabinet } from '@/widgets/ProfileCabinet';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from '@reduxjs/toolkit';
@@ -23,8 +24,17 @@ const Profile: NextPage = () => {
         getUserData()
     }, []);
 
+=======
+import { EditAvatar } from '@/widgets/EditAvatar';
+import { ProfileAchievements } from '@/widgets/ProfileAchievements';
+import { EditContacts } from '@/widgets/EditContacts';
+import { ProfileContacts } from '@/widgets/ProfileContacts';
+
+const Profile: NextPage = () => {
+    const [editMode, setMode] = useState<'' | 'personal' | 'work' | 'avatar' | 'contacts'>('');
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
     useEffect(() => {
-        if (editMode === 'personal' || editMode === 'work' || editMode === 'contact') {
+        if (editMode === 'personal' || editMode === 'work' || editMode === 'contacts') {
             document.body.style.overflow = 'hidden';
         } else if (editMode === '') {
             document.body.style.removeProperty('overflow');
@@ -33,7 +43,30 @@ const Profile: NextPage = () => {
 
     return (
         <div className={styles.wrap}>
+<<<<<<< HEAD
             <ProfileCabinet setMode={setMode} editMode={editMode} userdata={userdata} />
+=======
+            <div className={styles.avatarAndAchievements}>
+                <ProfileAvatar setMode={setMode} />
+                <ProfileAchievements />
+            </div>
+            <div className={styles.personalData}>
+                <PersonalInfoBlock setMode={setMode} />
+                <WorkBlock setMode={setMode} />
+                <ProfileContacts setMode={setMode} />
+                {editMode !== '' &&
+                    (editMode === 'personal') ? 
+                    <EditPersonalDataModal setMode={setMode} />
+                : (editMode === 'work') ?
+                    <EditWorkDataModal setMode={setMode} tag={tag}/>
+                : (editMode === 'avatar') ?
+                    <EditAvatar setMode={setMode} />
+                : (editMode === 'contacts') ?
+                    <EditContacts setMode={setMode} /> 
+                : '' 
+                }
+            </div>
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
         </div>
     );
 };

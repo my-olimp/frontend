@@ -4,9 +4,13 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
+<<<<<<< HEAD
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
     userdata?: any;
     tag?: any;
+=======
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 }
 
 export const PersonalInfoBlock: FC<props> = ({ setMode, userdata, tag }) => {
@@ -61,6 +65,7 @@ export const PersonalInfoBlock: FC<props> = ({ setMode, userdata, tag }) => {
                         </li>
                     </ul>
                 </div>
+<<<<<<< HEAD
             )}
             {tag == 't' || 'c' && (
                 <div className={styles.wrap}>
@@ -100,5 +105,40 @@ export const PersonalInfoBlock: FC<props> = ({ setMode, userdata, tag }) => {
             )}
 
         </>
+=======
+            </div>
+            <ul className={styles.infoWrap}>
+                <li>
+                    <h4>ID</h4>
+                    <h5>{getValue(user?.id)}</h5>
+                </li>
+                <li>
+                    <h4>ФИО</h4>
+                    <h5>{user && `${user.first_name} ${user.second_name} ${user.third_name}`}</h5>
+                </li>
+                <li>
+                    <h4>Дата рождения</h4>
+                    <h5>{getValue(user?.data_of_birth)}</h5>
+                </li>
+                <li>
+                    <h4>Пол</h4>
+                    <h5>
+                        {user &&
+                            `${
+                                user.gender === 'm'
+                                    ? 'Мужской'
+                                    : user.gender === 'f'
+                                    ? 'Женский'
+                                    : 'Не указано'
+                            }`}
+                    </h5>
+                </li>
+                <li>
+                    <h4>СНИЛС</h4>
+                    <h5>{getValue(user?.SNILS)}</h5>
+                </li>
+            </ul>
+        </div>
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
     );
 };
