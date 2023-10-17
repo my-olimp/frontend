@@ -28,10 +28,10 @@ export const ProfileContacts: FC<props> = ({ setMode }) => {
                     <h4>Почта</h4>
                     <h5>{getValue(user?.email)}</h5>
                 </li>
-                <li>
+                {/* <li>
                     <h4>Номер телефона</h4>
                     <h5>{getValue(user?.phoneNumber)}</h5>
-                </li>
+                </li> */}
             </ul>
         </div>
     );
