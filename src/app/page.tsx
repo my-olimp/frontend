@@ -9,6 +9,8 @@ import { NavBar } from '@/widgets/Landing/navBar/ui';
 import { ScrollCards } from '@/widgets/Landing/scrollCards/ui';
 import { Team } from '@/widgets/Landing/team/ui';
 import './fonts.scss';
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
 
 
 export default function Home() {

@@ -1,3 +1,4 @@
+
 .screen {
     position: fixed;
     top: 0;
@@ -41,7 +42,6 @@
             background: #f0f4fa;
             border-radius: 5px;
         }
-
         .title {
             height: 10%;
             padding: 15px 20px;
@@ -63,6 +63,7 @@
                 font-size: 25px;
                 cursor: pointer;
             }
+
             &Name {
                 font-family: "SF_Regular";
                 font-size: 20px;
@@ -85,21 +86,25 @@
                 border: 2px solid rgb(255, 255, 255);
             }
 
+
             &::-webkit-scrollbar-track {
                 background-color: transparent;
                 border-radius: 10px;
                 padding: 5px;
+
             }
 
             .eventtoday {
                 padding: 20px 20px;
                 border-top: 1px solid rgba(34, 34, 34, 0.2);
 
+
                 .eventtodayleft {
                     div {
                         margin-right: 20px;
                     }
                 }
+
                 .eventtodayright {
                     display: flex;
                     justify-content: center;
@@ -109,10 +114,12 @@
 
             .eventtoday:last-child {
                 border-bottom: 1px solid rgba(34, 34, 34, 0.2);
+
             }
         }
     }
 }
+
 
 .popup {
     width: 30vw;
@@ -176,6 +183,7 @@
         padding: 10px 25px;
         border-radius: 10px;
         font-size: 16px;
+
         transition: 0.15s ease;
 
         &:hover {
@@ -219,6 +227,8 @@
     }
 }
 
+
+
 @media (max-width: 900px) {
     .calendar {
         padding: 0px;
@@ -251,5 +261,6 @@
             }
         }
     }
+
 }
 

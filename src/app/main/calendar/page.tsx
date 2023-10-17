@@ -69,7 +69,6 @@ const MyCalendar: NextPage = () => {
         const matchingColor: any = colors.find((item: any) => item.text === color)
         return matchingColor ? matchingColor.color : ''
     }
-
     const getAntiColor = (color: string) => {
         const matchingColor: any = colors.find((item: any) => item.color === color)
         return matchingColor ? matchingColor.text : ''

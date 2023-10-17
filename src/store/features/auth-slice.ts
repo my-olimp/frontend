@@ -210,7 +210,6 @@ export const auth = createSlice({
           clear(state, true)
         })
 
-
         builder.addCase(GetOTC.fulfilled, (state, action) => {
           clear(state, false)
           state.code = action.payload.data;
@@ -233,7 +232,6 @@ export const auth = createSlice({
           clear(state, false)
           state.user = action.payload
         })
-       
 
         builder.addCase(GetRegions.fulfilled, (state, action) => {
           state.regions = action.payload.data;
