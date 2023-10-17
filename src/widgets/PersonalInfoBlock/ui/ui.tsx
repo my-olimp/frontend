@@ -4,23 +4,108 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
+<<<<<<< HEAD
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
+    userdata?: any;
+    tag?: any;
+=======
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 }
 
-export const PersonalInfoBlock: FC<props> = ({ setMode }) => {
-    const { user } = useAppSelector((state) => state.auth);
+export const PersonalInfoBlock: FC<props> = ({ setMode, userdata, tag }) => {
+    const getValue = (value: any) => {
+        if (value == 'undefined' || value == null) return 'Не указано'
+        return value
+    }
 
-    const getValue = (value) => {
-        return value ? `${value}` : 'Не указано';
-    };
+    const getName = (value: any) => {
+        if (value.first_name == null && value.second_name == null) return 'Не указано'
+        return `${value.first_name} ${value.second_name} ${value.third_name == null ? '-' : value.third_name}`
+    }
 
     return (
-        <div className={styles.wrap}>
-            <div className={styles.titleWrap}>
-                <h1>Личная информация</h1>
-                <div onClick={() => setMode('personal')}>
-                    <DriveFileRenameOutlineOutlinedIcon />
+        <>
+            {tag == 's' && (
+                <div className={styles.wrap}>
+                    <div className={styles.titleWrap}>
+                        <h1>Личная информация</h1>
+                        <div onClick={() => setMode('personal')}>
+                            <DriveFileRenameOutlineOutlinedIcon />
+                        </div>
+                    </div>
+                    <ul className={styles.infoWrap}>
+                        <li>
+                            <h1>ID</h1>
+                            <h2>{getValue(userdata?.id)}</h2>
+                        </li>
+                        <li>
+                            <h1>ФИО</h1>
+                            <h2>{userdata && getName(userdata)}</h2>
+                        </li>
+                        <li>
+                            <h1>Дата рождения</h1>
+                            <h2>{getValue(userdata?.data_of_birth)}</h2>
+                        </li>
+                        <li>
+                            <h1>Пол</h1>
+                            <h2>
+                                {userdata &&
+                                    `${userdata.gender === 'm'
+                                        ? 'Мужской'
+                                        : userdata.gender === 'f'
+                                            ? 'Женский'
+                                            : 'Не указано'
+                                    }`}
+                            </h2>
+                        </li>
+                        <li>
+                            <h1>СНИЛС</h1>
+                            <h2>{userdata && getValue(userdata?.SNILS)}</h2>
+                        </li>
+                    </ul>
                 </div>
+<<<<<<< HEAD
+            )}
+            {tag == 't' || 'c' && (
+                <div className={styles.wrap}>
+                    <div className={styles.titleWrap}>
+                        <h1>Личная информация</h1>
+                        <div onClick={() => setMode('personal')}>
+                            <DriveFileRenameOutlineOutlinedIcon />
+                        </div>
+                    </div>
+                    <ul className={styles.infoWrap}>
+                        <li>
+                            <h1>ID</h1>
+                            <h2>{getValue(userdata?.id)}</h2>
+                        </li>
+                        <li>
+                            <h1>ФИО</h1>
+                            <h2>{userdata && getName(userdata)}</h2>
+                        </li>
+                        <li>
+                            <h1>Дата рождения</h1>
+                            <h2>{getValue(userdata?.data_of_birth)}</h2>
+                        </li>
+                        <li>
+                            <h1>Пол</h1>
+                            <h2>
+                                {userdata &&
+                                    `${userdata.gender === 'm'
+                                        ? 'Мужской'
+                                        : userdata.gender === 'f'
+                                            ? 'Женский'
+                                            : 'Не указано'
+                                    }`}
+                            </h2>
+                        </li>
+                    </ul>
+                </div>
+            )}
+
+        </>
+=======
             </div>
             <ul className={styles.infoWrap}>
                 <li>
@@ -54,5 +139,6 @@ export const PersonalInfoBlock: FC<props> = ({ setMode }) => {
                 </li>
             </ul>
         </div>
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
     );
 };

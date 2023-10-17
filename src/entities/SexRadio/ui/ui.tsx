@@ -3,8 +3,8 @@ import styles from './ui.module.scss';
 import { Radio } from '@mui/material';
  
 interface props {
-  sex: 'male' | 'female';
-  setSex: Dispatch<SetStateAction<'male' | 'female'>>
+  sex: any;
+  setSex: any
 }
  
 export const SexRadio: FC<props> = ({sex, setSex}) => {

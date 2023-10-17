@@ -11,8 +11,12 @@ interface props {
     title: string;
     libMode: boolean;
     urlprop?: string;
+<<<<<<< HEAD
+    overflow?: boolean;
+=======
     overflow: boolean;
     profile?: boolean;
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 }
 
 export interface IMaterial {

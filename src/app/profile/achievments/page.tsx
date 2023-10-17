@@ -20,6 +20,7 @@ const AchievmentsRout: NextPage = () => {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
     const debouncedsearch = useDebounce(dataSearch, 500)
+    const [tag, setTag] = useState('tasd');
 
     const item: any = [
         { id: 0, text: 'Московская математическая олимпида', subject: 'Математика', status: 'Призер', points: '230', date: '06.02.2022' },
@@ -67,7 +68,7 @@ const AchievmentsRout: NextPage = () => {
         if (tag == 'teacher') {
             const filteredTeacherData = itemTeacherData.filter((item: any) => {
                 for (const key in item) {
-                    if (item.hasOwnProperty(key) && item[key].toString().toLowerCase().includes(searchText)) {
+                    if (Object.prototype.hasOwnProperty.call(item, key) && item[key].toString().toLowerCase().includes(searchText)) {
                         return true;
                     }
                 }
@@ -79,7 +80,7 @@ const AchievmentsRout: NextPage = () => {
         } else {
             const filteredData = itemData.filter((item: any) => {
                 for (const key in item) {
-                    if (item.hasOwnProperty(key) && item[key].toString().toLowerCase().includes(searchText)) {
+                    if (Object.prototype.hasOwnProperty.call(item, key) && item[key].toString().toLowerCase().includes(searchText)) {
                         return true;
                     }
                 }
@@ -91,7 +92,10 @@ const AchievmentsRout: NextPage = () => {
         }
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
     return (
         <div className={styles.wrap}>
             {!isMobile ?

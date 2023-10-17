@@ -102,6 +102,24 @@ export async function getDisciplines({ rejectWithValue }) {
     }
 }
 
+export async function getUser({ rejectWithValue }) {
+    try {
+        return await $api.patch(`user/`);
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error);
+    }
+}
+
+export async function putUserdata(data: any, { rejectWithValue }) {
+    try {
+        return await $api.put(`user/`, data);
+    } catch (error: any) {
+        console.error(error);
+        return rejectWithValue(error);
+    }
+}
+
 export async function getNews(id: number, { rejectWithValue }) {
     try {
         return await $api.get(`library/article/search/${id}/`);

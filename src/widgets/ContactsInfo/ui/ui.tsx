@@ -12,12 +12,15 @@ import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRen
 
 interface props {
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
+    userdata?: any;
 }
 
-export const ContactsInfo: FC<props> = ({ setMode }) => {
-    const { user } = useAppSelector((state: any) => state.auth);
+export const ContactsInfo: FC<props> = ({ setMode, userdata }) => {
 
-    const getValue = (value: any) => value ? `${value}` : 'Не указано'
+    const getValue = (value: any) => {
+        if (value == 'undefined' || value == null) return 'Не указано'
+        return value
+    }
 
     return (
         <div className={styles.wrap}>
@@ -30,11 +33,11 @@ export const ContactsInfo: FC<props> = ({ setMode }) => {
             <ul className={styles.infoWrap}>
                 <li>
                     <h1>Почта</h1>
-                    <h2>{getValue(user?.email)}</h2>
+                    <h2>{getValue(userdata?.email)}</h2>
                 </li>
                 <li>
                     <h1>Телефон</h1>
-                    <h2>{getValue(user?.number)}</h2>
+                    <h2>{getValue(userdata?.number)}</h2>
                 </li>
             </ul>
         </div>

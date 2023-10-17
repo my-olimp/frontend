@@ -10,7 +10,6 @@ import { TagArticle } from '@/entities/mathArticle/tag';
 import { TaskArticle } from '@/entities/mathArticle/task';
 import { TaskNoExample } from '@/entities/mathArticle/taskNoExample';
 import Image from 'next/image';
-import { NavbarAvatar } from '@/entities/NavbarAvatar';
 import { HeaderIcon } from '@/entities/mathArticle/headerIcon';
 import { BookPage } from '@/widgets/MathArticle/book';
 import { QuestionPage } from '@/widgets/MathArticle/question';
@@ -29,9 +28,9 @@ const MathArticle: FC<PropsMathArticle> = ({ }) => {
     const handleOnClickArrow = (position: string) => {
         if (position === 'left') {
             setOpenedPage(prev => headerIconsArray[(headerIconsArray.findIndex((item) => item === prev) - 1) == -1 ? (headerIconsArray.length - 1) : (headerIconsArray.findIndex((item) => item === prev) - 1)])
-        } else {
-            setOpenedPage(prev => headerIconsArray[(headerIconsArray.findIndex((item) => item === prev) + 1) == headerIconsArray.length ? 0 : (headerIconsArray.findIndex((item) => item === prev) + 1)])
+            return;
         }
+        setOpenedPage(prev => headerIconsArray[(headerIconsArray.findIndex((item) => item === prev) + 1) == headerIconsArray.length ? 0 : (headerIconsArray.findIndex((item) => item === prev) + 1)])
     }
 
 

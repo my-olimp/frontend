@@ -11,20 +11,33 @@
     z-index: 1101;
 }
 
+<<<<<<< HEAD
+.select {
+    height: 52px;
+    width: 414px;
+    border-radius: 12px;
+}
+
+=======
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 .form {
     background-color: #ffffff;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
+    gap: 30px;
     justify-content: space-between;
     padding: 24px 40px;
     width: 610px;
+<<<<<<< HEAD
+=======
     height: 500px;
     @media (max-width: 600px) {
         height: auto;
         width: 320px;
         padding: 15px 25px;
     }
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 
     h6 {
         font-size: 36px;
