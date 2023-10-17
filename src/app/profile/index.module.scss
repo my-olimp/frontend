@@ -4,6 +4,15 @@
     display: flex;
     flex-direction: row;
     gap: 36px;
+    @media (max-width: 1000px){
+        gap: 10px;    
+    }
+}
+
+.avatarAndAchievements {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .infoWrap {
@@ -13,7 +22,8 @@
 }
 
 .main {
-    padding: 20px 0 0 84px;
+    padding: 20px 0 20px 84px;
+    min-height: calc(100vh - 64px);
 
     @media (max-width: 900px) {
         padding: 20px 10px;
@@ -23,15 +33,14 @@
 .personalData {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
     .wrap {
         display: block;
     }
-
     .personalData {
-        display: block;
+        padding: 0 8px;
     }
 }

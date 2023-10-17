@@ -1,3 +1,4 @@
+
 import styles from './ui.module.scss';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
@@ -143,6 +144,7 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                 <div className={styles.logoRow}>
                     <ArrowBackOutlinedIcon className={styles.arrowIcon} />
                     <img src={myOlimpIcon.src} alt={'myOlimpIcon'} className={styles.myOlimpIcon} />
+                    <div></div>
                     {/*<Logo />*/}
                 </div>
                 <div className={styles.titleRow}>

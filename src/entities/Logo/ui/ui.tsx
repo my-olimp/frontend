@@ -1,20 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import myOlimpLogo from '../../../../public/logo/myOlimpLogo.svg';
 import styles from './ui.module.scss';
 
-interface props {}
+interface props {
+    small?: Boolean;
+}
 
-const Logo: FC<props> = () => {
+const Logo: FC<props> = ({small}) => {
     return (
         <Link href={'/'} className={styles.link} tabIndex={-1}>
             <Image
                 src={myOlimpLogo.src}
                 alt={'MyOlimp'}
-                width={115}
+                width={small ? 83 : 115}
                 className={styles.svg}
-                height={28}
+                height={small ? 19 : 28}
                 priority={true}
             />
         </Link>

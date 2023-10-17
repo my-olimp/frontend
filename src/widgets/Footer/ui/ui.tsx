@@ -1,50 +1,12 @@
-import React, { FC } from 'react';
-import styles from './ui.module.scss';
 import Logo from '@/entities/Logo/ui/ui';
-import Link from 'next/link';
 import Image from 'next/image';
-import VK from '../../../../public/social/VK.svg';
+import Link from 'next/link';
+import { FC } from 'react';
 import TG from '../../../../public/social/Telegram.svg';
+import VK from '../../../../public/social/VK.svg';
+import styles from './ui.module.scss';
 
 interface props {}
-
-const Team = [
-    {
-        id: 0,
-        name: 'Дмитрий Степанов',
-        link: 'https://vk.com/mack1ch',
-    },
-    {
-        id: 2,
-        name: 'Роман Параваев',
-        link: 'https://vk.com/f4lkomer',
-    },
-    {
-        id: 3,
-        name: 'Артем Сокерин',
-        link: 'https://vk.com/rambletot',
-    },
-    {
-        id: 4,
-        name: 'Екатерина Боброва',
-        link: '/',
-    },
-    {
-        id: 5,
-        name: 'Максим Ефремов',
-        link: 'https://vk.com/id158407389',
-    },
-    {
-        id: 6,
-        name: 'Алексей Филиппов',
-        link: 'https://vk.com/alexfilippow',
-    },
-    {
-        id: 7,
-        name: 'Диана Спиридонова',
-        link: 'https://vk.com/dinrinx',
-    },
-];
 
 export const Footer: FC<props> = () => {
     return (
@@ -57,7 +19,7 @@ export const Footer: FC<props> = () => {
             </div>
 
             <div className={styles.socials}>
-                <Link href={'/'}>
+                <Link href={'https://vk.com/myolimpolimpiadnik'}>
                     <Image src={VK} alt={'vk'} />
                 </Link>
                 <Link href={'/'}>

@@ -84,7 +84,7 @@ const MyItems: NextPage = () => {
                     <span>Первый шаг</span>
                 </div>
             </div>
-            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} />
+            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} overflow={true}/>
             <div className={styles.bottom}>
                 <div className={styles.bottomcontainer}>
                     <span>Разделы</span>

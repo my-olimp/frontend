@@ -25,6 +25,7 @@ export interface IUser {
   subjects: string[];
   roles: string[];
   email: string;
+  phoneNumber?: string;
   first_name: string | null;
   second_name: string | null;
   third_name: string | null;
@@ -224,12 +225,15 @@ export const auth = createSlice({
         builder.addCase(GetArticle.pending, (state) => {
           clear(state, true)
         })
+<<<<<<< HEAD
         builder.addCase(GetUser.pending, (state) => {
           clear(state, true)
         })
         builder.addCase(PutUserdata.pending, (state) => {
           clear(state, true)
         })
+=======
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 
         builder.addCase(GetOTC.fulfilled, (state, action) => {
           clear(state, false)

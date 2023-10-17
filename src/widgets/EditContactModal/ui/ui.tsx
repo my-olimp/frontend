@@ -21,6 +21,7 @@ import { ca } from 'date-fns/locale';
 interface props {
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
     userdata?: any;
+    tag?: any;
 }
 
 type Inputs = {

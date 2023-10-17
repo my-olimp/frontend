@@ -2,6 +2,7 @@
 import { NavBarDesktop } from '@/features/NavbarDesktop/';
 import { NavBarMobile } from '@/features/NavbarMobile';
 import { INotice } from '@/features/Notifications';
+import useIsMobile from '@/hooks/UseIsMobile';
 import { RootState } from '@/store/store';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -14,6 +15,7 @@ import { ThunkDispatch } from 'redux-thunk';
 
 interface props {
     profile?: boolean;
+    userdata?: any;
 }
 
 const navBarData = [
@@ -53,21 +55,16 @@ const notifications: INotice[] = [
 ];
 
 export const Header: FC<props> = ({ profile = false }) => {
-    const [mobile, setMobile] = useState(false);
+    const isMobile = useIsMobile(900)
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
-    useLayoutEffect(() => {
-        if (window.innerWidth < 900) {
-            setMobile(true);
-        }
-    }, []);
 
     useEffect(() => {}, [dispatch]);
 
     return (
         <>
-            {mobile ? (
-                <NavBarMobile notifications={notifications} navBarData={navBarData} />
+            {isMobile ? (
+                <NavBarMobile notifications={notifications} navBarData={navBarData} profile={profile} />
             ) : (
                 <NavBarDesktop
                     notifications={notifications}

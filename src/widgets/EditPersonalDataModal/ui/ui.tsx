@@ -20,10 +20,16 @@ import { useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
+import { SexRadio } from '@/entities/SexRadio';
 
 interface props {
+<<<<<<< HEAD
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
     userdata?: any;
+    tag?: any;
+=======
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
 }
 
 type Inputs = {
@@ -32,15 +38,22 @@ type Inputs = {
     additionalName: string;
 };
 
+<<<<<<< HEAD
 export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
     const [firstname, setFirstname] = useState('');
     const [secondname, setSecondname] = useState('');
     const [thirdname, setThirdname] = useState('');
     const [snils, setSnils] = useState('');
     const [gender, setGender] = useState('Не указано');
+=======
+export const EditPersonalDataModal: FC<props> = ({ setMode }) => {
+    const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
+    const { user } = useAppSelector((state) => state.auth);
+    
+>>>>>>> ef387c18459c1d2cf890a077d37a2f490c29a44e
     const [date, setDate] = useState<Dayjs>();
     const modalRef = useRef<HTMLDivElement>(null);
-    
+
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
     const {
@@ -75,9 +88,9 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
 
     const onFormSubmit: SubmitHandler<Inputs> = () => { };
 
-    const firstnameHandler = (e: string) => !/^[а-яА-Я]*$/.test(e) ? null : setFirstname(e)
-    const secondnameHandler = (e: string) => !/^[а-яА-Я]*$/.test(e) ? null : setSecondname(e)
-    const thirdnameHandler = (e: string) => !/^[а-яА-Я]*$/.test(e) ? null : setThirdname(e)
+    const firstnameHandler = (e: string) => !/^[a-zA-Zа-яА-Я]*$/.test(e) ? null : setFirstname(e)
+    const secondnameHandler = (e: string) => !/^[a-zA-Zа-яА-Я]*$/.test(e) ? null : setSecondname(e)
+    const thirdnameHandler = (e: string) => !/^[a-zA-Zа-яА-Я]*$/.test(e) ? null : setThirdname(e)
     const snilsHandler = (e: string) => !/^[0-9-]*$/.test(e) ? null : setSnils(e)
 
     const genderSelect = (event: any) => {
@@ -108,68 +121,113 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
     }
 
     return (
-        <div
-            className={styles.screen}
-            ref={modalRef}
-            onClick={(event) => handleClickOutSide(event)}>
-            <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
-                <h6>Личные данные</h6>
-                <span className={styles.inputs}>
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Имя"
-                        onChange={(e) => firstnameHandler(e.target.value)}
-                        value={firstname ? firstname : ''}
-                        className={styles.input}
-                    />
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Фамилия"
-                        onChange={(e) => secondnameHandler(e.target.value)}
-                        value={secondname ? secondname : ''}
-                        className={styles.input}
-                    />
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="Отчество"
-                        onChange={(e) => thirdnameHandler(e.target.value)}
-                        value={thirdname ? thirdname : ''}
-                        className={styles.input}
-                    />
-                    <DatePicker
-                        onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
-                        className={styles.calendar}
-                        format={'DD/MM/YYYY'}
-                        label="Дата рождения"
-                    />
-                    <Select
-                        className={styles.select}
-                        onChange={(event) => genderSelect(event)}
-                        value={gender}
-                    >
-                        <MenuItem value={gender} disabled>{gender}</MenuItem>
-                        <MenuItem value={'Мужчина'}>Мужчина</MenuItem>
-                        <MenuItem value={'Женщина'}>Женщина</MenuItem>
-                    </Select>
-                    <TextField
-                        type="text"
-                        variant="outlined"
-                        label="СНИЛС"
-                        onChange={(e) => snilsHandler(e.target.value)}
-                        value={snils ? snils : ''}
-                        className={styles.input}
-                    />
-                </span>
-                <span className={styles.buttons}>
-                    <button className={styles.cancel} onClick={() => setMode('')}>
-                        Отменить
-                    </button>
-                    <button className={styles.submit} onClick={() => sendData()}>Сохранить</button>
-                </span>
-            </form>
-        </div>
+        <>
+            {userdata?.account_type == 's' && (
+                <div
+                    className={styles.screen}
+                    ref={modalRef}
+                    onClick={(event) => handleClickOutSide(event)}>
+                    <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
+                        <h6>Личные данные</h6>
+                        <span className={styles.inputs}>
+                            <TextField
+                                type="text"
+                                variant="outlined"
+                                label="Имя"
+                                onChange={(e) => firstnameHandler(e.target.value)}
+                                value={firstname ? firstname : ''}
+                                className={styles.input}
+                            />
+                            <TextField
+                                type="text"
+                                variant="outlined"
+                                label="Фамилия"
+                                onChange={(e) => secondnameHandler(e.target.value)}
+                                value={secondname ? secondname : ''}
+                                className={styles.input}
+                            />
+                            <TextField
+                                type="text"
+                                variant="outlined"
+                                label="Отчество"
+                                onChange={(e) => thirdnameHandler(e.target.value)}
+                                value={thirdname ? thirdname : ''}
+                                className={styles.input}
+                            />
+                            <DatePicker
+                                onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
+                                className={styles.calendar}
+                                format={'DD/MM/YYYY'}
+                                label="Дата рождения"
+                            />
+                            <TextField
+                                type="text"
+                                variant="outlined"
+                                label="СНИЛС"
+                                onChange={(e) => snilsHandler(e.target.value)}
+                                value={snils ? snils : ''}
+                                className={styles.input}
+                            />
+                            <SexRadio sex={gender} setSex={setGender} />
+                        </span>
+                        <span className={styles.buttons}>
+                            <button className={styles.cancel} onClick={() => setMode('')}>
+                                Отменить
+                            </button>
+                            <button className={styles.submit} onClick={() => sendData()}>Сохранить</button>
+                        </span>
+                    </form>
+                </div>
+            )}
+            {userdata?.account_type == 't' || 'c' && (
+                <div
+                    className={styles.screen}
+                    ref={modalRef}
+                    onClick={(event) => handleClickOutSide(event)}>
+                    <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
+                        <h6>Личные данные</h6>
+                        <span className={styles.inputs}>
+                            <TextField
+                                type="text"
+                                variant="outlined"
+                                label="Имя"
+                                onChange={(e) => firstnameHandler(e.target.value)}
+                                value={firstname ? firstname : ''}
+                                className={styles.input}
+                            />
+                            <TextField
+                                type="text"
+                                variant="outlined"
+                                label="Фамилия"
+                                onChange={(e) => secondnameHandler(e.target.value)}
+                                value={secondname ? secondname : ''}
+                                className={styles.input}
+                            />
+                            <TextField
+                                type="text"
+                                variant="outlined"
+                                label="Отчество"
+                                onChange={(e) => thirdnameHandler(e.target.value)}
+                                value={thirdname ? thirdname : ''}
+                                className={styles.input}
+                            />
+                            <DatePicker
+                                onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
+                                className={styles.calendar}
+                                format={'DD/MM/YYYY'}
+                                label="Дата рождения"
+                            />
+                            <SexRadio sex={gender} setSex={setGender} />
+                        </span>
+                        <span className={styles.buttons}>
+                            <button className={styles.cancel} onClick={() => setMode('')}>
+                                Отменить
+                            </button>
+                            <button className={styles.submit} onClick={() => sendData()}>Сохранить</button>
+                        </span>
+                    </form>
+                </div>
+            )}
+        </>
     );
 };

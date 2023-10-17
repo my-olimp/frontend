@@ -13,17 +13,17 @@ export const handleInput = (
     const text = input.value;
     const textLength = text.length;
 
-    input?.setSelectionRange(textLength + 2, textLength + 2);
+    // input?.setSelectionRange(textLength + 2, textLength + 2);
     setText(text);
 
     if (password && setSecure) {
         setSecure(validatePassword(text));
     }
     if (passwordSignInMode) {
-        const tested = text.match(/^[!@#$%^\w]+$/);
+        const tested = text.match(/^[!._@#$%^\w]+$/);
         if (!tested) {
             setErrorMessage(
-                'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
+                'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, точки, нижнего подчёркивания и специальных символов(!@#$%^)',
             );
         } else {
             setErrorMessage('');

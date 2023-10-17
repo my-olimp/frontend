@@ -5,7 +5,7 @@ export const handleFocus = (
     passwordSignInMode: boolean,
     setErrorMessage: Dispatch<SetStateAction<string>>,
 ) => {
-    const tested = text.match(/^[!@#$%^\w]+$/);
+    const tested = text.match(/^[!._@#$%^\w]+$/);
 
     if (tested) {
         const containsBannedString = bannedStrings.some((bannedString) =>
@@ -19,7 +19,7 @@ export const handleFocus = (
 
     if (!tested && passwordSignInMode && text !== '') {
         setErrorMessage(
-            'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
+            'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, точки, нижнего подчёркивания и специальных символов(!@#$%^)',
         );
     }
 };
