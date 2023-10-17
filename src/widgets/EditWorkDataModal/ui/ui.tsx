@@ -30,9 +30,7 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
     const [grade, setGrade] = useState(userdata?.grade || 'Не указано');
     const [subject, setSubject]: any = useState(userdata?.school?.name || 'Не указано');
     const [items, setItems] = useState('Математика, физика, астрономия');
-    const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
 
-    const [date, setDate] = useState<Dayjs>();
     const modalRef = useRef<HTMLDivElement>(null);
 
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();

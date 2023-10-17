@@ -11,7 +11,7 @@ interface props {
     title: string;
     libMode: boolean;
     urlprop?: string;
-    overflow: boolean;
+    overflow?: boolean;
 }
 
 export interface IMaterial {
