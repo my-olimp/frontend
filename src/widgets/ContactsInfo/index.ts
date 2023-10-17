@@ -1,0 +1,1 @@
+export { ContactsInfo } from './ui/ui';

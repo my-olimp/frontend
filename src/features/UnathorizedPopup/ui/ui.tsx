@@ -1,15 +1,16 @@
 'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { FC, useEffect } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import fingerUP from '../../../../public/auth/fingerUP.svg';
 import styles from './ui.module.scss';
 
 interface props {
     isOpen: boolean;
+    setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const UnathorizedPopup: FC<props> = ({ isOpen }) => {
+export const UnathorizedPopup: any = ({ isOpen, setOpen }) => {
     const { push } = useRouter();
     // const spanRef = useRef(null);
 

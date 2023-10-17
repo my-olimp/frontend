@@ -1,0 +1,33 @@
+$width-limit: 86.3rem;
+
+.main {
+    margin: 20px 0 30px 0;
+}
+
+.top {
+    margin: 10px 0 0 0;
+
+    .topcontainer {
+        width: $width-limit;
+        padding: 0 10px;
+    }
+}
+
+.title {
+    color: #3D3D3C;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.96px;
+}
+
+.subtitle {
+    color: #3D3D3C;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+}

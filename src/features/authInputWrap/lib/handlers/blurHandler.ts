@@ -8,7 +8,7 @@ export const blurHandler = (
     setErrorMessage: Dispatch<SetStateAction<string>>,
     setText: Dispatch<SetStateAction<string>>,
 ) => {
-    const tested = text.match(/^[!@#$%^\w]+$/);
+    const tested = text.match(/^[!._@#$%^\w]+$/);
 
     if (text === '') {
         setErrorMessage(`Это поле не может быть пустым`);
@@ -17,7 +17,7 @@ export const blurHandler = (
         setErrorMessage('Неверный формат почты, пример: test@example.com');
     } else if (!tested && passwordSignInMode && text !== '') {
         setErrorMessage(
-            'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, специальных символов(!@$%^)',
+            'Пароль должен состоять только из букв латиницы верхнего или нижнего регистра, цифр, точки, нижнего подчёркивания и специальных символов(!@#$%^)',
         );
     } else {
         setErrorMessage('');

@@ -88,9 +88,13 @@ $accentColor: #3579f8;
 .image {
   float: right;
   overflow: hidden;
-
   display: none;
   background: transparent;
+}
+
+.imageWebp {
+  width: 700px;
+  height: auto;
 }
 
 .info__block {

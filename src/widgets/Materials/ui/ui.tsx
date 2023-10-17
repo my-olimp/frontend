@@ -4,11 +4,15 @@ import styles from './ui.module.scss';
 import { MaterialCard } from '@/features/MaterialCard';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Link from 'next/link';
+import { nanoid } from 'nanoid';
 
 interface props {
     materialList: IMaterial[];
     title: string;
     libMode: boolean;
+    urlprop?: string;
+    overflow: boolean;
+    profile?: boolean;
 }
 
 export interface IMaterial {
@@ -25,7 +29,7 @@ export interface ITag {
     text: string;
 }
 
-export const Materials: FC<props> = ({ materialList, title, libMode }) => {
+export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, overflow, profile = false }) => {
     const [isMobile, setMobile] = useState(false);
     const [url, setUrl] = useState('');
     const scrollContainerRef = useRef(null);
@@ -36,21 +40,29 @@ export const Materials: FC<props> = ({ materialList, title, libMode }) => {
             container.scrollBy({ left: 150, behavior: 'smooth' });
         }
     };
-    
+
     useLayoutEffect(() => {
-        if (window.innerWidth < 900) {
+        if ((window.innerWidth < 900) && !profile) {
             setMobile(true);
         }
         setUrl(window.location.href)
     }, []);
     return (
-        <div className={url.includes('library') ? styles.libraryWrap : styles.wrap} style={{ flexDirection: isMobile ? 'column' : 'row' }}>
+        <div
+            className={title === 'student'
+                ? styles.studentWrap
+                : overflow
+                ? styles.libraryWrap
+                : styles.wrap
+            }
+            style={{ flexDirection: isMobile ? 'column' : 'row' }}
+        >
             {isMobile && (
                 <div className={styles.titleWrap}>
                     {!libMode && (
                         <>
                             <h1 className={styles.title}>{title}</h1>
-                            <Link href={'/library'} className={styles.link}>
+                            <Link href={'main/library'} className={styles.link}>
                                 <h2>Материалы</h2>
                                 <ArrowForwardIosIcon />
                             </Link>
@@ -60,16 +72,19 @@ export const Materials: FC<props> = ({ materialList, title, libMode }) => {
             )}
 
             <div
-                className={url.includes('library')
-                ? styles.libraryWrapMaterials
-                : styles.wrapMaterials}
+                className={title === 'student'
+                    ? styles.studentMaterials
+                    : overflow
+                    ? styles.libraryWrapMaterials
+                    : styles.wrapMaterials
+                }
                 ref={scrollContainerRef}
             >
                 {materialList.map((material) => {
-                    return <MaterialCard key={material.id} material={material} />;
+                    return <MaterialCard key={nanoid(6)} material={material} urlprop={urlprop} overflow={overflow} />;
                 })}
             </div>
-            {!isMobile &&
+            {!isMobile && !profile &&
                 (libMode ? (
                     <span className={styles.linkWrap} style={{ marginLeft: '10px' }}>
                         <Link href={url.includes('library') ? '' : '/main/library'} className={styles.link}>

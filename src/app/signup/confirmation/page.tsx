@@ -7,5 +7,5 @@ export default function Auth() {
     const token = searchParams.get('token');
     console.log(token);
 
-    return <div className={styles.wrap}></div>;
+    return <div className={styles.wrap}>{token}</div>;
 }

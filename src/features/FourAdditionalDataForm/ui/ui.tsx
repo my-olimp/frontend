@@ -4,6 +4,8 @@ import { Button } from '@mui/material';
 import styles from './ui.module.scss';
 import avatarLink from '../../../../public/social/empty-avatar.svg';
 import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
+import onHoverAvatar from '../../../../public/social/onHoverAvatar.svg';
+
 
 interface props {
     progress: number;
@@ -13,6 +15,7 @@ interface props {
 export const FourAdditionalDataForm: FC<props> = ({ progress, setProgress }) => {
     const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
     const [value, setValue] = useState<string>('');
+    const [hover, setHover] = useState<Boolean>(false);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -44,6 +47,7 @@ export const FourAdditionalDataForm: FC<props> = ({ progress, setProgress }) => 
                 <div className={styles.logoRow}>
                     <ArrowBackOutlinedIcon className={styles.arrowIcon} />
                     <img src={myOlimpIcon.src} alt={'myOlimpIcon'} className={styles.myOlimpIcon} />
+                    <div></div>
                 </div>
                 <div className={styles.titleRow}>
                     <h1>Последний штрих</h1>
@@ -52,17 +56,20 @@ export const FourAdditionalDataForm: FC<props> = ({ progress, setProgress }) => 
                 <input
                     type="file"
                     accept="image/*"
-                    defaultValue={avatarLink.src}
                     style={{ display: 'none' }}
                     onChange={handleImageChange}
                     ref={fileInputRef}
                 />
-                <img
-                    src={selectedImage || avatarLink.src}
-                    alt={'avatarUser'}
-                    className={styles.avatar}
-                    onClick={handleImageClick}
-                />
+                <div className={styles.avatarContainer}>
+                    <img
+                        src={hover ? onHoverAvatar.src : (selectedImage || avatarLink.src)}
+                        alt={'avatarUser'}
+                        className={styles.avatar}
+                        onClick={handleImageClick}
+                        onMouseEnter={() => setHover(true)}
+                        onMouseLeave={() => setHover(false)}
+                    />
+                </div>
                 <input
                     value={value}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

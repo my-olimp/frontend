@@ -12,13 +12,13 @@ export default function Layout({ children }) {
     const { user } = useAppSelector((state) => state.auth);
     const [unathorized, setUnathorized] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (!user) {
-            setUnathorized(true);
-        } else {
-            setUnathorized(false);
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if (!user) {
+    //         setUnathorized(true);
+    //     } else {
+    //         setUnathorized(false);
+    //     }
+    // }, [user]);
 
     return (
         <>
@@ -31,7 +31,6 @@ export default function Layout({ children }) {
                     style={{
                         backgroundColor: '#F3F7FF',
                         width: '100vw',
-                        minHeight: '100vh',
                     }}>
                     {children}
                 </main>

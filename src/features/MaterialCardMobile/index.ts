@@ -1,0 +1,1 @@
+export { MaterialCardMobile } from './ui/ui';

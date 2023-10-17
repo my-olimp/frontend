@@ -1,0 +1,124 @@
+.wrap {
+    padding: 0 50px 0 6px;
+    @media (max-width: 900px) {
+        padding-right: 6px;
+    }
+}
+
+.title {
+    font-size: 35px;
+    font-weight: 600;
+    @media (max-width: 900px) {
+        font-size: 22px;
+    }
+    @media (max-width: 420px) {
+        font-size: 20px;
+        padding-left: 15px;
+    }
+}
+.blockText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.all {
+    display: none;
+    @media (max-width: 1400px) {
+        display: flex;
+        cursor: pointer;
+        gap: 6px;
+        align-items: center;
+        &__text {
+            color: #3579f8;
+            font-feature-settings:
+                "clig" off,
+                "liga" off;
+            font-family: "SF_Medium";
+            font-size: 16px;
+        }
+    }
+}
+
+.materials {
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0px -10px 40px 0px rgba(154, 170, 207, 0.20), 0px 16px 40px 0px rgba(154, 170, 207, 0.20);
+
+    .left {
+        padding: 30px 25px;
+        border-radius: 30px;
+        background: linear-gradient(180deg, #3579f8 0.06%, #538fff 67.3%);
+        @media (max-width: 900px) {
+            width: 123px;
+            height: 123px;
+        }
+        @media (max-width: 420px) {
+            width: 103px;
+            height: 103px;
+        }
+        .image {
+            @media (max-width: 900px) {
+                width: 87px;
+                height: 83px;
+            }
+            @media (max-width: 420px) {
+                width: 65px;
+                height: 59px;
+            }
+        }
+    }
+
+    .right {
+        margin-left: 15px;
+        @media (max-width: 900px) and (min-width: 420px){
+            margin-left: 40px;
+        }
+
+        span {
+            color: #767575;
+            font-size: 26px;
+            @media (max-width: 900px) {
+                font-size: 18px;
+            }
+            @media (max-width: 420px) {
+                font-size: 15px;
+            }
+        }
+        p {
+            font-size: 32px;
+            font-weight: 600;
+            @media (max-width: 900px) {
+                font-size: 20px;
+            }
+            @media (max-width: 420px) {
+                font-size: 15px;
+            }
+        }
+
+        .righttags {
+            margin-top: 10px;
+            .rightitem {
+                background-color: #3579f8;
+                padding: 5px 15px;
+                margin: 5px 10px 0 0;
+                border-radius: 30px;
+                @media (max-width: 420px) {
+                    padding: 2px 5px;
+                    margin: 2px 5px 0 0;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}
+
+.materialMobile {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 15px 0;
+    width: 100%;
+}

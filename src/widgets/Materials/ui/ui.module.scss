@@ -1,123 +1,154 @@
 .wrapMaterials {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
-  width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    width: 90vw;
+}
+
+.studentMaterials {
+    display: flex;
+    gap: 24px;
+
+    overflow: hidden;
+    overflow-x: scroll;
+    padding-bottom: 7px;
+
+    &::-webkit-scrollbar {
+        width: 0.8em;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #3579f8;
+        border: 3px solid white;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        cursor: pointer !important;
+    }
 }
 
 .libraryWrapMaterials {
-  display: flex;
-  gap: 24px;
-  width: 90vw;
-  align-items: center;
+    display: flex;
+    gap: 24px;
+    width: 90vw;
+    align-items: center;
 
-  overflow: hidden;
-  overflow-x: scroll;
-  padding-bottom: 7px;
+    overflow: hidden;
+    overflow-x: scroll;
+    padding-bottom: 7px;
 
-  &::-webkit-scrollbar {
-    width: 0.8em;
-  }
+    &::-webkit-scrollbar {
+        width: 0.8em;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: #3579F8;
-    border: 3px solid white;
-    border-radius: 10px;
-  }
+    &::-webkit-scrollbar-thumb {
+        background-color: #3579f8;
+        border: 3px solid white;
+        border-radius: 10px;
+    }
 
-  &::-webkit-scrollbar-thumb:hover {
-    cursor: pointer !important;
-  }
+    &::-webkit-scrollbar-thumb:hover {
+        cursor: pointer !important;
+    }
+}
+
+.studentWrap {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
 }
 
 .libraryWrap {
-  display: flex;
-  flex-direction: row;
-  max-width: 1341px;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    max-width: 1341px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
 }
 
 .wrap {
-  display: flex;
-  flex-direction: row;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
 }
 
 .link {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: fit-content;
-  height: fit-content;
-  color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    color: black;
 
-  & h1 {
-    font-size: 20px;
-    font-family: "SF_Regular", Arial, Helvetica, sans-serif;
-    font-weight: 400;
-  }
+    & h1 {
+        font-size: 20px;
+        font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+        font-weight: 400;
+    }
 
-  &:hover * {
-    transition: all .3s;
-    color: #3579F8;
-  }
+    &:hover * {
+        transition: all 0.3s;
+        color: #3579f8;
+    }
 }
 
 .titleWrap {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 0 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 0 32px;
 
-  & * {
-    user-select: auto;
-    font-size: 17px;
-    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-    font-weight: 500;
-  }
-
-  & h1 {
-    font-size: 25px;
-    margin: 0;
-    user-select: text;
-  }
-}
-
-.linkWrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  & .link svg {
-    margin-top: 50px;
-    height: 30px;
-    width: 30px;
-  }
-}
-
-@media (max-width: 800px) {
-
-  // .wrapMaterials {
-  //   width: 100vw;
-  //   gap: 12px;
-  // }
-  .titleWrap {
     & * {
-      font-size: 14px;
+        user-select: auto;
+        font-size: 17px;
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+        font-weight: 500;
     }
 
     & h1 {
-      font-size: 16px;
+        font-size: 25px;
+        margin: 0;
+        user-select: text;
     }
-  }
+}
+
+.linkWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .link svg {
+        margin-top: 50px;
+        height: 30px;
+        width: 30px;
+    }
+}
+
+@media (max-width: 900px) {
+    // .wrapMaterials {
+    //   width: 100vw;
+    //   gap: 12px;
+    // }
+    .titleWrap {
+        & * {
+            font-size: 14px;
+        }
+
+        & h1 {
+            font-size: 16px;
+        }
+    }
 }

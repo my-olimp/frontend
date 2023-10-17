@@ -1,0 +1,1 @@
+export { TagArticle } from './ui/ui';

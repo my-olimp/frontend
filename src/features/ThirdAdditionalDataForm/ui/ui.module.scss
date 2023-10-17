@@ -1,36 +1,57 @@
 .form {
+    padding: 32px 44px;
+    margin: 0 16px;
+    background-color: #fff;
+    border-radius: 24px;
+    max-width: 502px;
+    min-width: 502px;
+    box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
     & form {
-        height: 472px;
-        width: 502px;
         display: flex;
         flex-direction: column;
-        padding: 32px 0;
-        background-color: white;
         gap: 16px;
-        border-radius: 24px;
-        box-shadow: 0 17px 46px 0 rgba(92, 99, 107, 0.08);
         align-items: center;
+        @media screen and (max-width: 420px) {
+            gap: 12px;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        min-width: 400px;
+        padding: 28px 38px;
+    }
+    @media screen and (max-width: 420px) {
+        min-width: 350px;
+        padding: 24px 30px;
+    }
+    @media screen and (max-width: 360px) {
+        min-width: auto;
+        padding: 20px 20px;
+        width: 100%;
+        padding: 32px 32px 16px;
     }
 }
 
 .logoRow {
     display: flex;
     flex-direction: row;
-    width: 60%;
-    margin-right: auto;
-    margin-left: 16px;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
 
     .arrowIcon {
-        margin-left: 24px;
         cursor: pointer;
+        position: relative;
+        right: 22px;
+        @media (max-width: 420px) {
+            right: 12px;
+        }
     }
 
     .myOlimpIcon {
-        margin-right: auto;
-        margin-left: 150px;
         cursor: pointer;
+        position: relative;
+        right: 16px;
     }
 }
 
@@ -38,22 +59,32 @@
     display: flex;
     align-items: center;
     gap: 24px;
-    justify-content: space-between;
-    width: 400px;
+    width: 100%;
 
     & h1 {
         font-size: 20px;
         color: rgba(26, 7, 16, 0.85);
-        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
         font-weight: 500;
         margin: 0;
+        @media (max-width: 400px) {
+            font-size: 18px;
+        }
+        @media (max-width: 350px) {
+            font-size: 16px;
+        }
     }
-
     & p {
         color: #6bc62d;
         font-size: 16px;
-        font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+        font-family: "SF_Medium", Arial, Helvetica, sans-serif;
         font-weight: 500;
+        @media (max-width: 400px) {
+            font-size: 15px;
+        }
+        @media (max-width: 350px) {
+            font-size: 13px;
+        }
     }
 }
 
@@ -63,29 +94,40 @@
     line-height: 16px;
     letter-spacing: 0.02em;
     text-align: left;
-    width: 414px;
+    width: 100%;
     .descriptionTitle {
         font-size: 13px;
         font-weight: 400;
         color: #1a0710a6;
         margin-bottom: 8px;
+        @media (max-width: 360px) {
+            font-size: 11px;
+        }
     }
     .descriptionDiscipline {
         font-size: 20px;
         font-weight: 500;
         line-height: 24px;
         color: #1a0710d9;
+        @media (max-width: 400px) {
+            font-size: 18px;
+        }
+        @media (max-width: 350px) {
+            font-size: 16px;
+        }
     }
 }
 
 .disciplesContainer {
     display: flex;
-    width: 420px;
-    height: 154px;
+    width: 100%;
     align-items: center;
     gap: 4px;
     flex-wrap: wrap;
     margin-bottom: 32px;
+    @media (max-width: 500px) {
+        margin-bottom: 20px;
+    }
 
     .disciplineContainer {
         display: flex;
@@ -97,6 +139,10 @@
         border-radius: 12px;
         border: 1px solid rgba(53, 121, 248, 0.28);
         cursor: pointer;
+        @media (max-width: 440px) {
+            height: 24px;
+            padding: 0px 4px;
+        }
 
         &.selected {
             border-radius: 12px;
@@ -111,6 +157,10 @@
         .disciplesIcon {
             &.selected {
                 fill: white;
+            }
+            @media (max-width: 440px) {
+                width: 13px;
+                height: 13px;
             }
         }
 
@@ -127,17 +177,20 @@
             &.selected {
                 color: white;
             }
+            @media (max-width: 440px) {
+                font-size: 11px;
+            }
         }
     }
 }
 
 .button {
     height: 56px;
-    width: 414px;
+    width: 100%;
     text-transform: capitalize;
     border-radius: 12px;
     font-size: 22px;
-    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
     font-weight: 500;
     background-color: #3579f8;
     box-shadow: none;
@@ -147,14 +200,21 @@
         cursor: not-allowed;
         pointer-events: all !important;
         color: white;
-
         &:hover {
             background-color: #8cb2fb;
         }
     }
-
     &:hover {
         background-color: #316ee0;
         box-shadow: none;
+    }
+
+    @media (max-width: 500px) {
+        height: 50px;        
+        font-size: 20px;
+    }
+    @media (max-width: 420px) {
+        height: 44px;        
+        font-size: 18px;
     }
 }

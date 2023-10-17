@@ -7,6 +7,10 @@
     },
     "plugins": ["@babel"],
     "rules": {
+        "no-extra-semi": "warn",
+        "no-prototype-builtins": "off",
+        "no-multiple-empty-lines": "warn",
+        "block-spacing": "off",
         "max-len": "off",
         "no-undef": "off",
         "object-curly-spacing": "off",

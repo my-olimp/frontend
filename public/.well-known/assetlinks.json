@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.vercel.myolimp.twa",
+        "sha256_cert_fingerprints": ["0D:C0:E6:37:71:EF:8A:7C:7E:93:03:DF:A2:7A:33:02:30:DF:B0:BE:FB:9B:89:89:99:43:DB:73:C9:04:D3:67"]
+      }
+    }]

@@ -1,7 +1,7 @@
 import React, { Dispatch, FC, FormEvent, SetStateAction, useEffect, useState } from 'react';
 import styles from './ui.module.scss';
 import Logo from '@/entities/Logo/ui/ui';
-import { Button, MenuItem, Radio, Select } from '@mui/material';
+import { Button, MenuItem,  Select } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import { SexRadio } from '@/entities/SexRadio';
@@ -38,7 +38,7 @@ export const FirstAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
         // валидация
         /^(?=.*[A-ZА-Я][a-zа-я]{2,}\s[A-ZА-Я][a-zа-я]{1,}(\s[A-ZА-Я][a-zа-я]{2,})?\s*$)(?=.*[a-zA-Zа-яА-Я]).*$/.test(text)
         ? setError("")
-        : setError("ФИО должно содержать в себе как минимум имя и фамилию с заглавной буквы")
+        : setError("*ФИО должно содержать в себе как минимум имя и фамилию с заглавной буквы")
     };
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export const FirstAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                     className={styles.input}
                 />
                 {error && <h3 className={styles.error}>{error}</h3>}
-                <SexRadio sex={sex} setSex={setSex} />
+                <SexRadio  sex={sex} setSex={setSex} />
                 <DatePicker
                     onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
                     className={styles.calendar}
