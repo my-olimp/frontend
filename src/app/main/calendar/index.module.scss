@@ -1,10 +1,23 @@
+.screen {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    left: 0;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
 .calendar {
     z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 45px 0px;
-    background: #F0F4FA;
+    background: #f0f4fa;
 }
 
 .container {
@@ -21,99 +34,112 @@
         height: 100%;
         width: 100%;
         background-color: white;
-    
+
         .circle {
             margin-top: 5px;
             padding: 7px;
-            background: #F0F4FA;
+            background: #f0f4fa;
             border-radius: 5px;
         }
-    
+
         .title {
             height: 10%;
             padding: 15px 20px;
             font-size: 20px;
             font-weight: 600;
             align-items: center;
-    
-            .icon {
-                background: #F0F4FA;
+
+            .toolbar {
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
-    
+
+            .icon {
+                background: #f0f4fa;
+            }
+
             svg {
                 font-size: 25px;
                 cursor: pointer;
             }
+            &Name {
+                font-family: "SF_Regular";
+                font-size: 20px;
+                letter-spacing: 0.4px;
+                cursor: pointer;
+            }
         }
-    
+
         .eventlist {
             overflow-y: scroll;
             height: 90%;
-    
+
             &::-webkit-scrollbar {
                 width: 10px;
             }
-    
+
             &::-webkit-scrollbar-thumb {
-                background-color: #5E96FF;
+                background-color: #5e96ff;
                 border-radius: 10px;
                 border: 2px solid rgb(255, 255, 255);
             }
-    
+
             &::-webkit-scrollbar-track {
                 background-color: transparent;
                 border-radius: 10px;
                 padding: 5px;
-    
             }
-    
+
             .eventtoday {
                 padding: 20px 20px;
-                border-top: 1px solid rgba(34, 34, 34, 0.20);
-    
+                border-top: 1px solid rgba(34, 34, 34, 0.2);
+
                 .eventtodayleft {
                     div {
                         margin-right: 20px;
                     }
                 }
+                .eventtodayright {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
             }
-    
+
             .eventtoday:last-child {
-                border-bottom: 1px solid rgba(34, 34, 34, 0.20);
+                border-bottom: 1px solid rgba(34, 34, 34, 0.2);
             }
         }
     }
 }
 
-.popupmain {
-    align-items: center;
-    height: 120vh;
-    position: absolute;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 20;
+.popup {
+    width: 30vw;
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px 35px;
 
-    .popup {
-        width: 30vw;
-        background-color: white;
-        border-radius: 15px;
-        padding: 15px 35px;
-
-        .popuptitle {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: 0.56px;
+    .popuptitle {
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 0.56px;
+        &_edit {
+            color: #000;
+            font-family: "SF_Medium";
+            font-size: 26px;
+            letter-spacing: 0.52px;
         }
+    }
 
-        .popupinput {
-            margin: 20px 0px;
-            font-size: 19px;
-            border: none;
-            width: 70%;
-            outline: none;
-            padding: 3px 0px;
-            border-bottom: 1px solid rgba(34, 34, 34, 0.20);
-        }
+    .popupinput {
+        margin: 20px 0px;
+        font-size: 19px;
+        border: none;
+        width: 70%;
+        outline: none;
+        padding: 3px 0px;
+        border-bottom: 1px solid rgba(34, 34, 34, 0.2);
     }
 }
 
@@ -126,12 +152,12 @@
             border-radius: 15px;
             font-size: 19px;
             padding: 5px 10px;
-            transition: .1s ease;
+            transition: 0.1s ease;
             cursor: pointer;
 
             &:hover {
-                background: #EFF6FF;
-                color: rgba(53, 121, 248, 0.90);
+                background: #eff6ff;
+                color: rgba(53, 121, 248, 0.9);
             }
         }
     }
@@ -141,16 +167,16 @@
     div {
         padding: 10px 25px;
         border-radius: 10px;
-        transition: .15s ease;
+        transition: 0.15s ease;
     }
 
     .createbtn {
-        background: #3579F8;
+        background: #3579f8;
         color: white;
         padding: 10px 25px;
         border-radius: 10px;
         font-size: 16px;
-        transition: .15s ease;
+        transition: 0.15s ease;
 
         &:hover {
             background: #3579f8a6;
@@ -158,8 +184,8 @@
     }
 
     .closebtn {
-        border: 1px solid #3579F8;
-        color: #3579F8;
+        border: 1px solid #3579f8;
+        color: #3579f8;
 
         &:hover {
             background: #3579f81c;
@@ -190,21 +216,6 @@
         svg {
             margin-right: 5px;
         }
-    }
-}
-
-.mobileadd {
-    position: absolute;
-    bottom: 13%;
-    right: 5%;
-    z-index: 19;
-    width: 50px;
-    height: 50px;
-    border-radius: 18px;
-    background-color: #B2CDFF;
-    
-    img {
-        transform: scale(1.5);
     }
 }
 
@@ -241,3 +252,4 @@
         }
     }
 }
+

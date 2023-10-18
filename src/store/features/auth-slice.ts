@@ -29,6 +29,7 @@ export interface IUser {
   subjects: string[];
   roles: string[];
   email: string;
+  phoneNumber?: string;
   first_name: string | null;
   second_name: string | null;
   third_name: string | null;

@@ -17,8 +17,8 @@ export const SideNavBar: FC<props> = ({ show }) => {
             animate={{ x: !show ? 900 : 0 }}
             transition={{ duration: .25 }}
         >
-            <SideBarElement>Преимущества</SideBarElement>
-            <SideBarElement>О Проекте</SideBarElement>
+            {/* <SideBarElement>Преимущества</SideBarElement>
+            <SideBarElement>О Проекте</SideBarElement> */}
             <SideBarElement link="/signin">Войти</SideBarElement>
             <NavBarButton>Присоединиться</NavBarButton>
         </motion.div>

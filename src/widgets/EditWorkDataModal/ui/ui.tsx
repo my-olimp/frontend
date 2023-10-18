@@ -13,8 +13,7 @@ import { PutUserdata } from '@/store/features/auth-slice';
 import styles from './ui.module.scss';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
-    userdata?: any;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
     tag?: string;
 }
 
@@ -24,12 +23,15 @@ type Inputs = {
     additionalName: string;
 };
 
-export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
-    const [city, setCity] = useState(userdata?.city?.name || '');
-    const [region, setRegion] = useState(userdata?.region?.name || '');
-    const [grade, setGrade] = useState(userdata?.grade || 'Не указано');
-    const [subject, setSubject]: any = useState(userdata?.school?.name || 'Не указано');
-    const [items, setItems] = useState('Математика, физика, астрономия');
+export const EditWorkDataModal: FC<props> = ({ setMode, tag }) => {
+    const [subject, setSubject] = useState('МБОУ СШ #1');
+    const [items, setItems] = useState('Предмет');
+    const [grade, setGrade] = useState('5');
+    const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
+    const { user } = useAppSelector((state) => state.auth);
+
+    const [date, setDate] = useState<Dayjs>();
+    const [sex, setSex] = useState<'male' | 'female'>('male');
 
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -46,6 +48,18 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
     };
 
     const onFormSubmit: SubmitHandler<Inputs> = () => { };
+
+    const handleSubjectSelect = (event: any) => {
+        setSubject((event.target as HTMLSelectElement).value);
+    }
+
+    const handleItemsSelect = (event: any) => {
+        setItems((event.target as HTMLSelectElement).value);
+    }
+
+    const handleGradeSelect = (event: any) => {
+        setGrade((event.target as HTMLSelectElement).value);
+    }
 
     const subjectData = [
         { id: 0, text: 'МБОУ СШ #1', where: ['Ивановская обл', 'Тейковский р-н', 'г. Тейково'] },
@@ -116,8 +130,8 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
                             className={styles.select}
                             onChange={(event) => setItems(event.target.value)}
                             value={items}>
-                            <MenuItem value={'Математика, физика, астрономия'} disabled selected>
-                                <span style={{ color: 'gray' }}>Математика, физика, астрономия</span>
+                            <MenuItem value={'Предмет'} disabled selected>
+                                <span style={{ color: 'gray' }}>Предмет</span>
                             </MenuItem>
                         </Select>
                     </span>
@@ -136,41 +150,59 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
                             type="text"
                             variant="outlined"
                             label="Регион"
-                            onChange={(e) => regionHandler(e.target.value)}
-                            value={region}
                             className={styles.input}
                         />
                         <TextField
                             type="text"
                             variant="outlined"
                             label="Город/населенный пункт"
-                            onChange={(e) => cityHandler(e.target.value)}
-                            value={city}
                             className={styles.input}
                         />
                         <Select
                             className={styles.select}
-                            onChange={(event) => setSubject(event.target.value)}
-                            value={subject || "Не указано"}
-                        >
-                            <MenuItem value={"Не указано"} disabled>Не указано</MenuItem>
-                            {subjectData.map((item: any) => (
-                                <MenuItem key={item.id} value={item.text}>
-                                    {item.text}
-                                </MenuItem>
-                            ))}
+                            onChange={(event) => handleSubjectSelect(event)}
+                            value={subject}>
+                            <MenuItem value={'МБОУ СШ #1'} disabled selected>
+                                <span style={{ color: 'gray' }}>МБОУ СШ #1</span>
+                            </MenuItem>
+                            {subjectData.length > 0 ? (
+                                subjectData.map((item: any) => (
+                                    <MenuItem key={item.id} value={item.text}>
+                                        {item.text}
+                                    </MenuItem>
+                                ))
+                            ) : (
+                                <MenuItem disabled>Loading...</MenuItem>
+                            )}
                         </Select>
                         <Select
                             className={styles.select}
-                            onChange={(event) => setGrade(event.target.value)}
-                            value={grade}
-                        >
-                            <MenuItem value={'Не указано'} disabled>Не указано</MenuItem>
-                            {gradeData.map((item: any) => (
-                                <MenuItem key={item} value={`${item} класс`}>
-                                    {`${item} класс`}
-                                </MenuItem>
-                            ))}
+                            onChange={(event) => handleGradeSelect(event)}
+                            value={grade}>
+                            <MenuItem value={'Grade'} disabled>
+                                <span style={{ color: 'gray' }}>Класс</span>
+                            </MenuItem>
+                            <MenuItem value={'5'} selected>
+                                <span>5</span>
+                            </MenuItem>
+                            <MenuItem value={'6'}>
+                                <span>6</span>
+                            </MenuItem>
+                            <MenuItem value={'7'}>
+                                <span>7</span>
+                            </MenuItem>
+                            <MenuItem value={'8'}>
+                                <span>8</span>
+                            </MenuItem>
+                            <MenuItem value={'9'}>
+                                <span>9</span>
+                            </MenuItem>
+                            <MenuItem value={'10'}>
+                                <span>10</span>
+                            </MenuItem>
+                            <MenuItem value={'11'}>
+                                <span>11</span>
+                            </MenuItem>
                         </Select>
                     </span>
                     <span className={styles.buttons}>

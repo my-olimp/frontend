@@ -27,7 +27,7 @@ export const PlansToday: FC<props> = ({}) => {
             <div className={styles.titleWrap}>
                 <h1>План на сегодня</h1>
                 <div className={styles.link}>
-                    <Link href="/">Календарь</Link>
+                    <Link href="/main/calendar">Календарь</Link>
                     <ArrowForwardIosIcon />
                 </div>
             </div>

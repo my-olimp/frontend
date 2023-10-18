@@ -1,0 +1,138 @@
+.screen {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    left: 0;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.popup {
+    width: 30vw;
+    background-color: white;
+    border-radius: 15px;
+    padding: 15px 35px;
+
+    .popuptitle {
+        font-size: 28px;
+        font-weight: 600;
+        letter-spacing: 0.56px;
+        &_edit {
+            color: #000;
+            font-family: "SF_Medium";
+            font-size: 26px;
+            letter-spacing: 0.52px;
+        }
+    }
+
+    .popupinput {
+        margin: 20px 0px;
+        font-size: 19px;
+        border: none;
+        width: 70%;
+        outline: none;
+        padding: 3px 0px;
+        border-bottom: 1px solid rgba(34, 34, 34, 0.2);
+    }
+}
+
+.btns {
+    div {
+        padding: 10px 25px;
+        border-radius: 10px;
+        transition: 0.15s ease;
+    }
+
+    .createbtn {
+        background: #3579f8;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: 0.15s ease;
+
+        &:hover {
+            background: #3579f8a6;
+        }
+    }
+
+    .closebtn {
+        border: 1px solid #3579f8;
+        color: #3579f8;
+
+        &:hover {
+            background: #3579f81c;
+        }
+    }
+}
+
+.mid {
+    margin-bottom: 20px;
+
+    .midleft {
+        .tag {
+            margin-right: 10px;
+            border-radius: 15px;
+            font-size: 19px;
+            padding: 5px 10px;
+            transition: 0.1s ease;
+            cursor: pointer;
+
+            &:hover {
+                background: #eff6ff;
+                color: rgba(53, 121, 248, 0.9);
+            }
+        }
+    }
+}
+
+.settings {
+    margin-bottom: 35px;
+
+    .time,
+    .selectdiv,
+    .files {
+        margin-bottom: 8px;
+        font-size: 17.5px;
+    }
+
+    .time {
+        .timeleft {
+            svg {
+                margin-right: 5px;
+            }
+        }
+    }
+
+    .files,
+    .selectdiv {
+        svg {
+            margin-right: 5px;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .popupmain {
+        display: flex;
+        position: fixed;
+        background-color: white;
+        top: 0;
+        align-items: start;
+        height: 100vh;
+        .popup {
+            margin-top: 40px;
+            padding: 0 20px;
+            width: 100%;
+            border-radius: 0px;
+
+            .popupinput {
+                width: 100%;
+            }
+        }
+    }
+}

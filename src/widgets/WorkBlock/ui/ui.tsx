@@ -4,16 +4,17 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 
 interface props {
-    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contact' | 'teacher'>>;
+    setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'contacts' | 'avatar'>>;
     tag?: string;
     userdata?: any;
 }
 
-export const WorkBlock: FC<props> = ({ setMode, userdata, tag }) => {
+export const WorkBlock: FC<props> = ({ setMode, tag, userdata }) => {
     const getValue = (value: any) => {
         if (value == 'undefined' || value == null) return 'Не указано'
         return value
     }
+    const {user } = useAppSelector(user => user.auth)
 
     return (
         <div className={styles.wrap}>
@@ -28,24 +29,24 @@ export const WorkBlock: FC<props> = ({ setMode, userdata, tag }) => {
 
                     <ul className={styles.infoWrap}>
                         <li>
-                            <h1>Регион</h1>
-                            {/* {user && `${user?.region?.name}`} */}
+                            <h4>Регион</h4>
+                            <h5>{getValue(user?.city?.name)}</h5>
                         </li>
                         <li>
-                            <h1>Город</h1>
-                            {/* {user && `${user?.city?.name}`} */}
+                            <h4>Город</h4>
+                            <h5>{getValue(user?.city?.name)}</h5>
                         </li>
                         <li>
-                            <h1>Учебное заведение</h1>
-                            {/* <h2>{getValue(user?.school?.name)}</h2> */}
+                            <h4>Учебное заведение</h4>
+                            <h5>{getValue(user?.school?.name)}</h5>
                         </li>
                         <li>
-                            <h1>Должность</h1>
-                            {/* <h2>{getValue(user?.city?.name)}</h2> */}
+                            <h4>Должность</h4>
+                            <h5>{getValue(user?.city?.name)}</h5>
                         </li>
                         <li>
-                            <h1>Предметы</h1>
-                            {/* <h2>{getValue(user?.school?.name)}</h2> */}
+                            <h4>Предметы</h4>
+                            <h5>{getValue(user?.school?.name)}</h5>
                         </li>
                     </ul>
                 </>
@@ -61,49 +62,20 @@ export const WorkBlock: FC<props> = ({ setMode, userdata, tag }) => {
 
                     <ul className={styles.infoWrap}>
                         <li>
-                            <h1>Регион</h1>
-                            <h2>{userdata && `${getValue(userdata?.region?.name)}`}</h2>
+                            <h4>Регион</h4>
+                            <h5>{userdata && `${getValue(userdata?.region?.name)}`}</h5>
                         </li>
                         <li>
-                            <h1>Город</h1>
-                            <h2>{userdata && `${getValue(userdata?.city?.name)}`}</h2>
+                            <h4>Город</h4>
+                            <h5>{userdata && `${getValue(userdata?.city?.name)}`}</h5>
                         </li>
                         <li>
-                            <h1>Учебное заведение</h1>
-                            <h2>{getValue(userdata?.school?.name)}</h2>
+                            <h4>Учебное заведение</h4>
+                            <h5>{getValue(userdata?.school?.name)}</h5>
                         </li>
                         <li>
-                            <h1>Класс</h1>
-                            <h2>{getValue(userdata?.grade)}</h2>
-                        </li>
-                    </ul>
-                </>
-            )}
-            {tag == 'c' && (
-                <>
-                    <div className={styles.titleWrap}>
-                        <h1>Работа</h1>
-                        <div onClick={() => setMode('work')}>
-                            <DriveFileRenameOutlineOutlinedIcon />
-                        </div>
-                    </div>
-
-                    <ul className={styles.infoWrap}>
-                        <li>
-                            <h1>Регион</h1>
-                            <h2>{userdata && `${getValue(userdata?.region?.name)}`}</h2>
-                        </li>
-                        <li>
-                            <h1>Город</h1>
-                            <h2>{userdata && `${getValue(userdata?.city?.name)}`}</h2>
-                        </li>
-                        <li>
-                            <h1>Организация</h1>
-                            <h2>{getValue(userdata?.organization?.name)}</h2>
-                        </li>
-                        <li>
-                            <h1>Должность</h1>
-                            <h2>{getValue(userdata?.work)}</h2>
+                            <h4>Класс</h4>
+                            <h5>{getValue(userdata?.grade)}</h5>
                         </li>
                     </ul>
                 </>

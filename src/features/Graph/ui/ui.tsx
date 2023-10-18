@@ -1,6 +1,7 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './ui.module.scss';
+import './index.scss';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
@@ -67,7 +68,7 @@ export const ChartComponent = ({ title, graphData }) => {
         },
         legend: {
             itemStyle: {
-                width: '30px',
+                width: '100px',
             },
         },
     };

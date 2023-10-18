@@ -1,8 +1,12 @@
 .wrap {
     padding: 30px 50px 30px 0;
+    @media (max-width: 900px) {
+        padding: 0px 6px 30px 6px;
+    }
 }
 
 .top {
+
     .title {
         font-size: 35px;
         font-weight: 600;
@@ -10,31 +14,31 @@
     }
 
     .topright {
-        .btns {
+        display: flex;
+
+        .sort {
+            cursor: pointer;
+            color: white;
+            border-radius: 15px 0px 0px 15px;
+            background: #a1a1af;
+            display: flex;
             height: 40px;
+            padding: 11px 18px 11px 18px;
 
-            .sort {
-                cursor: pointer;
-                color: white;
-                border-radius: 15px 0px 0px 15px;
-                background: #A1A1AF;
-                height: 100%;
-                padding: 0 20px 0 25px;
-            }
+        }
 
-            .inputbtn {
-                height: 100%;
-                padding: 0px 20px;
-                border-radius: 0px 15px 15px 0px;
-                background-color: white;
-                border: 1px solid rgba(53, 121, 248, 0.50);
+        .inputbtn {
+            height: 100%;
+            padding: 8.7px 20px;
+            border-radius: 0px 15px 15px 0px;
+            background-color: white;
+            border: 1px solid rgba(53, 121, 248, 0.5);
 
-                input {
-                    margin-left: 10px;
-                    border: none;
-                    outline: none;
-                    font-size: 16px;
-                }
+            input {
+                margin-left: 10px;
+                border: none;
+                outline: none;
+                font-size: 16px;
             }
         }
 
@@ -42,7 +46,7 @@
             cursor: pointer;
             margin-left: 20px;
             border-radius: 10px;
-            background-color: #3579F8;
+            background-color: #3579f8;
             height: 40px;
             padding: 0px 15px;
             color: white;
@@ -50,6 +54,7 @@
             svg {
                 margin-right: 5px;
             }
+
         }
     }
 }
@@ -65,7 +70,7 @@
         margin-bottom: 10px;
 
         p {
-            color: #8C8C8C;
+            color: #8c8c8c;
             width: 16.6%;
         }
     }
@@ -73,7 +78,7 @@
     .contentitem {
         margin-top: 5px;
         padding: 17px 0;
-        border-bottom: 0.492px solid rgba(140, 140, 140, 0.80);
+        border-bottom: 0.492px solid rgba(140, 140, 140, 0.8);
 
         p {
             width: 16.6%;
@@ -84,10 +89,137 @@
         height: 100%;
         margin-top: 5px;
         padding: 17px 0;
-        border-bottom: 0.492px solid rgba(140, 140, 140, 0.80);
+        border-bottom: 0.492px solid rgba(140, 140, 140, 0.8);
 
         span {
             height: 38px;
+        }
+    }
+}
+
+.mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.block {
+    border-radius: 25px;
+    background: #fff;
+    padding: 12px;
+
+    &__title {
+        color: #222;
+        font-family: "SF_Regular";
+        font-size: 15px;
+        letter-spacing: 0.3px;
+        padding-bottom: 8px;
+        text-align: center;
+        margin-bottom: 8px;
+        position: relative;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            height: 1px;
+            background: #a1a1af;
+            left: 0;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        li {
+            padding: 0 8px;
+            display: flex;
+            justify-content: space-between;
+            &:nth-child(even) {
+                background-color: #eeeeee;
+                border-radius: 5px;
+            }
+
+            h6 {
+                text-align: left;
+                color: #8c8c8c;
+                font-family: "SF_Medium";
+                font-size: 14px;
+                letter-spacing: 0.28px;
+            }
+            p {
+                text-align: right;
+                color: #222;
+                font-family: "SF_Regular";
+                font-size: 14px;
+                letter-spacing: 0.28px;
+            }
+        }
+    }
+}
+
+.topMobile {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        font-size: 20px;
+        letter-spacing: 0.7px;
+        font-family: 'SF_Medium';
+        padding-bottom: 15px;
+    }
+
+    .topright {
+        display: flex;
+        flex-direction: column;
+
+        .inputbtn {
+            padding: 8.7px 20px;
+            background-color: white;
+            input {
+                margin-left: 10px;
+                border: none;
+                outline: none;
+                font-size: 16px;
+                width: 100%;
+            }
+            width: 100%;
+            border-radius: 35px;
+            margin-bottom: 6px;
+        }
+
+        .sort {
+            cursor: pointer;
+            color: white;
+            background: #a1a1af;
+            display: flex;
+            height: 40px;
+            gap: 8px;
+            border-radius: 35px;
+            width: 157px;
+            padding: 9px 25px 9px 25px;
+            margin-right: 9px;
+        }
+
+        .addbtn {
+            cursor: pointer;
+            background-color: #3579f8;
+            height: 40px;
+            color: white;
+            svg {
+                margin-right: 5px;
+            }
+            gap: 8px;
+            border-radius: 35px;
+            width: 157px;
+            padding: 9px 25px 9px 25px;
+            margin-left: 9px;
+        }
+        .btns {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 16px;
         }
     }
 }

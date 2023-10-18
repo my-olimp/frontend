@@ -110,13 +110,13 @@ const MyChapter: NextPage = () => {
                     <span className={styles.subtitle}>Статьи</span>
                 </div>
             </div>
-            <Materials materialList={materialList} title={'Статьи'} libMode={true} urlprop={'/main/library/items/chapter/article'} overflow={false} />
+            <Materials materialList={materialList} title={'Статьи'} libMode={true} urlprop={'/main/library/items/chapter/article'} overflow={true}/>
             <div className={`${styles.top} df jcc aic`}>
                 <div className={`${styles.topcontainer} df fdc`}>
                     <span className={styles.subtitle}>Тесты</span>
                 </div>
             </div>
-            <Materials materialList={materialList2} title={'Тесты'} libMode={true} urlprop={'/main/library/items/chapter/article'} overflow={false} />
+            <Materials materialList={materialList2} title={'Тесты'} libMode={true} urlprop={'/main/library/items/chapter/article'} overflow={true}/>
         </div>
     )
 }

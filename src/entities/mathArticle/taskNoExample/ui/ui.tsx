@@ -22,14 +22,14 @@ export const TaskNoExample: FC<PropsTaskNoExample> = ({ numberPage, number, name
     const checkForAnswer = () => {
         if (input == answer) {
             setIsCorrect(true)
-            setIsCorrectAll(prev => {prev[numberPage - 1][number - 1] = true; return prev})
+            setIsCorrectAll(prev => { prev[numberPage - 1][number - 1] = true; return prev })
             setUpdatePage(prev => !prev)
             setIsError(false)
             return
         }
         setIsError(true)
         setIsCorrect(false)
-        setIsCorrectAll(prev => {prev[numberPage - 1][number - 1] = false; return prev})
+        setIsCorrectAll(prev => { prev[numberPage - 1][number - 1] = false; return prev })
         setUpdatePage(prev => !prev)
     }
 
