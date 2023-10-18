@@ -36,6 +36,7 @@ const sideBarElements = [
 ];
 
 export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile }) => {
+    const [urlpath, setUrlpath] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const [activeId, setActiveId] = useState<number>(0);
     const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -51,6 +52,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
     const { push } = useRouter();
 
     useEffect(() => {
+        setUrlpath(window.location.href)
         for (const element of sideBarElements) {
             element.active = false
             if (pathname.includes(element.rout)) setActiveId(element.id)
@@ -68,12 +70,12 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
             <div className={styles.linksWrap}>
                 <div
                     className={styles.burgerMenu}
-                    style={window.location.href.includes('main') ? {opacity: '0'} : {}}
+                    style={urlpath.includes('main') ? {opacity: '0'} : {}}
                 >
                     <div
                         className={`${styles.burgerIcon} ${isOpen ? styles.open : ''}`}
                         onClick={() => setIsOpen(!isOpen)}
-                        style={window.location.href.includes('main') ? {cursor: 'default'} : {}}
+                        style={urlpath.includes('main') ? {cursor: 'default'} : {}}
                     >
                         <div className={styles.bar}></div>
                         <div className={styles.bar}></div>

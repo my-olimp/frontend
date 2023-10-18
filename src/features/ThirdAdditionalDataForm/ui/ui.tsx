@@ -173,9 +173,9 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                                 className={`${styles.disciplesIcon} ${
                                     disciplineState[discipline.name] ? styles.selected : ''
                                 }`}
-                            key={discipline.id}
-                            onClick={() => handleDisciplineClick(discipline.name)}
-                        >
+                                key={discipline.id}
+                                onClick={() => handleDisciplineClick(discipline.name)}
+                            />
                             <img
                                 src={discipline.icon}
                                 alt={discipline.name}
