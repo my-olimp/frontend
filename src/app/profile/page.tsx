@@ -1,14 +1,6 @@
 'use client';
-import { EditPersonalDataModal } from '@/widgets/EditPersonalDataModal';
-import { EditWorkDataModal } from '@/widgets/EditWorkDataModal';
-import { EditContactModal } from '@/widgets/EditContactModal';
-import { PersonalInfoBlock } from '@/widgets/PersonalInfoBlock';
-import { ProfileAvatar } from '@/widgets/ProfileAvatar';
-import { WorkBlock } from '@/widgets/WorkBlock';
 import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import { ContactsInfo } from '@/widgets/ContactsInfo';
-import { Achievments } from '@/widgets/Achievments/ui/ui';
 import styles from './index.module.scss';
 import { EditAvatar } from '@/widgets/EditAvatar';
 import { ProfileAchievements } from '@/widgets/ProfileAchievements';
@@ -24,8 +16,6 @@ const Profile: NextPage = () => {
             document.body.style.removeProperty('overflow');
         }
     }, [editMode]);
-
-    const tag: any = 'teacher';
 
     return (
         <div className={styles.wrap}>

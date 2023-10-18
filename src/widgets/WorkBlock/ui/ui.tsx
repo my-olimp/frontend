@@ -18,7 +18,7 @@ export const WorkBlock: FC<props> = ({ setMode, tag, userdata }) => {
 
     return (
         <div className={styles.wrap}>
-            {tag === 'teacher' ? (
+            {tag == 't' && (
                 <>
                     <div className={styles.titleWrap}>
                         <h1>Работа</h1>
@@ -50,7 +50,8 @@ export const WorkBlock: FC<props> = ({ setMode, tag, userdata }) => {
                         </li>
                     </ul>
                 </>
-            ) : (
+            )}
+            {tag == 's' && (
                 <>
                     <div className={styles.titleWrap}>
                         <h1>Образование</h1>

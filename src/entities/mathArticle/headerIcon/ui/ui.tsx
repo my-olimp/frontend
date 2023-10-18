@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import { FC, useState } from 'react';
 import styles from './ui.module.scss';
 import Image from 'next/image';
@@ -7,6 +7,7 @@ import Question from '../../../../../public/libraryArticle/question.svg';
 import Star from '../../../../../public/libraryArticle/star.svg';
 
 type PropName = 'book' | 'question' | 'star';
+
 interface PropsHeaderIcon {
     name: PropName;
     numberPage: number;
@@ -28,7 +29,7 @@ const switchNameImage = (name: PropName) => {
 }
 
 export const HeaderIcon: FC<PropsHeaderIcon> = ({ name, numberPage, setOpenedPage, isOpen, isCorrectAll, updatePage }) => {
-    const [bookWasOpened, setBookWasOpened] = useState<boolean>(`${name}${numberPage}` === 'book1')
+    const [bookWasOpened, setBookWasOpened] = useState<boolean>(`${name}${numberPage}` === 'book1');
 
     return (
         <div>
@@ -43,5 +44,5 @@ export const HeaderIcon: FC<PropsHeaderIcon> = ({ name, numberPage, setOpenedPag
                 <Image className={styles.image} src={switchNameImage(name)} alt={name} />
             </div>
         </div>
-    )
-}
+    );
+};

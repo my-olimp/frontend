@@ -1,3 +1,4 @@
+"use client"
 import { Content } from '@/shared/Landing/blocksWithContent/ui';
 import { Cover } from '@/shared/Landing/cover/ui';
 import { GroupAudItems } from '@/shared/Landing/groupAudienceItems/ui';
@@ -12,6 +13,9 @@ import './fonts.scss';
 
 
 export default function Home() {
+    useEffect(() => {
+        localStorage.setItem('accessToken', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJhY2NvdW50X3R5cGUiOiJzIiwicm9sZXMiOltdLCJleHAiOjE2OTc4Mzc5MzcsImlhdCI6MTY5NzIzMjIzNywidHlwIjoiYWNjZXNzIiwianRpIjoiOTg1NzRhNDgtYTAwZi00YmQxLTg3ZWQtMzQyODBjZmRmNDFiIn0.cpIWbbHgzEJgx_Iohx6rxToufvQgPqTHqDGYyr7vLZc')
+    }, [])
     return (
         <>
             <NavBar />

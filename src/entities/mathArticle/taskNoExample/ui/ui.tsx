@@ -44,11 +44,13 @@ export const TaskNoExample: FC<PropsTaskNoExample> = ({ numberPage, number, name
                 <button onClick={() => checkForAnswer()} disabled={!input} className={`${styles.task__button} ${styles.task__button_1}`}>Ответить</button>
                 {isError && <button onClick={() => setIsSolution(prev => !prev)} className={`${styles.task__button} ${styles.task__button_2}`}>Показать решение</button>}
             </div>
-            {isSolution && <div className={styles.task__solutionBlock}>
-                <div className={styles.task__solutionName}>Решение</div>
-                <div className={styles.task__solution}>{solution}</div>
-                <div className={styles.task__answer}><span>Ответ</span>{answer}.</div>
-            </div>}
+            {isSolution && (
+                <div className={styles.task__solutionBlock}>
+                    <div className={styles.task__solutionName}>Решение</div>
+                    <div className={styles.task__solution}>{solution}</div>
+                    <div className={styles.task__answer}><span>Ответ</span>{answer}.</div>
+                </div>
+            )}
         </div>
     )
 }

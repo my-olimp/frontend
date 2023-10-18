@@ -10,7 +10,7 @@ import Link from 'next/link';
 interface Props {
     material: IMaterial;
     urlprop?: string;
-    overflow: boolean;
+    overflow?: boolean;
 }
 export const MaterialCard: FC<Props> = ({ material, urlprop, overflow }) => {
     const [url, setUrl] = useState('');
