@@ -58,7 +58,7 @@ export const EditContacts: FC<props> = ({ setMode }) => {
                         autoCapitalize="word"
                         {...register('email')}
                     />
-                    <TextField
+                    {/* <TextField
                         type="text"
                         variant="outlined"
                         label="Телефон"
@@ -66,7 +66,7 @@ export const EditContacts: FC<props> = ({ setMode }) => {
                         autoComplete="phoneNumber"
                         autoCapitalize="word"
                         {...register('phoneNumber')}
-                    />
+                    /> */}
 
                 </span>
                 <span className={styles.buttons}>

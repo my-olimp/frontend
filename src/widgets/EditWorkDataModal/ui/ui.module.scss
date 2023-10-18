@@ -1,5 +1,5 @@
 .screen {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100vw;
     left: 0;
@@ -11,12 +11,6 @@
     z-index: 1101;
 }
 
-.select {
-    height: 56px;
-    width: 414px;
-    border-radius: 12px;
-}
-
 .form {
     background-color: #ffffff;
     border-radius: 30px;
@@ -26,12 +20,21 @@
     padding: 24px 40px;
     width: 610px;
     height: 500px;
+    @media (max-width: 600px) {
+        height: auto;
+        width: 320px;
+        padding: 15px 25px;
+    }
 
     h6 {
         font-size: 36px;
         font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
         font-weight: 500;
         color: black;
+        @media (max-width: 600px) {
+            font-size: 20px;
+            padding-bottom: 10px;
+        }
     }
 }
 
@@ -44,6 +47,10 @@
         display: flex;
         flex-direction: row;
     }
+    
+    @media (max-width: 600px) {
+        padding-bottom: 27px;
+    }
 }
 
 .buttons {
@@ -51,9 +58,6 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    button {
-        cursor: pointer;
-    }
 }
 
 .cancel {
@@ -61,7 +65,7 @@
     height: 48px;
     color: #3579f8;
     background-color: transparent;
-    font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
+    font-family: "SF_Medium", Arial, Helvetica, sans-serif;
     font-weight: 500;
     border: 1px solid #3579f8;
     transition: all 0.3s;
@@ -81,7 +85,7 @@
 }
 
 .input {
-    font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
+    font-family: "SF_Regular", Arial, Helvetica, sans-serif;
     font-weight: 400;
     font-size: 20px;
 
@@ -89,21 +93,34 @@
         border-radius: 10px;
         height: 52px;
         width: 420px;
+        @media (max-width: 600px) {
+            height: 52px;
+            border-radius: 8px;
+        }
+    }
+    @media (max-width: 600px) {
+        font-size: 15px;
     }
 }
 
-.calendar {
-    width: 420px;
-    height: 52px;
+.select {
+    font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    max-width: 420px;
+    border-radius: 10px;
 
-    & div {
-        border-radius: 12px;
-    }
-    & input {
-        width: 355px !important;
+    @media (max-width: 600px) {
+        font-size: 15px;
     }
 }
 
 .buttons button {
     cursor: pointer;
+    @media (max-width: 600px) {
+        width: 100px;
+        height: 30px;
+        font-size: 15px;
+        border-radius: 5px;
+    }
 }

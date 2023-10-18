@@ -36,7 +36,11 @@ export const EditEvent: FC<props> = ({ setMode, event, editEvent, colors, subjec
     }
 
     const inputHandler = (text: string) => {
-        if (text.length > 3) { setIsDisabled(false) } else { setIsDisabled(true) };
+        if (text.length > 3) {
+            setIsDisabled(false)
+        } else {
+            setIsDisabled(true)
+        }
         setEditEventName(text);
     }
 

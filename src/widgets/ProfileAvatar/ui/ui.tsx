@@ -12,7 +12,6 @@ interface props {
 
 export const ProfileAvatar: FC<props> = ({ setMode }) => {
     const { user } = useAppSelector((state) => state.auth);
-    const { push } = useRouter();
 
     return (
         <div className={styles.wrap}>
@@ -29,6 +28,7 @@ export const ProfileAvatar: FC<props> = ({ setMode }) => {
                     />
                 )}
             </span>
+            <h4 className={styles.name}>{`${user?.first_name} ${user?.second_name} ${user?.third_name}`}</h4>
             <span className={styles.buttonWrap}>
                 <button onClick={() => setMode('avatar')} className={styles.changeButton}>Изменить</button>
                 <button className={styles.deleteButton}>Удалить</button>

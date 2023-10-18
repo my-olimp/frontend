@@ -20,6 +20,62 @@ const arrayAchievements = [
         title: 'По люБВИ',
         text: 'Взять всерос'
     },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+
 ]
 
 interface props {
@@ -34,8 +90,8 @@ export const ProfileAchievements: FC<props> = ({ }) => {
                 Достижения
             </h4>
             <ul className={styles.achievements}>
-                {arrayAchievements && arrayAchievements.map((el) => 
-                    <Achievement image={el.image} title={el.title} text={el.text} key={Math.random()}/>
+                {arrayAchievements && arrayAchievements.map((el) =>
+                    <Achievement image={el.image} title={el.title} text={el.text} key={Math.random()} />
                 )}
             </ul>
         </div>

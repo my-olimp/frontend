@@ -5,6 +5,10 @@
     display: flex;
     align-items: center;
     padding: 0 4vw 0 0;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1000;
 }
 
 .linksWrap {
@@ -99,7 +103,7 @@
 
 .sideBar {
     z-index: 1100;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 64px;
     height: 100%;
@@ -125,7 +129,7 @@
 
 .sideBarOpen {
     z-index: 1100;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 64px;
     height: 100%;

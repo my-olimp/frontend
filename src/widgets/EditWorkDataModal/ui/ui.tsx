@@ -9,6 +9,7 @@ import styles from './ui.module.scss';
 
 interface props {
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
+    tag?: string;
 }
 
 type Inputs = {
@@ -19,7 +20,8 @@ type Inputs = {
 
 export const EditWorkDataModal: FC<props> = ({ setMode, tag }) => {
     const [subject, setSubject] = useState('МБОУ СШ #1');
-    const [items, setItems] = useState('Математика, физика, астрономия');
+    const [items, setItems] = useState('Предмет');
+    const [grade, setGrade] = useState('5');
     const [noMiddleName, setNoMiddleName] = useState<boolean>(false);
     const { user } = useAppSelector((state) => state.auth);
 
@@ -48,6 +50,10 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag }) => {
 
     const handleItemsSelect = (event: any) => {
         setItems((event.target as HTMLSelectElement).value);
+    }
+
+    const handleGradeSelect = (event: any) => {
+        setGrade((event.target as HTMLSelectElement).value);
     }
 
     const subjectData = [
@@ -104,8 +110,8 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag }) => {
                             className={styles.select}
                             onChange={(event) => handleItemsSelect(event)}
                             value={items}>
-                            <MenuItem value={'Математика, физика, астрономия'} disabled selected>
-                                <span style={{ color: 'gray' }}>Математика, физика, астрономия</span>
+                            <MenuItem value={'Предмет'} disabled selected>
+                                <span style={{ color: 'gray' }}>Предмет</span>
                             </MenuItem>
                         </Select>
                     </span>
@@ -123,7 +129,7 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag }) => {
                         <TextField
                             type="text"
                             variant="outlined"
-                            label="Имя"
+                            label="Регион"
                             className={styles.input}
                             autoComplete="given-name"
                             autoCapitalize="word"
@@ -132,28 +138,58 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag }) => {
                         <TextField
                             type="text"
                             variant="outlined"
-                            label="Фамилия"
+                            label="Город/населенный пункт"
                             className={styles.input}
                             autoComplete="family-name"
                             autoCapitalize="word"
                             {...register('familyName')}
                         />
-                        <TextField
-                            type="text"
-                            variant="outlined"
-                            label="Отчество"
-                            autoComplete="additional-name"
-                            autoCapitalize="word"
-                            className={styles.input}
-                            {...register('additionalName')}
-                        />
-                        <DatePicker
-                            onChange={(newDate) => setDate(dayjs(newDate as Dayjs))}
-                            className={styles.calendar}
-                            format={'DD/MM/YYYY'}
-                            label="Дата рождения"
-                        />
-                        <SexRadio sex={sex} setSex={setSex} />
+                        <Select
+                            className={styles.select}
+                            onChange={(event) => handleSubjectSelect(event)}
+                            value={subject}>
+                            <MenuItem value={'МБОУ СШ #1'} disabled selected>
+                                <span style={{ color: 'gray' }}>МБОУ СШ #1</span>
+                            </MenuItem>
+                            {subjectData.length > 0 ? (
+                                subjectData.map((item: any) => (
+                                    <MenuItem key={item.id} value={item.text}>
+                                        {item.text}
+                                    </MenuItem>
+                                ))
+                            ) : (
+                                <MenuItem disabled>Loading...</MenuItem>
+                            )}
+                        </Select>
+                        <Select
+                            className={styles.select}
+                            onChange={(event) => handleGradeSelect(event)}
+                            value={grade}>
+                            <MenuItem value={'Grade'} disabled>
+                                <span style={{ color: 'gray' }}>Класс</span>
+                            </MenuItem>
+                            <MenuItem value={'5'} selected>
+                                <span>5</span>
+                            </MenuItem>
+                            <MenuItem value={'6'}>
+                                <span>6</span>
+                            </MenuItem>
+                            <MenuItem value={'7'}>
+                                <span>7</span>
+                            </MenuItem>
+                            <MenuItem value={'8'}>
+                                <span>8</span>
+                            </MenuItem>
+                            <MenuItem value={'9'}>
+                                <span>9</span>
+                            </MenuItem>
+                            <MenuItem value={'10'}>
+                                <span>10</span>
+                            </MenuItem>
+                            <MenuItem value={'11'}>
+                                <span>11</span>
+                            </MenuItem>
+                        </Select>
                     </span>
                     <span className={styles.buttons}>
                         <button className={styles.cancel} onClick={() => setMode('')}>

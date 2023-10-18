@@ -59,7 +59,7 @@ const Main: NextPage = () => {
                 <NearestOlimpList />
                 <PlansToday />
             </div>
-            <Materials materialList={materialList} title={'С чего начать ?'} libMode={false} />
+            <Materials materialList={materialList} title={'С чего начать ?'} libMode={false} overflow={true}/>
         </div>
     );
 };
