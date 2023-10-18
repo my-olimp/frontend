@@ -15,10 +15,14 @@ export type City = {
 }
 
 export type School = {
-  id: number
-  name: string,
-  region: number,
-}
+    id: number;
+    name: string;
+    region: number;
+};
+export type TDiscipline = {
+    id: number;
+    name: string;
+};
 
 export interface IUser {
   id: number;
@@ -40,7 +44,8 @@ export interface IUser {
 
 
 type AuthState = {
-    regions: Region[] | undefined; 
+    disciplines: TDiscipline[] | undefined;
+    regions: Region[] | undefined;
     cities: City[] | undefined;
     schools: School[] | undefined;
     news: any[] | undefined;
@@ -253,12 +258,9 @@ export const auth = createSlice({
           clear(state, false)
           state.userdata = action.payload
         })
+       
 
         builder.addCase(GetRegions.fulfilled, (state, action) => {
-          state.regions = action.payload.data;
-        })
-
-        builder.addCase(GetDisciplines.fulfilled, (state, action) => {
           state.regions = action.payload.data;
         })
 
@@ -284,6 +286,11 @@ export const auth = createSlice({
 
         builder.addCase(PutUserdata.fulfilled, (state, action) => {
           state.putuserdata = action.payload.data;
+        })
+        
+        builder.addCase(GetDisciplines.fulfilled, (state, action) => {
+          clear(state, false)
+          state.disciplines = action.payload.data
         })
 
         builder.addCase(GetOTC.rejected, (state, action) => {

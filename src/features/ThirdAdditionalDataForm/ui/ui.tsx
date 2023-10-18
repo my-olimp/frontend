@@ -1,9 +1,12 @@
-import styles from './ui.module.scss';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import { Button } from '@mui/material';
+import Image from 'next/image';
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import styles from './ui.module.scss';
 import myOlimpIcon from '../../../../public/logo/myOlimpLogo.svg';
 import avatarLink from '../../../../public/social/empty-avatar.svg';
-import React, { Dispatch, FC, SetStateAction, useState } from 'react';
-import { Button } from '@mui/material';
 import math from '../../../../public/discipline-icons/math.svg';
 import physics from '../../../../public/discipline-icons/physics.svg';
 import informatics from '../../../../public/discipline-icons/informatics.svg';
@@ -156,7 +159,19 @@ export const ThirdAdditionalDataForm: FC<props> = ({ progress, setProgress }) =>
                 <div className={styles.disciplesContainer}>
                     {disciplines.map((discipline: IDiscipline) => (
                         <div
-                            className={`${styles.disciplineContainer} ${disciplineState[discipline.name] ? styles.selected : ''
+                            className={`${styles.disciplineContainer} ${
+                                disciplineState[discipline.name] ? styles.selected : ''
+                            }`}
+                            key={discipline.id}
+                            onClick={() => handleDisciplineClick(discipline.name)}>
+                            {/*// TODO: @habdevs add alt, width, height*/}
+                            <Image
+                                src={`https://storage.yandexcloud.net/myolimp/subject/${discipline.name}.svg`}
+                                alt={discipline.name}
+                                width={16}
+                                height={16}
+                                className={`${styles.disciplesIcon} ${
+                                    disciplineState[discipline.name] ? styles.selected : ''
                                 }`}
                             key={discipline.id}
                             onClick={() => handleDisciplineClick(discipline.name)}
