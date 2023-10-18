@@ -15,7 +15,7 @@ import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOu
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -65,6 +65,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
 
     const linksHandler = (id: number) => {
         setActiveId(id)
+        setIsOpen(false)
     }
 
     return (
@@ -78,7 +79,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                 >
                     <div
                         className={`${styles.burgerIcon} ${isOpen ? styles.open : ''}`}
-                        onClick={() => setIsOpen(!isOpen)}
+                        onClick={() => setIsOpen(prev => !prev)}
                         style={windowInMain ? { cursor: 'default' } : {}}
                     >
                         <div className={styles.bar}></div>
@@ -150,6 +151,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                     style={isOpen ? { transition: 'all .2s ease-in-out', width: '15rem' } : { transition: 'all .2s ease-in-out' }}
                 >
                     <span style={{ display: 'flex' }}>
+                        
                         {sideBarElements.map((element: any) => (
                             <Link
                                 href={element.rout === 'main' ? '/profile' : `/profile${element.rout}`}

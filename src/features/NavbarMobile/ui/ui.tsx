@@ -62,6 +62,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
 
     const linksHandler = (id: number) => {
         setActiveId(id)
+        setIsOpen(false)
     }
 
     return (
