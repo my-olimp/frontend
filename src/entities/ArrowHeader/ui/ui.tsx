@@ -10,12 +10,10 @@ interface props {
 
 export const ArrowHeader: FC<props> = ({ showPopup, setShowPopup }) => {
     return (
-        <>
-            <div onClick={() => setShowPopup(!showPopup)} className={styles.container}>
-                <div className={`${styles.arrow} ${showPopup ? `${styles._active}` : ''}`}>
-                    <img src={Arrow.src} alt="arrow down"/>
-                </div>
+        <div onClick={() => setShowPopup(!showPopup)} className={styles.container}>
+            <div className={`${styles.arrow} ${showPopup ? `${styles._active}` : ''}`}>
+                <img src={Arrow.src} alt="arrow down" />
             </div>
-        </>
+        </div>
     );
 };

@@ -178,21 +178,21 @@ const MathArticle: FC<PropsMathArticle> = ({ }) => {
     )
 }
 
-export const getStaticProps = () => {
-    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
-    let articleData: any
-    async function getData() {
-        const article: any = await dispatch(GetArticle(1));
-        console.log(article)
-        articleData = article.payload.data
-    }
-    getData();
+// export const getStaticProps = () => {
+//     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
+//     let articleData: any
+//     async function getData() {
+//         const article: any = await dispatch(GetArticle(1));
+//         console.log(article)
+//         articleData = article.payload.data
+//     }
+//     getData();
 
-    return {
-        props: {
-            articleData,
-        },
-    };
-};
+//     return {
+//         props: {
+//             articleData,
+//         },
+//     };
+// };
 
 export default MathArticle;

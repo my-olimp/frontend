@@ -9,7 +9,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -38,6 +38,7 @@ interface props {
     profile: Boolean;
 }
 export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) => {
+    const wrapRef = useRef(null);
     const isMobile = useIsMobile(420)
     const [showPopupNotifications, setShowPopupNotifications] = useState<boolean>(false);
     const [showPopupPages, setShowPopupPages] = useState<boolean>(false);
@@ -65,8 +66,38 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
         setIsOpen(false)
     }
 
+    useEffect(() => {
+        document.body.addEventListener('click', (event) => {
+            if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
+                setIsOpen(false);
+            }
+        });
+        return function cleanup() {
+            document.body.removeEventListener('click', (event) => {
+                if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
+                    setIsOpen(false);
+                }
+            });
+        };
+    }, [setIsOpen]);
+
+    useEffect(() => {
+        document.body.addEventListener('click', (event) => {
+            if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
+                setShowSideBar(false);
+            }
+        });
+        return function cleanup() {
+            document.body.removeEventListener('click', (event) => {
+                if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
+                    setShowSideBar(false);
+                }
+            });
+        };
+    }, [setShowSideBar]);
+
     return (
-        <>
+        <div ref={wrapRef}>
             <AnimatePresence>
                 {!profile ? (showSideBar && (
                     <>
@@ -85,7 +116,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
                                                     ? styles.activeElement
                                                     : styles.element
                                             }
-                                            onClick={() => setActive(navbarEL.id)}
+                                            onClick={() => {setActive(navbarEL.id); setShowSideBar(false)}}
                                             key={navbarEL.id}>
                                             {navbarEL.icon}
                                             <h2>{navbarEL.title}</h2>
@@ -159,17 +190,17 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
                     <div className={styles.logoWrap}>
                         <div
                             className={styles.burgerMenu}
+                            onClick={() => setIsOpen(prev => !prev)}
                         >
                             <div
                                 className={`${styles.burgerIcon} ${isOpen ? styles.open : ''}`}
-                                onClick={() => setIsOpen(!isOpen)}
                             >
                                 <div className={styles.bar}></div>
                                 <div className={styles.bar}></div>
                                 <div className={styles.bar}></div>
                             </div>
                         </div>
-                        {!isMobile ? <Logo/> : <Logo small={true}/>}
+                        {!isMobile ? <Logo /> : <Logo small={true} />}
                     </div>
                 ) :
                     (<>
@@ -189,6 +220,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
                         clicked={clicked}
                         setShowPopup={setShowPopupNotifications}
                         setClicked={setClicked}
+                        setShowPopupPages={setShowPopupPages}
                     />
 
                     <NavbarAvatar />
@@ -221,6 +253,6 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
                     )}
                 </AnimatePresence>
             </header>
-        </>
+        </div>
     );
 };
