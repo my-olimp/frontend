@@ -11,7 +11,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetNews, setSelectedItem } from '@/store/features/auth-slice';
+import { GetNews } from '@/store/features/auth-slice';
 import { NextPage } from 'next';
 import { nanoid } from 'nanoid'
 
@@ -33,13 +33,12 @@ const News: NextPage = () => {
     const [currentpage, setCurrentpage] = useState(1);
     const [otherPages, setOtherPages]: any[] = useState([]);
     const [slider, setSlider]: any[] = useState([]);
-    const [selected, setSelected]: any = useState();
     const sliderScroll: any = useRef();
     const dispatchNews: any = useDispatch();
 
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
 
-    const selectedit = useSelector((state: any) => state.auth.selectedItem)
+    // const selectedit = useSelector((state: any) => state.auth.selectedItem)
 
     const SubjectItems: string[] =
         ['ВСОШ', 'Перечневые олимпиады', 'История', 'Русский',
@@ -51,6 +50,7 @@ const News: NextPage = () => {
     useEffect(() => {
         async function getData() {
             const newsdata: any = await dispatch(GetNews(1))
+            console.log(newsdata)
             const truedata: any = newsdata.payload.data.pages.map((item: any) => {
                 const obj = { ...item };
                 obj.image = randomImage();
@@ -103,10 +103,6 @@ const News: NextPage = () => {
         if (container) container.scrollBy({ left: 200, behavior: 'smooth' })
     };
 
-    const handleItemClick = (item: any) => {
-        setSelected(item);
-        dispatch(setSelectedItem(item))
-    };
 
     return (
         <div className={styles.container}>
@@ -155,8 +151,7 @@ const News: NextPage = () => {
                                                     </div>
                                                     <Link
                                                         className={`${styles.midleftbtn} df jcc aic cp`}
-                                                        onClick={() => handleItemClick(item)}
-                                                        href={'/main/news/article'}
+                                                        href={`/main/news/${item.id}`}
                                                     >
                                                         Подробнее
                                                     </Link>
@@ -180,8 +175,7 @@ const News: NextPage = () => {
                                                     </div>
                                                     <Link
                                                         className={`${styles.midrightbtn} df jcc aic cp`}
-                                                        onClick={() => handleItemClick(item)}
-                                                        href={'/main/news/article'}
+                                                        href={`/main/news/${item.id}`}
                                                     >
                                                         Подробнее
                                                     </Link>
@@ -207,7 +201,7 @@ const News: NextPage = () => {
                                         <div className={styles.bookmarkdiv}>
                                             <BookmarkBorderIcon className={styles.bookmark} />
                                         </div>
-                                        <Link href={'/main/news/article'} className={`${styles.midotherbtn} df jcc aic cp`} onClick={() => handleItemClick(item)}>
+                                        <Link href={`/main/news/${item.id}`} className={`${styles.midotherbtn} df jcc aic cp`}>
                                             Подробнее
                                         </Link>
                                     </div>
@@ -265,8 +259,7 @@ const News: NextPage = () => {
                                                 </div>
                                                 <Link
                                                     className={`${styles.sliderbottombtn} df jcc aic cp`}
-                                                    onClick={() => handleItemClick(item)}
-                                                    href={'/main/news/article'}
+                                                    href={`/main/news/${item.id}`}
                                                 >
                                                     Подробнее
                                                 </Link>

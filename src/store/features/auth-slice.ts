@@ -82,7 +82,7 @@ export interface IRegisterData {
     code: number | undefined;
 }
 
-export const setSelectedItem = createAction('auth/setSelectedItem');
+// export const setSelectedItem = createAction('auth/setSelectedItem');
 
 export const GetOTC = createAsyncThunk(
     'auth/getRedemptionCode',
@@ -175,10 +175,11 @@ export const auth = createSlice({
     reducers: {
       setUser: (state, action) => {
         state.user = action.payload
-      },
-      setSelectedItem: (state: any, action: any) => {
-        state.selectedItem = action.payload;
-      },
+    }
+    ,
+    //   setSelectedItem: (state: any, action: any) => {
+    //     state.selectedItem = action.payload;
+    //   },
     },
     extraReducers: (builder) => {
         const clear = (state, loading) => {

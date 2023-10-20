@@ -20,6 +20,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
 import Image from 'next/image';
 import Image3 from '../../../../../public/materials/test3.svg';
+import { useSearchParams } from 'next/navigation';
 
 const Article: NextPage = () => {
     const [loading, setLoading] = useState(true);
@@ -29,13 +30,12 @@ const Article: NextPage = () => {
     const [selecteditem, setSelecteditem]: any[] = useState([]);
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
     const comments = 12;
+    const params = useSearchParams()
+    const articleId = Number(params.get('article'))
 
     useEffect(() => {
-        const selected: any = localStorage.getItem("selectedItem") || null;
-        setSelecteditem(JSON.parse(selected))
         async function getData() {
-            const newsdata: any = await dispatch(GetArticle(selecteditem.id || 1));
-            console.log(newsdata.payload.data)
+            const newsdata: any = await dispatch(GetArticle(articleId || 1));
             setArticle(newsdata.payload.data);
             setLoading(false);
         }
