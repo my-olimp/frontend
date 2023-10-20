@@ -10,6 +10,7 @@ import { NavBar } from '@/widgets/Landing/navBar/ui';
 import { ScrollCards } from '@/widgets/Landing/scrollCards/ui';
 import { Team } from '@/widgets/Landing/team/ui';
 import './fonts.scss';
+import { useEffect } from 'react';
 
 
 export default function Home() {

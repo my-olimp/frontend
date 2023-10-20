@@ -9,18 +9,6 @@
     }
 }
 
-.avatarAndAchievements {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.infoWrap {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
 .main {
     padding: 20px 0 20px 84px;
     min-height: calc(100vh - 64px);
@@ -30,17 +18,8 @@
     }
 }
 
-.personalData {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
 @media (max-width: 900px) {
     .wrap {
         display: block;
-    }
-    .personalData {
-        padding: 0 8px;
     }
 }

@@ -32,13 +32,13 @@ export const ContactsInfo: FC<props> = ({ setMode, userdata }) => {
             </div>
             <ul className={styles.infoWrap}>
                 <li>
-                    <h1>Почта</h1>
-                    <h2>{getValue(userdata?.email)}</h2>
+                    <h4>Почта</h4>
+                    <h5>{getValue(userdata?.email)}</h5>
                 </li>
-                <li>
+                {/* <li>
                     <h1>Телефон</h1>
                     <h2>{getValue(userdata?.number)}</h2>
-                </li>
+                </li> */}
             </ul>
         </div>
     )

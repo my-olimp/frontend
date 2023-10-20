@@ -1,9 +1,84 @@
-import React, { FC } from 'react';
-import styles from './ui.module.scss'
-
-import Image from 'next/image';
-import AchievIcon from '../../../../public/materials/AchivIcon.svg';
+'use client';
+import { FC } from 'react';
+import styles from './ui.module.scss';
+import achievementImage from '../../../../public/profile/achievement.svg';
+import { Achievement } from '@/entities/Achievement/ui/ui';
 import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
+
+const arrayAchievements = [
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+    {
+        image: `${achievementImage.src}`,
+        title: 'По люБВИ',
+        text: 'Взять всерос'
+    },
+
+]
+
 interface props {
     setMode?: any;
     tag?: string;
@@ -11,52 +86,25 @@ interface props {
 
 export const Achievments: FC<props> = ({ setMode, tag }) => {
     return (
-        <div className={`${styles.main} df fdc`}>
-            <div className={styles.title}>
-                {tag === 'teacher' ? (
+        <div className={styles.wrap}>
+            <h4 className={styles.title}>
+            {tag === 't' ? (
                     <>
                         <span>Мои группы</span>
-                        <div onClick={() => setMode('teacher')}>
+                        <div onClick={() => setMode('groups')}>
                             <DriveFileRenameOutlineOutlinedIcon className='cp'/>
                         </div>
                     </>
                 ) : (
                     <span>Достижения</span>
                 )}
-            </div>
-            <div className={`${styles.item} df aic`}>
-                <div className={styles.left}>
-                    <div className={`${styles.avatar} df jcc aic`}>
-                        <Image src={AchievIcon} alt='AchievIcon' />
-                    </div>
-                </div>
-                <div className={styles.right}>
-                    <div className={styles.righttitle}>Иди нахуй</div>
-                    <div className={styles.subtitle}>Взять чтото</div>
-                </div>
-            </div>
-            <div className={`${styles.item} df aic`}>
-                <div className={styles.left}>
-                    <div className={`${styles.avatar} df jcc aic`}>
-                        <Image src={AchievIcon} alt='AchievIcon' />
-                    </div>
-                </div>
-                <div className={styles.right}>
-                    <div className={styles.righttitle}>Иди нахуй</div>
-                    <div className={styles.subtitle}>Взять чтото</div>
-                </div>
-            </div>
-            <div className={`${styles.item} df aic`}>
-                <div className={styles.left}>
-                    <div className={`${styles.avatar} df jcc aic`}>
-                        <Image src={AchievIcon} alt='AchievIcon' />
-                    </div>
-                </div>
-                <div className={styles.right}>
-                    <div className={styles.righttitle}>Иди нахуй</div>
-                    <div className={styles.subtitle}>Взять чтото</div>
-                </div>
-            </div>
+
+            </h4>
+            <ul className={styles.achievements}>
+                {arrayAchievements && arrayAchievements.map((el) =>
+                    <Achievement image={el.image} title={el.title} text={el.text} key={Math.random()} />
+                )}
+            </ul>
         </div>
     )
 }

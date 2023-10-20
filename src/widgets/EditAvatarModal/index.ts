@@ -1,0 +1,1 @@
+export { EditAvatarModal } from './ui/ui'

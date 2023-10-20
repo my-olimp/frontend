@@ -2,7 +2,6 @@
 
 import { useAppSelector } from '@/hooks/useAppSelector';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { FC, Dispatch, SetStateAction } from 'react';
 import styles from './ui.module.scss';
 

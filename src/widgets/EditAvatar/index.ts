@@ -1,1 +1,0 @@
-export { EditAvatar } from './ui/ui'

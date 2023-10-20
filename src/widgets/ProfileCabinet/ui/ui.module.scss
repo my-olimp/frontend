@@ -1,12 +1,10 @@
-.wrap {
-    width: 100%;
-    height: 100%;
+.avatarAndAchievements {
     display: flex;
-    flex-direction: row;
-    gap: 36px;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.infoWrap {
+.left {
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -15,15 +13,11 @@
 .personalData {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
 }
 
-@media (max-width: 1000px) {
-    .wrap {
-        display: block;
-    }
-
+@media (max-width: 900px) {
     .personalData {
-        display: block;
+        padding: 0 8px;
     }
 }

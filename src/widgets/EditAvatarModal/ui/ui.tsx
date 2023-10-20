@@ -13,7 +13,7 @@ interface PropsEditAvatar {
     setMode: Dispatch<SetStateAction<'' | 'personal' | 'work' | 'avatar' | 'contacts'>>;
 }
 
-export const EditAvatar: FC<PropsEditAvatar> = ({ setMode }) => {
+export const EditAvatarModal: FC<PropsEditAvatar> = ({ setMode }) => {
     const { user } = useAppSelector((state) => state.auth);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [hover, setHover] = useState<Boolean>(false);

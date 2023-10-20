@@ -8,6 +8,7 @@ import { ContactsInfo } from '@/widgets/ContactsInfo/ui/ui';
 import { EditPersonalDataModal } from '@/widgets/EditPersonalDataModal/ui/ui';
 import { EditWorkDataModal } from '@/widgets/EditWorkDataModal/ui/ui';
 import { EditContactModal } from '@/widgets/EditContactModal/ui/ui';
+import { EditAvatarModal } from '@/widgets/EditAvatarModal/ui/ui';
 
 interface props {
     setMode: any;
@@ -16,35 +17,36 @@ interface props {
 }
 
 export const ProfileCabinet: FC<props> = ({ setMode, editMode, userdata }) => {
-    const tag: string = 'c'
+    const tag: string = 't'
     return (
         <>
             {/* IF TEACHER */}
-            {tag=='t'&&(
+            {tag == 't' && (
                 <>
                     <div className={`${styles.left} df fdc`}>
-                        <ProfileAvatar />
-                        <Achievments setMode={setMode} tag={'teacher'} />
+                        <ProfileAvatar setMode={setMode} />
+                        <Achievments setMode={setMode} tag={tag} />
                     </div>
                     <div className={styles.personalData}>
                         <PersonalInfoBlock setMode={setMode} userdata={userdata} />
-                        <WorkBlock setMode={setMode} tag={'teacher'} />
-                        <ContactsInfo setMode={setMode} />
+                        <WorkBlock setMode={setMode} userdata={userdata} tag={tag} />
+                        <ContactsInfo setMode={setMode} userdata={userdata}/>
                         {editMode !== '' &&
                             <>
-                                {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} tag={tag}/> : null}
-                                {editMode === 'work' ? <EditWorkDataModal setMode={setMode} tag={'teacher'} /> : null}
-                                {editMode === 'contact' ? <EditContactModal setMode={setMode} tag={tag}/> : null}
+                                {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} userdata={userdata} tag={tag} /> : null}
+                                {editMode === 'work' ? <EditWorkDataModal setMode={setMode}  userdata={userdata} tag={tag} /> : null}
+                                {editMode === 'contact' ? <EditContactModal setMode={setMode} userdata={userdata} tag={tag} /> : null}
+                                {editMode === 'avatar' ? <EditAvatarModal setMode={setMode} /> : null}
                             </>
                         }
                     </div>
                 </>
             )}
             {/* IF SCHOOLGAY */}
-            {tag=='s'&&(
+            {tag == 's' && (
                 <>
                     <div className={`${styles.left} df fdc`}>
-                        <ProfileAvatar />
+                        <ProfileAvatar setMode={setMode} />
                         <Achievments />
                     </div>
                     <div className={styles.personalData}>
@@ -56,26 +58,28 @@ export const ProfileCabinet: FC<props> = ({ setMode, editMode, userdata }) => {
                                 {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} userdata={userdata} /> : null}
                                 {editMode === 'work' ? <EditWorkDataModal setMode={setMode} userdata={userdata} /> : null}
                                 {editMode === 'contact' ? <EditContactModal setMode={setMode} userdata={userdata} /> : null}
+                                {editMode === 'avatar' ? <EditAvatarModal setMode={setMode} /> : null}
                             </>
                         }
                     </div>
                 </>
             )}
             {/* IF KOMITET */}
-            {tag=='c'&&(
+            {tag == 'c' && (
                 <>
                     <div className={`${styles.left} df fdc`}>
-                        <ProfileAvatar />
+                        <ProfileAvatar setMode={setMode} />
                     </div>
                     <div className={styles.personalData}>
-                        <PersonalInfoBlock setMode={setMode} userdata={userdata} tag={tag}/>
-                        <WorkBlock setMode={setMode} userdata={userdata} tag={tag}/>
+                        <PersonalInfoBlock setMode={setMode} userdata={userdata} tag={tag} />
+                        <WorkBlock setMode={setMode} userdata={userdata} tag={tag} />
                         <ContactsInfo setMode={setMode} userdata={userdata} />
                         {editMode !== '' &&
                             <>
                                 {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} userdata={userdata} tag={tag} /> : null}
-                                {editMode === 'work' ? <EditWorkDataModal setMode={setMode} userdata={userdata} tag={tag}/> : null}
-                                {editMode === 'contact' ? <EditContactModal setMode={setMode} userdata={userdata} tag={tag}/> : null}
+                                {editMode === 'work' ? <EditWorkDataModal setMode={setMode} userdata={userdata} tag={tag} /> : null}
+                                {editMode === 'contact' ? <EditContactModal setMode={setMode} userdata={userdata} tag={tag} /> : null}
+                                {editMode === 'avatar' ? <EditAvatarModal setMode={setMode} /> : null}
                             </>
                         }
                     </div>

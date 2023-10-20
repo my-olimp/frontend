@@ -97,7 +97,7 @@ export const EditContactModal: FC<props> = ({ setMode, userdata }) => {
                         value={email ? email : ''}
                         autoCapitalize="email"
                     />
-                    <TextField
+                    {/* <TextField
                         type="text"
                         variant="outlined"
                         label="Телефон"
@@ -105,7 +105,7 @@ export const EditContactModal: FC<props> = ({ setMode, userdata }) => {
                         onChange={(e) => numberHandler(e.target.value)}
                         value={number ? number : ''}
                         autoCapitalize="number"
-                    />
+                    /> */}
                 </span>
                 <span className={styles.buttons}>
                     <button className={styles.cancel} onClick={() => setMode('')}>

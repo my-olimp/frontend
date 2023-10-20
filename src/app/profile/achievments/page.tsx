@@ -20,7 +20,7 @@ const AchievmentsRout: NextPage = () => {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
     const debouncedsearch = useDebounce(dataSearch, 500)
-    const [tag, setTag] = useState('tasd');
+    const [tag, setTag] = useState('teacher');
 
     const item: any = [
         { id: 0, text: 'Московская математическая олимпида', subject: 'Математика', status: 'Призер', points: '230', date: '06.02.2022' },
@@ -40,7 +40,6 @@ const AchievmentsRout: NextPage = () => {
         { id: 5, text: 'Иванов Иван К.', name: 'Вузовская олимпиада по информатике', item: 'Информатика', status: 'Победитель', date: '03.01.2022' },
     ]
 
-    const tag = 'teacher'
 
     useEffect(() => {
         tag == 'teacher' ? setItemTeacherData(teacherItem) : setItemData(item)

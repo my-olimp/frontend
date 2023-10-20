@@ -1,5 +1,5 @@
 .screen {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100vw;
     left: 0;
@@ -10,22 +10,30 @@
     align-items: center;
     z-index: 1101;
 }
-
 .form {
     background-color: #ffffff;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     justify-content: space-between;
     padding: 24px 40px;
     width: 610px;
+    @media (max-width: 600px) {
+        height: auto;
+        width: 320px;
+        padding: 15px 25px;
+    }
 
     h6 {
         font-size: 36px;
         font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
         font-weight: 500;
         color: black;
+        padding-bottom: 27px;
+        @media (max-width: 600px) {
+            font-size: 20px;
+            padding-bottom: 10px;
+        }
     }
 }
 
@@ -33,6 +41,7 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
+    padding-bottom: 27px;
 
     div {
         display: flex;
@@ -45,9 +54,6 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    button {
-        cursor: pointer;
-    }
 }
 
 .cancel {
@@ -83,5 +89,23 @@
         border-radius: 10px;
         height: 52px;
         width: 420px;
+        @media (max-width: 600px) {
+            height: 52px;
+            border-radius: 8px;
+        }
+    }
+    @media (max-width: 600px) {
+        font-size: 15px;
+    }
+}
+
+
+.buttons button {
+    cursor: pointer;
+    @media (max-width: 600px) {
+        width: 100px;
+        height: 30px;
+        font-size: 15px;
+        border-radius: 5px;
     }
 }

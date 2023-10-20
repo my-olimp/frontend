@@ -1,37 +1,49 @@
-.main {
-    margin-top: 30px;
-    background-color: white;
+.wrap {
+    display: flex;
+    flex-direction: column;
+    width: 251px;
     border-radius: 30px;
-    padding: 13px 18px;
-    gap: 10px;
+    gap: 12px;
+    padding: 16px;
+    background-color: #ffffff;
+    @media (max-width: 900px){
+        background-color: transparent;  
+        padding: 0 0 0px 8px;
+    }
 }
 
 .title {
-    font-weight: 600;
+    color: #222;
+    font-family: "SF_Regular";
     font-size: 28px;
+    letter-spacing: 0.56px;
+    padding-left: 5px;
     display: flex;
+    @media (max-width: 900px){
+        font-size: 22px;
+    }
     svg {
-        margin-top: 6px;
+        // margin-top: 6px;
         margin-left: 5px;
     }
 }
 
-.item {
-    .left {
-        margin-right: 15px;
-        .avatar {
-            background: linear-gradient(180deg, #3579F8 0.06%, #538FFF 67.3%);
-            padding: 8px;
-            border-radius: 50%;
-        }
+@media (max-width: 1000px) {
+    .wrap {
+        width: auto;
+        margin-bottom: 20px;
     }
-    .right {
-        .righttitle {
-            font-weight: 500;
-            font-size: 22px;
-        }
-        .subtitle {
-            color: #757575;
-        }
+}
+
+.achievements {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 249px;
+    overflow: hidden;
+    @media (max-width: 900px){
+        flex-direction: row;
+        overflow-x: scroll;
+        padding-bottom: 5px;
     }
 }
