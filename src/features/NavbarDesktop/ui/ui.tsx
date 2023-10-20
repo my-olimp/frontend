@@ -15,7 +15,7 @@ import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOu
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
@@ -39,6 +39,7 @@ const sideBarElements = [
 ];
 
 export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile }) => {
+    const wrapRef = useRef(null);
     const [windowInMain, setWindowInMain] = useState(false)
     const [isOpen, setIsOpen] = useState(false);
     const [activeId, setActiveId] = useState<number>(0);
@@ -65,10 +66,27 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
 
     const linksHandler = (id: number) => {
         setActiveId(id)
+        setIsOpen(false)
     }
+
+    useEffect(() => {
+        document.body.addEventListener('click', (event) => {
+            if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
+                setIsOpen(false);
+            }
+        });
+        return function cleanup() {
+            document.body.removeEventListener('click', (event) => {
+                if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
+                    setIsOpen(false);
+                }
+            });
+        };
+    }, [setIsOpen]);
 
     return (
         <header
+            ref={wrapRef}
             style={{ display: 'flex', justifyContent: 'space-between' }}
             className={styles.header}>
             <div className={styles.linksWrap}>
@@ -78,7 +96,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                 >
                     <div
                         className={`${styles.burgerIcon} ${isOpen ? styles.open : ''}`}
-                        onClick={() => setIsOpen(!isOpen)}
+                        onClick={() => setIsOpen(prev => !prev)}
                         style={windowInMain ? { cursor: 'default' } : {}}
                     >
                         <div className={styles.bar}></div>
@@ -107,6 +125,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                     clicked={clicked}
                     setShowPopup={setShowPopupNotifications}
                     setClicked={setClicked}
+                    setShowPopupPages={setShowPopupPages}
                 />
                 {user ? (
                     <>
@@ -150,6 +169,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                     style={isOpen ? { transition: 'all .2s ease-in-out', width: '15rem' } : { transition: 'all .2s ease-in-out' }}
                 >
                     <span style={{ display: 'flex' }}>
+
                         {sideBarElements.map((element: any) => (
                             <Link
                                 href={element.rout === 'main' ? '/profile' : `/profile${element.rout}`}

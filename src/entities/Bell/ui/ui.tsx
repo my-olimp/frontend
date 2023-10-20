@@ -9,8 +9,9 @@ interface props {
     clicked: boolean;
     setShowPopup: Dispatch<SetStateAction<boolean>>;
     setClicked: Dispatch<SetStateAction<boolean>>;
+    setShowPopupPages: Dispatch<SetStateAction<boolean>>;
 }
-export const Bell: FC<props> = ({ showPopup, setShowPopup, clicked, setClicked }) => {
+export const Bell: FC<props> = ({ showPopup, setShowPopup, clicked, setClicked, setShowPopupPages}) => {
     return (
         <>
             {match(showPopup)
@@ -20,6 +21,7 @@ export const Bell: FC<props> = ({ showPopup, setShowPopup, clicked, setClicked }
                         onClick={() => {
                             setClicked(true);
                             setShowPopup(!showPopup);
+                            setShowPopupPages(false);
                             setTimeout(() => {
                                 setClicked(false);
                             }, 2500);
@@ -36,6 +38,7 @@ export const Bell: FC<props> = ({ showPopup, setShowPopup, clicked, setClicked }
                         onClick={() => {
                             setClicked(true);
                             setShowPopup(!showPopup);
+                            setShowPopupPages(false);
                             setTimeout(() => {
                                 setClicked(false);
                             }, 2500);

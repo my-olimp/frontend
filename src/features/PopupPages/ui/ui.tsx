@@ -10,19 +10,13 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 interface PropsPopupPages {
-    setShow: Dispatch<SetStateAction<boolean>>
+    setShow: Dispatch<SetStateAction<boolean>>;
 }
 
 export const PopupPages: FC<PropsPopupPages> = ({ setShow }) => {
     const pathName = usePathname()
-    const modalRef = useRef(null);
     const { user } = useAppSelector((state) => state.auth);
 
-    const handleClickOutSide: EventHandler<MouseEvent<HTMLDivElement>> = (event) => {
-        if (event.target === modalRef.current) {
-            setShow(false)
-        }
-    };
 
     useEffect(() => {
         document.addEventListener('keydown', (event: KeyboardEvent) => {

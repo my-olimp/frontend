@@ -11,7 +11,7 @@
     z-index: 1000;
     border-bottom: 1px solid #e5e5e5;
     @media (max-width: 420px){
-        padding: 0 16px 0 0;
+        padding: 0 16px 0 16px;
     }
 }
 
@@ -182,7 +182,7 @@
 }
 
 .sideBarProfile {
-    z-index: 1100;
+    z-index: 1000;
     position: fixed;
     left: -64px;
     top: 64px;
@@ -208,7 +208,7 @@
 }
 
 .sideBarProfileOpen {
-    z-index: 1100;
+    z-index: 1000;
     position: fixed;
     left: 0;
     top: 64px;
@@ -343,6 +343,13 @@
     border-radius: 10px;
     box-shadow: 0px -3px 40px 20px rgba(154, 170, 207, 0.2),
         0px 16px 40px 20px rgba(154, 170, 207, 0.2);
+    @media (max-width: 600px) {
+        right: calc((100vw - 390px)/ 2);
+    }
+    @media (max-width: 420px) {
+        width: 340px;
+        right: calc((100vw - 340px)/ 2);
+    }
 }
 .popupWrapPages {
     width: 342px;
@@ -354,6 +361,9 @@
     z-index: 10;
     border-radius: 10px;
     box-shadow: 0px -10px 40px 0px rgba(154, 170, 207, 0.20), 0px 16px 40px 0px rgba(154, 170, 207, 0.20);
+    @media (max-width: 392px) {
+        right: calc((100vw - 342px)/ 2);
+    }
 }
 
 .infoWrap {

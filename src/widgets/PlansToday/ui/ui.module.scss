@@ -1,112 +1,113 @@
 .wrap {
-  display: flex;
-  flex-direction: column;
-  border-radius: 30px;
-  width: 50vw;
-  background: #F3F7FF;
-  padding: 22px 82px 55px 42px;
-
-
-  & .plansWrap {
-
-    & .noPlans {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    & .plans {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 0 24px;
-    }
-
-    & h2 {
-      font-size: 20px;
-      font-family: 'SF_Regular', Arial, Helvetica, sans-serif;
-      font-weight: 400;
-      user-select: text;
-    }
-  }
-
-  & .titleWrap {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0 24px;
-    margin-bottom: 12px;
-    margin-top: 8px;
-    justify-content: space-between;
+    flex-direction: column;
+    border-radius: 30px;
+    width: 50vw;
+    background: #f3f7ff;
+    padding: 22px 82px 55px 42px;
 
-    & h1 {
-      font-size: 28px;
-      font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-      font-weight: 500;
-      user-select: text;
+    & .plansWrap {
+        & .noPlans {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
+        & .plans {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 0 24px;
+        }
+
+        & h2 {
+            font-size: 20px;
+            font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            user-select: text;
+        }
     }
 
-    & .link {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-family: 'SF_Medium', Arial, Helvetica, sans-serif;
-      font-weight: 500;
-      * {
-        color: #222222;
-      }
+    & .titleWrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 24px;
+        margin-bottom: 12px;
+        margin-top: 8px;
+        justify-content: space-between;
 
-      &:hover * {
-        transition: all .3s;
-        color: #3579f8;
-      }
+        & h1 {
+            font-size: 28px;
+            font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            user-select: text;
+        }
 
-      & * {
-        font-size: 16px;
-      }
+        & .link {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-family: "SF_Medium", Arial, Helvetica, sans-serif;
+            font-weight: 500;
+            * {
+                color: #222222;
+            }
+
+            &:hover * {
+                transition: all 0.3s;
+                color: #3579f8;
+            }
+
+            & * {
+                font-size: 16px;
+            }
+        }
     }
-  }
-
-
 }
 @media (max-width: 1000px) {
-  .wrap {
-    width: 100%;
-  }
+    .wrap {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .wrap {
+        padding: 22px 20px 20px 20px;
+    }
 }
 
 @media (max-width: 410px) {
-  .titleWrap {
-    & h1 {
-      font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
-      font-weight: 600;
-      font-size: 16px !important;
+    .titleWrap {
+        & h1 {
+            font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            font-size: 16px !important;
+        }
     }
-  }
-  .link {
-    & * {
-      font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
-      font-weight: 600;
-      font-size: 14px !important;
+    .link {
+        & * {
+            font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            font-size: 14px !important;
+        }
     }
-  }
 }
 
 @media (max-width: 290px) {
-  .titleWrap {
-    & h1 {
-      font-family: "SF_SemiBold", Arial, Helvetica, sans-serif !important;
-      font-weight: 600 !important;
-      font-size: 14px !important;
+    .titleWrap {
+        & h1 {
+            font-family: "SF_SemiBold", Arial, Helvetica, sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+        }
     }
-  }
-  .link {
-    & * {
-      font-size: 12px !important;
+    .link {
+        & * {
+            font-size: 12px !important;
+        }
     }
-  }
 }

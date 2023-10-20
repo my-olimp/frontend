@@ -21,15 +21,16 @@ export const Notifications: FC<props> = ({ notifications, setShow }) => {
             date: timeAfterNotice,
         };
     });
+
     useEffect(() => {
         document.body.addEventListener('click', (event) => {
-            if (event.target !== wrapRef.current) {
+            if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
                 setShow(false);
             }
         });
         return function cleanup() {
             document.body.removeEventListener('click', (event) => {
-                if (event.target !== wrapRef.current) {
+                if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
                     setShow(false);
                 }
             });
