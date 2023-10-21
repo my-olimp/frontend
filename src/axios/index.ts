@@ -18,35 +18,35 @@ $api.interceptors.request.use((config) => {
 });
 
 $api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    if (error.response && error.response.status === 401) {
-      if (!isRefreshing) {
-        isRefreshing = true;
-        try {
-          refreshPromise = refreshToken();
+    (response) => {
+        return response;
+    },
+    async (error) => {
+        if (error.response && error.response.status === 401) {
+            if (!isRefreshing) {
+                isRefreshing = true;
+                try {
+                    refreshPromise = refreshToken();
 
-          await refreshPromise;
+                    await refreshPromise;
 
-          const originalRequest = error.config;
+                    const originalRequest = error.config;
 
-          return $api(originalRequest);
-        } finally {
-          isRefreshing = false;
-          refreshPromise = null;
+                    return $api(originalRequest);
+                } finally {
+                    isRefreshing = false;
+                    refreshPromise = null;
+                }
+            } else {
+                await refreshPromise;
+                const originalRequest = error.config;
+                originalRequest.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
+                return $api(originalRequest);
+            }
         }
-      } else {
-        await refreshPromise;
-        const originalRequest = error.config;
-        originalRequest.headers.Authorization = `Bearer ${localStorage.getItem('accessToken')}`;
-        return $api(originalRequest);
-      }
-    }
 
-    throw error;
-  }
+        throw error;
+    }
 );
 
 export default $api;

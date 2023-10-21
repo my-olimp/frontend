@@ -39,20 +39,34 @@
 }
 
 .inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+    font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
 
     div {
-        display: flex;
-        flex-direction: row;
+        border-radius: 10px;
+        height: 52px;
+        width: 420px;
+        @media (max-width: 600px) {
+            height: 52px;
+            border-radius: 8px;
+        }
+    }
+    @media (max-width: 600px) {
+        font-size: 15px;
     }
 }
 
 .select {
-    width: 420px;
-    height: 52px;
-    border-radius: 12px;
+    font-family: "SF_Regular", Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+
+    @media (max-width: 600px) {
+        font-size: 15px;
+    }
 }
 
 .buttons {
@@ -82,6 +96,10 @@
 
 .submit {
     @extend .cancel;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
     color: white;
     background-color: #3579f8;
 }
@@ -105,20 +123,6 @@
     }
 }
 
-.calendar {
-    width: 420px;
-    height: 52px;
-
-    & div {
-        border-radius: 12px;
-    }
-    & input {
-        width: 355px !important;
-        @media (max-width: 600px) {
-            width: 232px !important;
-        }
-    }
-}
 
 .buttons button {
     cursor: pointer;
@@ -129,3 +133,18 @@
         border-radius: 5px;
     }
 }
+
+.customLoader {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: 
+      radial-gradient(farthest-side,#fff 94%,#0000) top/3px 3px no-repeat,
+      conic-gradient(#0000 30%,#fff);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
+    animation:s3 1s infinite linear;
+  }
+  
+  @keyframes s3{ 
+    100%{transform: rotate(1turn)}
+  }

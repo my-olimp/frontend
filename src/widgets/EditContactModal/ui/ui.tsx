@@ -74,7 +74,7 @@ export const EditContactModal: FC<props> = ({ setMode, userdata }) => {
     async function sendData() {
         const obj: any = {
             "email": checkState(email),
-            "phone_number": checkState(number)
+            // "phone_number": checkState(number)
         }
         await dispatch(PutUserdata(obj))
         setMode('')

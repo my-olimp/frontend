@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    align-items: flex-end;
+    width: 280px;
+    height: 304.267px;
+    border-radius: 32.971px;
+    position: relative;
+    @media (max-width: 900px) {
+        width: 218px;
+        height: 243px;
+        border-radius: 23.667px;
+    }
+    @media (max-width: 460px) {
+        width: 112px;
+        height: 115px;
+        border-radius: 12.199px;
+    }
+
+    .title {
+        color: #fff;
+        font-family: "SF_Medium";
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: 0.64px;
+        padding: 26px 20px;
+        @media (max-width: 900px) {
+            font-size: 24px;
+            padding: 16px 12px;
+        }
+        @media (max-width: 460px) {
+            font-size: 12px;
+            padding: 10px 8px;
+        }
+    }
+
+    .icon {
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 144px;
+        height: 300px;
+        position: absolute;
+        top: 0px;
+        right: 0;
+        transition: all 0.3s;
+        @media (max-width: 900px) {
+            width: 110px;
+            height: 300px;
+        }
+        @media (max-width: 460px) {
+            width: 70px;
+            height: 300px;
+        }
+    }
+}

@@ -1,0 +1,588 @@
+.container {
+    padding: 40px 35px 90px 15px;
+    @media (max-width: 900px) {
+        padding: 20px 20px 55px 20px;
+    }
+    @media (max-width: 460px) {
+        padding: 2px 10px 20px 10px;
+    }
+}
+
+.mainSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 30px;
+    @media (max-width: 900px) {
+        gap: 12px;
+    }
+    @media (max-width: 700px){
+        flex-direction: column-reverse;
+        padding-bottom: 50px;
+        justify-content: center;
+    }
+    @media (max-width: 600px){
+        padding-bottom: 24px;
+    }
+
+    .blockText {
+        .title {
+            color: #000;
+            font-family: "SF_Medium";
+            font-size: 70px;
+            font-weight: 500;
+            line-height: 100%;
+            letter-spacing: 1.092px;
+            padding-bottom: 56px;
+            @media (max-width: 900px) {
+                font-size: 40px;
+                padding-bottom: 24px;
+            }
+            @media (max-width: 460px) {
+                font-size: 25px;
+                padding-bottom: 12px;
+            }
+        }
+        .text {
+            color: #000;
+            font-family: "SF_Regular";
+            font-size: 30px;
+            font-weight: 400;
+            letter-spacing: 0.6px;
+            padding-bottom: 50px;
+            @media (max-width: 900px) {
+                font-size: 20px;
+            }
+            @media (max-width: 700px) {
+                padding-bottom: 0px;
+            }
+            @media (max-width: 460px) {
+                font-size: 13px;
+            }
+        }
+    }
+
+    .image {
+        img {
+
+            @media (max-width: 1200px){
+                width: 390px;
+                height: 360px;
+            }
+            @media (max-width: 900px){
+                width: 310px;
+                height: 290px;
+            }
+            @media (max-width: 460px){
+                width: 210px;
+                height: 190px;
+            }
+        }
+    }
+}
+
+.organizers {
+    padding-bottom: 100px;
+    @media (max-width: 900px) {
+        padding-bottom: 60px;
+    }
+    @media (max-width: 460px) {
+        padding-bottom: 24px;
+    }
+
+    .blockText {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 56px;
+        @media (max-width: 900px) {
+            padding-bottom: 24px;
+        }
+
+        .title {
+            color: #000;
+            font-family: "SF_Medium";
+            font-size: 60px;
+            font-weight: 500;
+            line-height: 22px;
+            letter-spacing: 1.092px;
+            @media (max-width: 900px) {
+                font-size: 30px;
+            }
+            @media (max-width: 460px) {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .blockOrganizers {
+        border-radius: 25px;
+        background: #fff;
+        padding: 26px 18px 27px 18px;
+        @media (max-width: 900px){
+            border-radius: 13.209px;
+            padding: 14px 10px;
+        }
+        @media (max-width: 460px) {
+            border-radius: 25px;
+        }
+        display: flex;
+        justify-content: center;
+
+        ul {
+            display: flex;
+            gap: 48px;
+            overflow: hidden;
+            overflow-x: scroll;
+            padding-bottom: 7px;
+            @media (max-width: 900px){
+                gap: 40px;
+            }
+            @media (max-width: 460px) {
+                gap: 24px;
+                padding-bottom: 3px;
+            }
+            &::-webkit-scrollbar {
+                width: 3px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #3579f8;
+                border: 3px solid white;
+                border-radius: 10px;
+                @media (max-width: 900px) {
+                    border: 5px solid white;
+                }
+                @media (max-width: 460px) {
+                    border: 7px solid white;
+                }
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                cursor: pointer !important;
+            }
+
+            li {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                max-width: 224px;
+                @media (max-width: 900px) {
+                    gap: 8px;
+                }
+                @media (max-width: 460px) {
+                    gap: 4px;
+                }
+
+                .text {
+                    color: #000;
+                    text-align: center;
+                    font-family: "SF_Regular";
+                    font-size: 20px;
+                    @media (max-width: 900px) {
+                        font-size: 13px;
+                    }
+                    @media (max-width: 460px) {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.schedule {
+    padding-bottom: 100px;
+
+    @media (max-width: 900px) {
+        padding-bottom: 60px;
+    }
+
+    @media (max-width: 460px) {
+        padding-bottom: 24px;
+    }
+    
+
+    .blockText {
+        padding-bottom: 57px;
+
+        @media (max-width: 900px) {
+            padding-bottom: 24px;
+        }
+
+        @media (max-width: 460px) {
+            padding-bottom: 12px;
+        }
+
+        .title {
+            color: #000;
+            font-family: "SF_Medium";
+            font-size: 60px;
+            font-weight: 500;
+            line-height: 22px;
+            letter-spacing: 1.092px;
+            @media (max-width: 900px) {
+                font-size: 30px;
+            }
+            @media (max-width: 460px) {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .blockSchedule {
+        padding: 52px 36px 52px 36px;
+        border-radius: 25px;
+        background: #fff;
+        @media (max-width: 900px) {
+            border-radius: 13.209px;
+            padding: 24px 16px 24px 16px;
+        }
+        @media (max-width: 460px) {
+            border-radius: 25px;
+        }
+
+        ul {
+            li {
+                &:not(:last-child) {
+                    padding-bottom: 83px;
+                    @media (max-width: 900px) {
+                        padding-bottom: 36px;
+                    }
+
+                    .blueCircle {
+                        position: relative;
+                        &::after {
+                            content: "";
+                            width: 1px;
+                            height: 97px;
+                            background-color: #3579f8;
+                            position: absolute;
+                            top: 100%;
+                            left: 26px;
+                            @media (max-width: 900px) {
+                                padding-bottom: 36px;
+                                left: 14px;
+                                height: 50px;
+                            }
+                            @media (max-width: 460px) {
+                                left: 13px;
+                            }
+                        }
+                    }
+                }
+                display: flex;
+                gap: 24px;
+                align-items: center;
+                @media (max-width: 900px) {
+                    gap: 8px;
+                }
+
+                .blueCircle {
+                    width: 52px;
+                    height: 52px;
+                    border-radius: 50%;
+                    background-color: #3579f8;
+                    @media (max-width: 900px) {
+                        width: 28px;
+                        height: 28px;
+                    }
+                    @media (max-width: 460px) {
+                        width: 26px;
+                        height: 26px;
+                    }
+                }
+
+                .text {
+                    h4 {
+                        color: #000;
+                        font-feature-settings:
+                            "clig" off,
+                            "liga" off;
+                        font-family: "SF_Medium";
+                        font-size: 32px;
+                        font-weight: 500;
+                        @media (max-width: 900px) {
+                            font-size: 17px;
+                        }
+                        @media (max-width: 460px) {
+                            font-size: 14px;
+                        }
+                    }
+
+                    p {
+                        color: #757575;
+                        font-feature-settings:
+                            "clig" off,
+                            "liga" off;
+                        font-family: "SF_Regular";
+                        font-size: 22px;
+                        font-weight: 400;
+                        @media (max-width: 900px) {
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.disciplines {
+    padding-bottom: 100px;
+
+    @media (max-width: 900px) {
+        padding-bottom: 44px;
+    }
+
+    @media (max-width: 460px) {
+        padding-bottom: 24px;
+    }
+
+    .blockText {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 56px;
+        @media (max-width: 900px) {
+            padding-bottom: 24px;
+        }
+        @media (max-width: 460px) {
+            padding-bottom: 12px;
+        }
+
+        .title {
+            color: #000;
+            font-family: "SF_Medium";
+            font-size: 60px;
+            font-weight: 500;
+            line-height: 22px;
+            letter-spacing: 1.092px;
+            @media (max-width: 900px) {
+                font-size: 30px;
+            }
+            @media (max-width: 460px) {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .blockDisciplines {
+        padding: 40px 30px 30px;
+        border-radius: 25px;
+        background: #fff;
+        @media (max-width: 900px) {
+            padding: 16px;
+            border-radius: 13.209px;
+        }
+        @media (max-width: 460px) {
+            border-radius: 25px;
+        }
+        ul {
+            display: flex;
+            gap: 25px;
+            overflow: hidden;
+            overflow-x: scroll;
+            padding-bottom: 7px;
+            @media (max-width: 900px) {
+                gap: 12px;
+            }
+            @media (max-width: 460px) {
+                gap: 8px;
+                padding-bottom: 3px;
+            }
+            &::-webkit-scrollbar {
+                width: 3px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #3579f8;
+                border: 3px solid white;
+                border-radius: 10px;
+                @media (max-width: 900px) {
+                    border: 5px solid white;
+                }
+                @media (max-width: 460px) {
+                    border: 7px solid white;
+                }
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                cursor: pointer !important;
+            }
+        }
+    }
+}
+
+.privileges {
+    padding-bottom: 58px;
+
+    @media (max-width: 900px) {
+        padding-bottom: 28px;
+    }
+
+    @media (max-width: 460px) {
+        padding-bottom: 24px;
+    }
+
+    .blockText {
+        padding-bottom: 56px;
+
+        @media (max-width: 900px) {
+            padding-bottom: 24px;
+        }
+
+        @media (max-width: 460px) {
+            padding-bottom: 12px;
+        }
+
+        .title {
+            color: #000;
+            font-family: "SF_Medium";
+            font-size: 60px;
+            font-weight: 500;
+            line-height: 22px;
+            letter-spacing: 1.092px;
+            @media (max-width: 900px) {
+                font-size: 30px;
+            }
+            @media (max-width: 460px) {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .blockPrivileges {
+        border-radius: 25px;
+        background: #fff;
+        padding: 47px 36px;
+
+        @media (max-width: 900px) {
+            padding: 24px 16px;
+            border-radius: 13.209px;
+        }
+
+        @media (max-width: 460px) {
+            border-radius: 25px;
+        }
+
+        ul {
+            padding-bottom: 27px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+
+            @media (max-width: 900px) {
+                gap: 20px;
+            }
+
+            @media (max-width: 460px) {
+                gap: 14px;
+                padding-bottom: 16px;
+            }
+
+            li {
+                display: flex;
+                gap: 16px;
+                align-items: center;
+
+                @media (max-width: 900px) {
+                    gap: 8px;
+                }
+                
+
+                .blueCircle {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    background-color: #3579f8;
+                    @media (max-width: 900px) {
+                        width: 26px;
+                        height: 26px;
+                    }
+                    @media (max-width: 460px) {
+                        width: 16px;
+                        height: 16px;
+                    }
+                }
+
+                h4 {
+                    color: #000;
+                    font-feature-settings:
+                        "clig" off,
+                        "liga" off;
+                    font-family: "SF_Medium";
+                    font-size: 32px;
+                    font-weight: 500;
+                    @media (max-width: 900px) {
+                        font-size: 16px;
+                    }
+                    @media (max-width: 460px) {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        .important {
+            color: #757575;
+            font-feature-settings:
+                "clig" off,
+                "liga" off;
+            font-family: "SF_Regular";
+            font-size: 24px;
+            font-weight: 400;
+            @media (max-width: 900px) {
+                font-size: 12px;
+            }
+            @media (max-width: 460px) {
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+.results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    @media (max-width: 900px) {
+        gap: 12px;
+    }
+
+    button {
+        padding: 25px 95px;
+        border-radius: 27px;
+        background: #3579f8;
+        color: #fff;
+        font-family: "SF_SemiBold";
+        font-size: 32px;
+        font-weight: 600;
+        cursor: pointer;
+        @media (max-width: 900px) {
+            padding: 12px 60px;
+            font-size: 16px;
+        }
+    }
+}
+
+// .all {
+//     display: flex;
+//     cursor: pointer;
+//     gap: 6px;
+//     align-items: center;
+//     padding-top: 15px;
+
+//     &__text {
+//         color: #3579f8;
+//         font-feature-settings:
+//             "clig" off,
+//             "liga" off;
+//         font-family: "SF_Medium";
+//         font-size: 16px;
+//     }
+// }
