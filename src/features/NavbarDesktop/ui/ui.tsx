@@ -129,7 +129,6 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                 />
                 {user ? (
                     <>
-                        <NavbarAvatar />
                         <ArrowHeader
                             showPopup={showPopupPages}
                             setShowPopup={setShowPopupPages}
@@ -186,7 +185,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile })
                             >
                                 {element.icon}
                                 <p
-                                    className={styles.baritemtext}
+                                    className={`${styles.baritemtext} ${element.id === activeId ? styles.baritemtext_open : ''}`}
                                     style={isOpen ? {} : { opacity: '0' }}
                                 >
                                     {element.name}

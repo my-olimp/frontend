@@ -11,8 +11,14 @@
 .infoWrap {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     height: max-content;
+    @media (max-width: 600px){
+        gap: 10px;
+    }
+    @media (max-width: 420px){
+        gap: 3px;
+    }
 
     li {
         display: flex;

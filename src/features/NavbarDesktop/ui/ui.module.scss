@@ -186,6 +186,14 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         margin: 2px 5px 0 8px;
+        font-family: "SF_Medium";
+        font-weight: 500;
+        font-size: 14px;
+        &_open {
+            font-family: "SF_SemiBold";
+            font-weight: 600;
+            color: black;
+        }
     }
 
     &:hover {

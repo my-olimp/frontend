@@ -70,31 +70,19 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
         document.body.addEventListener('click', (event) => {
             if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
                 setIsOpen(false);
-            }
-        });
-        return function cleanup() {
-            document.body.removeEventListener('click', (event) => {
-                if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
-                    setIsOpen(false);
-                }
-            });
-        };
-    }, [setIsOpen]);
-
-    useEffect(() => {
-        document.body.addEventListener('click', (event) => {
-            if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
                 setShowSideBar(false);
             }
         });
         return function cleanup() {
             document.body.removeEventListener('click', (event) => {
                 if (wrapRef.current && !(wrapRef.current as HTMLDivElement).contains(event.target as HTMLDivElement)) {
+                    setIsOpen(false);
                     setShowSideBar(false);
                 }
             });
         };
-    }, [setShowSideBar]);
+    }, [setIsOpen, setShowSideBar]);
+
 
     return (
         <div ref={wrapRef}>
@@ -160,8 +148,8 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
                                 >
                                     {element.icon}
                                     <p
-                                        className={styles.baritemtext}
-                                        style={isOpen ? {} : { opacity: '0' }}
+                                    className={`${styles.baritemtext} ${element.id === activeId ? styles.baritemtext_open : ''}`}
+                                    style={isOpen ? {} : { opacity: '0', fontWeight: '' }}
                                     >
                                         {element.name}
                                     </p>
@@ -223,7 +211,6 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
                         setShowPopupPages={setShowPopupPages}
                     />
 
-                    <NavbarAvatar />
                     <ArrowHeader
                         showPopup={showPopupPages}
                         setShowPopup={setShowPopupPages}
