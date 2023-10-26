@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .calendar {
@@ -16,8 +16,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 45px 0px;
+    padding: 24px 0px 44px 0px;
     background: #f0f4fa;
+    @media (max-width: 600px) {
+        background: #fff;
+    }
 }
 
 .container {
@@ -68,12 +71,19 @@
                 font-size: 20px;
                 letter-spacing: 0.4px;
                 cursor: pointer;
+                @media (max-width: 600px) {
+                    font-size: 17px;
+                }
+            }
+
+            .arrow {
+                font-size: 28px;
             }
         }
 
         .eventlist {
             overflow-y: scroll;
-            height: 90%;
+            height: 89%;
 
             &::-webkit-scrollbar {
                 width: 10px;
@@ -90,45 +100,28 @@
                 border-radius: 10px;
                 padding: 5px;
             }
-
-            .eventtoday {
-                padding: 20px 20px;
-                border-top: 1px solid rgba(34, 34, 34, 0.2);
-
-                .eventtodayleft {
-                    div {
-                        margin-right: 20px;
-                    }
-                }
-                .eventtodayright {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
-
-            .eventtoday:last-child {
-                border-bottom: 1px solid rgba(34, 34, 34, 0.2);
-            }
         }
     }
 }
 
 .popup {
-    width: 30vw;
+    width: 550px;
     background-color: white;
     border-radius: 15px;
     padding: 15px 35px;
+    @media (max-width: 600px) {
+        font-size: 22px;
+        width: 360px;
+        margin: 0 10px;
+        padding: 15px 20px;
+    }
 
     .popuptitle {
         font-size: 28px;
         font-weight: 600;
         letter-spacing: 0.56px;
-        &_edit {
-            color: #000;
-            font-family: "SF_Medium";
-            font-size: 26px;
-            letter-spacing: 0.52px;
+        @media (max-width: 600px) {
+            font-size: 22px;
         }
     }
 
@@ -140,11 +133,20 @@
         outline: none;
         padding: 3px 0px;
         border-bottom: 1px solid rgba(34, 34, 34, 0.2);
+        @media (max-width: 600px) {
+            width: 100%;
+            font-size: 15px;
+            margin: 12px 0px;
+            padding: 2px 0px;
+        }
     }
 }
 
 .mid {
     margin-bottom: 20px;
+    @media (max-width: 600px) {
+        margin-bottom: 12px;
+    }
 
     .midleft {
         .tag {
@@ -159,6 +161,59 @@
                 background: #eff6ff;
                 color: rgba(53, 121, 248, 0.9);
             }
+            @media (max-width: 600px) {
+                border-radius: 10px;
+                font-size: 15px;
+                padding: 3px 7px;
+                margin-right: 7px;
+            }
+        }
+
+        .tagChecked {
+            margin-right: 10px;
+            border-radius: 15px;
+            font-size: 19px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background: #eff6ff;
+            color: rgba(53, 121, 248, 0.9);
+            @media (max-width: 600px) {
+                border-radius: 10px;
+                font-size: 15px;
+                padding: 3px 7px;
+                margin-right: 7px;
+            }
+        }
+    }
+}
+
+.favorites {
+    svg {
+        color: #3579f8;
+    }
+}
+
+.selectSubject {
+    svg {
+        right: -2px !important;
+    }
+    input {
+        font-family: "SF_Regular";
+        font-size: 20px;
+        color: rgba(34, 34, 34, 0.9);
+        font-weight: 400;
+        @media (max-width: 600px) {
+            font-size: 15px;
+        }
+    }
+    div {
+        min-height: 1em !important;
+        font-family: "SF_Regular";
+        font-size: 20px;
+        color: rgba(34, 34, 34, 0.9);
+        font-weight: 400;
+        @media (max-width: 600px) {
+            font-size: 15px;
         }
     }
 }
@@ -168,6 +223,11 @@
         padding: 10px 25px;
         border-radius: 10px;
         transition: 0.15s ease;
+        @media (max-width: 600px) {
+            font-size: 13px;
+            padding: 7px 15px;
+            border-radius: 7px;
+        }
     }
 
     .createbtn {
@@ -177,8 +237,17 @@
         border-radius: 10px;
         font-size: 16px;
         transition: 0.15s ease;
+        @media (max-width: 600px) {
+            font-size: 13px;
+            padding: 7px 15px;
+            border-radius: 7px;
+        }
 
         &:hover {
+            background: #3579f8a6;
+        }
+
+        &[disabled] {
             background: #3579f8a6;
         }
     }
@@ -195,61 +264,285 @@
 
 .settings {
     margin-bottom: 35px;
+    @media (max-width: 600px) {
+        margin-bottom: 22px;
+    }
 
     .time,
     .selectdiv,
     .files {
-        margin-bottom: 8px;
-        font-size: 17.5px;
+        margin-bottom: 16px;
+        span {
+            font-family: "SF_Regular";
+            font-size: 20px;
+            color: rgba(34, 34, 34, 0.9);
+            font-weight: 400;
+            @media (max-width: 600px) {
+                font-size: 15px;
+            }
+        }
+        @media (max-width: 600px) {
+            margin-bottom: 10px;
+        }
     }
 
     .time {
+        @media (max-width: 600px) {
+            // display: flex;
+            // flex-direction: column;
+            // gap: 20px;
+        }
         .timeleft {
+            position: relative;
+            cursor: pointer !important;
             svg {
-                margin-right: 5px;
+                margin-right: 12px;
+                @media (max-width: 600px) {
+                    margin-right: 8px;
+                }
+            }
+        }
+        .timeright {
+            width: 135px;
+            font-family: "SF_Regular";
+            position: relative;
+            font-size: 20px;
+            display: flex;
+            color: rgba(34, 34, 34, 0.9);
+            font-weight: 400;
+            display: flex;
+            flex-direction: row !important;
+            @media (max-width: 600px) {
+                width: 100px;
+                font-size: 15px;
+            }
+            & > div {
+                padding-top: 0;
+            }
+            span {
+                color: rgba(34, 34, 34, 0.9);
+                font-family: "SF_Regular";
+                font-size: 20px;
+                font-weight: 400;
+                margin-left: 8px !important;
+                margin-right: 8px !important;
+                margin-top: 0px !important;
+                @media (max-width: 600px) {
+                    font-size: 15px;
+                    margin-left: 6px !important;
+                    margin-right: 6px !important;
+                }
+            }
+
+            .errorDate {
+                font-family: "SF_Regular";
+                position: absolute;
+                font-size: 11px;
+                color: rgb(239, 4, 4);
+                font-weight: 400;
+                top: 100%;
+                width: 100%;
+                left: 0;
+                @media (max-width: 600px) {
+                    font-size: 9px;
+                }
             }
         }
     }
 
     .files,
-    .selectdiv {
+    .selectdiv,
+    .file {
         svg {
-            margin-right: 5px;
+            margin-right: 12px;
+            @media (max-width: 600px) {
+                margin-right: 8px;
+            }
+        }
+    }
+    .selectdiv {
+        display: flex;
+        align-items: center;
+        svg {
+            right: 2px;
+        }
+    }
+
+    .files {
+        cursor: pointer !important;
+        position: relative;
+        input {
+            cursor: pointer !important;
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+        }
+        #file-upload-button {
+            cursor: pointer !important;
+        }
+    }
+
+    .file {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 327px;
+        margin-bottom: 16px;
+        @media (max-width: 600px) {
+            margin-bottom: 10px;
+        }
+
+        .block {
+            display: flex;
+            align-items: center;
+        }
+
+        .saveIcon {
+            color: #575757;
+        }
+        a {
+            max-width: 240px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-family: "SF_Regular";
+            font-size: 20px;
+            color: rgba(34, 34, 34, 0.9);
+            font-weight: 400;
+            @media (max-width: 600px) {
+                font-size: 15px;
+            }
+        }
+
+        .deleteFile {
+            background-color: transparent;
+            transition: all 0.3s ease 0s;
+            color: red;
+            cursor: pointer;
+            
+            &:hover {
+                transform: scale(1.05);
+            }
         }
     }
 }
 
+.subjectText {
+    font-family: "SF_Regular";
+    font-size: 20px;
+    color: rgba(34, 34, 34, 0.9);
+    font-weight: 400;
+    @media (max-width: 600px) {
+        font-size: 15px;
+    }
+}
+
+
 @media (max-width: 900px) {
+    .calendar {
+        padding-top: 19px;
+        .container {
+            width: 100%;
+            display: block;
+            padding: 0 46px;
+        }
+    }
+    
+    .eventscontainer {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .eventlist {
+        max-height: 550px;
+    }
+}
+
+@media (max-width: 600px) {
     .calendar {
         padding: 0px;
         .container {
-            padding-top: 20px;
+            padding-top: 10px;
+            padding: 10px 0px 0 0;
             width: 100%;
             display: block;
         }
     }
     .eventscontainer {
         width: 100%;
-        padding: 40px 5px;
+        padding: 0px 0px;
+        height: 100%;
     }
-
-    .popupmain {
-        display: flex;
-        position: fixed;
-        background-color: white;
-        top: 0;
-        align-items: start;
-        height: 100vh;
-        .popup {
-            margin-top: 40px;
-            padding: 0 20px;
-            width: 100%;
-            border-radius: 0px;
-
-            .popupinput {
-                width: 100%;
-            }
-        }
+    
+    .eventlist {
+        max-height: 550px;
     }
 }
 
+.timepicker {
+    cursor: pointer;
+    min-width: 0px !important;
+    margin: 0 !important;
+    button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        svg {
+            display: none;
+        }
+    }
+
+    input {
+        padding: 0;
+        width: 55px;
+        color: rgba(34, 34, 34, 0.9);
+        font-family: "SF_Regular";
+        font-size: 20px;
+        font-weight: 400;
+        cursor: pointer !important;
+        @media (max-width: 600px) {
+            width: 40px;
+            font-size: 15px;
+        }
+    }
+
+    fieldset {
+        border: 0;
+    }
+}
+
+.datepicker {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    input {
+        padding: 0;
+        cursor: pointer !important;
+    }
+}
+
+.noEvents {
+    font-size: 35px;
+    min-height: 250px;
+    font-family: "SF_SemiBold";
+    font-weight: 600;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    letter-spacing: 0.56px;
+    @media (max-width: 600px) {
+        font-size: 20px;
+    }
+}

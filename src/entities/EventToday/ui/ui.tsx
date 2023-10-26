@@ -23,7 +23,7 @@ export const EventToday: FC<PropsEventToday> = ({ event, mode, setMode, deleteEv
     return (
         <>
             <div className={`${styles.eventtoday} df jcsb aic`} key={Math.random()}>
-                <div className={`${styles.eventtodayleft} df aic w50`}>
+                <div className={`${styles.eventtodayleft} df aic`}>
                     <div
                         style={{
                             height: '15px',

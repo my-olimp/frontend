@@ -6,6 +6,9 @@
 
 .rbc-calendar {
     height: 750px;
+    @media (max-width: 900px){
+        height: 676px;   
+    }
 }
 
 .bigcalendar .rbc-month-view .rbc-month-header .rbc-header {
@@ -56,6 +59,18 @@
     justify-content: center;
     padding-right: 0;
     margin-top: 10px;
+    @media (max-width: 900px) {
+        margin-top: 5px;
+        button {
+            font-size: 12px;
+        }
+    }
+    @media (max-width: 600px) {
+        margin-top: 0px;
+        button {
+            font-size: 10px;
+        }
+    }
 }
 
 .rbc-off-range-bg {
@@ -69,16 +84,26 @@
     width: 25px;
     height: 25px;
     margin-bottom: 5px;
+    @media (max-width: 600px){
+        width: 16px;
+        height: 16px;
+        margin-bottom: 0px;
+    }
 }
 
 .rbc-button-link {
     border-radius: 50%;
     height: 25px;
     width: 25px;
+    @media (max-width: 600px){
+        width: 16px;
+        height: 16px;
+    }
 }
 
 .rbc-show-more {
     width: 100%;
+    font-size: 12px;
 }
 
 .rbc-row-bg {
@@ -89,10 +114,17 @@
     border-radius: 7px;
     width: 90%;
     margin-top: 2.5px;
+    @media (max-width: 600px){
+        border-radius: 4px;
+        padding: 1px;
+    }
 }
 
 .rbc-event-content {
     font-size: 13px;
+    @media (max-width: 600px){
+        font-size: 9px;
+    }
 }
 .rbc-row-segment {
     display: flex;
@@ -100,10 +132,7 @@
     align-items: center;
 }
 
-@media (max-width: 900px) {
-    .rbc-calendar {
-        height: 80vh;
-    }
+@media (max-width: 600px) {
 
     .bigcalendar .rbc-month-view {
         border-radius: 0px;
@@ -112,4 +141,21 @@
     .rbc-row-bg {
         border-bottom-right-radius: 0px;
     }
+}
+
+// .rbc-current button {
+//     color: white;
+//     background-color: #3579F8;
+//     border-radius: 50%;
+//     width: 25px;
+//     height: 25px;
+//     margin-bottom: 5px;
+// }
+
+.MuiStack-root {
+    flex-direction: row !important;
+}
+
+#file-upload-button {
+    cursor: pointer !important;
 }

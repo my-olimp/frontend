@@ -1,4 +1,4 @@
-import { Dispatch, EventHandler, FC, MouseEvent, SetStateAction, useEffect, useRef } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react';
 import styles from './ui.module.scss';
 import { NavbarAvatar } from '@/entities/NavbarAvatar';
 import { useAppSelector } from '@/hooks/useAppSelector';
