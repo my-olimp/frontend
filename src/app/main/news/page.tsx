@@ -49,21 +49,19 @@ const News: NextPage = () => {
 
     useEffect(() => {
         async function getData() {
-            const newsdata: any = await dispatch(GetNews(1))
-            while (true) {
-
-            }
-            console.log(newsdata)
-            const truedata: any = newsdata.payload.data.pages.map((item: any) => {
-                const obj = { ...item };
-                obj.image = randomImage();
-                return obj;
-            })
-            const rightData = [truedata[1]]
-            setSlider([...truedata, ...truedata, ...truedata, ...truedata])
-            setLeftPage([truedata[0]])
-            setRightPage([...rightData, ...rightData, ...rightData, ...rightData])
-            setLoading(false)
+            // const newsdata: any = await dispatch(GetNews(1))
+            // console.log(newsdata)
+            // const truedata: any = newsdata.payload.data.pages.map((item: any) => {
+            //     const obj = { ...item };
+            //     obj.image = randomImage();
+            //     return obj;
+            // })
+            // const rightData = [truedata[1]]
+            // setSlider([...truedata, ...truedata, ...truedata, ...truedata])
+            // setLeftPage([truedata[0]])
+            // setRightPage([...rightData, ...rightData, ...rightData, ...rightData])
+            // setLoading(false)
+            console.log('dfsdf')
         }
         getData()
     }, []);
@@ -165,7 +163,7 @@ const News: NextPage = () => {
                                     <div className={styles.midright}>
                                         {rightPage.map((item: any) => (
                                             <div
-                                                className={styles.midrightitem} 
+                                                className={styles.midrightitem}
                                                 key={nanoid(6)} style={{ backgroundImage: `url('${item.image}')` }}
                                             >
                                                 <div className={styles.midrighttop}>
