@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NextPage } from 'next';
 
-import MainImage from '../../../../../public/profile/MainImage.webp';
+import MainImage from '../../../../../public/profile/mainImage.webp';
 import ArrowIcon from '../../../../../public/arrows/arrow-right.svg';
 import Org1 from '../../../../../public/profile/organizers/org1.png';
 import Org2 from '../../../../../public/profile/organizers/org2.png';
