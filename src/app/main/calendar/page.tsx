@@ -187,7 +187,7 @@ const MyCalendar: NextPage = () => {
 
 
     const inputHandler = (e: string) => {
-        if (e.length > 3 && !errorDate) {
+        if (e.length > 0 && !errorDate) {
             setIsDisabled(false)
         } else {
             setIsDisabled(true)
