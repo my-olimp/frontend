@@ -50,6 +50,9 @@ const News: NextPage = () => {
     useEffect(() => {
         async function getData() {
             const newsdata: any = await dispatch(GetNews(1))
+            while (true) {
+
+            }
             console.log(newsdata)
             const truedata: any = newsdata.payload.data.pages.map((item: any) => {
                 const obj = { ...item };

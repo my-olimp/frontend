@@ -61,7 +61,7 @@ export const PersonalInfoBlock: FC<props> = ({ setMode, userdata, tag }) => {
                     </ul>
                 </div>
             )}
-            {tag == 't' || 'c' && (
+            {(tag == 't' || tag == 'c') && (
                 <div className={`${styles.wrap} ${tag == 'c' ? `${styles.wrap_c}` : ''}`}>
                     <div className={styles.titleWrap}>
                         <h1>{tag == 't' ? "Личная информация" : "Данные"}</h1>

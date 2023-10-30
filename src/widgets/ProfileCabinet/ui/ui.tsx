@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import styles from './ui.module.scss'
 import { ProfileAvatar } from '@/widgets/ProfileAvatar/ui/ui';
 import { Achievments } from '@/widgets/Achievments/ui/ui';
@@ -17,7 +17,12 @@ interface props {
 }
 
 export const ProfileCabinet: FC<props> = ({ setMode, editMode, userdata }) => {
-    const tag: string = 'c'
+    const tag: string = 's'
+
+    useEffect(() => {
+        console.log(userdata)
+    }, [])
+
     return (
         <>
             {/* IF TEACHER */}
@@ -50,9 +55,9 @@ export const ProfileCabinet: FC<props> = ({ setMode, editMode, userdata }) => {
                         <Achievments />
                     </div>
                     <div className={styles.personalData}>
-                        <PersonalInfoBlock setMode={setMode} userdata={userdata} />
-                        <WorkBlock setMode={setMode} userdata={userdata} />
-                        <ContactsInfo setMode={setMode} userdata={userdata} />
+                        <PersonalInfoBlock setMode={setMode} userdata={userdata} tag={'s'}/>
+                        <WorkBlock setMode={setMode} userdata={userdata} tag={'s'}/>
+                        <ContactsInfo setMode={setMode} userdata={userdata}/>
                         {editMode !== '' &&
                             <>
                                 {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} userdata={userdata} /> : null}
