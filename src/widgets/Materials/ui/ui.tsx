@@ -13,6 +13,8 @@ interface props {
     urlprop?: string;
     overflow: boolean;
     profile?: boolean;
+    edit?: boolean;
+    olymp?: boolean;
 }
 
 export interface IMaterial {
@@ -29,7 +31,7 @@ export interface ITag {
     text: string;
 }
 
-export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, overflow, profile = false }) => {
+export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, overflow, profile = false, edit, olymp }) => {
     const [isMobile, setMobile] = useState(false);
     const [url, setUrl] = useState('');
     const scrollContainerRef = useRef(null);
@@ -81,7 +83,7 @@ export const Materials: FC<props> = ({ materialList, title, libMode, urlprop, ov
                 ref={scrollContainerRef}
             >
                 {materialList.map((material) => {
-                    return <MaterialCard key={nanoid(6)} material={material} urlprop={urlprop} overflow={overflow} />;
+                    return <MaterialCard key={nanoid(6)} profile={profile} olymp={olymp} material={material} urlprop={urlprop} edit={edit} overflow={overflow} />;
                 })}
             </div>
             {!isMobile && !profile &&

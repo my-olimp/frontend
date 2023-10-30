@@ -1,20 +1,28 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 import styles from './index.module.scss'
+import materialIcon from '../../../../public/materials/materialIcon.svg';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '../../../../public/materials/Search.svg'
+import Image from 'next/image';
+import useIsMobile from '@/hooks/UseIsMobile';
 import { IMaterial, Materials } from '@/widgets/Materials';
 import material from '../../../../public/materials/Materials.svg'
-import materialIcon from '../../../../public/materials/materialIcon.svg';
 import ArrowIcon from '../../../../public/arrows/arrow-right.svg';
-import DriveFileRenameOutlineOutlinedIcon from '@mui/icons-material/DriveFileRenameOutlineOutlined';
-import Image from 'next/image';
 import { nanoid } from 'nanoid';
 import Link from 'next/link'
 import { MaterialCardMobile } from '@/features/MaterialCardMobile';
-import useIsMobile from '@/hooks/UseIsMobile';
 
-const Olimpiads: NextPage = () => {
-    const isMobile = useIsMobile(800)
+const Olympiads: NextPage = () => {
+    const isMobile = useIsMobile(900)
+    const [text, setText] = useState('');
+
+
+    const inputHandler = (e: string) => {
+        setText(e)
+    }
 
     const materialList: IMaterial[] = [
         {
@@ -85,22 +93,71 @@ const Olimpiads: NextPage = () => {
         },
     ];
 
-    const tags = ['Математика', 'Планиметрия', 'Школьная программа']
-
     return (
         <div className={styles.wrap}>
-            <div className={styles.blockText}>
-                <span className={styles.title}>Олимпиады</span>
-                <Link href='/main'>
-                    <div className={styles.all}>
-                        <div className={styles.all__text}>Все олимпиады</div>
-                        <Image src={ArrowIcon.src} alt='arrow' width={20} height={20} />
+            {isMobile
+                ? (
+                    <div className={`${styles.topMobile} df jcsb aic`}>
+                        <div className={`${styles.topright} df aic`}>
+                            <div className={`${styles.inputbtn} df aic`}>
+                                <input
+                                    type="text"
+                                    maxLength={80}
+                                    value={text}
+                                    placeholder={'Поиск'}
+                                    onChange={(e) => inputHandler(e.target.value)}
+                                />
+                                <Image src={SearchIcon} alt='Search Icon' />
+                            </div>
+                            <div className={styles.btns}>
+                                <div className={`${styles.sort} df aic jcc`}>
+                                    <FormatListBulletedIcon />
+                                    <span>Сортировка</span>
+                                </div>
+                                <div className={`${styles.addbtn} df aic`}>
+                                    <AddIcon />
+                                    <span>Добавить</span>
+                                </div>
+                            </div>
+                            <span className={styles.title}>Олимпиады</span>
+                        </div>
                     </div>
-                </Link>
+                )
+                :
+                (
+                    <div className={`${styles.top} df jcsb aic`}>
+                        <span className={styles.title}>Олимпиады</span>
+                        <div className={`${styles.topright} df aic`}>
+                            <div className={`${styles.sort} df aic jcc`}>
+                                <FormatListBulletedIcon />
+                                <span>Сортировка</span>
+                            </div>
+                            <div className={`${styles.inputbtn} df aic`}>
+                                <Image src={SearchIcon} alt='Search Icon' />
+                                <input
+                                    type="text"
+                                    maxLength={80}
+                                    value={text}
+                                    placeholder={'Поиск'}
+                                    onChange={(e) => inputHandler(e.target.value)}
+                                />
+                            </div>
+                            <div className={`${styles.addbtn} df aic`}>
+                                <AddIcon />
+                                <span>Добавить</span>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+            <div className={styles.blockText}>
+                <span className={styles.titleL}>2023/2024</span>
             </div>
             {!isMobile ?
                 (
-                    <Materials materialList={materialList} title={'student'} profile={true} libMode={true} overflow={true} />
+                    <div className={styles.materials}>
+                        <Materials materialList={materialList} title={'student'} olymp={true} profile={true} libMode={true} overflow={true} />
+                    </div>
                 )
                 :
                 (
@@ -112,48 +169,23 @@ const Olimpiads: NextPage = () => {
                 )
             }
             <div className={styles.blockText}>
-                <span className={styles.title}>Материалы</span>
-                <Link href='/main'>
-                    <div className={styles.all}>
-                        <div className={styles.all__text}>Все</div>
-                        <Image src={ArrowIcon.src} alt='arrow' width={20} height={20} />
-                    </div>
-                </Link>
+                <span className={styles.titleL}>2022/2023</span>
             </div>
-            <div className={`${styles.materials} df aic`}>
-                <div className={`${styles.left} df jcc aic`}>
-                    <Image className={styles.image} src={material} alt='materials' />
-                </div>
-                <div className={styles.right}>
-                    <span>Статья</span>
-                    <p>Замечательные точки и прямые треугольника</p>
-                    <div className={`${styles.righttags} df aic fww`}>
-                        {tags.map((item: string) =>
-                            <div className={`${styles.rightitem} dib cw`} key={nanoid(6)}>
-                                {item}
-                            </div>
+            {!isMobile ?
+                (
+                    <Materials materialList={materialList} title={'student'} olymp={true} profile={true} libMode={true} overflow={true} />
+                )
+                :
+                (
+                    <div className={styles.materialMobile}>
+                        {materialList.slice(0, 4).map((item) =>
+                            <MaterialCardMobile key={nanoid(6)} material={item} />
                         )}
                     </div>
-                </div>
-            </div>
-            <div className={`${styles.materials} df aic`}>
-                <div className={`${styles.left} df jcc aic`}>
-                    <Image src={material} className={styles.image} alt='materials' />
-                </div>
-                <div className={styles.right}>
-                    <span>Статья</span>
-                    <p>Замечательные точки и прямые треугольника</p>
-                    <div className={`${styles.righttags} df aic fww`}>
-                        {tags.map((item: string) =>
-                            <div className={`${styles.rightitem} dib cw`} key={nanoid(6)}>
-                                {item}
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
+                )
+            }
         </div>
     )
 }
 
-export default Olimpiads;
+export default Olympiads;

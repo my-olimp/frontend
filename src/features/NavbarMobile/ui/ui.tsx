@@ -17,6 +17,8 @@ import styles from './ui.module.scss';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import InsertChartOutlinedRoundedIcon from '@mui/icons-material/InsertChartOutlinedRounded';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
+import SchoolIcon from '@mui/icons-material/School';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import WorkspacePremiumOutlinedIcon from '@mui/icons-material/WorkspacePremiumOutlined';
@@ -32,12 +34,20 @@ const sideBarElements = [
     { id: 4, name: 'Достижения', icon: <WorkspacePremiumOutlinedIcon />, rout: '/achievments', active: false },
 ];
 
+const sideBarElementsComitet = [
+    { id: 0, name: 'Главная', icon: <AccountCircleOutlinedIcon />, rout: 'main', active: true },
+    { id: 1, name: 'Олимпиады', icon: <SchoolIcon />, rout: '/olympiads', active: false },
+    { id: 2, name: 'Избранное', icon: <FavoriteBorderOutlinedIcon />, rout: '/favouritesComitet', active: false },
+    { id: 3, name: 'Редакция', icon: <EditCalendarIcon />, rout: '/redaction', active: false },
+];
+
 interface props {
     notifications: INotice[];
     navBarData: any;
     profile: Boolean;
+    userdata?: any;
 }
-export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) => {
+export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile, userdata }) => {
     const wrapRef = useRef(null);
     const isMobile = useIsMobile(420)
     const [showPopupNotifications, setShowPopupNotifications] = useState<boolean>(false);
@@ -132,7 +142,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile }) 
                         style={isOpen ? { transition: 'all .2s ease-in-out', width: '15rem' } : { transition: 'all .2s ease-in-out' }}
                     >
                         <span style={{ display: 'flex' }}>
-                            {sideBarElements.map((element: any) => (
+                            {(userdata?.account_type == 'c' ? sideBarElementsComitet : sideBarElements).map((element: any) => (
                                 <Link
                                     href={element.rout === 'main' ? '/profile' : `/profile${element.rout}`}
                                     key={element.id}

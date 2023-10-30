@@ -57,7 +57,7 @@ const MyCalendar: NextPage = () => {
     const [endTime, setEndTime] = useState<any>(dayjs('2022-04-17T15:30'));
     const [date, setDate] = useState<any>(dayjs(Date.now()))
     const [errorDate, setErrorDate] = useState<boolean>(false)
-    const [files, setFiles] = useState<any[]>([])
+    const [files, setFiles] = useState<any>([])
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -231,9 +231,9 @@ const MyCalendar: NextPage = () => {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const array = e.target.files
         // const narray = array && array.map((item) => item.fileLink = URL.createObjectURL(item))
-        const fileEls = array?.length ? [...files, ...(array)]?.slice(0, 5) : [];
+        const fileEls = array;
 
-        if (fileEls.length) {
+        if (fileEls?.length) {
             setFiles(fileEls)
         }
     };

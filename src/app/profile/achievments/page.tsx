@@ -107,7 +107,7 @@ const AchievmentsRout: NextPage = () => {
                                 <Image src={SearchIcon} alt='Search Icon' />
                                 <input
                                     type="text"
-                                    maxLength={30}
+                                    maxLength={80}
                                     value={text}
                                     placeholder={'Найти...'}
                                     onChange={(e) => inputHandler(e.target.value)}
@@ -118,7 +118,8 @@ const AchievmentsRout: NextPage = () => {
                                 <span>Добавить</span>
                             </div>
                         </div>
-                    </div><div className={styles.contentmenu}>
+                    </div>
+                    <div className={styles.contentmenu}>
                         <div className={`${styles.contenttop} df jcsb aic`}>
                             {tag == 'teacher' ? (
                                 <>
@@ -208,7 +209,7 @@ const AchievmentsRout: NextPage = () => {
                                 <div className={`${styles.inputbtn} df aic`}>
                                     <input
                                         type="text"
-                                        maxLength={30}
+                                        maxLength={80}
                                         value={text}
                                         placeholder={'Найти...'}
                                         onChange={(e) => inputHandler(e.target.value)}

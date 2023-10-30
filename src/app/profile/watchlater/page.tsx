@@ -103,7 +103,7 @@ const Favourites: NextPage = () => {
             </div>
             {!isMobile ?
                 (
-                    <Materials materialList={materialList} title={'student'} profile={true} libMode={true} overflow={true} />
+                    <Materials materialList={materialList} olymp={true} title={'student'} profile={true} libMode={true} overflow={true} />
                 )
                 :
                 (

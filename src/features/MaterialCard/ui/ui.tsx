@@ -11,8 +11,11 @@ interface Props {
     material: IMaterial;
     urlprop?: string;
     overflow?: boolean;
+    profile?: boolean;
+    edit?: boolean;
+    olymp?: boolean;
 }
-export const MaterialCard: FC<Props> = ({ material, urlprop, overflow }) => {
+export const MaterialCard: FC<Props> = ({ material, urlprop, overflow, profile, edit, olymp }) => {
     const [url, setUrl] = useState('');
 
     useEffect(() => {
@@ -21,14 +24,17 @@ export const MaterialCard: FC<Props> = ({ material, urlprop, overflow }) => {
     const mobile = true;
 
     return (
-        <div className={overflow ? styles.libraryWrap : styles.wrap}>
+        <div className={`${!overflow ? styles.wrap : profile ? `${styles.libraryWrap} ${styles.libraryWrap_profile}` : styles.libraryWrap} ${olymp ? styles.olymp : ''}`}>
+            {!olymp &&
             <div className={styles.tagWrap}>
                 {material.tags.map((tag) => {
                     return <MaterialChip key={tag.id} text={tag.text} />;
                 })}
             </div>
+            }
             <div className={styles.icon} style={{ backgroundImage: `url(${material.icon})` }}></div>
             <div className={styles.bottomWrap}>
+                {olymp && <div className={styles.tag1}>{material.tags[0].text}</div>}
                 <h1 className={styles.title}>{material.title}</h1>
                 <div className={styles.startWrap}>
                     {!mobile && (
@@ -42,7 +48,7 @@ export const MaterialCard: FC<Props> = ({ material, urlprop, overflow }) => {
                     )}
                 </div>
                 <div className={styles.btndiv}>
-                    <Link href={`${urlprop}`} className={styles.btn}>Посмотреть</Link>
+                    <Link href={`${urlprop}`} className={styles.btn}>{edit ? 'Редактировать' : 'Посмотреть'} </Link>
                 </div>
             </div>
         </div>

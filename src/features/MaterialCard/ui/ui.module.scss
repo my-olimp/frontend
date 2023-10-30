@@ -35,6 +35,15 @@
         opacity: 0;
     }
 
+    &_profile {
+        gap: 0;
+        justify-content: space-between;
+        min-width: 292px;
+        max-width: 292px;
+        height: 310px;
+    }
+
+
     &:hover:after {
         opacity: 1;
     }
@@ -68,6 +77,11 @@
     }
 }
 
+.olymp {
+    gap: 100px;
+    justify-content: flex-end;
+}
+
 .wrap {
     border-radius: 30px;
     display: flex;
@@ -88,6 +102,7 @@
     &:hover {
         background: linear-gradient(180deg, #0059ff 0%, #043ea8 100%);
     }
+
 
     &:after {
         float: left;
@@ -202,4 +217,13 @@
     .title {
         font-size: 13px;
     }
+}
+
+.tag1 {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: "SF_Medium";
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.32px;
+    padding-bottom: 3px;
 }

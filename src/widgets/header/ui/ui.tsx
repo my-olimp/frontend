@@ -3,6 +3,7 @@ import { NavBarDesktop } from '@/features/NavbarDesktop/';
 import { NavBarMobile } from '@/features/NavbarMobile';
 import { INotice } from '@/features/Notifications';
 import useIsMobile from '@/hooks/UseIsMobile';
+import { GetUser } from '@/store/features/auth-slice';
 import { RootState } from '@/store/store';
 import AutoStoriesOutlinedIcon from '@mui/icons-material/AutoStoriesOutlined';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -54,22 +55,19 @@ const notifications: INotice[] = [
     { id: 1, title: 'Пришли результаты ВСОШ по математике', date: '2023-08-28T11:12:55.395Z' },
 ];
 
-export const Header: FC<props> = ({ profile = false }) => {
+export const Header: FC<props> = ({ profile = false, userdata }) => {
     const isMobile = useIsMobile(900)
-    const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
-
-
-    useEffect(() => {}, [dispatch]);
 
     return (
         <>
             {isMobile ? (
-                <NavBarMobile notifications={notifications} navBarData={navBarData} profile={profile} />
+                <NavBarMobile notifications={notifications} navBarData={navBarData} profile={profile} userdata={{account_type: 'c'}} />
             ) : (
                 <NavBarDesktop
                     notifications={notifications}
                     navBarData={navBarData}
                     profile={profile}
+                    userdata={{account_type: 'c'}}
                 />
             )}
         </>

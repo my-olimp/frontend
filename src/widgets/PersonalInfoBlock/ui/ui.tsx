@@ -62,9 +62,9 @@ export const PersonalInfoBlock: FC<props> = ({ setMode, userdata, tag }) => {
                 </div>
             )}
             {tag == 't' || 'c' && (
-                <div className={styles.wrap}>
+                <div className={`${styles.wrap} ${tag == 'c' ? `${styles.wrap_c}` : ''}`}>
                     <div className={styles.titleWrap}>
-                        <h1>Личная информация</h1>
+                        <h1>{tag == 't' ? "Личная информация" : "Данные"}</h1>
                         <div onClick={() => setMode('personal')}>
                             <DriveFileRenameOutlineOutlinedIcon />
                         </div>

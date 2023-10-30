@@ -174,7 +174,7 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
                     ref={modalRef}
                     onClick={(event) => handleClickOutSide(event)}>
                     <form className={styles.form} onSubmit={handleSubmit(onFormSubmit)}>
-                        <h6>Личные данные</h6>
+                        <h6>{userdata?.account_type == 't' ? 'Личные данные' : 'Данные'}</h6>
                         <span className={styles.inputs}>
                             <TextField
                                 type="text"

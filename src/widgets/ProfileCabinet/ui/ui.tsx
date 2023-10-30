@@ -17,14 +17,14 @@ interface props {
 }
 
 export const ProfileCabinet: FC<props> = ({ setMode, editMode, userdata }) => {
-    const tag: string = 't'
+    const tag: string = 'c'
     return (
         <>
             {/* IF TEACHER */}
             {tag == 't' && (
                 <>
                     <div className={`${styles.left} df fdc`}>
-                        <ProfileAvatar setMode={setMode} />
+                        <ProfileAvatar setMode={setMode}/>
                         <Achievments setMode={setMode} tag={tag} />
                     </div>
                     <div className={styles.personalData}>
@@ -68,7 +68,7 @@ export const ProfileCabinet: FC<props> = ({ setMode, editMode, userdata }) => {
             {tag == 'c' && (
                 <>
                     <div className={`${styles.left} df fdc`}>
-                        <ProfileAvatar setMode={setMode} />
+                        <ProfileAvatar setMode={setMode} isComitet={true}/>
                     </div>
                     <div className={styles.personalData}>
                         <PersonalInfoBlock setMode={setMode} userdata={userdata} tag={tag} />

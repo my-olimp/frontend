@@ -1,0 +1,422 @@
+.container {
+    padding: 5px 66px 30px 18px;
+    @media (max-width: 900px) {
+        padding: 0px 6px 30px 6px;
+    }
+
+    .title {
+        color: #3d3d3c;
+        font-family: "SF_Medium";
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: 0.64px;
+        padding-left: 25px;
+        padding-bottom: 20px;
+    }
+    
+    .name {
+        color: #222;
+        font-family: "SF_Medium";
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 0.44px;
+    }
+    
+    .input {
+        color: #222;
+        font-family: "SF_Medium";
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.44px;
+        outline: 0;
+        width: 100%;
+        resize: none;
+    }
+    
+    .blocks {
+        h2 {
+            color: #757575;
+            font-family: "SF_Medium";
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 0.48px;
+            padding-bottom: 15px;
+        }
+        article {
+            padding: 20px 25px 25px 25px;
+            border-radius: 30px;
+            background: #fff;
+        }
+    
+        &__title {
+            padding: 20px 25px 34px 25px;
+        }
+    
+        &__tags {
+            padding: 20px 25px 20px 25px;
+            .name {
+                padding-bottom: 23px;
+            }
+        }
+    
+        .mainBlock {
+            display: flex;
+            gap: 15px;
+        }
+    
+        .leftBlock {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1 1 auto;
+    
+            .tags {
+                display: flex;
+                gap: 8px;
+            }
+    
+            .tag {
+                border-radius: 20.332px;
+                border: 0.565px solid rgba(0, 0, 0, 0.4);
+                padding: 4px 12px;
+                color: #222;
+                font-family: "SF_Regular";
+                font-size: 20px;
+                font-weight: 400;
+            }
+    
+            .addTag {
+                color: #222;
+                font-family: "SF_Regular";
+                font-size: 20px;
+                font-weight: 400;
+                padding: 4px 12px;
+                width: 130px;
+                border-radius: 20.332px;
+                border: 0.565px solid rgba(0, 0, 0, 0.4);
+                cursor: pointer;
+                background: transparent;
+                &::placeholder {
+                    color: #999;
+                }
+            }
+        }
+    
+        .rightBlock {
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 9px;
+            }
+    
+            .imageContainer {
+                width: 225px;
+                height: 204px;
+                border-radius: 15px;
+                background-color: #3579f8;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                display: flex;
+                background-size: cover;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                p {
+                    position: absolute;
+                    color: #cddfff;
+                    text-align: center;
+                    font-family: "SF_Regular";
+                    font-size: 15px;
+                    font-weight: 400;
+                }
+    
+            }
+            .imageContainer_S {
+                width: 225px;
+                height: 204px;
+                border-radius: 15px;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                position: relative;
+            }
+            .image {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 15px;
+                cursor: pointer;
+                object-fit: cover;
+            }
+    
+            .under {
+                display: flex;
+                gap: 5px;
+    
+                .publish {
+                    color: #fff;
+                    font-family: "SF_Medium";
+                    font-size: 16px;
+                    cursor: pointer;
+                    font-weight: 500;
+                    border-radius: 8px;
+                    padding: 8px 36px;
+                    background: #3579f8;
+                    transition: all 0.3s ease 0s;
+                    [disabled] {
+                        background: #9cbfff;
+                    }
+                }
+    
+                .eye {
+                    border-radius: 5px;
+                    cursor: pointer;
+                    border: 0.5px solid rgba(117, 117, 117, 0.1);
+                    background: #fff;
+                    padding: 10px 12px;
+                    .icon {
+                        color: #3579f8;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.screen {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20000;
+    background-color: white;
+    .article {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        .articleContainer {
+            width: 70vw;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 40px;
+        }
+    }
+    
+    .title {
+        .titletext {
+            width: 60%;
+            font-size: 54px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+    
+        .date {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 19px;
+            letter-spacing: 2.88px;
+        }
+    }
+    
+    .tags {
+        margin-top: 20px;
+    
+        .tagsbtn {
+            border-radius: 36px;
+            border: 1px solid rgba(0, 0, 0, 0.40);
+            font-size: 18px;
+            padding: 4.5px 10px;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+    }
+    
+    .subtitle {
+        border-top: 1px solid rgba(0, 0, 0, 0.40);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.40);
+        padding: 13px 0px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    
+        * {
+            color: rgba(0, 0, 0, 0.40);
+        }
+    
+        .subtitlecomments,
+        .bookmark,
+        .upload {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    
+        .bookmark,
+        .upload {
+            font-size: 30px;
+            transition: .2s ease;
+    
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    
+        .subtitlecomments {
+            svg {
+                font-size: 30px;
+                transition: .2s ease;
+    
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+    
+    .image {
+        margin-bottom: 20px;
+    
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .close {
+        font-size: 45px;
+        cursor: pointer;
+        position: relative;
+        top: 30px;
+
+    }
+    
+    .bottom {
+        .commentscount {
+            font-size: 24px;
+            font-weight: 600;
+        }
+    
+        .commentdiv {
+            margin-top: 7.5px;
+            border-radius: 12px;
+            border: 2px solid rgba(34, 34, 34, 0.40);
+            padding: 12.5px;
+    
+            .commenttop {
+                .user {
+                    .useravatar {
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        background-color: #62A1FF;
+                        margin-right: 6px;
+                    }
+    
+                    .username {
+                        color: #797979;
+                        font-size: 16px;
+                    }
+                }
+    
+                input {
+                    margin-top: 10px;
+                    font-size: 17px;
+                    width: 100%;
+                    padding-bottom: 25px;
+                    box-sizing: border-box;
+    
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+    
+            .commentbottom {
+                .btn {
+                    border-radius: 13.335px;
+                    padding: 12px 25px;
+                    font-size: 17px;
+                    color: white;
+                    background-color: #62A1FF;
+                    transition: .2s ease;
+    
+                    &:not([disabled]):hover {
+                        transform: scale(1.05);
+                        cursor: pointer;
+                    }
+    
+                    &:disabled {
+                        background: var(--20, #A8C6FC);
+                    }
+                }
+            }
+        }
+    
+        .textblockskeleton {
+            span {
+                border-radius: 5px;
+                height: 12.5px;
+            }
+        }
+    }
+    
+    @media (max-width: 900px) {
+        .article {
+            .container {
+                width: 90vw;
+            }
+        }
+    
+        .title {
+            .titletext {
+                font-size: 40px;
+            }
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .title {
+            .titletext {
+                font-size: 28px;
+            }
+    
+            .date {
+                font-size: 18px;
+            }
+        }
+    
+        .subtitle {
+    
+            .bookmark,
+            .upload {
+                font-size: 23.5px;
+            }
+    
+            .subtitlecomments {
+                svg {
+                    font-size: 23.5px;
+                }
+            }
+        }
+    
+        .bottom {
+            .commentscount {
+                font-size: 18px;
+            }
+    
+            .commentdiv {
+                .commentbottom {
+                    .btn {
+                        padding: 8px 18px;
+                        font-size: 15px;
+                        border-radius: 8px;
+                    }
+                }
+            }
+        }
+    }
+}
