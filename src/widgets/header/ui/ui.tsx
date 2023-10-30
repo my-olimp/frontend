@@ -61,13 +61,13 @@ export const Header: FC<props> = ({ profile = false, userdata }) => {
     return (
         <>
             {isMobile ? (
-                <NavBarMobile notifications={notifications} navBarData={navBarData} profile={profile} userdata={{account_type: 'c'}} />
+                <NavBarMobile notifications={notifications} navBarData={navBarData} profile={profile} userdata={userdata} />
             ) : (
                 <NavBarDesktop
                     notifications={notifications}
                     navBarData={navBarData}
                     profile={profile}
-                    userdata={{account_type: 'c'}}
+                    userdata={userdata}
                 />
             )}
         </>
