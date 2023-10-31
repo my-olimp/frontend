@@ -114,7 +114,7 @@ export const NavBarDesktop: FC<props> = ({ navBarData, notifications, profile, u
                         <div className={styles.bar}></div>
                     </div>
                 </div>
-                <Logo />
+                <Logo main={true}/>
                 {!profile &&
                     navBarData.map((data) => (
                         <Link

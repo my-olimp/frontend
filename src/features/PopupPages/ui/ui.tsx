@@ -40,7 +40,8 @@ export const PopupPages: FC<PropsPopupPages> = ({ setShow }) => {
                     <NavbarAvatar size={44} />
                 </div>
                 <div className={styles.blockText}>
-                    <h6 className={styles.title}>{user?.first_name} {user?.second_name}</h6>
+                    {/* <h6 className={styles.title}>{user?.first_name} {user?.second_name}</h6> */}
+                    <h6 className={styles.title}>Максим Ефремов</h6>
                     <p className={styles.text}>{user?.account_type === 's' ? 'Ученик' : 'Учитель'}</p>
                 </div>
             </div>
@@ -54,12 +55,12 @@ export const PopupPages: FC<PropsPopupPages> = ({ setShow }) => {
                     <img className={styles.link__icon} src={homeIcon.src} alt="" />
                     <p className={styles.link__text}>Главная</p>
                 </Link>
-                <Link href='/main' className={`${styles.link} ${pathName === '/main' ? `${styles._active}` : ''}`}>
+                <Link href='/main' className={`${styles.link} ${pathName === '/main/calendar' ? `${styles._active}` : ''}`}>
                     <img className={styles.link__icon} src={goalIcon.src} alt="" />
                     <p className={styles.link__text}>Цели</p>
                 </Link>
                 <div className={styles.line}></div>
-                <Link href='/main' className={`${styles.link} ${pathName === '/main' ? `${styles._active}` : ''}`}>
+                <Link href='/main' className={`${styles.link} ${pathName === '/main/news' ? `${styles._active}` : ''}`}>
                     <img className={styles.link__icon} src={documentsIcon.src} alt="" />
                     <p className={styles.link__text}>Документы</p>
                 </Link>

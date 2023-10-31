@@ -25,10 +25,14 @@ type Inputs = {
 };
 
 export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
-    const [city, setCity] = useState(userdata?.city?.name || '');
-    const [region, setRegion] = useState(userdata?.region?.name || '');
-    const [grade, setGrade] = useState(userdata?.grade || 'Не указано');
-    const [subject, setSubject]: any = useState(userdata?.school?.name || 'Не указано');
+    // const [city, setCity] = useState(userdata?.city?.name || '');
+    // const [region, setRegion] = useState(userdata?.region?.name || '');
+    // const [grade, setGrade] = useState(userdata?.grade || 'Не указано');
+    // const [subject, setSubject]: any = useState(userdata?.school?.name || 'Не указано');
+    const [city, setCity] = useState('Москва');
+    const [region, setRegion] = useState('Москва');
+    const [grade, setGrade] = useState('11 класс');
+    const [subject, setSubject]: any = useState('ГБОУ Цифровая школа');
     const [items, setItems] = useState('Математика, физика, астрономия');
 
     const modalRef = useRef<HTMLDivElement>(null);
@@ -48,7 +52,7 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
     const onFormSubmit: SubmitHandler<Inputs> = () => { };
 
     const subjectData = [
-        { id: 0, text: 'МБОУ СШ #1', where: ['Ивановская обл', 'Тейковский р-н', 'г. Тейково'] },
+        { id: 0, text: 'ГБОУ Цифровая школа', where: ['Ивановская обл', 'Тейковский р-н', 'г. Тейково'] },
         { id: 1, text: 'МБОУ СШ #2', where: ['Ивановская обл', 'Тейковский р-н', 'г. Тейково'] },
         { id: 2, text: 'МБОУ СШ #3', where: ['Ивановская обл', 'Тейковский р-н', 'г. Тейково'] },
         { id: 3, text: 'Лицей № 153', where: ['Ивановская обл', 'Тейковский р-н', 'г. Тейково'] },
@@ -85,7 +89,8 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
                             variant="outlined"
                             label="Регион"
                             onChange={(e) => regionHandler(e.target.value)}
-                            value={region ? region.name : ''}
+                            // value={region ? region.name : ''}
+                            value={region ? region : ''}
                             className={styles.input}
                         />
                         <TextField
@@ -93,7 +98,8 @@ export const EditWorkDataModal: FC<props> = ({ setMode, tag, userdata }) => {
                             variant="outlined"
                             label="Город/населенный пункт"
                             onChange={(e) => cityHandler(e.target.value)}
-                            value={city ? city.name : ''}
+                            // value={city ? city.name : ''}
+                            value={city ? city : ''}
                             className={styles.input}
                         />
                         {/* <Select

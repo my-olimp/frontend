@@ -62,19 +62,24 @@ export const WorkBlock: FC<props> = ({ setMode, userdata, tag }) => {
                     <ul className={styles.infoWrap}>
                         <li>
                             <h4>Регион</h4>
-                            <h5>{userdata && `${getValue(userdata?.region?.name)}`}</h5>
+                            {/* <h5>{userdata && `${getValue(userdata?.region?.name)}`}</h5> */}
+                            <h5>Москва</h5>
                         </li>
                         <li>
                             <h4>Город</h4>
-                            <h5>{userdata && `${getValue(userdata?.city?.name)}`}</h5>
+                            {/* <h5>{userdata && `${getValue(userdata?.city?.name)}`}</h5> */}
+                            <h5>Москва</h5>
                         </li>
                         <li>
                             <h4>Учебное заведение</h4>
-                            <h5>{userdata && `${getValue(userdata?.school?.name)}`}</h5>
+                            {/* <h5>{userdata && `${getValue(userdata?.school?.name)}`}</h5> */}
+                            <h5>ГБОУ Цифровая школа</h5>
+
                         </li>
                         <li>
                             <h4>Класс</h4>
-                            <h5>{userdata && `${getValue(userdata?.grade)}`}</h5>
+                            {/* <h5>{userdata && `${getValue(userdata?.grade)}`}</h5> */}
+                            <h5>11 класс</h5>
                         </li>
                     </ul>
                 </>

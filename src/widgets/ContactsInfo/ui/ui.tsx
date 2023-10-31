@@ -33,7 +33,8 @@ export const ContactsInfo: FC<props> = ({ setMode, userdata }) => {
             <ul className={styles.infoWrap}>
                 <li>
                     <h4>Почта</h4>
-                    <h5>{getValue(userdata?.email)}</h5>
+                    {/* <h5>{getValue(userdata?.email)}</h5> */}
+                    <h5>wdwkpdpw@gmail.r1u1111</h5>
                 </li>
                 {/* <li>
                     <h1>Телефон</h1>

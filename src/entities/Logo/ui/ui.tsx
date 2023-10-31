@@ -6,11 +6,12 @@ import styles from './ui.module.scss';
 
 interface props {
     small?: Boolean;
+    main?: Boolean;
 }
 
-const Logo: FC<props> = ({small}) => {
+const Logo: FC<props> = ({small, main}) => {
     return (
-        <Link href={'/'} className={styles.link} tabIndex={-1}>
+        <Link href={main ? '/main' : '/'} className={styles.link} tabIndex={-1}>
             <Image
                 src={myOlimpLogo.src}
                 alt={'MyOlimp'}

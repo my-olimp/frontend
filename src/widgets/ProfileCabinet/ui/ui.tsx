@@ -60,9 +60,9 @@ export const ProfileCabinet: FC<props> = ({ setMode, editMode, userdata }) => {
                         <ContactsInfo setMode={setMode} userdata={userdata}/>
                         {editMode !== '' &&
                             <>
-                                {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} userdata={userdata} /> : null}
-                                {editMode === 'work' ? <EditWorkDataModal setMode={setMode} userdata={userdata} /> : null}
-                                {editMode === 'contact' ? <EditContactModal setMode={setMode} userdata={userdata} /> : null}
+                                {editMode === 'personal' ? <EditPersonalDataModal setMode={setMode} userdata={userdata} tag={tag}/> : null}
+                                {editMode === 'work' ? <EditWorkDataModal setMode={setMode} userdata={userdata} tag={tag}/> : null}
+                                {editMode === 'contact' ? <EditContactModal setMode={setMode} userdata={userdata} tag={tag}/> : null}
                                 {editMode === 'avatar' ? <EditAvatarModal setMode={setMode} /> : null}
                             </>
                         }

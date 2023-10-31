@@ -34,13 +34,14 @@ type Inputs = {
     additionalName: string;
 };
 
-export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
-    const [firstname, setFirstname] = useState('');
-    const [secondname, setSecondname] = useState('');
-    const [thirdname, setThirdname] = useState('');
-    const [snils, setSnils] = useState('');
-    const [gender, setGender] = useState('Не указано');
-    const [date, setDate] = useState<Dayjs>();
+export const EditPersonalDataModal: FC<props> = ({ setMode, userdata, tag }) => {
+    const [firstname, setFirstname] = useState('Максим');
+    const [secondname, setSecondname] = useState('Ефремов');
+    const [thirdname, setThirdname] = useState('Олегович');
+    const [snils, setSnils] = useState('842-461-435-95');
+    const [gender, setGender] = useState('male');
+    // const [date, setDate] = useState<Dayjs>();
+    const [date, setDate] = useState<Dayjs>(dayjs('02.12.2004'));
     const modalRef = useRef<HTMLDivElement>(null);
 
     const dispatch = useDispatch<ThunkDispatch<RootState, any, AnyAction>>();
@@ -69,10 +70,10 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
     }, []);
 
     useEffect(() => {
-        setFirstname(userdata?.first_name || '')
-        if (userdata?.gender == null) setGender('Не указано')
-        if (userdata?.gender == 'm') setGender('Мужчина')
-        if (userdata?.gender == 'f') setGender('Женщина')
+        // setFirstname(userdata?.first_name || '')
+        // if (userdata?.gender == null) setGender('Не указано')
+        // if (userdata?.gender == 'm') setGender('male')
+        // if (userdata?.gender == 'f') setGender('female')
     }, []);
 
     const onFormSubmit: SubmitHandler<Inputs> = () => { };
@@ -90,8 +91,8 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
 
     const genderCheck = (e: string) => {
         if (e == '') return null
-        if (e == 'Мужчина') return 'm'
-        return 'f'
+        if (e == 'male') return 'male'
+        return 'female'
     }
 
     async function sendData() {
@@ -111,7 +112,7 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
 
     return (
         <>
-            {userdata?.account_type == 's' && (
+            {tag == 's' && (
                 <div
                     className={styles.screen}
                     ref={modalRef}
@@ -148,6 +149,7 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
                                 className={styles.calendar}
                                 format={'DD/MM/YYYY'}
                                 label="Дата рождения"
+                                value={date}
                             />
                             <TextField
                                 type="text"
@@ -168,7 +170,7 @@ export const EditPersonalDataModal: FC<props> = ({ setMode, userdata }) => {
                     </form>
                 </div>
             )}
-            {userdata?.account_type == 't' || 'c' && (
+            {(userdata?.account_type == 't') || (userdata?.account_type == 'c') && (
                 <div
                     className={styles.screen}
                     ref={modalRef}

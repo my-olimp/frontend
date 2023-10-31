@@ -32,19 +32,22 @@ export const PersonalInfoBlock: FC<props> = ({ setMode, userdata, tag }) => {
                     <ul className={styles.infoWrap}>
                         <li>
                             <h4>ID</h4>
-                            <h5>{getValue(userdata?.id)}</h5>
+                            {/* <h5>{getValue(userdata?.id)}</h5> */}
+                            <h5>202301190</h5>
                         </li>
                         <li>
                             <h4>ФИО</h4>
-                            <h5>{userdata && getName(userdata)}</h5>
+                            {/* <h5>{userdata && getName(userdata)}</h5> */}
+                            <h5>Ефремов Максим Олегович</h5>
                         </li>
                         <li>
                             <h4>Дата рождения</h4>
-                            <h5>{getValue(userdata?.data_of_birth)}</h5>
+                            {/* <h5>{getValue(userdata?.data_of_birth)}</h5> */}
+                            <h5>02.12.2004</h5>
                         </li>
                         <li>
                             <h4>Пол</h4>
-                            <h5>
+                            {/* <h5>
                                 {userdata &&
                                     `${userdata.gender === 'm'
                                         ? 'Мужской'
@@ -52,11 +55,13 @@ export const PersonalInfoBlock: FC<props> = ({ setMode, userdata, tag }) => {
                                             ? 'Женский'
                                             : 'Не указано'
                                     }`}
-                            </h5>
+                            </h5> */}
+                            <h5>Мужской</h5>
                         </li>
                         <li>
                             <h4>СНИЛС</h4>
-                            <h5>{userdata && getValue(userdata?.SNILS)}</h5>
+                            {/* <h5>{userdata && getValue(userdata?.SNILS)}</h5> */}
+                            <h5>842-461-435-95</h5>
                         </li>
                     </ul>
                 </div>
