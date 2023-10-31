@@ -19,7 +19,7 @@ const Grade: NextPage = () => {
     const isMobile = useIsMobile(700)
     const isTablet = useIsMobile(900)
 
-    const tag = 'teacher'
+    const tag: string = 's'
 
     const [firstData, setFirstData]: any[] = useState([]);
     const [secondData, setSecondData]: any[] = useState([]);
@@ -106,8 +106,8 @@ const Grade: NextPage = () => {
             <div className={`${styles.left} df fdc`}>
                 <div className={`${styles.lefttop} df fdc`}>
                     <div className={styles.lefttoptext}>
-                        <span>Здравствуйте, Иван!</span>
-                        {tag !== 'teacher'
+                        <span>Здравствуйте, Максим!</span>
+                        {tag !== 't'
                             ? <p>Самое время брать и всерос с перечнем и поступать в вуз мечты на бюджет!</p>
                             : <p>Самое время помочь ученикам брать всерос и перечневые олимпиады.
                                 Ознакомьтесь со статистикой.</p>
@@ -115,82 +115,86 @@ const Grade: NextPage = () => {
                     </div>
                     <Image src={ProgrammerIcon} className={styles.icon} alt='Programmer' />
                 </div>
-                {isSmallDesktop ?
-                    (<div className={`${styles.groups} df fdc`}>
-                        <div className={`${styles.groupstop} df jcsb aic`}>
-                            <span>Группы</span>
-                            <div className={`${styles.groupstopbtn} dib cp cw`}>Добавить</div>
-                            <Link href='/main'>
-                                <div className={styles.all}>
-                                    <div className={styles.all__text}>Все</div>
-                                    <Image src={ArrowIcon.src} alt='arrow' width={20} height={20} />
+                {tag == 't' && (
+                    <>
+                        {isSmallDesktop ?
+                            (<div className={`${styles.groups} df fdc`}>
+                                <div className={`${styles.groupstop} df jcsb aic`}>
+                                    <span>Группы</span>
+                                    <div className={`${styles.groupstopbtn} dib cp cw`}>Добавить</div>
+                                    <Link href='/main'>
+                                        <div className={styles.all}>
+                                            <div className={styles.all__text}>Все</div>
+                                            <Image src={ArrowIcon.src} alt='arrow' width={20} height={20} />
+                                        </div>
+                                    </Link>
                                 </div>
-                            </Link>
-                        </div>
-                        {isMobile ?
-                            (
-                                <div className={styles.groupsMobile}>
-                                    <div>
-                                        {data.slice(0, 3).map((item: any) => (
-                                            <div className={`${styles.groupitem} df aic`} key={item.id}>
-                                                <div className={styles.block}>
-                                                    <div className={`${styles.groupicon} df jcc aic`}>
-                                                        <Image src={item.icon} alt='rotated icon' width={52} height={52} />
+                                {isMobile ?
+                                    (
+                                        <div className={styles.groupsMobile}>
+                                            <div>
+                                                {data.slice(0, 3).map((item: any) => (
+                                                    <div className={`${styles.groupitem} df aic`} key={item.id}>
+                                                        <div className={styles.block}>
+                                                            <div className={`${styles.groupicon} df jcc aic`}>
+                                                                <Image src={item.icon} alt='rotated icon' width={52} height={52} />
+                                                            </div>
+                                                            <div className={`${styles.grouptext} df fdc`}>
+                                                                <p>{item.text}</p>
+                                                                <span>{`${item.members} участника`}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div className={styles.addIcon}>
+                                                            <Image src={AddIcon.src} alt='add' width={50} height={50} />
+                                                        </div>
                                                     </div>
-                                                    <div className={`${styles.grouptext} df fdc`}>
-                                                        <p>{item.text}</p>
-                                                        <span>{`${item.members} участника`}</span>
-                                                    </div>
-                                                </div>
-                                                <div className={styles.addIcon}>
-                                                    <Image src={AddIcon.src} alt='add' width={50} height={50} />
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )
-                            :
-                            ((<div className={styles.groupsTablet}>
-                                <div className={styles.groups1Column}>
-                                    {data.slice(0, 3).map((item: any) => (
-                                        <div className={`${styles.groupitem} df aic`} key={item.id}>
-                                            <div className={styles.block}>
-                                                <div className={`${styles.groupicon} df jcc aic`}>
-                                                    <Image src={item.icon} alt='rotated icon' width={52} height={52} />
-                                                </div>
-                                                <div className={`${styles.grouptext} df fdc`}>
-                                                    <p>{item.text}</p>
-                                                    <span>{`${item.members} участника`}</span>
-                                                </div>
-                                            </div>
-                                            <div className={styles.addIcon}>
-                                                <Image src={AddIcon.src} alt='add' width={50} height={50} />
+                                                ))}
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                                <div className={styles.groups2Column}>
-                                    {data.slice(3, 6).map((item: any) => (
-                                        <div className={`${styles.groupitem} df aic`} key={item.id}>
-                                            <div className={styles.block}>
-                                                <div className={`${styles.groupicon} df jcc aic`}>
-                                                    <Image src={item.icon} alt='rotated icon' width={52} height={52} />
+                                    )
+                                    :
+                                    ((<div className={styles.groupsTablet}>
+                                        <div className={styles.groups1Column}>
+                                            {data.slice(0, 3).map((item: any) => (
+                                                <div className={`${styles.groupitem} df aic`} key={item.id}>
+                                                    <div className={styles.block}>
+                                                        <div className={`${styles.groupicon} df jcc aic`}>
+                                                            <Image src={item.icon} alt='rotated icon' width={52} height={52} />
+                                                        </div>
+                                                        <div className={`${styles.grouptext} df fdc`}>
+                                                            <p>{item.text}</p>
+                                                            <span>{`${item.members} участника`}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className={styles.addIcon}>
+                                                        <Image src={AddIcon.src} alt='add' width={50} height={50} />
+                                                    </div>
                                                 </div>
-                                                <div className={`${styles.grouptext} df fdc`}>
-                                                    <p>{item.text}</p>
-                                                    <span>{`${item.members} участника`}</span>
-                                                </div>
-                                            </div>
-                                            <div className={styles.addIcon}>
-                                                <Image src={AddIcon.src} alt='add' width={50} height={50} />
-                                            </div>
+                                            ))}
                                         </div>
-                                    ))}
-                                </div>
-                            </div>))}
-                    </div>)
-                    : ""}
+                                        <div className={styles.groups2Column}>
+                                            {data.slice(3, 6).map((item: any) => (
+                                                <div className={`${styles.groupitem} df aic`} key={item.id}>
+                                                    <div className={styles.block}>
+                                                        <div className={`${styles.groupicon} df jcc aic`}>
+                                                            <Image src={item.icon} alt='rotated icon' width={52} height={52} />
+                                                        </div>
+                                                        <div className={`${styles.grouptext} df fdc`}>
+                                                            <p>{item.text}</p>
+                                                            <span>{`${item.members} участника`}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className={styles.addIcon}>
+                                                        <Image src={AddIcon.src} alt='add' width={50} height={50} />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>))}
+                            </div>)
+                            : ""}
+                    </>
+                )}
                 <div className={`${styles.leftbottom} df fdc`}>
                     {isTablet ? (
                         <>
@@ -200,14 +204,14 @@ const Grade: NextPage = () => {
                                     <div className={styles.period}>
                                         <span>Период с </span>
                                         <MobileDatePicker
-                                            onChange={(newDate) => {setDateStart1(dayjs(newDate as Dayjs)); setDates1([newDate, dateEnd1])}}
+                                            onChange={(newDate) => { setDateStart1(dayjs(newDate as Dayjs)); setDates1([newDate, dateEnd1]) }}
                                             className={styles.calendar}
                                             format={'DD.MM.YYYY'}
                                             value={dateStart1}
                                         />
                                         <span> по </span>
                                         <MobileDatePicker
-                                            onChange={(newDate) => {setDateEnd1(dayjs(newDate as Dayjs)); setDates1([dateStart1, newDate])}}
+                                            onChange={(newDate) => { setDateEnd1(dayjs(newDate as Dayjs)); setDates1([dateStart1, newDate]) }}
                                             className={styles.calendar}
                                             format={'DD.MM.YYYY'}
                                             value={dateEnd1}
@@ -219,14 +223,14 @@ const Grade: NextPage = () => {
                                     <div className={styles.period}>
                                         <span>Период с </span>
                                         <MobileDatePicker
-                                            onChange={(newDate) => {setDateStart2(dayjs(newDate as Dayjs)); setDates2([newDate, dateEnd2])}}
+                                            onChange={(newDate) => { setDateStart2(dayjs(newDate as Dayjs)); setDates2([newDate, dateEnd2]) }}
                                             className={styles.calendar}
                                             format={'DD.MM.YYYY'}
                                             value={dateStart2}
                                         />
                                         <span> по </span>
                                         <MobileDatePicker
-                                            onChange={(newDate) => {setDateEnd2(dayjs(newDate as Dayjs)); setDates2([dateStart1, newDate])}}
+                                            onChange={(newDate) => { setDateEnd2(dayjs(newDate as Dayjs)); setDates2([dateStart1, newDate]) }}
                                             className={styles.calendar}
                                             format={'DD.MM.YYYY'}
                                             value={dateEnd2}

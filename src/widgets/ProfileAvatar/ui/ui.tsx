@@ -28,7 +28,8 @@ export const ProfileAvatar: FC<props> = ({ setMode, isComitet }) => {
                     />
                 )}
             </span>
-            <h4 className={styles.name}>{`${user?.second_name} ${user?.first_name} ${user?.third_name}`}</h4>
+            {/* <h4 className={styles.name}>{`${user?.second_name} ${user?.first_name} ${user?.third_name}`}</h4> */}
+            <h4 className={styles.name}>Ефремов Максим Олегович</h4>
             <span className={styles.buttonWrap}>
                 <button onClick={() => setMode('avatar')} className={styles.changeButton}>Изменить</button>
                 <button className={styles.deleteButton}>Удалить</button>

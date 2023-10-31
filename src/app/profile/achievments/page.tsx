@@ -20,7 +20,7 @@ const AchievmentsRout: NextPage = () => {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
     const debouncedsearch = useDebounce(dataSearch, 500)
-    const [tag, setTag] = useState('teacher');
+    const [tag, setTag] = useState('s');
 
     const item: any = [
         { id: 0, text: 'Московская математическая олимпида', subject: 'Математика', status: 'Призер', points: '230', date: '06.02.2022' },
@@ -42,7 +42,7 @@ const AchievmentsRout: NextPage = () => {
 
 
     useEffect(() => {
-        tag == 'teacher' ? setItemTeacherData(teacherItem) : setItemData(item)
+        tag == 't' ? setItemTeacherData(teacherItem) : setItemData(item)
     }, [])
 
     const inputHandler = (e: string) => {
@@ -54,7 +54,7 @@ const AchievmentsRout: NextPage = () => {
 
     function dataSearch(text: string) {
         if (text === '') {
-            if (tag == 'teacher') {
+            if (tag == 't') {
                 setItemTeacherData(teacherItem)
                 setLoading(false)
                 return;
@@ -64,7 +64,7 @@ const AchievmentsRout: NextPage = () => {
             return;
         }
         const searchText = text.toLowerCase();
-        if (tag == 'teacher') {
+        if (tag == 't') {
             const filteredTeacherData = itemTeacherData.filter((item: any) => {
                 for (const key in item) {
                     if (Object.prototype.hasOwnProperty.call(item, key) && item[key].toString().toLowerCase().includes(searchText)) {
@@ -97,7 +97,7 @@ const AchievmentsRout: NextPage = () => {
             {!isMobile ?
                 (<>
                     <div className={`${styles.top} df jcsb aic`}>
-                        <span className={styles.title}>{`Результаты${tag == 'teacher' ? ' учеников' : ''}`}</span>
+                        <span className={styles.title}>{`Результаты${tag == 't' ? ' учеников' : ''}`}</span>
                         <div className={`${styles.topright} df aic`}>
                             <div className={`${styles.sort} df aic jcc`}>
                                 <FormatListBulletedIcon />
@@ -121,7 +121,7 @@ const AchievmentsRout: NextPage = () => {
                     </div>
                     <div className={styles.contentmenu}>
                         <div className={`${styles.contenttop} df jcsb aic`}>
-                            {tag == 'teacher' ? (
+                            {tag == 't' ? (
                                 <>
                                     <p>Ученик</p>
                                     <p>Название олимпиады</p>
@@ -159,7 +159,7 @@ const AchievmentsRout: NextPage = () => {
                                     </>
                                 ) : (
                                     <>
-                                        {tag == 'teacher' ? (
+                                        {tag == 't' ? (
                                             <>
                                                 {itemTeacherData?.map((item: any) => (
                                                     <div className={`${styles.contentitem} df jcsb aic`} key={item.id}>
@@ -226,7 +226,7 @@ const AchievmentsRout: NextPage = () => {
                                         <span>Добавить</span>
                                     </div>
                                 </div>
-                            <span className={styles.title}>{`Результаты${tag == 'teacher' ? ' учеников' : ''}`}</span>
+                            <span className={styles.title}>{`Результаты${tag == 't' ? ' учеников' : ''}`}</span>
                             </div>
                         </div>
                         <div className={styles.mobile}>
@@ -238,7 +238,7 @@ const AchievmentsRout: NextPage = () => {
                                 </>
                             ) : (
                                 <>
-                                    {tag == 'teacher' ? (
+                                    {tag == 't' ? (
                                         <>
                                             {itemTeacherData?.map((item: any) => (
                                                 <div className={styles.block} key={item.id}>

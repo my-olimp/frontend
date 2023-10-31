@@ -198,7 +198,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile, us
                                 <div className={styles.bar}></div>
                             </div>
                         </div>
-                        {!isMobile ? <Logo /> : <Logo small={true} />}
+                        {!isMobile ? <Logo main={true}/> : <Logo small={true} main={true}/>}
                     </div>
                 ) :
                     (<>
@@ -209,7 +209,7 @@ export const NavBarMobile: FC<props> = ({ notifications, navBarData, profile, us
                                 isOpen={showSideBar}
                             />
                         </span>
-                        <Logo />
+                        <Logo main={true}/>
                     </>)
                 }
                 <div className={styles.infoWrap}>
