@@ -73,6 +73,7 @@ export const EditEvent: FC<props> = ({ setMode, event, editEvent, colors, subjec
         setType('event')
         setSubject('Математика')
         setColor('Математика')
+        setFiles([])
     }
 
     const handleClickOutSide: EventHandler<MouseEvent<HTMLDivElement>> = (event) => {
@@ -88,7 +89,6 @@ export const EditEvent: FC<props> = ({ setMode, event, editEvent, colors, subjec
         setIsFavorite(event.favorite)
         setColor(getAntiColor(event.color))
         setFiles(event.files)
-        console.log(event.files)
         setStartTime(dayjs(event.start))
         setEndTime(dayjs(event.end))
         setDate(dayjs(event.start))
@@ -137,8 +137,18 @@ export const EditEvent: FC<props> = ({ setMode, event, editEvent, colors, subjec
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const array = e.target.files
-        // const narray = array && (array as []).map((item) => item.fileLink = URL.createObjectURL(item))
+        // const arrayFiles: any[] = []
+        // if (array && array.length > 0) {
+        //     for (let i = 0; i < array.length; i++) {
+        //         arrayFiles[i] = {name: '', url: ''}
+        //         arrayFiles[i].name = array[i].name
+        //         arrayFiles[i].url = URL.createObjectURL(array[i])
+        //     }
+        // }
+        // // const narray = array && array.map((item) => item.fileLink = URL.createObjectURL(item))
+        // const fileEls = arrayFiles?.length ? [...files, ...(arrayFiles)]?.slice(0, 5) : [];
         const fileEls = array?.length ? [...files, ...(array)]?.slice(0, 5) : [];
+
 
         if (fileEls.length) {
             setFiles(fileEls)
@@ -241,6 +251,7 @@ export const EditEvent: FC<props> = ({ setMode, event, editEvent, colors, subjec
                                 <div className={styles.block}>
                                     <SaveOutlinedIcon className={styles.saveIcon} fontSize={isMobile ? 'small' : 'medium'} />
                                     {/* <a title={item.name} target='_blank' href={URL.createObjectURL(new File([item.name], item.name, {type: `${item.type}`, lastModified : item.lastModified }))}>{item.name}</a> */}
+                                    <a target='_blank' href={URL.createObjectURL(item)}>{item.name}</a>
                                 </div>
                                 <DeleteForeverOutlined onClick={() => deleteFile(index)} className={styles.deleteFile} fontSize={isMobile ? 'small' : 'medium'} />
                             </div>

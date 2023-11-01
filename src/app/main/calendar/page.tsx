@@ -5,6 +5,7 @@ import { NextPage } from 'next';
 import Image from 'next/image';
 import PlusIcon from '../../../../public/materials/Vector.svg';
 import { MenuItem, Select, ListItemIcon, FormControl, Input } from '@mui/material';
+import localforage from 'localforage';
 
 // CALENDAR
 import { CalendarComponent } from '@/features/CalendarComponent';
@@ -61,12 +62,15 @@ const MyCalendar: NextPage = () => {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        const obj = localStorage.getItem('events');
-        const events = obj ? JSON.parse(obj) : [];
-        if (obj) {
-            setCalendarEvents(events)
+        const func = async() => {
+            const obj: any = await localforage.getItem('events');
+            const events = obj ? obj : [];
+            if (obj) {
+                setCalendarEvents(events)
+            }
+            setEventsInListFunction(events)
         }
-        setEventsInListFunction(events)
+        func()
     }, []);
 
     const setEventsInListFunction = (arr: any, count: number = countDay) => {
@@ -105,12 +109,13 @@ const MyCalendar: NextPage = () => {
         setIsFavorite(false)
         setSubject('Математика')
         setColor('Математика')
+        setFiles([])
     }
 
-    const createEvent = () => {
+    const createEvent = async () => {
         setMode('');
-        const eventsString = localStorage.getItem('events');
-        const events = eventsString ? JSON.parse(eventsString) : [];
+        const eventsString: any = await localforage.getItem('events');
+        const events = eventsString ? eventsString : [];
         const starttime = dayjs(`${dayjs(date).format('YYYY-MM-DD')}T${dayjs(startTime).format('HH:mm')}`).format('llll')
         const endtime = dayjs(`${dayjs(date).format('YYYY-MM-DD')}T${dayjs(endTime).format('HH:mm')}`).format('llll')
         // console.log(files)
@@ -121,6 +126,20 @@ const MyCalendar: NextPage = () => {
         //     }
         //     return obj
         // })
+        // const namesFiles: string[] = []
+        // const urlFiles: any[] = []
+        // const arrayFiles = {
+        //     names: namesFiles,
+        //     urls: urlFiles
+        // }
+        // const arrayFiles: any[] = []
+        // for (let i = 0; i <= files.length; i++) {
+        //     arrayFiles[i].name = files[i].name
+        //     arrayFiles[i].url = URL.createObjectURL(files[i])
+        //     // namesFiles[i] = files[i].name
+        //     // urlFiles[i] = URL.createObjectURL(files[i])
+        // }
+        // console.log(files)
         const obj = {
             id: Math.random(),
             title: eventname,
@@ -131,21 +150,22 @@ const MyCalendar: NextPage = () => {
             type: type,
             favorite: isFavorite,
             // files: filesArray
+            // files: files,
             files: files,
         }
         events.push(obj)
         setCalendarEvents(events);
         setEventsInListFunction(events)
         // console.log(JSON.stringify(filesArray))
-        localStorage.setItem('events', JSON.stringify(events));
+        await localforage.setItem('events', events);
         setEventname('');
         clearAll()
     }
 
-    const editEvent = (id, title, type, favorite, color, subject, start, end, date, files) => {
+    const editEvent = async (id, title, type, favorite, color, subject, start, end, date, files) => {
         setMode('');
-        const eventsString = localStorage.getItem('events');
-        const events = eventsString ? JSON.parse(eventsString) : [];
+        const eventsString: any = await localforage.getItem('events');
+        const events = eventsString ? eventsString : [];
         const starttime = dayjs(`${dayjs(date).format('YYYY-MM-DD')}T${dayjs(start).format('HH:mm')}`).format('llll')
         const endtime = dayjs(`${dayjs(date).format('YYYY-MM-DD')}T${dayjs(end).format('HH:mm')}`).format('llll')
 
@@ -168,21 +188,21 @@ const MyCalendar: NextPage = () => {
 
         setCalendarEvents(events);
         setEventsInListFunction(events)
-        localStorage.setItem('events', JSON.stringify(events));
+        await localforage.setItem('events', events);
         setEventname('');
     }
 
-    const deleteEvent = (eventFrom: any) => {
-        const eventsString = localStorage.getItem('events');
-        const events = eventsString ? JSON.parse(eventsString) : [];
+    const deleteEvent = async(eventFrom: any) => {
+        const eventsString: any = await localforage.getItem('events');
+        const events = eventsString ? eventsString : [];
         const newEvents = events.filter((item: any) => {
             return (item.id !== eventFrom.id)
         })
 
         setCalendarEvents(newEvents);
         setEventsInListFunction(newEvents)
-        localStorage.removeItem('events');
-        localStorage.setItem('events', JSON.stringify(newEvents));
+        await localforage.removeItem('events');
+        await localforage.setItem('events', newEvents);
     }
 
 
@@ -229,8 +249,20 @@ const MyCalendar: NextPage = () => {
 
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const array = e.target.files
+        const array = e.target.files ? [...e.target.files] : []
+        // console.log(array?.length && [...(array)])
+        // const arrayFiles: any[] = []
+        // if (array && array.length > 0) {
+        //     for (let i = 0; i < array.length; i++) {
+        //         console.log(array[i])
+        //         arrayFiles[i] = {name: '', url: ''}
+        //         arrayFiles[i].name = array[i].name
+        //         arrayFiles[i].url = URL.createObjectURL(array[i])
+        //         console.log(JSON.stringify(URL.createObjectURL(array[i])))
+        //     }
+        // }
         // const narray = array && array.map((item) => item.fileLink = URL.createObjectURL(item))
+        // const fileEls = arrayFiles?.length ? [...files, ...(arrayFiles)]?.slice(0, 5) : [];
         const fileEls = array?.length ? [...files, ...(array)]?.slice(0, 5) : [];
 
         if (fileEls?.length) {
@@ -250,7 +282,7 @@ const MyCalendar: NextPage = () => {
             setEventsInListFunction(calendarEvents, 0)
         }
     }
-    
+
     const deleteFile = (index) => {
         const array = [...files]
         array.splice(index, 1)
@@ -407,7 +439,7 @@ const MyCalendar: NextPage = () => {
                                     <div key={nanoid(6)} className={styles.file}>
                                         <div className={styles.block}>
                                             <SaveOutlinedIcon className={styles.saveIcon} fontSize={isMobile ? 'small' : 'medium'} />
-                                            <a target='_blank' href={URL.createObjectURL(item) || ''}>{item.name}</a>
+                                            <a target='_blank' href={item.url}>{item.name}</a>
                                         </div>
                                         <DeleteForeverOutlined onClick={() => deleteFile(index)} className={styles.deleteFile} fontSize={isMobile ? 'small' : 'medium'} />
                                     </div>
