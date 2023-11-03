@@ -13,10 +13,12 @@
     margin-top: 30px;
     @media (max-width: 1000px){
         margin-top: 25px;
+        gap: 24px;
     }
     @media (max-width: 600px){
         padding-bottom: 20px;
         margin-top: 16px;
+        gap: 16px;
     }
 }
 .wrap {
