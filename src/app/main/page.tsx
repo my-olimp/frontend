@@ -5,6 +5,9 @@ import { IMaterial, Materials } from '@/widgets/Materials';
 import { NearestOlimpList } from '@/widgets/NearestOlimpList';
 import { PlansToday } from '@/widgets/PlansToday';
 import materialIcon from '../../../public/materials/materialIcon.svg';
+import Link from 'next/link';
+import Image from 'next/image';
+import ArrowRight from '../../../public/arrows/arrow-right.svg';
 
 const materialList: IMaterial[] = [
     {
@@ -51,6 +54,28 @@ const materialList: IMaterial[] = [
         ],
         icon: materialIcon.src,
     },
+    {
+        id: 4,
+        title: 'Полуинвариант',
+        currentProgress: 8,
+        maxProgress: 10,
+        tags: [
+            { id: 1, text: 'Тест' },
+            { id: 2, text: 'Математика' },
+        ],
+        icon: materialIcon.src,
+    },
+    {
+        id: 4,
+        title: 'Полуинвариант',
+        currentProgress: 8,
+        maxProgress: 10,
+        tags: [
+            { id: 1, text: 'Тест' },
+            { id: 2, text: 'Математика' },
+        ],
+        icon: materialIcon.src,
+    },
 ];
 const Main: NextPage = () => {
     return (
@@ -59,7 +84,16 @@ const Main: NextPage = () => {
                 <NearestOlimpList />
                 <PlansToday />
             </div>
-            <Materials materialList={materialList} title={'С чего начать ?'} libMode={false} overflow={true}/>
+            <div className={styles.materials}>
+                <div className={styles.titleWrap}>
+                        <h1>С чего начать ?</h1>
+                        <div className={styles.link}>
+                            <Link className={styles.text} href="/main/library">Материалы</Link>
+                            <Image width={20} height={20} className={styles.arrow} alt='arrow' src={ArrowRight.src} />
+                        </div>
+                </div>
+                <Materials materialList={materialList} title={'С чего начать ?'} libMode={false} overflow={true} profile={true} />
+            </div>
         </div>
     );
 };

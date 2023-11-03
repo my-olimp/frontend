@@ -1,10 +1,16 @@
 .wrap {
     display: flex;
     flex-direction: column;
-    border-radius: 30px;
+    border-radius: 25px;
     width: 50vw;
     background: #f3f7ff;
-    padding: 22px 82px 55px 42px;
+    padding: 22px 58px 55px 18px;
+    @media (max-width: 1200px) {
+        padding: 22px 18px 55px 18px;
+    }
+    @media (max-width: 1000px) {
+        padding: 18px 16px 42px 16px;
+    }
 
     & .plansWrap {
         & .noPlans {
@@ -21,6 +27,10 @@
             gap: 16px;
             align-items: flex-start;
             padding: 0 24px;
+            @media (max-width: 1000px) {
+                padding: 0 0px;
+                gap: 10px;
+            }
         }
 
         & h2 {
@@ -28,6 +38,9 @@
             font-family: "SF_Regular", Arial, Helvetica, sans-serif;
             font-weight: 400;
             user-select: text;
+            @media (max-width: 1000px) {
+                font-size: 18px;
+            }
         }
     }
 
@@ -39,12 +52,21 @@
         margin-bottom: 12px;
         margin-top: 8px;
         justify-content: space-between;
+        @media (max-width: 1000px) {
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding: 0;
+        }
 
         & h1 {
             font-size: 28px;
             font-family: "SF_Medium", Arial, Helvetica, sans-serif;
             font-weight: 500;
             user-select: text;
+            @media (max-width: 1000px) {
+                font-size: 22px;
+            }
         }
 
         & .link {
@@ -53,13 +75,14 @@
             align-items: center;
             font-family: "SF_Medium", Arial, Helvetica, sans-serif;
             font-weight: 500;
-            * {
-                color: #222222;
-            }
-
-            &:hover * {
-                transition: all 0.3s;
+            gap: 6px;
+            .text {
                 color: #3579f8;
+
+                &:hover {
+                    transition: all 0.3s;
+                    color: #1b66f1;
+                }
             }
 
             & * {
@@ -74,18 +97,12 @@
     }
 }
 
-@media (max-width: 600px) {
-    .wrap {
-        padding: 22px 20px 20px 20px;
-    }
-}
-
 @media (max-width: 410px) {
     .titleWrap {
         & h1 {
             font-family: "SF_SemiBold", Arial, Helvetica, sans-serif;
             font-weight: 600;
-            font-size: 16px !important;
+            font-size: 20px !important;
         }
     }
     .link {
@@ -110,4 +127,9 @@
             font-size: 12px !important;
         }
     }
+}
+
+.arrow {
+    font-size: 20px;
+    color: #3579f8;
 }

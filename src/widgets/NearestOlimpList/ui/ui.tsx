@@ -32,7 +32,7 @@ const nearestOlimpList: INearestOlimp[] = [
         id: 2,
         name: 'Заключительный этап Высшей Пробы по математике',
         icon: olimpLogo2.src,
-        deadline: '15 марта',
+        deadline: '15 сентября',
     },
     {
         id: 3,

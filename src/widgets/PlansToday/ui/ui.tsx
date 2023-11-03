@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './ui.module.scss';
 import Link from 'next/link';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowRight from '../../../../public/arrows/arrow-right.svg';
 import { match, P } from 'ts-pattern';
 import Image from 'next/image';
 import ChillImage from '../../../../public/materials/chill.svg';
@@ -27,8 +27,8 @@ export const PlansToday: FC<props> = ({}) => {
             <div className={styles.titleWrap}>
                 <h1>План на сегодня</h1>
                 <div className={styles.link}>
-                    <Link href="/main/calendar">Календарь</Link>
-                    <ArrowForwardIosIcon />
+                    <Link className={styles.text} href="/main/calendar">Календарь</Link>
+                    <Image width={20} height={20} className={styles.arrow} alt='arrow' src={ArrowRight.src}/>
                 </div>
             </div>
             <div className={styles.plansWrap}>
@@ -36,7 +36,7 @@ export const PlansToday: FC<props> = ({}) => {
                     .with(0, () => (
                         <div className={styles.noPlans}>
                             <Image draggable={false} src={ChillImage} alt={'chill'} />
-                            <h2>У вас нет планов</h2>
+                            <h2>У вас ещё нет планов</h2>
                         </div>
                     ))
                     .with(P.number.gt(0), () => (

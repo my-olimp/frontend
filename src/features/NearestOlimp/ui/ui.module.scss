@@ -2,16 +2,27 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 418px;
-    height: 75px;
-    gap: 10px;
+    gap: 14px;
     border-radius: 10px;
     transition: all 0.3s;
-    padding: 41px 15px;
+    padding: 0px 15px;
 
     &:hover {
         background: #e9e9e9;
+    }
+    @media (max-width: 1000px){
+        width: 300px;
+        padding: 0px 0px;
+        gap: 10px;
+    }
+    @media (max-width: 750px){
+        width: 328px;
+    }
+
+    @media (max-width: 440px){
+        width: 300px;
     }
 }
 
@@ -19,9 +30,13 @@
     display: flex;
     flex-direction: row;
     gap: 14px;
+    justify-content: space-between;
     align-items: center;
     width: fit-content;
-    padding-right: 15px;
+    @media (max-width: 1000px){
+        flex-direction: column;
+        gap: 10px;
+    }
 
     & h1 {
         margin: 0;
@@ -34,7 +49,6 @@
 }
 
 .text {
-    width: 195px;
     height: 33px;
     font-size: 16px;
     font-family: "SF_Regular", Arial, Helvetica, sans-serif;
@@ -42,44 +56,43 @@
 }
 
 .chip {
+    border-radius: 7px;
+    height: 25px;
+
+    
     & * {
+        padding: 4px 7px;
         font-family: "SF_Regular", Arial, Helvetica, sans-serif;
         font-weight: 400;
         font-size: 14px;
+        @media (max-width: 1000px) {
+            padding: 0px;
+            width: 105px;
+            text-align: center;
+        }
     }
 }
 
-@media (max-width: 1200px) {
-    .wrap {
-        width: 300px;
-    }
-    .text {
-        width: fit-content;
-    }
-}
+// @media (max-width: 1200px) {
+//     .wrap {
+//         width: 300px;
+//     }
+//     .text {
+//         width: fit-content;
+//     }
+// }
 
 @media (max-width: 800px) {
     .wrap {
         flex-direction: row;
     }
     .titleWrap {
-        flex-direction: column;
-        gap: 5px;
-        align-items: center;
-        justify-content: center;
+        gap: 7px;
 
         & h1 {
             font-size: 15px;
             font-family: "SF_Medium", Arial, Helvetica, sans-serif;
             font-weight: 500;
-        }
-
-        & div {
-            width: 60%;
-            height: 25px;
-            & * {
-                font-size: 15px;
-            }
         }
     }
 }
