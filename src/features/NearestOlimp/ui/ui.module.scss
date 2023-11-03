@@ -56,8 +56,8 @@
 }
 
 .chip {
-    border-radius: 7px;
-    height: 25px;
+    border-radius: 7px !important;
+    height: 25px !important;
 
     
     & * {
