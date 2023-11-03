@@ -290,7 +290,7 @@ const Redaction: NextPage = () => {
                                     {!isMobile ?
                                         (
                                             <div className={styles.materials}>
-                                                <Materials materialList={olympiads} title={'student'} profile={true} olymp={true} libMode={true} overflow={true} edit={true} />
+                                                <Materials materialList={olympiadsList} olymp={false} mode='profile' edit={true}/>
                                             </div>
                                         )
                                         :

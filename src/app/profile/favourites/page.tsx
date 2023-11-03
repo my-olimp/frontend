@@ -15,7 +15,7 @@ import useIsMobile from '@/hooks/UseIsMobile';
 
 
 const Favourites: NextPage = () => {
-    const isMobile = useIsMobile(800)
+    const isMobile = useIsMobile(500)
 
     const tag = 'teacher'
 
@@ -103,7 +103,7 @@ const Favourites: NextPage = () => {
             </div>
             {!isMobile ?
                 (
-                    <Materials materialList={materialList} title={'student'} olymp={true} profile={true} libMode={true} overflow={true} />
+                    <div className={styles.blockM}><Materials materialList={materialList} olymp={true} mode='profile' /></div>
                 )
                 :
                 (

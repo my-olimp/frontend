@@ -156,7 +156,7 @@ const Olympiads: NextPage = () => {
             {!isMobile ?
                 (
                     <div className={styles.materials}>
-                        <Materials materialList={materialList} title={'student'} olymp={true} profile={true} libMode={true} overflow={true} />
+                        <Materials materialList={materialList} olymp={false} mode='profile'/>
                     </div>
                 )
                 :
@@ -173,8 +173,8 @@ const Olympiads: NextPage = () => {
             </div>
             {!isMobile ?
                 (
-                    <Materials materialList={materialList} title={'student'} olymp={true} profile={true} libMode={true} overflow={true} />
-                )
+                    <Materials materialList={materialList} olymp={false} mode='profile' edit={true}/>
+                    )
                 :
                 (
                     <div className={styles.materialMobile}>

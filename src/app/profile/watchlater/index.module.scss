@@ -39,6 +39,13 @@
     }
 }
 
+.blockM {
+    padding: 20px 0 16px 0;
+    @media (max-width: 900px){
+        padding: 12px 0 20px 0;
+    }
+}
+
 .materials {
     margin-top: 15px;
     background-color: white;

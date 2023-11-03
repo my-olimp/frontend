@@ -16,6 +16,14 @@
         padding-left: 15px;
     }
 }
+
+.blockM {
+    padding: 20px 0 16px 0;
+    @media (max-width: 900px){
+        padding: 12px 0 20px 0;
+    }
+}
+
 .blockText {
     display: flex;
     justify-content: space-between;

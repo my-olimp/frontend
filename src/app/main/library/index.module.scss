@@ -1,36 +1,45 @@
-$accent-color: #3579F8;
+$accent-color: #3579f8;
 
 .screen {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-  margin: 48px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 22px 0px 50px 0px;
+    @media (max-width: 600px){
+        margin-bottom: 22px;
+    }
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 10px;
-  margin-right: auto;
-  margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 50px;
+    @media (max-width: 1000px){
+        padding: 0px 30px;
+    }
+    @media (max-width: 600px){
+        padding: 0px 16px;
+    }
+    max-width: 1460px;
 }
 
 .bar {
-  color: white;
-  width: 100%;
-  padding: 30px 30px 0px 30px;
-  border-radius: 25px;
-  background-color: $accent-color;
+    color: white;
+    width: 100%;
+    padding: 30px 30px 0px 30px;
+    border-radius: 25px;
+    background-color: $accent-color;
 
-  p:first-child {
-    font-size: 44px;
-  }
-  p,
-  .searchbar,
-  .btns {
-    margin-bottom: 35px;
-  }
+    p:first-child {
+        font-size: 44px;
+    }
+    p,
+    .searchbar,
+    .btns {
+        margin-bottom: 35px;
+    }
 }
 
 .barText {
@@ -38,43 +47,68 @@ $accent-color: #3579F8;
 }
 
 .searchbar {
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
-  background-color: white;
-  border-radius: 15px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
 
-  input {
-    background: none;
-    outline: none;
-    border: none;
-    padding: 3px;
-    font-size: 15px;
-    width: 100%;
-  }
-  img {
-    margin-right: 5px;
-  }
+    input {
+        background: none;
+        outline: none;
+        border: none;
+        padding: 3px;
+        font-size: 15px;
+        width: 100%;
+    }
+    img {
+        margin-right: 5px;
+    }
 }
 
 .btns {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 
-  .btn {
-    text-decoration: none;
-    color: white;
-    margin-top: 5px;
-    margin-right: 10px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.33);
-    padding: 7px 6px;
-    transition: .2s ease;
-    cursor: pointer;
+    .btn {
+        text-decoration: none;
+        color: white;
+        margin-top: 5px;
+        margin-right: 10px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.33);
+        padding: 7px 6px;
+        transition: 0.2s ease;
+        cursor: pointer;
 
-    &:hover {
-      background-color: white;
-      color: #3579F8;
+        &:hover {
+            background-color: white;
+            color: #3579f8;
+        }
     }
-  }
+}
+
+.blocks {
+    display: flex;
+    flex-direction: column;
+
+    .blockTitle {
+        color: #3d3d3c;
+        font-family: "SF_Medium";
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: 0.64px;
+        padding: 24px 0px;
+        @media (max-width: 1000px){
+            font-size: 25px;
+        }
+        @media (max-width: 600px){
+           font-size: 20px;   
+        }
+    }
+
+    .block {
+        width: 90vw;
+        max-width: 1360px;
+    }
 }

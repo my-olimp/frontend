@@ -9,46 +9,37 @@ import Link from 'next/link';
 
 interface Props {
     material: IMaterial;
-    urlprop?: string;
-    overflow?: boolean;
-    profile?: boolean;
+    mode: 'library' | 'main' | 'profile';
     edit?: boolean;
     olymp?: boolean;
 }
-export const MaterialCard: FC<Props> = ({ material, urlprop, overflow, profile, edit, olymp }) => {
-    const [url, setUrl] = useState('');
-
-    useEffect(() => {
-        setUrl(window.location.href)
-    }, []);
-    const mobile = true;
+export const MaterialCard: FC<Props> = ({ material, mode, edit, olymp }) => {
 
     return (
-        <div className={`${!overflow ? styles.wrap : profile ? `${styles.libraryWrap} ${styles.libraryWrap_profile}` : styles.libraryWrap} ${olymp ? styles.olymp : ''}`}>
+        <div className={`${mode === 'main' ? styles.mainWrap : mode === 'library' ? styles.libraryWrap : styles.profileWrap} ${olymp ? styles.olymp : ''}`}>
             {!olymp &&
-            <div className={styles.tagWrap}>
-                {material.tags.map((tag) => {
-                    return <MaterialChip key={tag.id} text={tag.text} />;
-                })}
-            </div>
+                <div className={styles.tagWrap}>
+                    {material.tags.map((tag) => {
+                        return (
+                            <div className={styles.tag} key={tag.id}>
+                                <h1 className={styles.textContent}>{tag.text}</h1>
+                            </div>
+                        )
+                    })}
+                </div>
             }
             <div className={styles.icon} style={{ backgroundImage: `url(${material.icon})` }}></div>
             <div className={styles.bottomWrap}>
-                {olymp && <div className={styles.tag1}>{material.tags[0].text}</div>}
+                {olymp && <div className={styles.tag1}>Олимпиада</div>}
                 <h1 className={styles.title}>{material.title}</h1>
-                <div className={styles.startWrap}>
-                    {!mobile && (
-                        <>
-                            <Button onClick={(event) => console.log(event.target)}>Пройти</Button>
-                            <ProgressCounter
-                                current={material.currentProgress}
-                                max={material.maxProgress}
-                            />
-                        </>
-                    )}
-                </div>
                 <div className={styles.btndiv}>
-                    <Link href={`${urlprop}`} className={styles.btn}>{edit ? 'Редактировать' : 'Посмотреть'} </Link>
+                    <Link href={``} className={styles.btn}>{edit ? 'Редактировать' : mode === 'main' ? 'Пройти' : 'Посмотреть'} </Link>
+                    {mode === 'main' &&
+                        <ProgressCounter
+                            current={material.currentProgress}
+                            max={material.maxProgress}
+                        />
+                    }
                 </div>
             </div>
         </div>

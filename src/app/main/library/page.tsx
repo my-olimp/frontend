@@ -52,6 +52,50 @@ const materialList: IMaterial[] = [
         ],
         icon: materialIcon.src,
     },
+    {
+        id: 3,
+        title: 'Как выбрать олимпиаду?',
+        currentProgress: 6,
+        maxProgress: 10,
+        tags: [
+            { id: 1, text: 'Статья' },
+            { id: 2, text: 'Олимпиады' },
+        ],
+        icon: materialIcon.src,
+    },
+    {
+        id: 4,
+        title: 'С чего начать подготовку?',
+        currentProgress: 8,
+        maxProgress: 10,
+        tags: [
+            { id: 1, text: 'Статья' },
+            { id: 2, text: 'Олимпиады' },
+        ],
+        icon: materialIcon.src,
+    },
+    {
+        id: 3,
+        title: 'Как выбрать олимпиаду?',
+        currentProgress: 6,
+        maxProgress: 10,
+        tags: [
+            { id: 1, text: 'Статья' },
+            { id: 2, text: 'Олимпиады' },
+        ],
+        icon: materialIcon.src,
+    },
+    {
+        id: 4,
+        title: 'С чего начать подготовку?',
+        currentProgress: 8,
+        maxProgress: 10,
+        tags: [
+            { id: 1, text: 'Статья' },
+            { id: 2, text: 'Олимпиады' },
+        ],
+        icon: materialIcon.src,
+    },
 ];
 
 const Library: NextPage = () => {
@@ -62,7 +106,7 @@ const Library: NextPage = () => {
                     <p>Библиотека</p>
                     <p className={styles.barText}>Онлайн-архив полезных материалов от MyOlimp, собранный победителями прошлых лет и опытными преподавателями. Библиотека будет полезна при подготовке к олимпиадам и экзаменам.</p>
                     <div className={styles.searchbar}>
-                        <Image src={Search} alt="search" width={18} height={18}/>
+                        <Image src={Search} alt="search" width={18} height={18} />
                         <input
                             type="text"
                             placeholder='Статья, тема, предмет'
@@ -75,9 +119,17 @@ const Library: NextPage = () => {
                         <div className={styles.btn}>Физика</div>
                     </div>
                 </div>
+                <div className={styles.blocks}>
+                    <div className={styles.block}>
+                        <div className={styles.blockTitle}>Первый шаг</div>
+                        <Materials materialList={materialList} mode='library' />
+                    </div>
+                    <div className={styles.block}>
+                        <div className={styles.blockTitle}>Может быть интересно</div>
+                        <Materials materialList={materialList} mode='library' />
+                    </div>
+                </div>
             </div>
-            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} overflow={true} />
-            <Materials materialList={materialList} title={'Может быть интересно'} libMode={true} overflow={true} />
         </div>
     );
 };

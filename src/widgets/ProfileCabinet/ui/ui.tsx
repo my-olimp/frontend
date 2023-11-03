@@ -17,7 +17,7 @@ interface props {
 }
 
 export const ProfileCabinet: FC<props> = ({ setMode, editMode, userdata }) => {
-    const tag: string = 's'
+    const tag: string = 'c'
 
     useEffect(() => {
         console.log(userdata)

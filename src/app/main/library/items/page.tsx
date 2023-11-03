@@ -52,6 +52,50 @@ const MyItems: NextPage = () => {
             ],
             icon: materialIcon.src,
         },
+        {
+            id: 3,
+            title: 'Обзор на олимпиады по математике',
+            currentProgress: 6,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Статья' },
+                { id: 2, text: 'Математика' },
+            ],
+            icon: materialIcon.src,
+        },
+        {
+            id: 4,
+            title: 'Пробный вариант ВСОШ',
+            currentProgress: 8,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Пробник' },
+                { id: 2, text: 'Математика' },
+            ],
+            icon: materialIcon.src,
+        },
+        {
+            id: 3,
+            title: 'Обзор на олимпиады по математике',
+            currentProgress: 6,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Статья' },
+                { id: 2, text: 'Математика' },
+            ],
+            icon: materialIcon.src,
+        },
+        {
+            id: 4,
+            title: 'Пробный вариант ВСОШ',
+            currentProgress: 8,
+            maxProgress: 10,
+            tags: [
+                { id: 1, text: 'Пробник' },
+                { id: 2, text: 'Математика' },
+            ],
+            icon: materialIcon.src,
+        },
     ];
 
     // РАЗДЕЛЫ
@@ -83,8 +127,8 @@ const MyItems: NextPage = () => {
                     <span>Математика</span>
                     <span>Первый шаг</span>
                 </div>
+            <div className={styles.materials}><Materials materialList={materialList} mode='library' /></div>
             </div>
-            <Materials materialList={materialList} title={'Первый шаг'} libMode={true} overflow={true}/>
             <div className={styles.bottom}>
                 <div className={styles.bottomcontainer}>
                     <span>Разделы</span>

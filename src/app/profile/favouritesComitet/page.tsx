@@ -165,7 +165,7 @@ const FavouritesComitet: NextPage = () => {
             {!isMobile ?
                 (
                     <div className={styles.materials}>
-                        <Materials materialList={materialList} title={'student'} profile={true} olymp={false} libMode={true} overflow={true} edit={true} />
+                        <Materials materialList={materialList} olymp={false} mode='profile' edit={true}/>
                     </div>
                 )
                 :

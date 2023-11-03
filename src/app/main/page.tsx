@@ -12,7 +12,7 @@ import ArrowRight from '../../../public/arrows/arrow-right.svg';
 const materialList: IMaterial[] = [
     {
         id: 1,
-        title: 'Персонализированный вариант',
+        title: 'Персональный вариант',
         currentProgress: 0,
         maxProgress: 10,
         tags: [
@@ -92,7 +92,7 @@ const Main: NextPage = () => {
                             <Image width={20} height={20} className={styles.arrow} alt='arrow' src={ArrowRight.src} />
                         </div>
                 </div>
-                <Materials materialList={materialList} title={'С чего начать ?'} libMode={false} overflow={true} profile={true} />
+                <Materials materialList={materialList} mode='main' />
             </div>
         </div>
     );
