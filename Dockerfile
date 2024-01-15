@@ -1,7 +1,7 @@
 # Этап 1: Сборка TypeScript
-FROM node:16 AS build
+FROM node:21 AS build
 
-WORKDIR /usr/src/app
+WORKDIR .
 
 COPY package.json package-lock.json ./
 RUN npm install
@@ -10,11 +10,11 @@ COPY . .
 RUN npm run build
 
 # Этап 2: Создание образа
-FROM node:16
+FROM node:21
 
-WORKDIR /usr/src/app
+WORKDIR .
 
-COPY --from=build /usr/src/app/out ./out
+# COPY --from=build /usr/src/app/out ./out
 COPY package.json package-lock.json ./
 RUN npm install --production
 
