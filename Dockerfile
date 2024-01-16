@@ -1,21 +1,29 @@
-# Этап 1: Сборка TypeScript
-FROM node:18 AS build
+FROM node:18-alpine as base
+RUN apk add --no-cache g++ make py3-pip libc6-compat
+WORKDIR /app
+COPY package*.json ./
+EXPOSE 3000
 
-WORKDIR /usr/src/app
-
-COPY package.json package-lock.json ./
-RUN npm install
-
-COPY ./* .
+FROM base as builder
+WORKDIR /app
+COPY . .
 RUN npm run build
 
-# Этап 2: Создание образа
-FROM node:18
 
-WORKDIR /usr/src/app
+FROM base as production
+WORKDIR /app
 
-# COPY --from=build /usr/src/app/out ./out
-COPY package.json package-lock.json ./
-RUN npm install --production
+ENV NODE_ENV=production
+RUN npm ci
 
-CMD ["npm", "start"]
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+USER nextjs
+
+
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/public ./public
+
+CMD npm start
