@@ -19,7 +19,7 @@ export const Footer: FC<props> = () => {
             </div>
 
             <div className={styles.socials}>
-                <Link href={'https://vk.com/myolimpolimpiadnik'}>
+                <Link href={'/'}>
                     <Image src={VK} alt={'vk'} />
                 </Link>
                 <Link href={'/'}>
